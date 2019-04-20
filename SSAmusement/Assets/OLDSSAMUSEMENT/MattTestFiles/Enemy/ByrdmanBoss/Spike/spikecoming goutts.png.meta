@@ -1,0 +1,400 @@
+fileFormatVersion: 2
+guid: 3305abcb1e31a6d47b9a187b2871e7f0
+timeCreated: 1512604727
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: spikecoming goutts_0
+    21300002: spikecoming goutts_1
+    21300004: spikecoming goutts_2
+    21300006: spikecoming goutts_3
+    21300008: spikecoming goutts_4
+    21300010: spikecoming goutts_5
+    21300012: spikecoming goutts_6
+    21300014: spikecoming goutts_7
+    21300016: spikecoming goutts_8
+    21300018: spikecoming goutts_9
+    21300020: spikecoming goutts_10
+    21300022: spikecoming goutts_11
+    21300024: spikecoming goutts_12
+    21300026: spikecoming goutts_13
+    21300028: spikecoming goutts_14
+    21300030: spikecoming goutts_15
+    21300032: spikecoming goutts_16
+    21300034: spikecoming goutts_17
+    21300036: spikecoming goutts_18
+    21300038: spikecoming goutts_19
+    21300040: spikecoming goutts_20
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 0
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 10
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: spikecoming goutts_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 103
+        width: 25
+        height: 25
+      alignment: 9
+      pivot: {x: 1, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spikecoming goutts_1
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 103
+        width: 24
+        height: 25
+      alignment: 9
+      pivot: {x: 1, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spikecoming goutts_2
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 103
+        width: 23
+        height: 25
+      alignment: 9
+      pivot: {x: 1, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spikecoming goutts_3
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 103
+        width: 23
+        height: 25
+      alignment: 9
+      pivot: {x: 1, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spikecoming goutts_4
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 103
+        width: 24
+        height: 25
+      alignment: 9
+      pivot: {x: 1, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spikecoming goutts_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 78
+        width: 25
+        height: 25
+      alignment: 9
+      pivot: {x: 1, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spikecoming goutts_6
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 78
+        width: 24
+        height: 25
+      alignment: 9
+      pivot: {x: 1, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spikecoming goutts_7
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 78
+        width: 24
+        height: 25
+      alignment: 9
+      pivot: {x: 1, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spikecoming goutts_8
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 78
+        width: 23
+        height: 25
+      alignment: 9
+      pivot: {x: 1, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spikecoming goutts_9
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 78
+        width: 24
+        height: 25
+      alignment: 9
+      pivot: {x: 1, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spikecoming goutts_10
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 53
+        width: 20
+        height: 25
+      alignment: 9
+      pivot: {x: 1, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spikecoming goutts_11
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 53
+        width: 21
+        height: 25
+      alignment: 9
+      pivot: {x: 1, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spikecoming goutts_12
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 53
+        width: 24
+        height: 25
+      alignment: 9
+      pivot: {x: 1, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spikecoming goutts_13
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 53
+        width: 19
+        height: 25
+      alignment: 9
+      pivot: {x: 1, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spikecoming goutts_14
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 53
+        width: 23
+        height: 25
+      alignment: 9
+      pivot: {x: 1, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spikecoming goutts_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 28
+        width: 25
+        height: 25
+      alignment: 9
+      pivot: {x: 1, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spikecoming goutts_16
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 28
+        width: 22
+        height: 25
+      alignment: 9
+      pivot: {x: 1, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spikecoming goutts_17
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 28
+        width: 22
+        height: 25
+      alignment: 9
+      pivot: {x: 1, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spikecoming goutts_18
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 28
+        width: 23
+        height: 25
+      alignment: 9
+      pivot: {x: 1, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spikecoming goutts_19
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 28
+        width: 24
+        height: 25
+      alignment: 9
+      pivot: {x: 1, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spikecoming goutts_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3
+        width: 25
+        height: 25
+      alignment: 9
+      pivot: {x: 1, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

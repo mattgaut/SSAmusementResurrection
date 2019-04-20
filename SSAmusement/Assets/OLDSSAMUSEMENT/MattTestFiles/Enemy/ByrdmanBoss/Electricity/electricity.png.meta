@@ -1,0 +1,595 @@
+fileFormatVersion: 2
+guid: 77e664297638d58428a6ca4e49f8bd67
+timeCreated: 1512454134
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: electricity223_0
+    21300002: electricity223_1
+    21300004: electricity223_2
+    21300006: electricity223_3
+    21300008: electricity223_4
+    21300010: electricity223_5
+    21300012: electricity223_6
+    21300014: electricity223_7
+    21300016: electricity223_8
+    21300018: electricity223_9
+    21300020: electricity223_10
+    21300022: electricity223_11
+    21300024: electricity223_12
+    21300026: electricity223_13
+    21300028: electricity223_14
+    21300030: electricity223_15
+    21300032: electricity223_16
+    21300034: electricity223_17
+    21300036: electricity223_18
+    21300038: electricity223_19
+    21300040: electricity223_20
+    21300042: electricity223_21
+    21300044: electricity223_22
+    21300046: electricity223_23
+    21300048: electricity223_24
+    21300050: electricity223_25
+    21300052: electricity223_26
+    21300054: electricity223_27
+    21300056: electricity223_28
+    21300058: electricity223_29
+    21300060: electricity223_30
+    21300062: electricity223_31
+    21300064: electricity223_32
+    21300066: electricity223_33
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 10
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: electricity223_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 924
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 924
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 924
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 924
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 924
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 824
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_6
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 824
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_7
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 824
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_8
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 824
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_9
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 824
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 724
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_11
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 724
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_12
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 724
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_13
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 724
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_14
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 724
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 624
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_16
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 624
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_17
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 624
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_18
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 624
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_19
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 624
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 524
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_21
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 524
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_22
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 524
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_23
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 524
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_24
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 524
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 424
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_26
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 424
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_27
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 424
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_28
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 424
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_29
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 424
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 324
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_31
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 324
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_32
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 324
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: electricity223_33
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 324
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: ElectricySmall
+  m_Controller: {fileID: 9100000, guid: 287562afc888140409759f04af822080, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 09af276768b30c245b74171dcad76fb4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e42f935108684f74099a6b630d61e60c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5ff860ce6ee1b4341a6765192a3df7ac, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d6e80841c14f0db4b8b749ab4f7c9896, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 2d8f955c23d02644d984e01b6c2f3699, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d7f3b5ff6019c2f49b49ee4506181d97, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6554744527830af478b2e7ce4655bbb1, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 216c87914d084b04b81485a764c818e5, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 1c4cf380dcf7deb449c51acef8089b5c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 81990440d147ecc4186b0e7c44223c8d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 486423ee5e5d5504980dd135ea34ffe0, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b9d24475667178e4495dda7cc8da1597, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6229e0f0a64a6c94fa535c1649701be4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 889cd72977561584ca1a4cda3805cc61, type: 2}

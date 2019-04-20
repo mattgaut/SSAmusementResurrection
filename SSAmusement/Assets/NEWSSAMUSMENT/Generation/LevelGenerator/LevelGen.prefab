@@ -1,0 +1,212 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1777112757716546}
+  m_IsPrefabParent: 1
+--- !u!1 &1264158310044948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4691735284384470}
+  m_Layer: 0
+  m_Name: PlayerSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1777112757716546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4604255425029654}
+  - component: {fileID: 114787462853215606}
+  - component: {fileID: 114850936473325640}
+  - component: {fileID: 114870758707719444}
+  - component: {fileID: 114476071474386318}
+  - component: {fileID: 114930611539677840}
+  m_Layer: 0
+  m_Name: LevelGen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4604255425029654
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777112757716546}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6, y: -3.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4691735284384470}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4691735284384470
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1264158310044948}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4604255425029654}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114476071474386318
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777112757716546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23abfd2206fbb746a405d8f7558be08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objects_to_center_on_active_room:
+  - {fileID: 0}
+--- !u!114 &114787462853215606
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777112757716546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da7612aec14440c4589b78e96fcd483e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lg: {fileID: 114850936473325640}
+  rs: {fileID: 114870758707719444}
+  rm: {fileID: 114476071474386318}
+  colors:
+  - {r: 0.77205884, g: 0.011353818, b: 0.011353818, a: 1}
+  - {r: 0.21410036, g: 0.28874838, b: 0.64705884, a: 1}
+  - {r: 0.16435987, g: 0.58823526, b: 0.23744185, a: 1}
+  - {r: 0.74664426, g: 0.31206748, b: 0.8161765, a: 1}
+  - {r: 0.2770869, g: 0.9191176, b: 0.8128504, a: 1}
+  - {r: 0.75, g: 0.5750507, b: 0.115808845, a: 1}
+  - {r: 0.32990244, g: 0.46323532, b: 0.02384299, a: 1}
+  - {r: 0.3455882, g: 0.078773774, b: 0.32718724, a: 1}
+  - {r: 0.07461074, g: 0.50735295, b: 0.4357267, a: 1}
+  - {r: 0.7728911, g: 0.6574395, b: 0.9411765, a: 1}
+  - {r: 0.659494, g: 0.78676474, b: 0.78676474, a: 1}
+  - {r: 0.58617705, g: 0.63235295, b: 0.42311853, a: 1}
+  - {r: 0.625, g: 0.6236372, b: 0.4273897, a: 1}
+  - {r: 0.7272851, g: 0.2078287, b: 0.9117647, a: 1}
+  - {r: 0, g: 1, b: 0.5034485, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 1, g: 0.6827586, b: 0, a: 1}
+  - {r: 1, g: 0.9724138, b: 0, a: 1}
+  - {r: 0.24137926, g: 0, b: 1, a: 1}
+  - {r: 0.5588235, g: 1, b: 0.9087221, a: 1}
+  - {r: 0.45566317, g: 0.26870677, b: 0.52205884, a: 1}
+  - {r: 0.6911765, g: 1, b: 0.80831647, a: 1}
+  - {r: 0.7272851, g: 0.2078287, b: 0.9117647, a: 1}
+  - {r: 0.2794118, g: 0.9701825, b: 1, a: 1}
+  - {r: 0.5735294, g: 0.5735294, b: 0.5735294, a: 1}
+  - {r: 0.43382353, g: 0.43382353, b: 0.43382353, a: 1}
+  - {r: 0.75, g: 0.41896552, b: 0, a: 1}
+  - {r: 1, g: 0.6838235, b: 0.6838235, a: 1}
+  - {r: 0.34765247, g: 0.22923876, b: 0.3897059, a: 1}
+  spawn: {fileID: 0}
+  initial_player_position: {fileID: 4691735284384470}
+  level_theme: {fileID: 8300000, guid: 554dd64f89557cc43867a8e03d5ebd6b, type: 3}
+  _player: {fileID: 0}
+--- !u!114 &114850936473325640
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777112757716546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb6a97cf34826645b7a2a8d0d589fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  origin: {fileID: 114741949319049086, guid: 7726002f8300f0a4e922f19e126c63fa, type: 2}
+  possible_rooms:
+  - {fileID: 114329159972209376, guid: 04148c7562986c545a55fec43d4a77a6, type: 2}
+  - {fileID: 114338831626181466, guid: e192ebbe166611a4bac9899b5116dabc, type: 2}
+  - {fileID: 114859099305136342, guid: b5065ac739ed66d428ce89f0b47235c7, type: 2}
+  - {fileID: 114840147391561056, guid: 634986494b4261b478f270cc6bc43d25, type: 2}
+  - {fileID: 114040772031459442, guid: 11633e78e7037e94cb089f88d9111888, type: 2}
+  - {fileID: 114271398882603396, guid: 1c6be466f5ddb3f43a359456510ea9de, type: 2}
+  - {fileID: 114112616090116550, guid: a551ee0643b29a5488eace285061cf75, type: 2}
+  - {fileID: 114112616090116550, guid: 419ad021d12475d48942b3346f8d123b, type: 2}
+  - {fileID: 114112616090116550, guid: 724a5d4f3d2f3904092d719408538d05, type: 2}
+  - {fileID: 114112616090116550, guid: 85a3d3b068d7fa54eb17eb9da1e9e7e8, type: 2}
+  - {fileID: 114112616090116550, guid: 532cd21c9c1d87242b8c49aa422d716c, type: 2}
+  - {fileID: 114831515575795332, guid: 084bf6b29abd1b544a302e7b44257cc9, type: 2}
+  - {fileID: 114176560908113384, guid: a7666069901656846a93b43fd2aaf529, type: 2}
+  - {fileID: 114264333976952970, guid: 04d1b423d5ae32b409d3bf5164d195eb, type: 2}
+  - {fileID: 114753077081913406, guid: 08148a8e1745095469cd565454f2a14d, type: 2}
+  - {fileID: 114520027446074118, guid: 998be2a3dbbe0044397faf1d32cae89f, type: 2}
+  - {fileID: 114520027446074118, guid: c13e678f0bb390b4789d2a8e8c859723, type: 2}
+  - {fileID: 114048931660357638, guid: 8c78960f92a174b43a5a35ef712ef6df, type: 2}
+  boss_room: {fileID: 114896106450446086, guid: 2f4bd3b0c3b874e4e88400f55949d30b,
+    type: 2}
+  fill: 0.606
+  blocks_x: 5
+  blocks_y: 5
+--- !u!114 &114870758707719444
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777112757716546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a8fd5c47fb3f144a83e5bc54e4636e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ts: {fileID: 114390978020554818, guid: 0db5b36e6a2809f4e8cf52a9ee1cd446, type: 2}
+  room_width: 18
+  room_height: 10
+  mobility: 0
+  item_pool:
+  - {fileID: 114220292241571816, guid: ef0a001c8cf0ae84fa9fb3663b630293, type: 2}
+  - {fileID: 114147480596157804, guid: 18729338e7d6e5147b86f27eae28bb7f, type: 2}
+  - {fileID: 114147480596157804, guid: 12413e18aae18bb428689b4830fb3df8, type: 2}
+  - {fileID: 114274808428152264, guid: f7b15c09662e65b46a399128415ee3d4, type: 2}
+  - {fileID: 114075697458754728, guid: 06ebf5b53f2b5d74990fb9c6e62252ed, type: 2}
+  - {fileID: 114623489731956812, guid: 3a6a6ee2c800f3e4b84958f1da9a8793, type: 2}
+  - {fileID: 114912634547136554, guid: 1b5f4dbdcd10c124b8a9b8e624b426de, type: 2}
+  - {fileID: 114158808709656130, guid: 987a73e3fd4e59f4fa4476479fb7b182, type: 2}
+--- !u!114 &114930611539677840
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777112757716546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05029d0978f01034293dfb8beacfc858, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  origin: {fileID: 114741949319049086, guid: 7726002f8300f0a4e922f19e126c63fa, type: 2}
+  possible_rooms: []
+  boss_room: {fileID: 114896106450446086, guid: 2f4bd3b0c3b874e4e88400f55949d30b,
+    type: 2}

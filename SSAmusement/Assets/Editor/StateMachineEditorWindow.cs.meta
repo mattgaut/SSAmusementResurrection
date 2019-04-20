@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 38c282a8430d2004baf98439c226def0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_PersistentViewDataDictionary: {instanceID: 0}
+  - panel_skin: {fileID: 11400000, guid: 11a7e033b105a46408ee48b702e85038, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

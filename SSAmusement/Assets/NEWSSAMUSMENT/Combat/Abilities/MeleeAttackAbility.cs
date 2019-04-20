@@ -1,0 +1,47 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MeleeAttackAbility : ActiveAbility {
+
+    [SerializeField] float wind_up_time;
+    [SerializeField] float active_hitbox_time;
+
+    [SerializeField] Attack attack;
+
+    [SerializeField] string anim_trigger_name;
+
+    protected override void Awake() {
+        base.Awake();
+        attack.SetSource(character);
+        attack.SetOnHit(AttackOnHit);
+    }
+
+    protected override void UseAbility() {
+        StartCoroutine(AbilityCoroutine());
+    }
+
+    IEnumerator AbilityCoroutine() {
+        character.animator.SetTrigger(anim_trigger_name);
+        float time = 0;
+        using_ability = true;
+
+        while (time < wind_up_time) { // wait before hitbox active
+            time += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        attack.Enable();
+        time = 0;
+        while (time < active_hitbox_time) { // length of basic attack
+            time += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        attack.Disable();
+        using_ability = false;
+    }
+
+    void AttackOnHit(IDamageable d, Attack hit_by) {
+        character.DealDamage(character.power, d);
+        d.TakeKnockback(character, new Vector3(5 * Mathf.Sign(d.gameObject.transform.position.x - transform.position.x), 5, 0));
+    }
+}

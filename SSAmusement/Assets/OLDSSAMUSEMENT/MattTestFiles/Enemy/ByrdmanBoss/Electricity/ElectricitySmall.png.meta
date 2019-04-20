@@ -1,0 +1,629 @@
+fileFormatVersion: 2
+guid: 8ba4e5a0fea64484099a17eb9e755547
+timeCreated: 1512454699
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: electricity223_0
+    21300002: electricity223_1
+    21300004: electricity223_2
+    21300006: electricity223_3
+    21300008: electricity223_4
+    21300010: electricity223_5
+    21300012: electricity223_6
+    21300014: electricity223_7
+    21300016: electricity223_8
+    21300018: electricity223_9
+    21300020: electricity223_10
+    21300022: electricity223_11
+    21300024: electricity223_12
+    21300026: electricity223_13
+    21300028: electricity223_14
+    21300030: electricity223_15
+    21300032: electricity223_16
+    21300034: electricity223_17
+    21300036: electricity223_18
+    21300038: electricity223_19
+    21300040: electricity223_20
+    21300042: electricity223_21
+    21300044: electricity223_22
+    21300046: electricity223_23
+    21300048: electricity223_24
+    21300050: electricity223_25
+    21300052: electricity223_26
+    21300054: electricity223_27
+    21300056: electricity223_28
+    21300058: electricity223_29
+    21300060: electricity223_30
+    21300062: electricity223_31
+    21300064: electricity223_32
+    21300066: electricity223_33
+    21300068: ElectricitySmall_0
+    21300070: ElectricitySmall_1
+    21300072: ElectricitySmall_2
+    21300074: ElectricitySmall_3
+    21300076: ElectricitySmall_4
+    21300078: ElectricitySmall_5
+    21300080: ElectricitySmall_6
+    21300082: ElectricitySmall_7
+    21300084: ElectricitySmall_8
+    21300086: ElectricitySmall_9
+    21300088: ElectricitySmall_10
+    21300090: ElectricitySmall_11
+    21300092: ElectricitySmall_12
+    21300094: ElectricitySmall_13
+    21300096: ElectricitySmall_14
+    21300098: ElectricitySmall_15
+    21300100: ElectricitySmall_16
+    21300102: ElectricitySmall_17
+    21300104: ElectricitySmall_18
+    21300106: ElectricitySmall_19
+    21300108: ElectricitySmall_20
+    21300110: ElectricitySmall_21
+    21300112: ElectricitySmall_22
+    21300114: ElectricitySmall_23
+    21300116: ElectricitySmall_24
+    21300118: ElectricitySmall_25
+    21300120: ElectricitySmall_26
+    21300122: ElectricitySmall_27
+    21300124: ElectricitySmall_28
+    21300126: ElectricitySmall_29
+    21300128: ElectricitySmall_30
+    21300130: ElectricitySmall_31
+    21300132: ElectricitySmall_32
+    21300134: ElectricitySmall_33
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 10
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ElectricitySmall_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 924
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 924
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 924
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 924
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 924
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 824
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_6
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 824
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_7
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 824
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_8
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 824
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_9
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 824
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 724
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_11
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 724
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_12
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 724
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_13
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 724
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_14
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 724
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 624
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_16
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 624
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_17
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 624
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_18
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 624
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_19
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 624
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 524
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_21
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 524
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_22
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 524
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_23
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 524
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_24
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 524
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 424
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_26
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 424
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_27
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 424
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_28
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 424
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_29
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 424
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 324
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_31
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 324
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_32
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 324
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ElectricitySmall_33
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 324
+        width: 200
+        height: 100
+      alignment: 9
+      pivot: {x: 0.135, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
