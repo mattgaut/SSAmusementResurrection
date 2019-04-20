@@ -92,7 +92,7 @@ public class StateMachineControllerEditor : Editor {
 
         EditorGUILayout.Space();
 
-        DrawPropertiesExcluding(serialized_target, new string[] { "state_machine", "list", "m_Script" });
+        DrawPropertiesExcluding(serialized_target, new string[] { "state_machine", "parameter_callback_list", "state_coroutine_list", "m_Script" });
 
         serialized_target.ApplyModifiedProperties();
     }
@@ -108,7 +108,7 @@ public class StateMachineControllerEditor : Editor {
     bool MatchParameterCandidate(MemberInfo member, object filter, Type type) {
         if (member.MemberType == MemberTypes.Method) {
             MethodInfo mi = type.GetMethod(member.Name, new Type[0]);
-            if (type.BaseType != null && type.BaseType.GetMethod(member.Name, new Type[0]) != null) {
+            if (typeof(StateMachineController).BaseType.GetMethod(member.Name, new Type[0]) != null) {
                 return false;
             }
 
@@ -122,15 +122,14 @@ public class StateMachineControllerEditor : Editor {
 
     MemberInfo[] GetStateCandidates(Type type) {
         List<MemberInfo> member_info_list = new List<MemberInfo>();
-
-        member_info_list.AddRange(type.FindMembers(MemberTypes.Method, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic, (a, b) => MatchStateCandidate(a, b, type), null));
+        member_info_list.AddRange(type.FindMembers(MemberTypes.Method, BindingFlags.Instance | BindingFlags.NonPublic, (a, b) => MatchStateCandidate(a, b, type), null));
 
         return member_info_list.ToArray();
     }
 
     bool MatchStateCandidate(MemberInfo member, object filter, Type type) {
-        if (member.MemberType == MemberTypes.Method) {
-            MethodInfo mi = type.GetMethod(member.Name, new Type[0]);
+        if (member.MemberType == MemberTypes.Method && member.Name != "StateMachineCoroutine") {
+            MethodInfo mi = type.GetMethod(member.Name, BindingFlags.Instance | BindingFlags.NonPublic, null, new Type[0], new ParameterModifier[0]);            
 
             return mi != null && mi.GetParameters().Length == 0 && mi.ReturnType == typeof(IEnumerator);
         }

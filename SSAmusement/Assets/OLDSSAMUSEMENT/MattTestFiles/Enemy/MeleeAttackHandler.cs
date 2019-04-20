@@ -13,6 +13,14 @@ public class MeleeAttackHandler : EnemyHandler {
     bool attack_over;
     float last_attack;
 
+    public bool IsInAttackRange() {
+        return Vector2.Distance(target.transform.position, transform.position) < attack_range;
+    }
+
+    public bool AttackReady() {
+        return time_between_attacks < last_attack;
+    }
+
     protected override void Ini() {
         attack.SetOnHit((hit, attack) => AttackOnHit(hit));
     }
@@ -28,17 +36,8 @@ public class MeleeAttackHandler : EnemyHandler {
         enemy.animator.SetBool("Mad", false);
     }
 
-    protected override IEnumerator AIRoutine() {
-        while (active) {
-            if (!CanHunt()) {
-                yield return Wander();
-            } else {
-                yield return Hunt();
-            }
-        }
-    }
-
     IEnumerator Wander() {
+        enemy.animator.SetBool("Mad", false);
         float direction;
         if (collision_info.left) {
             direction = 1;
@@ -56,22 +55,13 @@ public class MeleeAttackHandler : EnemyHandler {
             }
             yield return new WaitForFixedUpdate();
         }
+        input.x = 0;
     }
 
     IEnumerator Hunt() {
         enemy.animator.SetBool("Mad", true);
-        while (CanHunt()) {
-            float distance = Vector2.Distance(target.transform.position, transform.position);
-            if (last_attack > time_between_attacks && distance < attack_range) { // and in range
-                yield return Attack();
-            } else if (Mathf.Abs(target.transform.position.x - transform.position.x) > close_distance) {
-                yield return WalkTowardsTarget();
-            } else {
-                Face(target.transform.position.x - transform.position.x);
-                yield return new WaitForFixedUpdate();
-            }
-        }
-        enemy.animator.SetBool("Mad", false);
+        Face(target.transform.position.x - transform.position.x);
+        yield return new WaitForFixedUpdate();
     }
 
     IEnumerator Attack() {

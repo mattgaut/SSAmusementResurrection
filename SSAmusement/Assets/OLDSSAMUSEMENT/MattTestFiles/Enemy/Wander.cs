@@ -15,7 +15,8 @@ public class Wander : EnemyHandler {
         return false;
     }
 
-    protected override IEnumerator AIRoutine() {
+    // TODO Update TO State Machine
+    protected IEnumerator AIRoutine() {
         if (get_mad) enemy.animator.SetTrigger("Mad");
         while (true) {
             float direction;

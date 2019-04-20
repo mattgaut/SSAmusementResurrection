@@ -26,7 +26,9 @@ public class ChefCarrotHandler : EnemyHandler {
         enemy.animator.SetBool("Mad", false);
     }
 
-    protected override IEnumerator AIRoutine() {
+
+    // TODO Update TO State Machince
+    protected IEnumerator AIRoutine() {
         while (active) {
             if (!CanHunt()) {
                 yield return Wander();

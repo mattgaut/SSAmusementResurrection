@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class StateMachineController : MonoBehaviour {
@@ -12,6 +13,7 @@ public class StateMachineController : MonoBehaviour {
     StateMachine.Instance state_machine_instance;
 
     Dictionary<State, Func<IEnumerator>> state_coroutines;
+    Dictionary<Parameter, Func<bool>> parameter_callbacks;
 
     Coroutine state_machine_routine;
 
@@ -28,22 +30,19 @@ public class StateMachineController : MonoBehaviour {
         }
     }
 
-    private void Awake() {
-        foreach (ParameterCallback pc in parameter_callback_list) {
-            pc.Init(this);
-        }
-
+    protected virtual void Awake() {
         state_machine_instance = state_machine.GetStateMachineInstance();
 
-        Dictionary<Parameter, Func<bool>> dict = new Dictionary<Parameter, Func<bool>>();
+        parameter_callbacks = new Dictionary<Parameter, Func<bool>>();
         foreach (ParameterCallback pc in parameter_callback_list) {
-            dict.Add(pc.GetParameter(), pc.callback);
+            pc.Init(this);
+            parameter_callbacks.Add(pc.GetParameter(), pc.callback);
         }
-
-        state_machine_instance.SetCallbacks(dict);
+        state_machine_instance.SetCallbacks(parameter_callbacks);
 
         state_coroutines = new Dictionary<State, Func<IEnumerator>>();
         foreach (StateCoroutine sc in state_coroutine_list) {
+            sc.Init(this);
             state_coroutines.Add(sc.GetState(), sc.coroutine);
         }
     }
@@ -63,6 +62,8 @@ public class StateMachineController : MonoBehaviour {
 
     protected virtual void Activate() {
         state_machine_instance = state_machine.GetStateMachineInstance();
+        state_machine_instance.SetCallbacks(parameter_callbacks);
+
         state_machine_routine = StartCoroutine(StateMachineCoroutine());
     }
     protected virtual void Deactivate() {
@@ -100,7 +101,8 @@ public class StateMachineController : MonoBehaviour {
         public Func<IEnumerator> coroutine { get; private set; }
 
         public void Init(System.Object grab_from) {
-            coroutine = Delegate.CreateDelegate(typeof(Func<bool>), grab_from, grab_from.GetType().GetMethod(coroutine_name)) as Func<IEnumerator>;
+            MethodInfo mi = grab_from.GetType().GetMethod(coroutine_name, BindingFlags.Instance | BindingFlags.NonPublic, null, new Type[0], new ParameterModifier[0]);
+            coroutine = Delegate.CreateDelegate(typeof(Func<IEnumerator>), grab_from, mi) as Func<IEnumerator>;
         }
 
         public State GetState() {

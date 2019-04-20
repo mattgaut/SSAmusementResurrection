@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController), typeof(Enemy))]
-public abstract class EnemyHandler : MonoBehaviour {
+public abstract class EnemyHandler : StateMachineController {
 
     protected CharacterController cont;
     [SerializeField] bool active_on_start;
@@ -40,7 +40,6 @@ public abstract class EnemyHandler : MonoBehaviour {
     protected bool flipped { get; private set; }
     protected bool can_flip = true;
 
-    protected bool active { get; private set; }
     protected float aggro_range { get { return _aggro_range; } }
     protected CharacterController.CollisionInfo collision_info { get { return cont.collisions; } }
 
@@ -49,17 +48,7 @@ public abstract class EnemyHandler : MonoBehaviour {
     protected Player target;
     protected Vector2 input;
 
-    public void SetActive(bool active) {
-        if (this.active != active) {
-            this.active = active;
-            if (active) {
-                Activate();
-            } else {
-                Deactivate();
-            }
-        }
-    }
-    protected bool CanHunt() {
+    public bool CanHunt() {
         return CustomCanHunt() && Vector2.Distance(target.transform.position, transform.position) <= aggro_range && (!need_line_of_sight || HasLineOfSight());
     }
     protected virtual bool CustomCanHunt() {
@@ -114,7 +103,8 @@ public abstract class EnemyHandler : MonoBehaviour {
         last_bump = 0;
     }
 
-    protected void Awake() {
+    protected override void Awake() {
+        base.Awake();
         cont = GetComponent<CharacterController>();
         enemy = GetComponent<Enemy>();
 
@@ -140,11 +130,8 @@ public abstract class EnemyHandler : MonoBehaviour {
         return enemy.power / 2;
     }
 
-    protected virtual void Activate() {
-        ai_routine = StartCoroutine(AIRoutine());
-    }
-    protected virtual void Deactivate() {
-        StopAllCoroutines();
+    protected override void Deactivate() {
+        base.Deactivate();
         input = Vector2.zero;
         enemy.animator.Rebind();
         enemy.health.current = enemy.health;
@@ -209,8 +196,6 @@ public abstract class EnemyHandler : MonoBehaviour {
         cont.AddPlatformToMask();
         drop_routine = null;
     }
-
-    protected abstract IEnumerator AIRoutine();
 
     public void Face(float i) {
         if (!can_flip) return;

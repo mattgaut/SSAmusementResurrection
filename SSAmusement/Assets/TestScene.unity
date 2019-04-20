@@ -674,7 +674,6 @@ GameObject:
   - component: {fileID: 114741982565028116}
   - component: {fileID: 50974002996217438}
   - component: {fileID: 114450923597691268}
-  - component: {fileID: 1068495153646431}
   m_Layer: 16
   m_Name: TestCleaver
   m_TagString: Untagged
@@ -682,76 +681,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1068495153646431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1068495153646430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b71a2dd029d087742b9cdd01c9932005, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state_machine: {fileID: 11400000, guid: 97f3af63908ecc64da987c840ddca144, type: 2}
-  parameter_callback_list:
-  - parameter:
-      _name: 
-    callback_name: 
-    callback_index: 0
-    callback_is_field: 0
-  - parameter:
-      _name: 
-    callback_name: 
-    callback_index: 0
-    callback_is_field: 0
-  - parameter:
-      _name: 
-    callback_name: 
-    callback_index: 0
-    callback_is_field: 0
-  state_coroutine_list:
-  - state:
-      _name: 
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-    coroutine_name: 
-    coroutine_index: 0
-  - state:
-      _name: 
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-    coroutine_name: 
-    coroutine_index: 0
-  - state:
-      _name: 
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-    coroutine_name: 
-    coroutine_index: 0
-  - state:
-      _name: 
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-    coroutine_name: 
-    coroutine_index: 0
 --- !u!1 &1070476847653466
 GameObject:
   m_ObjectHideFlags: 0
@@ -1344,11 +1273,69 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1068495153646430}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2565552dcab8cc748854974ece24cd75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state_machine: {fileID: 11400000, guid: 97f3af63908ecc64da987c840ddca144, type: 2}
+  parameter_callback_list:
+  - parameter:
+      _name: CanHunt
+    callback_name: CanHunt
+    callback_index: 2
+    callback_is_field: 0
+  - parameter:
+      _name: IsAttackOffCooldown
+    callback_name: AttackReady
+    callback_index: 1
+    callback_is_field: 0
+  - parameter:
+      _name: IsInRange
+    callback_name: IsInAttackRange
+    callback_index: 0
+    callback_is_field: 0
+  state_coroutine_list:
+  - state:
+      _name: Wander
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    coroutine_name: Wander
+    coroutine_index: 0
+  - state:
+      _name: Hunt
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    coroutine_name: Hunt
+    coroutine_index: 1
+  - state:
+      _name: Attack
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    coroutine_name: Attack
+    coroutine_index: 2
+  - state:
+      _name: ApproachTarget
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    coroutine_name: WalkTowardsTarget
+    coroutine_index: 3
   active_on_start: 1
   flip_object: {fileID: 1531272727212918}
   line_of_sight_origin: {fileID: 4441291583681436}

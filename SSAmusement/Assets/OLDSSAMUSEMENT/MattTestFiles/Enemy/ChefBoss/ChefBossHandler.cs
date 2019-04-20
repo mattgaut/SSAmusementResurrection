@@ -48,7 +48,8 @@ public class ChefBossHandler : EnemyHandler {
         }
     }
 
-    protected override IEnumerator AIRoutine() {
+    // TODO Update TO State Machince
+    protected IEnumerator AIRoutine() {
         while (enemy.alive && active) {
             if (force_attack) {
                 float rand = Random.Range(0, 1f);

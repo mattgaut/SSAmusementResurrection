@@ -62,7 +62,8 @@ public class ByrdmanHandler : EnemyHandler {
         enemy.SetDieEvent(DieEvent);
     }
 
-    protected override IEnumerator AIRoutine() {
+    // TODO :: Update To StateMachine
+    protected IEnumerator AIRoutine() {
         yield return new WaitForFixedUpdate();
         has_energy_buff.ApplyTo(enemy);
         List<Func<IEnumerator>> round_1_attacks = new List<Func<IEnumerator>>() { Rockets, Electric, SpikeAttack };

@@ -16,8 +16,8 @@ MonoBehaviour:
   - _name: Wander
     rect:
       serializedVersion: 2
-      x: 290
-      y: 133
+      x: 285
+      y: 132
       width: 200
       height: 40.95508
   - _name: Hunt
@@ -30,15 +30,15 @@ MonoBehaviour:
   - _name: Attack
     rect:
       serializedVersion: 2
-      x: 27
-      y: 411
+      x: 36
+      y: 415
       width: 200
       height: 40.95508
   - _name: ApproachTarget
     rect:
       serializedVersion: 2
-      x: 474
-      y: 417
+      x: 486
+      y: 408
       width: 200
       height: 40.95508
   transitions:
@@ -46,8 +46,8 @@ MonoBehaviour:
       _name: Attack
       rect:
         serializedVersion: 2
-        x: 27
-        y: 411
+        x: 36
+        y: 415
         width: 200
         height: 40.95508
     _from:
@@ -77,31 +77,11 @@ MonoBehaviour:
         width: 200
         height: 40.95508
     _from:
-      _name: Attack
-      rect:
-        serializedVersion: 2
-        x: 27
-        y: 411
-        width: 200
-        height: 40.95508
-    _conditions:
-    - _parameter:
-        _name: CanHunt
-      _should_parameter_be_true: 1
-  - _to:
-      _name: Hunt
-      rect:
-        serializedVersion: 2
-        x: 285
-        y: 308
-        width: 200
-        height: 40.95508
-    _from:
       _name: Wander
       rect:
         serializedVersion: 2
-        x: 290
-        y: 133
+        x: 285
+        y: 132
         width: 200
         height: 40.95508
     _conditions:
@@ -112,8 +92,8 @@ MonoBehaviour:
       _name: ApproachTarget
       rect:
         serializedVersion: 2
-        x: 474
-        y: 417
+        x: 486
+        y: 408
         width: 200
         height: 40.95508
     _from:
@@ -135,16 +115,16 @@ MonoBehaviour:
       _name: Wander
       rect:
         serializedVersion: 2
-        x: 290
-        y: 133
+        x: 285
+        y: 132
         width: 200
         height: 40.95508
     _from:
       _name: Attack
       rect:
         serializedVersion: 2
-        x: 27
-        y: 411
+        x: 36
+        y: 415
         width: 200
         height: 40.95508
     _conditions:
@@ -155,16 +135,16 @@ MonoBehaviour:
       _name: Wander
       rect:
         serializedVersion: 2
-        x: 290
-        y: 133
+        x: 285
+        y: 132
         width: 200
         height: 40.95508
     _from:
       _name: ApproachTarget
       rect:
         serializedVersion: 2
-        x: 474
-        y: 417
+        x: 486
+        y: 408
         width: 200
         height: 40.95508
     _conditions:
@@ -183,20 +163,23 @@ MonoBehaviour:
       _name: ApproachTarget
       rect:
         serializedVersion: 2
-        x: 474
-        y: 417
+        x: 486
+        y: 408
         width: 200
         height: 40.95508
     _conditions:
     - _parameter:
         _name: CanHunt
       _should_parameter_be_true: 1
+    - _parameter:
+        _name: IsInRange
+      _should_parameter_be_true: 1
   - _to:
       _name: Wander
       rect:
         serializedVersion: 2
-        x: 290
-        y: 133
+        x: 285
+        y: 132
         width: 200
         height: 40.95508
     _from:
@@ -237,6 +220,100 @@ MonoBehaviour:
     - _parameter:
         _name: CanHunt
       _should_parameter_be_true: 1
+  - _to:
+      _name: Wander
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 132
+        width: 200
+        height: 40.95508
+    _from:
+      _name: Wander
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 132
+        width: 200
+        height: 40.95508
+    _conditions:
+    - _parameter:
+        _name: CanHunt
+      _should_parameter_be_true: 0
+  - _to:
+      _name: ApproachTarget
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 408
+        width: 200
+        height: 40.95508
+    _from:
+      _name: ApproachTarget
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 408
+        width: 200
+        height: 40.95508
+    _conditions:
+    - _parameter:
+        _name: IsInRange
+      _should_parameter_be_true: 0
+    - _parameter:
+        _name: CanHunt
+      _should_parameter_be_true: 1
+  - _to:
+      _name: Attack2
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 503
+        width: 200
+        height: 40.95508
+    _from:
+      _name: Attack
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 415
+        width: 200
+        height: 40.95508
+    _conditions: []
+  - _to:
+      _name: Attack3
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 561
+        width: 200
+        height: 40.95508
+    _from:
+      _name: Attack2
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 503
+        width: 200
+        height: 40.95508
+    _conditions: []
+  - _to:
+      _name: Hunt
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 308
+        width: 200
+        height: 40.95508
+    _from:
+      _name: Attack
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 415
+        width: 200
+        height: 40.95508
+    _conditions: []
   parameters:
   - _name: CanHunt
   - _name: IsAttackOffCooldown
@@ -245,7 +322,7 @@ MonoBehaviour:
     _name: Wander
     rect:
       serializedVersion: 2
-      x: 290
-      y: 133
+      x: 285
+      y: 132
       width: 200
       height: 40.95508

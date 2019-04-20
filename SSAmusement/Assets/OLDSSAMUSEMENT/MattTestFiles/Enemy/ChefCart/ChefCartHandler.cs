@@ -46,7 +46,9 @@ public class ChefCartHandler : EnemyHandler {
         enemy.animator.SetBool("Charging", false);
     }
 
-    protected override IEnumerator AIRoutine() {
+
+    // TODO Update TO State Machine
+    protected IEnumerator AIRoutine() {
         while (active) {
             if (!CanHunt()) {
                 yield return Wander();
