@@ -20,14 +20,15 @@ public class ChefCartHandler : EnemyHandler {
 
     protected override bool CustomCanHunt() {
         RaycastHit2D hit = Physics2D.Raycast(raycast_origin.position, Vector2.left, aggro_range, player_mask);
-        if (hit) {
-            return true;
+        if (!hit) {
+            hit = Physics2D.Raycast(raycast_origin.position, Vector2.right, aggro_range, player_mask);
         }
-        hit = Physics2D.Raycast(raycast_origin.position, Vector2.right, aggro_range, player_mask);
-        if (hit) {
-            return true;
+        if (!hit) {
+            return false;
+        } else {
+            hit = Physics2D.Raycast(raycast_origin.position, hit.point - (Vector2)raycast_origin.position, hit.distance, line_of_sight_blocking_mask);
+            return !hit;
         }
-        return false;
     }
     protected override float BumpDamage() {
         return enemy.power * (1 + percent_bonus_speed);
@@ -44,18 +45,6 @@ public class ChefCartHandler : EnemyHandler {
     protected override void Deactivate() {
         base.Deactivate();
         enemy.animator.SetBool("Charging", false);
-    }
-
-
-    // TODO Update TO State Machine
-    protected IEnumerator AIRoutine() {
-        while (active) {
-            if (!CanHunt()) {
-                yield return Wander();
-            } else {
-                yield return Hunt();
-            }
-        }
     }
 
     IEnumerator Wander() {
@@ -75,12 +64,6 @@ public class ChefCartHandler : EnemyHandler {
                 break;
             }
             yield return new WaitForFixedUpdate();
-        }
-    }
-
-    IEnumerator Hunt() {
-        while (CanHunt()) {
-            yield return Charge();
         }
     }
 

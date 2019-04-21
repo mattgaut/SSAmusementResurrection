@@ -143,6 +143,7 @@ public class StateMachineControllerEditor : Editor {
 
     bool MatchStateCandidate(MemberInfo member, object filter, Type type) {
         if (member.MemberType == MemberTypes.Method && member.Name != "StateMachineCoroutine") {
+
             MethodInfo mi = type.GetMethod(member.Name, BindingFlags.Instance | BindingFlags.NonPublic, null, new Type[0], new ParameterModifier[0]);            
 
             return mi != null && mi.GetParameters().Length == 0 && mi.ReturnType == typeof(IEnumerator);

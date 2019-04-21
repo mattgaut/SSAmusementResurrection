@@ -9,7 +9,7 @@ public abstract class EnemyHandler : StateMachineController {
     [SerializeField] bool active_on_start;
     [SerializeField] GameObject flip_object;
     [SerializeField] Transform line_of_sight_origin;
-    [SerializeField] LayerMask line_of_sight_blocking_mask;
+    [SerializeField] protected LayerMask line_of_sight_blocking_mask;
 
     [SerializeField] [Range(0, 20)] float jump_height = 4;
     [SerializeField] [Range(0, 5)] float time_to_jump_apex = .4f;

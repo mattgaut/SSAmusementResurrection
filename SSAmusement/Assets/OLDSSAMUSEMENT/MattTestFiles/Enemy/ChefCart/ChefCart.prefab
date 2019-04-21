@@ -765,6 +765,7 @@ MonoBehaviour:
   knockback_resistant: 0
   anim: {fileID: 95148018003385476}
   _icon: {fileID: 21300000, guid: 9f74f644843bcf342b35fd264d844838, type: 3}
+  drop_on_death: []
 --- !u!114 &114632732373311626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -814,12 +815,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 106ea0fd819f232449216eebe69f4bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state_machine: {fileID: 11400000, guid: d14c668b0d2d70e47a4d5d24c0955e18, type: 2}
+  parameter_callback_list:
+  - parameter:
+      _name: CanHunt
+    callback_name: CanHunt
+    callback_index: 0
+    callback_is_field: 0
+  state_coroutine_list:
+  - state:
+      _name: Wander
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    coroutine_name: Wander
+    coroutine_index: 0
+  - state:
+      _name: Charge
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    coroutine_name: Charge
+    coroutine_index: 1
   active_on_start: 0
   flip_object: {fileID: 1240051925892814}
   line_of_sight_origin: {fileID: 0}
   line_of_sight_blocking_mask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   jump_height: 4
   time_to_jump_apex: 0.4
   no_gravity: 0

@@ -10,4 +10,5 @@ public class SoupHandler : MeleeAttackHandler {
         ICombatant comb = c as ICombatant;
         if (comb != null) soup_debuff.ApplyTo(comb, true);
     }
+
 }

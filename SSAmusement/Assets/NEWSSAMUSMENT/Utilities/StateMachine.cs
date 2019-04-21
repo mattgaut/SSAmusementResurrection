@@ -45,8 +45,14 @@ public class StateMachine : ScriptableObject {
 
         LoadDictionaries();
 
-        if (entry_state != null && state_dictionary.ContainsKey(entry_state.name)) {
-            entry_state = state_dictionary[entry_state.name];
+        if (states.Count > 0) {
+            if (state_dictionary.ContainsKey(entry_state.name)) {
+                entry_state = state_dictionary[entry_state.name];
+            } else {
+                entry_state = states[0];
+            }
+        } else {
+            entry_state = null;
         }
     }
 

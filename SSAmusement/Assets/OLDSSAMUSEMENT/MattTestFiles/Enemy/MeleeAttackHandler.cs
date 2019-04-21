@@ -36,7 +36,7 @@ public class MeleeAttackHandler : EnemyHandler {
         enemy.animator.SetBool("Mad", false);
     }
 
-    IEnumerator Wander() {
+    protected IEnumerator Wander() {
         enemy.animator.SetBool("Mad", false);
         float direction;
         if (collision_info.left) {
@@ -58,13 +58,13 @@ public class MeleeAttackHandler : EnemyHandler {
         input.x = 0;
     }
 
-    IEnumerator Hunt() {
+    protected IEnumerator Hunt() {
         enemy.animator.SetBool("Mad", true);
         Face(target.transform.position.x - transform.position.x);
         yield return new WaitForFixedUpdate();
     }
 
-    IEnumerator Attack() {
+    protected IEnumerator Attack() {
         Face(target.transform.position.x - transform.position.x);
         can_flip = false;
         last_attack = 0;
@@ -80,7 +80,7 @@ public class MeleeAttackHandler : EnemyHandler {
         can_flip = true;
     }
 
-    IEnumerator WalkTowardsTarget() {
+    protected IEnumerator WalkTowardsTarget() {
         float direction = target.transform.position.x - transform.position.x;
         if (!ShouldStopMoving(direction)) {
             input.x = Mathf.Sign(direction) * enemy.speed;

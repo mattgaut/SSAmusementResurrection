@@ -12,6 +12,16 @@ public class ChefCarrotHandler : EnemyHandler {
 
     bool throw_released;
 
+    public bool is_attack_ready {
+        get { return last_throw > time_between_throws; }
+    }
+    public bool is_too_close {
+        get { return Vector2.Distance(target.transform.position, transform.position) < 3; }
+    }
+    public bool is_too_far {
+        get { return Vector2.Distance(target.transform.position, transform.position) > 6; }
+    }
+
     protected override void Update() {
         base.Update();
         last_throw += Time.deltaTime;
@@ -26,19 +36,8 @@ public class ChefCarrotHandler : EnemyHandler {
         enemy.animator.SetBool("Mad", false);
     }
 
-
-    // TODO Update TO State Machince
-    protected IEnumerator AIRoutine() {
-        while (active) {
-            if (!CanHunt()) {
-                yield return Wander();
-            } else {
-                yield return Hunt();
-            }
-        }
-    }
-
-    IEnumerator Wander() {
+    protected IEnumerator Wander() {
+        enemy.animator.SetBool("Mad", false);
         float direction;
         if (collision_info.left) {
             direction = 1;
@@ -59,25 +58,13 @@ public class ChefCarrotHandler : EnemyHandler {
         input.x = 0;
     }
 
-    IEnumerator Hunt() {
+    protected IEnumerator Hunt() {
         enemy.animator.SetBool("Mad", true);
-        while (CanHunt()) {
-            if (last_throw > time_between_throws) {
-                yield return ThrowCarrot();
-            } else if (Vector2.Distance(target.transform.position, transform.position) < 3) {
-                yield return WalkAwayFromTarget();
-            } else if (Vector2.Distance(target.transform.position, transform.position) > 6) {
-                yield return WalkTowardsTarget();
-            } else {
-                Face(target.transform.position.x - transform.position.x);
-                yield return new WaitForFixedUpdate();
-            }
-        }
-
-        enemy.animator.SetBool("Mad", false);
+        Face(target.transform.position.x - transform.position.x);
+        yield return new WaitForFixedUpdate();
     }
 
-    IEnumerator ThrowCarrot() {
+    protected IEnumerator ThrowCarrot() {
         throw_released = false;
         Face(target.transform.position.x - transform.position.x);
         last_throw = 0;
@@ -90,7 +77,7 @@ public class ChefCarrotHandler : EnemyHandler {
         yield return new WaitForFixedUpdate();
     }
 
-    IEnumerator WalkTowardsTarget() {
+    protected IEnumerator WalkTowardsTarget() {
         float direction = target.transform.position.x - transform.position.x;
         if (!ShouldStopMoving(direction)) {
             input.x = Mathf.Sign(direction) * enemy.speed;
@@ -98,7 +85,7 @@ public class ChefCarrotHandler : EnemyHandler {
         yield return new WaitForFixedUpdate();
         input.x = 0;
     }
-    IEnumerator WalkAwayFromTarget() {
+    protected IEnumerator WalkAwayFromTarget() {
         float direction = -target.transform.position.x + transform.position.x;
         if (!ShouldStopMoving(direction)) {
             input.x = Mathf.Sign(direction) * enemy.speed;
