@@ -1178,6 +1178,7 @@ MonoBehaviour:
   knockback_resistant: 1
   anim: {fileID: 95148018003385476}
   _icon: {fileID: 21300000, guid: b860e039120ba7d43985c37cb0c6c4f9, type: 3}
+  drop_on_death: []
 --- !u!114 &114240197746803496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1227,6 +1228,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d38a8deead6b37e4685532e304066cef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state_machine: {fileID: 11400000, guid: 1955b76d231ad3742831cbbf5bb2c408, type: 2}
+  parameter_callback_list: []
+  state_coroutine_list:
+  - state:
+      _name: StartRoutine
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    coroutine_name: AIRoutine
+    coroutine_index: 0
   active_on_start: 0
   flip_object: {fileID: 0}
   line_of_sight_origin: {fileID: 0}

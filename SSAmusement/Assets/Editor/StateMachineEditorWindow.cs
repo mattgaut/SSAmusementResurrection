@@ -88,11 +88,11 @@ public class StateMachineEditorWindow : EditorWindow {
         state_height_list = new List<State>();
         states = new Dictionary<int, State>();
 
-        transition_list = new ReorderableList(new List<Transition>(), typeof(Transition), false, true, false, true);
+        transition_list = new ReorderableList(new List<Transition>(), typeof(Transition), true, true, false, true);
 
         transition_list.drawHeaderCallback += (list) => DrawReorderableListHeader(list, "Transitions");
         transition_list.drawElementCallback += DrawReorderableTransitionElement;
-
+        transition_list.onReorderCallbackWithDetails += (list, index_1, index_2) => state_machine.ReorderTransition(states[focused_state_id], index_1, index_2);
         transition_list.onRemoveCallback += (list) => state_machine.DeleteTransition(list.GetCurrent<Transition>());
 
         condition_list = new ReorderableList(new List<Condition>(), typeof(Condition), true, true, true, true);

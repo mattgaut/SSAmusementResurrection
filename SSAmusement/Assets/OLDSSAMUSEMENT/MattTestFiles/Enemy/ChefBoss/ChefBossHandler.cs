@@ -48,7 +48,6 @@ public class ChefBossHandler : EnemyHandler {
         }
     }
 
-    // TODO Update TO State Machince
     protected IEnumerator AIRoutine() {
         while (enemy.alive && active) {
             if (force_attack) {
@@ -159,7 +158,7 @@ public class ChefBossHandler : EnemyHandler {
     }
 
     IEnumerator DieEvent() {
-        StopCoroutine(ai_routine);
+        if (state_machine_routine != null) StopCoroutine(state_machine_routine);
         enemy.animator.Rebind();
         enemy.animator.transform.SetParent(null);
         enemy.animator.SetTrigger("Dead");

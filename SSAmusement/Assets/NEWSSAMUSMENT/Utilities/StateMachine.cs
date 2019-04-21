@@ -218,8 +218,24 @@ public class StateMachine : ScriptableObject {
         return names;
     }
 
-    public void OnEnable() {
+    public void ReorderTransition(State state, int old_index, int new_index) {
+        transition_dictionary[state].Move(old_index, new_index);
+        ReorderTransitions();
+    }
+
+    void OnEnable() {
         Init();
+    }
+
+    void ReorderTransitions() {
+        transitions.Clear();
+
+        foreach (KeyValuePair<State, List<Transition>> kvp in transition_dictionary) {
+            foreach (Transition t in kvp.Value) {
+                transitions.Add(t);
+                Debug.Log(t.from + " : " + t.to);
+            }
+        }
     }
 
     void InsertTransitionIntoDictionary(Transition t) {
@@ -244,7 +260,6 @@ public class StateMachine : ScriptableObject {
     bool ParameterNameTaken(string name) {
         return parameters.Contains(new Parameter(name));
     }
-
 
     void LoadDictionaries() {
         state_dictionary = new Dictionary<string, State>();

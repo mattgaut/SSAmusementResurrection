@@ -515,6 +515,79 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a975067314914745a1f25988e6a6d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state_machine: {fileID: 11400000, guid: 39eb1cf156cadbb47b61bc3ac54dcccc, type: 2}
+  parameter_callback_list:
+  - parameter:
+      _name: IsTooClose
+    callback_name: get_is_too_close
+    callback_index: 1
+    callback_is_field: 0
+  - parameter:
+      _name: IsTooFar
+    callback_name: get_is_too_far
+    callback_index: 2
+    callback_is_field: 0
+  - parameter:
+      _name: CanHunt
+    callback_name: CanHunt
+    callback_index: 3
+    callback_is_field: 0
+  - parameter:
+      _name: IsAttackOffCooldown
+    callback_name: get_is_attack_ready
+    callback_index: 0
+    callback_is_field: 0
+  state_coroutine_list:
+  - state:
+      _name: Wander
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    coroutine_name: Wander
+    coroutine_index: 0
+  - state:
+      _name: Hunt
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    coroutine_name: Hunt
+    coroutine_index: 1
+  - state:
+      _name: Attack
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    coroutine_name: ThrowCarrot
+    coroutine_index: 2
+  - state:
+      _name: ApproachTarget
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    coroutine_name: WalkTowardsTarget
+    coroutine_index: 3
+  - state:
+      _name: RunFromTarget
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    coroutine_name: WalkAwayFromTarget
+    coroutine_index: 4
   active_on_start: 0
   flip_object: {fileID: 1580720217285320}
   line_of_sight_origin: {fileID: 4304777908820072}

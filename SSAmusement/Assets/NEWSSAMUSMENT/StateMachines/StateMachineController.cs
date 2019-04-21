@@ -15,7 +15,7 @@ public class StateMachineController : MonoBehaviour {
     Dictionary<State, Func<IEnumerator>> state_coroutines;
     Dictionary<Parameter, Func<bool>> parameter_callbacks;
 
-    Coroutine state_machine_routine;
+    protected Coroutine state_machine_routine;
 
     public bool active { get; private set; }
 

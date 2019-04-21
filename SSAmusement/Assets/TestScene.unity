@@ -597,219 +597,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8e39940048d910469d3357eb595c496, type: 3}
---- !u!1001 &1324347837
+--- !u!1001 &1302610477
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1413934921443510, guid: c14386d86c21bea45aa24a26d1166d6a, type: 3}
+    - target: {fileID: 1840292262480714, guid: 8f1a5860c02a0c7409ee8f3225c2f98a, type: 3}
       propertyPath: m_Name
-      value: ChefCarrot (1)
+      value: ChefBoss
       objectReference: {fileID: 0}
-    - target: {fileID: 4592568153615646, guid: c14386d86c21bea45aa24a26d1166d6a, type: 3}
+    - target: {fileID: 4237349826209184, guid: 8f1a5860c02a0c7409ee8f3225c2f98a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.800948
+      value: 17.701603
       objectReference: {fileID: 0}
-    - target: {fileID: 4592568153615646, guid: c14386d86c21bea45aa24a26d1166d6a, type: 3}
+    - target: {fileID: 4237349826209184, guid: 8f1a5860c02a0c7409ee8f3225c2f98a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.19
+      value: 10.002699
       objectReference: {fileID: 0}
-    - target: {fileID: 4592568153615646, guid: c14386d86c21bea45aa24a26d1166d6a, type: 3}
+    - target: {fileID: 4237349826209184, guid: 8f1a5860c02a0c7409ee8f3225c2f98a, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4592568153615646, guid: c14386d86c21bea45aa24a26d1166d6a, type: 3}
+    - target: {fileID: 4237349826209184, guid: 8f1a5860c02a0c7409ee8f3225c2f98a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4592568153615646, guid: c14386d86c21bea45aa24a26d1166d6a, type: 3}
+    - target: {fileID: 4237349826209184, guid: 8f1a5860c02a0c7409ee8f3225c2f98a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4592568153615646, guid: c14386d86c21bea45aa24a26d1166d6a, type: 3}
+    - target: {fileID: 4237349826209184, guid: 8f1a5860c02a0c7409ee8f3225c2f98a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4592568153615646, guid: c14386d86c21bea45aa24a26d1166d6a, type: 3}
+    - target: {fileID: 4237349826209184, guid: 8f1a5860c02a0c7409ee8f3225c2f98a, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4592568153615646, guid: c14386d86c21bea45aa24a26d1166d6a, type: 3}
+    - target: {fileID: 4237349826209184, guid: 8f1a5860c02a0c7409ee8f3225c2f98a, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4592568153615646, guid: c14386d86c21bea45aa24a26d1166d6a, type: 3}
+    - target: {fileID: 4237349826209184, guid: 8f1a5860c02a0c7409ee8f3225c2f98a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4592568153615646, guid: c14386d86c21bea45aa24a26d1166d6a, type: 3}
+    - target: {fileID: 4237349826209184, guid: 8f1a5860c02a0c7409ee8f3225c2f98a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4592568153615646, guid: c14386d86c21bea45aa24a26d1166d6a, type: 3}
+    - target: {fileID: 4237349826209184, guid: 8f1a5860c02a0c7409ee8f3225c2f98a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: parameter_callback_list.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: state_coroutine_list.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: state_machine
-      value: 
-      objectReference: {fileID: 11400000, guid: 39eb1cf156cadbb47b61bc3ac54dcccc,
-        type: 2}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: parameter_callback_list.Array.data[0].parameter._name
-      value: IsTooClose
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: parameter_callback_list.Array.data[1].parameter._name
-      value: IsTooFar
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: parameter_callback_list.Array.data[2].parameter._name
-      value: CanHunt
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: parameter_callback_list.Array.data[3].parameter._name
-      value: IsAttackOffCooldown
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: state_coroutine_list.Array.data[0].state._name
-      value: Wander
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: state_coroutine_list.Array.data[1].state._name
-      value: Hunt
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: state_coroutine_list.Array.data[2].state._name
-      value: Attack
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: state_coroutine_list.Array.data[3].state._name
-      value: ApproachTarget
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: state_coroutine_list.Array.data[4].state._name
-      value: RunFromTarget
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: active_on_start
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: parameter_callback_list.Array.data[0].callback_name
-      value: get_is_too_close
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: parameter_callback_list.Array.data[1].callback_name
-      value: get_is_too_far
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: parameter_callback_list.Array.data[2].callback_name
-      value: CanHunt
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: parameter_callback_list.Array.data[3].callback_name
-      value: get_is_attack_ready
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: parameter_callback_list.Array.data[0].callback_index
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: parameter_callback_list.Array.data[1].callback_index
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: parameter_callback_list.Array.data[2].callback_index
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: state_coroutine_list.Array.data[0].coroutine_name
-      value: Wander
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: state_coroutine_list.Array.data[1].coroutine_name
-      value: Hunt
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: state_coroutine_list.Array.data[2].coroutine_name
-      value: ThrowCarrot
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: state_coroutine_list.Array.data[3].coroutine_name
-      value: WalkTowardsTarget
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: state_coroutine_list.Array.data[4].coroutine_name
-      value: WalkAwayFromTarget
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: state_coroutine_list.Array.data[1].coroutine_index
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: state_coroutine_list.Array.data[2].coroutine_index
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: state_coroutine_list.Array.data[3].coroutine_index
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: state_coroutine_list.Array.data[4].coroutine_index
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 224744495369450736, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224744495369450736, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c14386d86c21bea45aa24a26d1166d6a, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 8f1a5860c02a0c7409ee8f3225c2f98a, type: 3}
 --- !u!1001 &1659670044
 PrefabInstance:
   m_ObjectHideFlags: 0

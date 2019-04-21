@@ -23,14 +23,14 @@ MonoBehaviour:
   - _name: Hunt
     rect:
       serializedVersion: 2
-      x: 232
-      y: 273
+      x: 231
+      y: 285
       width: 200
       height: 40.95508
   - _name: Attack
     rect:
       serializedVersion: 2
-      x: 540
+      x: 539
       y: 237
       width: 200
       height: 40.95508
@@ -44,16 +44,260 @@ MonoBehaviour:
   - _name: RunFromTarget
     rect:
       serializedVersion: 2
-      x: 70
-      y: 450
+      x: 60
+      y: 440
       width: 200
       height: 40.95508
   transitions:
   - _to:
+      _name: RunFromTarget
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 440
+        width: 200
+        height: 40.95508
+    _from:
+      _name: RunFromTarget
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 440
+        width: 200
+        height: 40.95508
+    _conditions:
+    - _parameter:
+        _name: CanHunt
+      _should_parameter_be_true: 1
+    - _parameter:
+        _name: IsAttackOffCooldown
+      _should_parameter_be_true: 0
+    - _parameter:
+        _name: IsTooClose
+      _should_parameter_be_true: 1
+  - _to:
+      _name: Hunt
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 285
+        width: 200
+        height: 40.95508
+    _from:
+      _name: RunFromTarget
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 440
+        width: 200
+        height: 40.95508
+    _conditions: []
+  - _to:
+      _name: Hunt
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 285
+        width: 200
+        height: 40.95508
+    _from:
       _name: Attack
       rect:
         serializedVersion: 2
-        x: 540
+        x: 539
+        y: 237
+        width: 200
+        height: 40.95508
+    _conditions: []
+  - _to:
+      _name: ApproachTarget
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 435
+        width: 200
+        height: 40.95508
+    _from:
+      _name: ApproachTarget
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 435
+        width: 200
+        height: 40.95508
+    _conditions:
+    - _parameter:
+        _name: IsTooFar
+      _should_parameter_be_true: 1
+    - _parameter:
+        _name: CanHunt
+      _should_parameter_be_true: 1
+    - _parameter:
+        _name: IsAttackOffCooldown
+      _should_parameter_be_true: 0
+  - _to:
+      _name: Hunt
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 285
+        width: 200
+        height: 40.95508
+    _from:
+      _name: ApproachTarget
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 435
+        width: 200
+        height: 40.95508
+    _conditions: []
+  - _to:
+      _name: Wander
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 124
+        width: 200
+        height: 40.95508
+    _from:
+      _name: Wander
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 124
+        width: 200
+        height: 40.95508
+    _conditions:
+    - _parameter:
+        _name: CanHunt
+      _should_parameter_be_true: 0
+  - _to:
+      _name: Hunt
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 285
+        width: 200
+        height: 40.95508
+    _from:
+      _name: Wander
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 124
+        width: 200
+        height: 40.95508
+    _conditions:
+    - _parameter:
+        _name: CanHunt
+      _should_parameter_be_true: 1
+  - _to:
+      _name: RunFromTarget
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 440
+        width: 200
+        height: 40.95508
+    _from:
+      _name: Hunt
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 285
+        width: 200
+        height: 40.95508
+    _conditions:
+    - _parameter:
+        _name: CanHunt
+      _should_parameter_be_true: 1
+    - _parameter:
+        _name: IsAttackOffCooldown
+      _should_parameter_be_true: 0
+    - _parameter:
+        _name: IsTooClose
+      _should_parameter_be_true: 1
+  - _to:
+      _name: Hunt
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 285
+        width: 200
+        height: 40.95508
+    _from:
+      _name: Hunt
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 285
+        width: 200
+        height: 40.95508
+    _conditions:
+    - _parameter:
+        _name: CanHunt
+      _should_parameter_be_true: 1
+    - _parameter:
+        _name: IsTooClose
+      _should_parameter_be_true: 0
+    - _parameter:
+        _name: IsTooFar
+      _should_parameter_be_true: 0
+    - _parameter:
+        _name: IsAttackOffCooldown
+      _should_parameter_be_true: 0
+  - _to:
+      _name: Wander
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 124
+        width: 200
+        height: 40.95508
+    _from:
+      _name: Hunt
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 285
+        width: 200
+        height: 40.95508
+    _conditions:
+    - _parameter:
+        _name: CanHunt
+      _should_parameter_be_true: 0
+  - _to:
+      _name: ApproachTarget
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 435
+        width: 200
+        height: 40.95508
+    _from:
+      _name: Hunt
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 285
+        width: 200
+        height: 40.95508
+    _conditions:
+    - _parameter:
+        _name: CanHunt
+      _should_parameter_be_true: 1
+    - _parameter:
+        _name: IsTooFar
+      _should_parameter_be_true: 1
+    - _parameter:
+        _name: IsAttackOffCooldown
+      _should_parameter_be_true: 0
+  - _to:
+      _name: Attack
+      rect:
+        serializedVersion: 2
+        x: 539
         y: 237
         width: 200
         height: 40.95508
@@ -61,8 +305,8 @@ MonoBehaviour:
       _name: Hunt
       rect:
         serializedVersion: 2
-        x: 232
-        y: 273
+        x: 231
+        y: 285
         width: 200
         height: 40.95508
     _conditions:
@@ -72,250 +316,6 @@ MonoBehaviour:
     - _parameter:
         _name: IsAttackOffCooldown
       _should_parameter_be_true: 1
-  - _to:
-      _name: Hunt
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 273
-        width: 200
-        height: 40.95508
-    _from:
-      _name: Wander
-      rect:
-        serializedVersion: 2
-        x: 30
-        y: 124
-        width: 200
-        height: 40.95508
-    _conditions:
-    - _parameter:
-        _name: CanHunt
-      _should_parameter_be_true: 1
-  - _to:
-      _name: ApproachTarget
-      rect:
-        serializedVersion: 2
-        x: 416
-        y: 435
-        width: 200
-        height: 40.95508
-    _from:
-      _name: Hunt
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 273
-        width: 200
-        height: 40.95508
-    _conditions:
-    - _parameter:
-        _name: CanHunt
-      _should_parameter_be_true: 1
-    - _parameter:
-        _name: IsTooFar
-      _should_parameter_be_true: 1
-    - _parameter:
-        _name: IsAttackOffCooldown
-      _should_parameter_be_true: 0
-  - _to:
-      _name: Hunt
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 273
-        width: 200
-        height: 40.95508
-    _from:
-      _name: ApproachTarget
-      rect:
-        serializedVersion: 2
-        x: 416
-        y: 435
-        width: 200
-        height: 40.95508
-    _conditions: []
-  - _to:
-      _name: Wander
-      rect:
-        serializedVersion: 2
-        x: 30
-        y: 124
-        width: 200
-        height: 40.95508
-    _from:
-      _name: Hunt
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 273
-        width: 200
-        height: 40.95508
-    _conditions:
-    - _parameter:
-        _name: CanHunt
-      _should_parameter_be_true: 0
-  - _to:
-      _name: Hunt
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 273
-        width: 200
-        height: 40.95508
-    _from:
-      _name: Hunt
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 273
-        width: 200
-        height: 40.95508
-    _conditions:
-    - _parameter:
-        _name: CanHunt
-      _should_parameter_be_true: 1
-    - _parameter:
-        _name: IsTooClose
-      _should_parameter_be_true: 0
-    - _parameter:
-        _name: IsTooFar
-      _should_parameter_be_true: 0
-    - _parameter:
-        _name: IsAttackOffCooldown
-      _should_parameter_be_true: 0
-  - _to:
-      _name: Wander
-      rect:
-        serializedVersion: 2
-        x: 30
-        y: 124
-        width: 200
-        height: 40.95508
-    _from:
-      _name: Wander
-      rect:
-        serializedVersion: 2
-        x: 30
-        y: 124
-        width: 200
-        height: 40.95508
-    _conditions:
-    - _parameter:
-        _name: CanHunt
-      _should_parameter_be_true: 0
-  - _to:
-      _name: Hunt
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 273
-        width: 200
-        height: 40.95508
-    _from:
-      _name: Attack
-      rect:
-        serializedVersion: 2
-        x: 540
-        y: 237
-        width: 200
-        height: 40.95508
-    _conditions: []
-  - _to:
-      _name: RunFromTarget
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 450
-        width: 200
-        height: 40.95508
-    _from:
-      _name: Hunt
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 273
-        width: 200
-        height: 40.95508
-    _conditions:
-    - _parameter:
-        _name: CanHunt
-      _should_parameter_be_true: 1
-    - _parameter:
-        _name: IsAttackOffCooldown
-      _should_parameter_be_true: 0
-    - _parameter:
-        _name: IsTooClose
-      _should_parameter_be_true: 1
-  - _to:
-      _name: Hunt
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 273
-        width: 200
-        height: 40.95508
-    _from:
-      _name: RunFromTarget
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 450
-        width: 200
-        height: 40.95508
-    _conditions: []
-  - _to:
-      _name: RunFromTarget
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 450
-        width: 200
-        height: 40.95508
-    _from:
-      _name: RunFromTarget
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 450
-        width: 200
-        height: 40.95508
-    _conditions:
-    - _parameter:
-        _name: CanHunt
-      _should_parameter_be_true: 1
-    - _parameter:
-        _name: IsAttackOffCooldown
-      _should_parameter_be_true: 0
-    - _parameter:
-        _name: IsTooClose
-      _should_parameter_be_true: 1
-  - _to:
-      _name: ApproachTarget
-      rect:
-        serializedVersion: 2
-        x: 416
-        y: 435
-        width: 200
-        height: 40.95508
-    _from:
-      _name: ApproachTarget
-      rect:
-        serializedVersion: 2
-        x: 416
-        y: 435
-        width: 200
-        height: 40.95508
-    _conditions:
-    - _parameter:
-        _name: IsTooFar
-      _should_parameter_be_true: 1
-    - _parameter:
-        _name: CanHunt
-      _should_parameter_be_true: 1
-    - _parameter:
-        _name: IsAttackOffCooldown
-      _should_parameter_be_true: 0
   parameters:
   - _name: IsTooClose
   - _name: IsTooFar

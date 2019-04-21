@@ -62,7 +62,6 @@ public class ByrdmanHandler : EnemyHandler {
         enemy.SetDieEvent(DieEvent);
     }
 
-    // TODO :: Update To StateMachine
     protected IEnumerator AIRoutine() {
         yield return new WaitForFixedUpdate();
         has_energy_buff.ApplyTo(enemy);
@@ -511,7 +510,7 @@ public class ByrdmanHandler : EnemyHandler {
     }
 
     IEnumerator DieEvent() {
-        StopCoroutine(ai_routine);
+        StopCoroutine(state_machine_routine);
         yield return UIHandler.StartEndCrawl();
         GetComponentInChildren<Animator>().transform.SetParent(null);
     }
