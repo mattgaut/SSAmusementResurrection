@@ -655,7 +655,7 @@ MonoBehaviour:
   origin: {fileID: 7913962, guid: 0f8592f659b9a0e48875f5bd946a9148, type: 3}
   possible_rooms:
   - {fileID: 7913962, guid: 0f8592f659b9a0e48875f5bd946a9148, type: 3}
-  boss_room: {fileID: 7162155847144817770, guid: 22804b2e181af044b9022bfa75c3269d,
+  boss_room: {fileID: 8025569430263598284, guid: 1f82e76e42e0d734ca1003335e778bfe,
     type: 3}
   fill: 0.606
   blocks_x: 5
@@ -687,9 +687,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05029d0978f01034293dfb8beacfc858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  origin: {fileID: 0}
+  origin: {fileID: 7913962, guid: 0f8592f659b9a0e48875f5bd946a9148, type: 3}
   possible_rooms: []
-  boss_room: {fileID: 0}
+  boss_room: {fileID: 8025569430263598284, guid: 1f82e76e42e0d734ca1003335e778bfe,
+    type: 3}
 --- !u!114 &1700569345
 MonoBehaviour:
   m_ObjectHideFlags: 0

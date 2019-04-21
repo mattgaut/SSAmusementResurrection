@@ -36,6 +36,8 @@ public class Tester : MonoBehaviour {
         rs.Generate(rooms);
         rm.SetRooms(rs.GetNeighbors());
         rm.SetActiveRoom(rs.GetOrigin());
+
+        player.transform.position = new Vector3(2, 1, 0);
     }
 
     IEnumerator WaitOneFrame() {

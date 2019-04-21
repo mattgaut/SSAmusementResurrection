@@ -49,7 +49,7 @@ public abstract class EnemyHandler : StateMachineController {
     protected Vector2 input;
 
     public bool CanHunt() {
-        return CustomCanHunt() && Vector2.Distance(target.transform.position, transform.position) <= aggro_range && (!need_line_of_sight || HasLineOfSight());
+        return target != null && CustomCanHunt() && Vector2.Distance(target.transform.position, transform.position) <= aggro_range && (!need_line_of_sight || HasLineOfSight());
     }
     protected virtual bool CustomCanHunt() {
         return true;

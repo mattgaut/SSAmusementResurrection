@@ -52,7 +52,6 @@ public class StateMachineController : MonoBehaviour {
             if (state_coroutines.ContainsKey(state_machine_instance.current_state)) {
                 yield return state_coroutines[state_machine_instance.current_state].Invoke();
                 state_machine_instance.TransitionUsingCallbacks();
-                Debug.Log("Trasitioned to: " + state_machine_instance.current_state.name);
             } else {
                 Debug.LogError("No Routine exists for state "  + state_machine_instance.current_state);
                 break;

@@ -43,7 +43,8 @@ public class ByrdmanHandler : EnemyHandler {
     protected override void Ini() {
         base.Ini();
         active_rockets = new List<GameObject>();
-        //SetActive(true);
+
+        if (target == null) { target = FindObjectOfType<Player>(); }
 
         foreach (RocketSpawner rs in rocket_spawners) {
             rs.Ini(homing_projectile, RocketOnHit, target.char_definition.center_mass);
