@@ -35,15 +35,9 @@ public class StateMachineControllerEditor : Editor {
             parameter_candidate_names.Insert(i, members[i].Name);
         }
 
-        SerializedProperty parameters_property = new SerializedObject(state_machine_property.objectReferenceValue).FindProperty("parameters");
-        SerializedProperty callback_list_property = serialized_target.FindProperty("parameter_callback_list");
-
-        UpdateParameters(callback_list_property, parameters_property, parameter_candidate_names);
-
-        SerializedProperty states_property = new SerializedObject(state_machine_property.objectReferenceValue).FindProperty("states");
-        SerializedProperty coroutine_list_property = serialized_target.FindProperty("state_coroutine_list");
-
-        UpdateStates(coroutine_list_property, states_property, state_candidate_names);
+        if (state_machine_property.objectReferenceValue != null) {
+            UpdateStateMachineAttachments();
+        }
     }
 
     public override void OnInspectorGUI() {
@@ -51,7 +45,12 @@ public class StateMachineControllerEditor : Editor {
         EditorGUILayout.ObjectField("Script", MonoScript.FromMonoBehaviour((MonoBehaviour)target), typeof(MonoScript), false);
         GUI.enabled = true;
 
+        System.Object old_object = state_machine_property.objectReferenceValue;
         state_machine_property.objectReferenceValue = EditorGUILayout.ObjectField(new GUIContent("State Machine"), state_machine_property.objectReferenceValue, typeof(StateMachine), false);
+
+        if (!ReferenceEquals(state_machine_property.objectReferenceValue, old_object) && state_machine_property.objectReferenceValue != null) {
+            ClearThenUpdateAttachments();
+        }
 
         if (state_machine_property.objectReferenceValue != null) {
             SerializedProperty parameters_property = new SerializedObject(state_machine_property.objectReferenceValue).FindProperty("parameters");
@@ -149,6 +148,32 @@ public class StateMachineControllerEditor : Editor {
             return mi != null && mi.GetParameters().Length == 0 && mi.ReturnType == typeof(IEnumerator);
         }
         return false;
+    }
+
+    void ClearThenUpdateAttachments() {
+        SerializedProperty parameters_property = new SerializedObject(state_machine_property.objectReferenceValue).FindProperty("parameters");
+        SerializedProperty callback_list_property = serialized_target.FindProperty("parameter_callback_list");
+        callback_list_property.ClearArray();
+
+        UpdateParameters(callback_list_property, parameters_property, parameter_candidate_names);
+
+        SerializedProperty states_property = new SerializedObject(state_machine_property.objectReferenceValue).FindProperty("states");
+        SerializedProperty coroutine_list_property = serialized_target.FindProperty("state_coroutine_list");
+        coroutine_list_property.ClearArray();
+
+        UpdateStates(coroutine_list_property, states_property, state_candidate_names);
+    }
+
+    void UpdateStateMachineAttachments() {
+        SerializedProperty parameters_property = new SerializedObject(state_machine_property.objectReferenceValue).FindProperty("parameters");
+        SerializedProperty callback_list_property = serialized_target.FindProperty("parameter_callback_list");
+
+        UpdateParameters(callback_list_property, parameters_property, parameter_candidate_names);
+
+        SerializedProperty states_property = new SerializedObject(state_machine_property.objectReferenceValue).FindProperty("states");
+        SerializedProperty coroutine_list_property = serialized_target.FindProperty("state_coroutine_list");
+
+        UpdateStates(coroutine_list_property, states_property, state_candidate_names);
     }
 
     void UpdateStates(SerializedProperty coroutine_list_property, SerializedProperty states_property, List<string> state_candidate_names) {
