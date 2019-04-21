@@ -23,7 +23,7 @@ MonoBehaviour:
   - _name: Hunt
     rect:
       serializedVersion: 2
-      x: 285
+      x: 286
       y: 308
       width: 200
       height: 40.95508
@@ -54,7 +54,7 @@ MonoBehaviour:
       _name: Hunt
       rect:
         serializedVersion: 2
-        x: 285
+        x: 286
         y: 308
         width: 200
         height: 40.95508
@@ -72,7 +72,7 @@ MonoBehaviour:
       _name: Hunt
       rect:
         serializedVersion: 2
-        x: 285
+        x: 286
         y: 308
         width: 200
         height: 40.95508
@@ -100,7 +100,7 @@ MonoBehaviour:
       _name: Hunt
       rect:
         serializedVersion: 2
-        x: 285
+        x: 286
         y: 308
         width: 200
         height: 40.95508
@@ -155,7 +155,7 @@ MonoBehaviour:
       _name: Hunt
       rect:
         serializedVersion: 2
-        x: 285
+        x: 286
         y: 308
         width: 200
         height: 40.95508
@@ -186,7 +186,7 @@ MonoBehaviour:
       _name: Hunt
       rect:
         serializedVersion: 2
-        x: 285
+        x: 286
         y: 308
         width: 200
         height: 40.95508
@@ -198,7 +198,7 @@ MonoBehaviour:
       _name: Hunt
       rect:
         serializedVersion: 2
-        x: 285
+        x: 286
         y: 308
         width: 200
         height: 40.95508
@@ -206,7 +206,7 @@ MonoBehaviour:
       _name: Hunt
       rect:
         serializedVersion: 2
-        x: 285
+        x: 286
         y: 308
         width: 200
         height: 40.95508
@@ -264,44 +264,10 @@ MonoBehaviour:
         _name: CanHunt
       _should_parameter_be_true: 1
   - _to:
-      _name: Attack2
-      rect:
-        serializedVersion: 2
-        x: 115
-        y: 503
-        width: 200
-        height: 40.95508
-    _from:
-      _name: Attack
-      rect:
-        serializedVersion: 2
-        x: 36
-        y: 415
-        width: 200
-        height: 40.95508
-    _conditions: []
-  - _to:
-      _name: Attack3
-      rect:
-        serializedVersion: 2
-        x: 360
-        y: 561
-        width: 200
-        height: 40.95508
-    _from:
-      _name: Attack2
-      rect:
-        serializedVersion: 2
-        x: 115
-        y: 503
-        width: 200
-        height: 40.95508
-    _conditions: []
-  - _to:
       _name: Hunt
       rect:
         serializedVersion: 2
-        x: 285
+        x: 286
         y: 308
         width: 200
         height: 40.95508
@@ -315,9 +281,9 @@ MonoBehaviour:
         height: 40.95508
     _conditions: []
   parameters:
+  - _name: IsInRange
   - _name: CanHunt
   - _name: IsAttackOffCooldown
-  - _name: IsInRange
   entry_state:
     _name: Wander
     rect:

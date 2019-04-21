@@ -157,10 +157,12 @@ public class StateMachine : ScriptableObject {
     }
 
     public void RemoveAllTransitionsContainingState(State state) {
-        foreach (Transition t in transition_dictionary[state]) {
-            transitions.Remove(t);
+        if (transition_dictionary.ContainsKey(state)) {
+            foreach (Transition t in transition_dictionary[state]) {
+                transitions.Remove(t);
+            }
+            transition_dictionary.Remove(state);
         }
-        transition_dictionary.Remove(state);
 
         foreach (State s in states) {
             if (transition_dictionary.ContainsKey(s)) {

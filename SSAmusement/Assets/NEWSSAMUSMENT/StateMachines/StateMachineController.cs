@@ -71,7 +71,7 @@ public class StateMachineController : MonoBehaviour {
     }
 
     [Serializable]
-    public class ParameterCallback {
+    class ParameterCallback {
         [SerializeField] Parameter parameter;
         [SerializeField] string callback_name;
         [SerializeField] int callback_index;
@@ -93,7 +93,7 @@ public class StateMachineController : MonoBehaviour {
     }
 
     [Serializable]
-    public class StateCoroutine {
+    class StateCoroutine {
         [SerializeField] State state;
         [SerializeField] string coroutine_name;
         [SerializeField] int coroutine_index;
