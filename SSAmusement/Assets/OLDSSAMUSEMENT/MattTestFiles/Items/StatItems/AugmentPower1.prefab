@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4007105509411708}
   - component: {fileID: 212321812963162766}
-  - component: {fileID: 61339922160937684}
+  - component: {fileID: 389317574634455630}
   - component: {fileID: 114075697458754728}
   - component: {fileID: 114351355772947326}
   m_Layer: 23
@@ -82,32 +82,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &61339922160937684
-BoxCollider2D:
+--- !u!114 &389317574634455630
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1628352789450134}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8666667, y: 0.8666667}
-    newSize: {x: 0.8666667, y: 0.8666667}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.8666667, y: 0.8666667}
-  m_EdgeRadius: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5407d6a339d491c4db4f6704205e369e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _item_name: 'Augment: Power'
+  _item_description: Increase power by 50%.
+  sprite: {fileID: 21300000, guid: 4f21c651e9e1196459cc4e50aa60a636, type: 3}
+  effects:
+  - {fileID: 114075697458754728}
 --- !u!114 &114075697458754728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,9 +111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 682e5cbe9f53e394ea4cc96e2952b293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item_name: 'Augment: Power'
-  _item_description: Increased power
-  sr: {fileID: 212321812963162766}
   buffs_to_apply:
   - {fileID: 114351355772947326}
 --- !u!114 &114351355772947326

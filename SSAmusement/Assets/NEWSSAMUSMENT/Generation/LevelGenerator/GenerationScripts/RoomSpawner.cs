@@ -7,7 +7,6 @@ public class RoomSpawner : MonoBehaviour {
     [SerializeField] TileSet ts;
     [SerializeField] float room_width, room_height;
     [SerializeField] [Range(0, 1)] float mobility;
-    [SerializeField] List<Item> item_pool;
     Dictionary<Vector2Int, Room> positions_to_rooms;
     Dictionary<Room.Section, List<Room.Section>> possible_neighbors;
     Dictionary<Room, List<Room>> adjacent_rooms;
@@ -69,7 +68,6 @@ public class RoomSpawner : MonoBehaviour {
             }
         }
 
-        item_pool.Shuffle();
         List<Room> can_spawn_item = new List<Room>(rooms);
         int target_items = 3;
         while (can_spawn_item.Count > 0 && target_items > 0) {
@@ -78,16 +76,14 @@ public class RoomSpawner : MonoBehaviour {
             if (item_spawn == null) {
                 can_spawn_item.RemoveAt(0);
             } else {
-                item_spawn.SpawnItemChest().SetSpawnItem(item_pool[0]);
-                item_pool.RemoveAt(0);
+                item_spawn.SpawnItemChest().SetSpawnItem(ItemListSingleton.instance.GetRandomItem(RNGSingleton.instance.item_rng));
                 target_items--;
                 can_spawn_item.RemoveAt(0);
             }
         }
 
-        if (boss_room != null && boss_room.reward) {
-            boss_room.reward.SpawnItemChest().SetSpawnItem(item_pool[0]);
-            item_pool.RemoveAt(0);
+        if (boss_room != null && boss_room.reward != null) {
+            boss_room.reward.SetSpawnItem(ItemListSingleton.instance.GetRandomItem(RNGSingleton.instance.item_rng));
         }
         foreach (Room r in rooms) {
             foreach (ItemSpawner ispawn in r.GetComponentsInChildren<ItemSpawner>()) {

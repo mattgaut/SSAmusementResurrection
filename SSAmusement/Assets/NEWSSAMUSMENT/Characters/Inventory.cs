@@ -43,7 +43,7 @@ public class Inventory : MonoBehaviour {
     public void AddItem(Item i) {
         items_in_inventory.Add(i);
         i.transform.SetParent(transform);
-        i.Pickup(player);
+        i.OnPickup(player);
         UIHandler.DisplayItem(i);
     }
 

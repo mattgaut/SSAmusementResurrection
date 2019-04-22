@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnHitDebuff : OnHitItem {
+public class OnHitDebuffItemEffect : OnHitItemEffect {
     [SerializeField] Buff to_apply;
     protected override void OnHit(Character character, float pre_damage, float post_damage, IDamageable hit) {
         ICombatant comb = hit as ICombatant;

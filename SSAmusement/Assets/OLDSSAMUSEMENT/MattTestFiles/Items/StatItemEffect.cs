@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatItem : Item {
+public class StatItemEffect : ItemEffect {
 
     [SerializeField] List<StatBuff> buffs_to_apply;
 
-    protected override void OnDrop() {
+    public override void OnDrop(Item item) {
         foreach (StatBuff b in buffs_to_apply) {
-            b.RemoveFrom(owner);
+            b.RemoveFrom(item.owner);
         }
     }
 
-    protected override void OnPickup() {
+    public override void OnPickup(Item item) {
         foreach (StatBuff b in buffs_to_apply) {
-            b.ApplyTo(owner);
+            b.ApplyTo(item.owner);
         }
     }
 }

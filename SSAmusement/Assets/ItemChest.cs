@@ -9,10 +9,7 @@ public class ItemChest : MonoBehaviour, IInteractable {
     [SerializeField] Sprite open_sprite;
 
     void Open() {
-        Item new_item = Instantiate(to_spawn);
-        new_item.transform.position = transform.position;
-        opened = true;
-        GetComponent<SpriteRenderer>().sprite = open_sprite;
+
     }
 
     public void SetSpawnItem(Item i) {
@@ -20,6 +17,12 @@ public class ItemChest : MonoBehaviour, IInteractable {
     }
 
     public void Interact(Player player) {
-        Open();
+        if (!opened) {
+            Item new_item = Instantiate(to_spawn);
+            new_item.transform.position = transform.position;
+            player.inventory.AddItem(new_item);
+            opened = true;
+            GetComponent<SpriteRenderer>().sprite = open_sprite;
+        }
     }
 }

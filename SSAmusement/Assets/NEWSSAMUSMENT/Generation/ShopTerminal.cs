@@ -33,13 +33,13 @@ public class ShopTerminal : MonoBehaviour, IInteractable {
     }
 
     private void Awake() {
-        SetItemOnSale(on_sale, price);
+        if (on_sale != null) SetItemOnSale(on_sale, price);
         used = false;
         on_purchase = new UnityEvent();
     }
 
     private void SellItem(Player player) {
-        if (!used && player.inventory.TrySpendCurrency(price)) {
+        if (on_sale != null && !used && player.inventory.TrySpendCurrency(price)) {
             Item new_item = Instantiate(on_sale);
             player.inventory.AddItem(new_item);
 

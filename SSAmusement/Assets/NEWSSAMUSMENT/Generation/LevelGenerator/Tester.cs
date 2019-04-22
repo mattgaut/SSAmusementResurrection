@@ -19,10 +19,10 @@ public class Tester : MonoBehaviour {
         get; private set;
     }
     private void Awake() {
-        if (_player == null) {
-            player = FindObjectOfType<Player>();
-        } else {
-            player = _player;
+        player = FindObjectOfType<Player>();
+        if (player == null) {
+            player = Instantiate(_player);
+            DontDestroyOnLoad(player);
         }
         SoundManager.PlaySong(level_theme);
     }

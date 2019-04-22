@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnKillDropObject : OnKillItem {
+public class OnKillDropObjectItemEffect : OnKillItemEffect {
 
     [SerializeField] List<GameObject> to_drop;
 

@@ -10,7 +10,7 @@ public class BossRoom : Room {
 
     [SerializeField] Door door_in, door_to_next_floor, door_lock_in;
 
-    [SerializeField] ItemSpawner reward_spawner;
+    [SerializeField] ItemChest _reward;
 
     [SerializeField] AudioClip boss_theme;
 
@@ -18,7 +18,7 @@ public class BossRoom : Room {
 
     bool fighting, boss_dead;
 
-    public ItemSpawner reward { get { return reward_spawner; } }
+    public ItemChest reward { get { return _reward; } }
 
     public override Type room_type { get { return Type.boss; } }
 

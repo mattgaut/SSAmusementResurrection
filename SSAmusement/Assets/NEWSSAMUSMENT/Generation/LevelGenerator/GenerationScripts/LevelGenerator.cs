@@ -23,7 +23,6 @@ public abstract class LevelGenerator : MonoBehaviour {
 
     protected virtual void InsertRoom(Room r, Vector2Int position) {
         room_origins.Add(position, r);
-        Debug.Log(r);
         foreach (Vector2Int local_position in r.GetLocalCoordinatesList()) {
             Room.Section section = r.GetSection(local_position);
             tiles.Add(position + local_position, section);

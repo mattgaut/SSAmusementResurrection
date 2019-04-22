@@ -10,4 +10,7 @@ public class ItemListSingleton : Singleton<ItemListSingleton> {
         return new List<Item>(available_items);
     }
 
+    public Item GetRandomItem(RNG rng) {
+        return available_items[rng.GetInt(0, available_items.Count)];
+    }
 }

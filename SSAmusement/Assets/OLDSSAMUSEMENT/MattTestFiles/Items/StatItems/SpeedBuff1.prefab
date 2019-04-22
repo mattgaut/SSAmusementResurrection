@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4023661534623708}
   - component: {fileID: 212015646122929256}
-  - component: {fileID: 61807391038970224}
+  - component: {fileID: 7721786158127917021}
   - component: {fileID: 114158808709656130}
   - component: {fileID: 114258773967823514}
   m_Layer: 23
@@ -82,32 +82,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &61807391038970224
-BoxCollider2D:
+--- !u!114 &7721786158127917021
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1221857315384002}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8666667, y: 0.8666667}
-    newSize: {x: 0.8666667, y: 0.8666667}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.8666667, y: 0.8666667}
-  m_EdgeRadius: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5407d6a339d491c4db4f6704205e369e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _item_name: 'Augment: Speed'
+  _item_description: Increase movement speed by 2.
+  sprite: {fileID: 21300000, guid: 52edf0f1cc85b9c4daa0257ec02c8c05, type: 3}
+  effects:
+  - {fileID: 114158808709656130}
 --- !u!114 &114158808709656130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,9 +111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 682e5cbe9f53e394ea4cc96e2952b293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item_name: 'Augment: Speed'
-  _item_description: Increased speed
-  sr: {fileID: 212015646122929256}
   buffs_to_apply:
   - {fileID: 114258773967823514}
 --- !u!114 &114258773967823514
@@ -146,5 +134,5 @@ MonoBehaviour:
   power: 0
   armor: 0
   speed: 1
-  _flat: 1
+  _flat: 2
   _multi: 0

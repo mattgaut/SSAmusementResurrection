@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
-public abstract class Item : MonoBehaviour {
+public class Item : MonoBehaviour {
 
     [SerializeField] string _item_name;
     [SerializeField][TextArea(1, 3)] string _item_description;
-    [SerializeField] SpriteRenderer sr;
-    Collider2D hitbox;
-    bool can_pickup, inside;
+    [SerializeField] Sprite sprite;
+    [SerializeField] List<ItemEffect> effects;
 
     public string item_name {
         get { return _item_name; }
@@ -18,65 +16,33 @@ public abstract class Item : MonoBehaviour {
         get { return _item_description; }
     }
     public Sprite icon {
-        get { return sr.sprite; }
-    }
-    public void Awake() {
-        hitbox = GetComponent<Collider2D>();
-        StartCoroutine(TurnOffWhileTouching());
+        get { return sprite; }
     }
 
-    protected Player owner {
+    public Player owner {
         get; private set;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("PlayerBoundBox")) {
-            Player player = collision.gameObject.GetComponentInParent<Player>();
-            player.inventory.AddItem(this);
-            if (can_pickup) {
-                //Player player = collision.gameObject.GetComponentInParent<Player>();
-                //player.inventory.AddItem(this);
-            } else {
-                inside = true;
-            }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision) {
-        inside = false;
     }
 
     void SetOwner(Player p) {
         owner = p;
     }
 
-    public void Pickup(Player p) {
+    public void OnPickup(Player p) {
+        GetComponent<SpriteRenderer>().enabled = false;
         SetOwner(p);
-        OnPickup();
-        sr.enabled = false;
-        hitbox.enabled = false;
+        foreach (ItemEffect e in effects) {
+            e.OnPickup(this);
+        }
     }
 
-    protected abstract void OnPickup();
-
-    public void Drop(Player p) {
+    public void OnDrop(Player p) {
         if (p == owner) {
-            OnDrop();
-            sr.enabled = true;
+            foreach (ItemEffect e in effects) {
+                e.OnDrop(this);
+            }
             transform.parent.SetParent(null);
-            hitbox.enabled = true;
             SetOwner(null);
         }
     }
 
-    protected abstract void OnDrop();
-
-    IEnumerator TurnOffWhileTouching() {        
-        can_pickup = false;
-        yield return null;
-        do {
-            yield return new WaitForFixedUpdate();
-        } while (inside);
-        can_pickup = true;
-    }
 }
