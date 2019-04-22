@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PlayerDisplay : MonoBehaviour {
 
     [SerializeField] MySlider health_bar;
+    [SerializeField] MySlider energy_bar;
     [SerializeField] GameObject buff_holder;
     [SerializeField] DisplayBuff buff_prefab;
     [SerializeField] GameObject canvas;
@@ -24,6 +25,10 @@ public class PlayerDisplay : MonoBehaviour {
 
     public void UpdateHealthBar(float over, float under) {
         health_bar.SetFill(over, under);
+    }
+
+    public void UpdateEnergyBar(float over, float under) {
+        energy_bar.SetFill(over, under);
     }
 
     public void DisplayTimedBuff(PowerUp p) {

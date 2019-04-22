@@ -56,6 +56,7 @@ public abstract class Player : Character, ICombatant {
     }
 
     void Update() {
-        player_display.UpdateHealthBar(health.current, health);
+        player_display.UpdateHealthBar(health.current, health.max);
+        player_display.UpdateEnergyBar(energy.current, energy.max);
     }
 }

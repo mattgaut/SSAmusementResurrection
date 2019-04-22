@@ -9,9 +9,12 @@ public abstract class ActiveAbility : Ability {
 
     public float time_off_cooldown { get; private set; }
 
+    public int energy_cost { get { return _energy_cost; } }
+
     public delegate bool CanUse();
     CanUse can_use;
 
+    [SerializeField] int _energy_cost;
     [SerializeField] float _cooldown;
 
     public void SetCooldown(float cooldown) {
@@ -23,7 +26,7 @@ public abstract class ActiveAbility : Ability {
     }
 
     public bool TryUse() {
-        if (!on_cooldown && CanUseAbility()) {
+        if (!on_cooldown && CanUseAbility() && character.TrySpendEnergy(_energy_cost)) {
             PutOnCooldown();
             UseAbility();
             return true;

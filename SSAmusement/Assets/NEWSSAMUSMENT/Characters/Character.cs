@@ -95,6 +95,14 @@ public class Character : MonoBehaviour, ICombatant {
 
     Coroutine iframes;
 
+    public virtual bool TrySpendEnergy(int cost) {
+        if (energy.current >= cost) {
+            energy.current -= cost;
+            return true;
+        }
+        return false;
+    }
+
     public float DealDamage(float damage, IDamageable target, bool trigger_on_hit = true) {
         float damage_dealt = target.TakeDamage(damage, this);
         if (damage_dealt > 0 && trigger_on_hit) {
@@ -183,7 +191,8 @@ public class Character : MonoBehaviour, ICombatant {
     public void RemoveOnTakeDamage(OnTakeDamage otd) { on_take_damages.Remove(otd); }
 
     protected void Awake() {
-        health.current = health;
+        health.current = health.max;
+        energy.current = energy.max;
 
         on_hits = new List<OnHitCallback>();
         on_kills = new List<OnKillCallback>();
@@ -253,6 +262,6 @@ public struct CharacterDefinition {
     public Stat power { get { return _power; } }
     public Stat armor { get { return _armor; } }
     public Stat speed { get { return _speed; } }
-    public CapStat energy { get { return energy; } }
+    public CapStat energy { get { return _energy; } }
 
 }
