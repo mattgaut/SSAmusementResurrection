@@ -82,7 +82,7 @@ public class MeleeAttackHandler : EnemyHandler {
 
     protected IEnumerator WalkTowardsTarget() {
         float direction = target.transform.position.x - transform.position.x;
-        if (!ShouldStopMoving(direction)) {
+        if (!ShouldStopMoving(direction) && Mathf.Abs(direction) > 0.05f) {
             input.x = Mathf.Sign(direction) * enemy.speed;
         }
         yield return new WaitForFixedUpdate();
