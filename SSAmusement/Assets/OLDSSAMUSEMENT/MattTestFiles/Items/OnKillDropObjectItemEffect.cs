@@ -13,6 +13,6 @@ public class OnKillDropObjectItemEffect : OnKillItemEffect {
 
         GameObject dropped = to_drop[Random.Range(0, to_drop.Count)];
         dropped = Instantiate(dropped);
-        dropped.transform.position = killed.gameObject.transform.position + Vector3.up * 0.5f;
+        killed.DropObject(dropped);
     }
 }

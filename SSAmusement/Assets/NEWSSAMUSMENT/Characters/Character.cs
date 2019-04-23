@@ -153,6 +153,13 @@ public class Character : MonoBehaviour, ICombatant {
         }
     }
 
+    public void DropObject(GameObject obj) {
+        obj.transform.position = transform.position + Vector3.up * 0.5f;
+        float angle = Random.Range(0f, 90f) - 45f;
+        Rigidbody2D body = obj.GetComponent<Rigidbody2D>();
+        body.AddForce(Quaternion.Euler(0, 0, angle) * Vector2.up * 8f, ForceMode2D.Impulse);
+    }
+
     public virtual void LogBuff(Buff b) { }
 
     public void CancelKnockBack() {

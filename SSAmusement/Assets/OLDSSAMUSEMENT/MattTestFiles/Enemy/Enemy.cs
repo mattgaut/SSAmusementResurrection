@@ -48,9 +48,8 @@ public class Enemy : Character, ICombatant {
 
     void DropPickups() {
         foreach (Pickup pickup in drop_on_death) {
-            Pickup p = Instantiate(pickup, transform.position + Vector3.up * 0.5f, Quaternion.identity);
-            float angle = Random.Range(0f, 90f) - 45f;
-            p.GetComponent<Rigidbody2D>().AddForce(Quaternion.Euler(0, 0, angle) * Vector2.up * 8f, ForceMode2D.Impulse);
+            Pickup p = Instantiate(pickup);
+            DropObject(p.gameObject);
         }
     }
 

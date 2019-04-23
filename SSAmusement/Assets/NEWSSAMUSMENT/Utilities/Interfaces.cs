@@ -30,6 +30,7 @@ public interface ICombatant : IDamageable, IStats {
     void GiveKillCredit(ICombatant killed);
     void LogBuff(Buff b);
     Coroutine StartCoroutine(IEnumerator start);
+    void DropObject(GameObject obj);
 }
 
 public interface IInteractable {
