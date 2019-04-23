@@ -61,6 +61,7 @@ public class MeleeAttackHandler : EnemyHandler {
     protected IEnumerator Hunt() {
         enemy.animator.SetBool("Mad", true);
         Face(target.transform.position.x - transform.position.x);
+        input.x = 0;
         yield return new WaitForFixedUpdate();
     }
 
@@ -86,7 +87,6 @@ public class MeleeAttackHandler : EnemyHandler {
             input.x = Mathf.Sign(direction) * enemy.speed;
         }
         yield return new WaitForFixedUpdate();
-        input.x = 0;
     }
 
     protected override bool ShouldStopMoving(float direction) {

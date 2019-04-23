@@ -53,7 +53,7 @@ public class StateMachineController : MonoBehaviour {
                 yield return state_coroutines[state_machine_instance.current_state].Invoke();
                 state_machine_instance.TransitionUsingCallbacks();
             } else {
-                Debug.LogError("No Routine exists for state "  + state_machine_instance.current_state);
+                Debug.LogError("No Routine exists for state "  + state_machine_instance.current_state.name);
                 break;
             }
         }
