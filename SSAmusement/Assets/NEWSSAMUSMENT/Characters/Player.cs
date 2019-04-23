@@ -23,6 +23,12 @@ public abstract class Player : Character, ICombatant {
         return health.current - old;
     }
 
+    public float RestoreEnergy(float restore) {
+        float old = energy.current;
+        energy.current += restore;
+        return energy.current - old;
+    }
+
     public override void LogBuff(Buff b) {
         player_display.DisplayTimedBuff(b);
     }

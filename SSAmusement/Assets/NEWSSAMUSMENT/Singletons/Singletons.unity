@@ -237,5 +237,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9175813155693695719, guid: ef0a001c8cf0ae84fa9fb3663b630293,
         type: 3}
+    - target: {fileID: 4727880421587381432, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: possible_pickups.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4727880421587381432, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: possible_pickups.Array.data[4]._loot
+      value: 
+      objectReference: {fileID: 7074109383489225008, guid: 337248b82f674f94bb1c56307e2206f7,
+        type: 3}
+    - target: {fileID: 4727880421587381432, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: possible_pickups.Array.data[4]._chance_per_roll
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4727880421587381432, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: possible_pickups.Array.data[5]._loot
+      value: 
+      objectReference: {fileID: 7074109383489225008, guid: 77a94d3caf06cb34e86bc092a564c419,
+        type: 3}
+    - target: {fileID: 4727880421587381432, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: possible_pickups.Array.data[5]._chance_per_roll
+      value: 0.025
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}
