@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D), typeof(SpriteRenderer))]
-public abstract class PowerUp : MonoBehaviour {
+public abstract class PowerUp : Pickup {
 
     Sprite _icon;
     public Sprite icon {
@@ -21,30 +21,12 @@ public abstract class PowerUp : MonoBehaviour {
         get;
     }
 
-    private void Awake() {
-        coll = GetComponent<Collider2D>();
-        sr = GetComponent<SpriteRenderer>();
-        _icon = sr.sprite;
-    }
-
-    protected void Update() {
-        if (countdown) {
-            timer -= Time.deltaTime;
-            if (timer < 0) {
-                BeforeDestroy();
-                Destroy(gameObject);
-            }
-        }
-    }
-
     protected virtual void BeforeDestroy() {
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("PlayerBoundBox")) {
-            AddPowerup(collision.gameObject.GetComponentInParent<Player>());
-        }
+    protected override void PickupEffect(Player player) {
+        AddPowerup(player);
     }
 
     protected virtual void AddPowerup(Player p) {
@@ -55,4 +37,21 @@ public abstract class PowerUp : MonoBehaviour {
 
         timer = length;
     }
+
+    private void Update() {
+        if (countdown) {
+            timer -= Time.deltaTime;
+            if (timer < 0) {
+                BeforeDestroy();
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    private void Awake() {
+        coll = GetComponent<Collider2D>();
+        sr = GetComponent<SpriteRenderer>();
+        _icon = sr.sprite;
+    }
+
 }
