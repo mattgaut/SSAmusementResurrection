@@ -125,7 +125,8 @@ public class CharacterController : MonoBehaviour {
             ray_origin += Vector2.right * (vertical_ray_spacing * i + velocity.x);
             
             RaycastHit2D hit = Physics2D.Raycast(ray_origin, Vector2.up * direction_y, ray_length, direction_y == 1 ? collision_mask : floor_collision_mask);
-
+            Debug.DrawRay(ray_origin, Vector2.up * direction_y * ray_length, Color.black);
+            Debug.Log("BlackRay" + " : " + (bool) hit);
             if (hit) {
                 velocity.y = (hit.distance - skin_width) * direction_y;
                 ray_length = hit.distance;
@@ -138,15 +139,18 @@ public class CharacterController : MonoBehaviour {
                 collisions.above = direction_y == 1;
             } else {
                 if (i == 0 && direction_y == -1) {
-                    hit = Physics2D.Raycast(ray_origin, Vector2.down, 0.8f, floor_collision_mask);
+                    Debug.DrawRay(ray_origin, Vector3.down * 1f, Color.red);
+                    hit = Physics2D.Raycast(ray_origin, Vector2.down, 1f, floor_collision_mask);
+                    Debug.Log((bool)hit + " : " + collisions.below);
                     if (hit) {
                         collisions.over_slope_left = true;
                     } else {
+                        //Debug.Break();
                         collisions.hanging_left = true;
                     }
                 }
                 if (i == vertical_ray_count - 1 && direction_y == -1) {
-                    hit = Physics2D.Raycast(ray_origin, Vector2.down, .8f, floor_collision_mask);
+                    hit = Physics2D.Raycast(ray_origin, Vector2.down, 1f, floor_collision_mask);
                     if (hit) {
                         collisions.over_slope_right = true;
                     } else {

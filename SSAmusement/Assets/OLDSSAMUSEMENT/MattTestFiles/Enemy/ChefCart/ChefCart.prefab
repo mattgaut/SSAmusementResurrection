@@ -733,7 +733,7 @@ MonoBehaviour:
   boundary_collider: {fileID: 61800274352053140}
   collision_mask:
     serializedVersion: 2
-    m_Bits: 4456448
+    m_Bits: 4460544
 --- !u!114 &114661332712236760
 MonoBehaviour:
   m_ObjectHideFlags: 0
