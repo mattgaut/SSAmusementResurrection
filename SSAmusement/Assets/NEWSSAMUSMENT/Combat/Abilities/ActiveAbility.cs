@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class ActiveAbility : Ability {
 
-    public bool on_cooldown { get { return time_off_cooldown > Time.time; } }
+    public float cooldown { get { return _cooldown; } }
+
+    public bool on_cooldown { get { return time_cooldown_ends > Time.time; } }
     public bool using_ability { get; protected set; }
 
-    public float time_off_cooldown { get; private set; }
+    public float time_cooldown_ends { get; private set; }
+    public float time_until_cooldown_ends { get { return time_cooldown_ends - Time.time; } }
 
     public int energy_cost { get { return _energy_cost; } }
 
@@ -16,6 +20,8 @@ public abstract class ActiveAbility : Ability {
 
     [SerializeField] int _energy_cost;
     [SerializeField] float _cooldown;
+
+    [SerializeField] Events events;
 
     public void SetCooldown(float cooldown) {
         _cooldown = cooldown;
@@ -36,7 +42,8 @@ public abstract class ActiveAbility : Ability {
     }
 
     protected void PutOnCooldown() {
-        time_off_cooldown = Time.time + _cooldown;
+        time_cooldown_ends = Time.time + _cooldown;
+        events.on_begin_cooldown.Invoke();
     }
 
     protected bool CanUseAbility() {
@@ -44,4 +51,11 @@ public abstract class ActiveAbility : Ability {
     }
 
     protected abstract void UseAbility();
+
+    [System.Serializable]
+    class Events {
+        [SerializeField] UnityEvent _on_begin_cooldown;
+
+        public UnityEvent on_begin_cooldown { get { return _on_begin_cooldown; } }
+    }
 }

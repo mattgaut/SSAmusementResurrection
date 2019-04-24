@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Player))]
 public class PlayerDisplay : MonoBehaviour {
 
     [SerializeField] MySlider health_bar;
@@ -13,11 +12,7 @@ public class PlayerDisplay : MonoBehaviour {
     [SerializeField] GameObject canvas;
     [SerializeField] Text currency_text;
 
-    Player player;
-
-    private void Awake() {
-        player = GetComponent<Player>();
-    }
+    [SerializeField] AbilityDisplay[] ability_displays;
 
     public void UpdateCurrencyText(int count) {
         currency_text.text = "$" + count;
@@ -47,5 +42,11 @@ public class PlayerDisplay : MonoBehaviour {
 
     public void Disable() {
         canvas.SetActive(false);
+    }
+
+    public void SetAbilityDisplay(ActiveAbility ability, int i) {
+        if (i >= 0 && i < ability_displays.Length) {
+            ability_displays[i].SetAbility(ability);
+        }
     }
 }

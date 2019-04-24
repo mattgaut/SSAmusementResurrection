@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Inventory), typeof(PlayerDisplay))]
+[RequireComponent(typeof(Inventory))]
 public abstract class Player : Character, ICombatant {
 
-    Inventory _inventory;
+
     public Inventory inventory {
         get { return _inventory; }
     }
-
-    public PlayerDisplay player_display { get; private set; }
+    public PlayerDisplay player_display {
+        get { return _player_display; }
+    }
     public bool can_change_facing {
         get { return true; }
     }
 
+    Inventory _inventory;
     [SerializeField] Collider2D hitbox;
+    [SerializeField] PlayerDisplay _player_display;
 
     public float RestoreHealth(float restore) {
         float old = health.current;
@@ -58,7 +61,6 @@ public abstract class Player : Character, ICombatant {
 
     protected override void OnAwake() {
         _inventory = GetComponent<Inventory>();
-        player_display = GetComponent<PlayerDisplay>();
     }
 
     void Update() {

@@ -25,4 +25,11 @@ public class Swordsman : Player {
         _basic_ability.SetCanUse(() => can_use_basic_ability);
         counter.SetCanUse(() => can_use_skill_1);
     }
+
+    protected override void OnStart() {
+        base.OnStart();
+
+        player_display.SetAbilityDisplay(_basic_ability, 0);
+        player_display.SetAbilityDisplay(counter, 1);
+    }
 }

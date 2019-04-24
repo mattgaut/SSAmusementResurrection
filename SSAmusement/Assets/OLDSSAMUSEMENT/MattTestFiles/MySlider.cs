@@ -18,7 +18,7 @@ public class MySlider : MonoBehaviour {
     [SerializeField]
     float start_fill;
 
-    protected virtual void Start() {
+    protected virtual void Awake() {
         rct = target.GetComponent<RectTransform>();
         brct = background.GetComponent<RectTransform>();
         target.rectTransform.sizeDelta = Vector2.zero;
@@ -51,9 +51,23 @@ public class MySlider : MonoBehaviour {
         target_text.text = Mathf.RoundToInt(percent) + "%";
     }
 
+    public void SetFill(float percent, string text) {
+        fill = percent;
+        target_text.text = text;
+    }
+
     public void SetFill(float over, float under) {
         if (under == 0) fill = 0;
         else fill = (over / under);
         target_text.text = Mathf.RoundToInt(over) + " / " + Mathf.RoundToInt(under);
+    }
+    public void SetFill(float over, float under, string text) {
+        if (under == 0) fill = 0;
+        else fill = (over / under);
+        target_text.text = text;
+    }
+
+    public void SetText(string text) {
+        target_text.text = text;
     }
 }

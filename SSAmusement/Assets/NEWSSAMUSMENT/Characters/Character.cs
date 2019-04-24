@@ -212,6 +212,15 @@ public class Character : MonoBehaviour, ICombatant {
 
     protected virtual void OnAwake() { }
 
+    protected void Start() {
+        OnStart();
+    }
+
+    protected virtual void OnStart() {
+
+    }
+
+
     protected virtual void Die() {
         last_hit_by.GiveKillCredit(this);
 
