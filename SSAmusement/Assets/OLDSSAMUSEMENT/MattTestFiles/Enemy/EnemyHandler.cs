@@ -58,13 +58,10 @@ public abstract class EnemyHandler : StateMachineController {
     protected virtual bool HasLineOfSight() {
         CharacterDefinition target_definition = target.char_definition;
         RaycastHit2D hit = Physics2D.Linecast(line_of_sight_origin.position, target_definition.center_mass.position, line_of_sight_blocking_mask);
-        Debug.DrawLine(line_of_sight_origin.position, target_definition.center_mass.position, !hit ? Color.green : Color.red);
         if (hit) {
             hit = Physics2D.Linecast(line_of_sight_origin.position, target_definition.head.position, line_of_sight_blocking_mask);
-            Debug.DrawLine(line_of_sight_origin.position, target_definition.head.position, !hit ? Color.green : Color.red);
             if (hit) {
                 hit = Physics2D.Linecast(line_of_sight_origin.position, target_definition.feet.position, line_of_sight_blocking_mask);
-                Debug.DrawLine(line_of_sight_origin.position, target_definition.feet.position, !hit ? Color.green : Color.red);
             }
         }
         return !hit;
