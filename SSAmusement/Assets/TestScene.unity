@@ -1557,6 +1557,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChefSoup
       objectReference: {fileID: 0}
+    - target: {fileID: 114169939856335424, guid: 72729a89b78e09748a65560e39946275,
+        type: 3}
+      propertyPath: active_on_start
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4711881128115276, guid: 72729a89b78e09748a65560e39946275, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.51

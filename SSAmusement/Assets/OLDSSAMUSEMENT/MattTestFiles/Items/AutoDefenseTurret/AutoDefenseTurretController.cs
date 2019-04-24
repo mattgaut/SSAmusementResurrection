@@ -41,12 +41,12 @@ public class AutoDefenseTurretController : MonoBehaviour {
         while (next_target == null && queue.Count != 0) {
             next_target = queue[0];
             queue.RemoveAt(0);
-            if (next_target == null) {
+            if (next_target.target.center_mass == null) {
                 next_target = null;
             }
         }
         if (next_target != null) {
-            SpawnLaser(next_target);
+            SpawnLaser(next_target);    
         }
         animator.SetBool("LasersQueued", queue.Count > 0);
     }
