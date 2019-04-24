@@ -65,6 +65,9 @@ TagManager:
   - name: Wall
     uniqueID: 333922755
     locked: 0
+  - name: AboveWall
+    uniqueID: 1348032847
+    locked: 0
   - name: EnemyUI
     uniqueID: 1175138973
     locked: 0

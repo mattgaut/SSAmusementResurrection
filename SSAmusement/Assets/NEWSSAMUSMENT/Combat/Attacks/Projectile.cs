@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Projectile : MonoBehaviour {
 
-    [SerializeField] LayerMask break_mask, always_break_mask;
-    [SerializeField] float speed, ignore_wall_timer, max_lifetime;
+    [SerializeField] protected LayerMask break_mask, always_break_mask;
+    [SerializeField] protected float speed, ignore_wall_timer, max_lifetime;
 
     [SerializeField] protected Vector3 base_direction;
 
@@ -16,13 +16,19 @@ public class Projectile : MonoBehaviour {
     Rigidbody2D rb;
     protected Vector3 move;
     float timer = 0;
+    bool is_exploded;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
+        is_exploded = false;
     }
 
     private void Update() {
+        if (is_exploded) {
+            return;
+        }
+
         ignore_wall_timer -= Time.deltaTime;
         timer += Time.deltaTime;
         if (timer > max_lifetime && max_lifetime != 0) {
@@ -30,7 +36,11 @@ public class Projectile : MonoBehaviour {
         }
     }
 
-    private void FixedUpdate() {
+    protected virtual void FixedUpdate() {
+        if (is_exploded) {
+            return;
+        }
+
         Turn();
         move = (transform.localRotation * base_direction * speed * Time.deltaTime);
         rb.MovePosition(transform.position + move);
@@ -40,7 +50,7 @@ public class Projectile : MonoBehaviour {
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
+    protected virtual void OnTriggerEnter2D(Collider2D collision) {
         if (ignore_wall_timer <= 0 && ((1 << collision.gameObject.layer & break_mask) != 0)) {
             Explode();
         } else if ((1 << collision.gameObject.layer & always_break_mask) != 0) {
@@ -55,6 +65,7 @@ public class Projectile : MonoBehaviour {
             particles.gameObject.transform.SetParent(null);
         }
         anim.SetTrigger("Explode");
+        is_exploded = true;
     }
 
     public void EndLife() {

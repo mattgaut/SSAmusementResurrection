@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &124629733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 124629734}
+  m_Layer: 16
+  m_Name: CenterMass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &124629734
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124629733}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4655082701210342}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1068494373224362
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,9 +110,9 @@ MonoBehaviour:
       base_value: 4
     _energy:
       base_value: 0
-    _center_mass: {fileID: 4090401177434348}
+    _center_mass: {fileID: 124629734}
     _feet: {fileID: 4090401177434348}
-    _head: {fileID: 4090401177434348}
+    _head: {fileID: 4441290769745768}
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 95571586174542020}
@@ -195,7 +225,7 @@ MonoBehaviour:
         height: 0
     coroutine_name: WalkTowardsTarget
     coroutine_index: 3
-  active_on_start: 0
+  active_on_start: 1
   flip_object: {fileID: 1531273540077442}
   line_of_sight_origin: {fileID: 4441290769745768}
   line_of_sight_blocking_mask:
@@ -675,6 +705,7 @@ Transform:
   - {fileID: 4127375529915832}
   - {fileID: 4090401177434348}
   - {fileID: 4441290769745768}
+  - {fileID: 124629734}
   m_Father: {fileID: 4711881128115276}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -23,6 +23,7 @@ public interface IStats : IDamageable {
 }
 
 public interface ICombatant : IDamageable, IStats {
+    CharacterDefinition char_definition { get; }
     float DealDamage(float damage, IDamageable target, bool trigger_on_hit);
     bool alive {
         get;

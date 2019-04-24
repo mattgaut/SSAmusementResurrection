@@ -46,14 +46,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   available_items:
-  - {fileID: 114220292241571816, guid: ef0a001c8cf0ae84fa9fb3663b630293, type: 3}
-  - {fileID: 114147480596157804, guid: 18729338e7d6e5147b86f27eae28bb7f, type: 3}
-  - {fileID: 114147480596157804, guid: 12413e18aae18bb428689b4830fb3df8, type: 3}
-  - {fileID: 114274808428152264, guid: f7b15c09662e65b46a399128415ee3d4, type: 3}
-  - {fileID: 114075697458754728, guid: 06ebf5b53f2b5d74990fb9c6e62252ed, type: 3}
-  - {fileID: 114623489731956812, guid: 3a6a6ee2c800f3e4b84958f1da9a8793, type: 3}
-  - {fileID: 114912634547136554, guid: 1b5f4dbdcd10c124b8a9b8e624b426de, type: 3}
-  - {fileID: 114158808709656130, guid: 987a73e3fd4e59f4fa4476479fb7b182, type: 3}
+  - {fileID: 7721786158127917021, guid: 987a73e3fd4e59f4fa4476479fb7b182, type: 3}
+  - {fileID: 5519710990051740026, guid: 1b5f4dbdcd10c124b8a9b8e624b426de, type: 3}
+  - {fileID: 94900727577910946, guid: 3a6a6ee2c800f3e4b84958f1da9a8793, type: 3}
+  - {fileID: 389317574634455630, guid: 06ebf5b53f2b5d74990fb9c6e62252ed, type: 3}
+  - {fileID: 1087075123151216997, guid: f7b15c09662e65b46a399128415ee3d4, type: 3}
+  - {fileID: 2420053586657542551, guid: 12413e18aae18bb428689b4830fb3df8, type: 3}
+  - {fileID: 3305780388280637675, guid: 18729338e7d6e5147b86f27eae28bb7f, type: 3}
+  - {fileID: 9175813155693695719, guid: ef0a001c8cf0ae84fa9fb3663b630293, type: 3}
+  - {fileID: 918683328654682857, guid: d814e338cacc2d341a7c7eb5827c79c7, type: 3}
 --- !u!114 &4727880421587381437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,8 +67,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb5aa15562247534eb0a08faf77d6fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  use_seed: 0
-  seed: 0
+  use_seed: 1
+  seed: 872
 --- !u!114 &4727880421587381432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,3 +90,7 @@ MonoBehaviour:
     _chance_per_roll: 0.02
   - _loot: {fileID: 114473138798414562, guid: 9c659322bea69c3449316dda6c15b99c, type: 3}
     _chance_per_roll: 0.05
+  - _loot: {fileID: 7074109383489225008, guid: 337248b82f674f94bb1c56307e2206f7, type: 3}
+    _chance_per_roll: 0.05
+  - _loot: {fileID: 7074109383489225008, guid: 77a94d3caf06cb34e86bc092a564c419, type: 3}
+    _chance_per_roll: 0.025

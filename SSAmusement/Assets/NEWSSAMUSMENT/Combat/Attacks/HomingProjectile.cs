@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HomingProjectile : Projectile {
 
-    [SerializeField] Transform target;
+    [SerializeField] protected Transform target;
     [SerializeField] float turn_speed;
 
     public void SetTarget(Transform trans) {
@@ -12,10 +12,12 @@ public class HomingProjectile : Projectile {
     }
 
     protected override void Turn() {
+        if (target == null) return;
+
         Vector3 current_trajectory = transform.rotation * base_direction;
-        float angle = Vector3.SignedAngle(current_trajectory, target.transform.position - transform.position, Vector3.forward);
-        if (turn_speed * Time.deltaTime > angle) {
-            transform.rotation *= Quaternion.Euler(0, 0, (angle * Time.deltaTime));
+        float angle = Vector2.SignedAngle(current_trajectory, target.transform.position - transform.position);
+        if (turn_speed * Time.deltaTime > Mathf.Abs(angle)) {
+            transform.rotation *= Quaternion.Euler(0, 0, (angle));
         } else {
             transform.rotation *= Quaternion.Euler(0, 0, (Mathf.Sign(angle) * turn_speed * Time.deltaTime));
         }

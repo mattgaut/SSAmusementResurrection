@@ -38,6 +38,7 @@ public class Character : MonoBehaviour, ICombatant {
     public virtual bool has_ability_2 { get { return ability_2 != null; } }
     public virtual bool has_ability_3 { get { return ability_3 != null; } }
 
+    public Character character { get { return this; } }
     public CharacterDefinition char_definition { get { return _char_definition; } }
 
     public CapStat health { get { return _char_definition.health; } }
@@ -46,9 +47,9 @@ public class Character : MonoBehaviour, ICombatant {
     public Stat speed { get { return _char_definition.speed; } }
     public CapStat energy { get { return _char_definition.energy; } }
 
-    public delegate void OnHitCallback(Character player, float pre_mitigation_damage, float post_mitigation_damage, IDamageable hit);
-    public delegate void OnKillCallback(Character player, ICombatant killed);
-    public delegate void OnTakeDamage(Character player, float pre_mitigation_damage, float post_mitigation_damage, ICombatant hit_by);
+    public delegate void OnHitCallback(Character hitter, float pre_mitigation_damage, float post_mitigation_damage, IDamageable hit);
+    public delegate void OnKillCallback(Character killer, ICombatant killed);
+    public delegate void OnTakeDamage(Character hit_character, float pre_mitigation_damage, float post_mitigation_damage, ICombatant hit_by);
 
     public Vector3 knockback_force {
         get; private set;
@@ -194,7 +195,7 @@ public class Character : MonoBehaviour, ICombatant {
     public void AddOnHit(OnHitCallback oh) { on_hits.Add(oh); }
     public void RemoveOnHit(OnHitCallback oh) { on_hits.Remove(oh); }
 
-    public void AddTakeDamage(OnTakeDamage otd) { on_take_damages.Add(otd); }
+    public void AddOnTakeDamage(OnTakeDamage otd) { on_take_damages.Add(otd); }
     public void RemoveOnTakeDamage(OnTakeDamage otd) { on_take_damages.Remove(otd); }
 
     protected void Awake() {

@@ -40,6 +40,14 @@ public class Inventory : MonoBehaviour {
         player.player_display.UpdateCurrencyText(curreny);
     }
 
+    public int ItemCount(string name) {
+        int count = 0;
+        foreach (Item i in items_in_inventory) {
+            if (i.item_name == name) count++;
+        }
+        return count;
+    }
+
     public void AddItem(Item i) {
         items_in_inventory.Add(i);
         i.transform.SetParent(transform);
