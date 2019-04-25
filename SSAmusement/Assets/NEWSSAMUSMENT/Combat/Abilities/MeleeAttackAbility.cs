@@ -17,7 +17,7 @@ public class MeleeAttackAbility : ActiveAbility {
         attack.SetOnHit(AttackOnHit);
     }
 
-    protected override void UseAbility() {
+    protected override void UseAbility(float input) {
         StartCoroutine(AbilityCoroutine());
     }
 

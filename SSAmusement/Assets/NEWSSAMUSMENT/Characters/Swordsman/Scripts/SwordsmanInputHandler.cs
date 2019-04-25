@@ -19,16 +19,16 @@ public class SwordsmanInputHandler : PlayerInputHandler {
         dash = swordsman.ability_2 as DashAbility;
     }
 
-    protected override void OnBasicAttackButton() {
+    protected override void OnBasicAttackButton(float input) {
         basic_ability.TryUse();
     }
 
-    protected override void OnSkill1Button() {
+    protected override void OnSkill1Button(float input) {
         ability_1.TryUse();
     }
 
-    protected override void OnSkill2Button() {
-        dash.TryUse();
+    protected override void OnSkill2Button(float input) {
+        dash.TryUse(input);
     }
 
 }

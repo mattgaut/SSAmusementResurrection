@@ -8,17 +8,20 @@ public class DashAbility : ActiveAbility {
     [SerializeField] bool modified_by_input;
     [SerializeField] float dash_time;
 
-    IInputHandler input_handler;
+    IInputHandler character_input_handler;
 
     protected override void Awake() {
         base.Awake();
-        input_handler = character.GetComponent<IInputHandler>();    
+        character_input_handler = character.GetComponent<IInputHandler>();    
     }
 
-    protected override void UseAbility() {
+    protected override void UseAbility(float input) {
         Vector2 dash = base_dash;
-        if (modified_by_input) {
-            dash.x *= Mathf.Sign(input_handler.input.x != 0f ? input_handler.input.x : input_handler.facing);
+
+        if (input != 0) {
+            dash.x *= Mathf.Sign(input);
+        } else if (modified_by_input) {
+            dash.x *= Mathf.Sign(character_input_handler.input.x != 0f ? character_input_handler.input.x : character_input_handler.facing);
         }
 
         character.Dash(dash, dash_time);

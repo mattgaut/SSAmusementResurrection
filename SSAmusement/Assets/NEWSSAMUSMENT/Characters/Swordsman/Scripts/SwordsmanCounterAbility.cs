@@ -16,7 +16,7 @@ public class SwordsmanCounterAbility : ActiveAbility {
         counter_attack.SetOnHit(AttackOnHit);
     }
 
-    protected override void UseAbility() {
+    protected override void UseAbility(float input) {
         StartCoroutine(Counter());
     }
 

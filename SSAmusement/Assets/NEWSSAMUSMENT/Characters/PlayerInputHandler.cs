@@ -32,10 +32,10 @@ public abstract class PlayerInputHandler : MonoBehaviour, IInputHandler {
 
     Coroutine drop_routine;
 
-    protected abstract void OnBasicAttackButton();
-    protected abstract void OnSkill1Button();
-    protected virtual void OnSkill2Button() { }
-    protected virtual void OnSkill3Button() { }
+    protected abstract void OnBasicAttackButton(float input);
+    protected abstract void OnSkill1Button(float input);
+    protected virtual void OnSkill2Button(float input) { }
+    protected virtual void OnSkill3Button(float input) { }
 
     protected virtual void OnAwake() { }
 
@@ -53,13 +53,13 @@ public abstract class PlayerInputHandler : MonoBehaviour, IInputHandler {
     private void Update() {
         if (UIHandler.input_active && player.can_input) {
             if (Input.GetButton("Attack")) {
-                OnBasicAttackButton();
+                OnBasicAttackButton(Input.GetAxis("Attack"));
             }
             if (Input.GetButtonDown("Skill1")) {
-                OnSkill1Button();
+                OnSkill1Button(Input.GetAxis("Skill1"));
             }
             if (Input.GetButtonDown("Skill2")) {
-                OnSkill2Button();
+                OnSkill2Button(Input.GetAxis("Skill2"));
             }
         }
 
@@ -99,7 +99,7 @@ public abstract class PlayerInputHandler : MonoBehaviour, IInputHandler {
             } else {
                 knocked_back_last_frame = false;
                 if (UIHandler.input_active && player.can_input) {
-                    if (adjusted_input.y < -0.25 && Input.GetButtonDown("Jump") && drop_routine == null && cont.OverPlatform()) {
+                    if (adjusted_input.y <= -.99f && Input.GetButtonDown("Jump") && drop_routine == null && cont.OverPlatform()) {
                         if (cont.OverPlatform()) {
                             drop_routine = StartCoroutine(DropRoutine());
                         }

@@ -31,10 +31,10 @@ public abstract class ActiveAbility : Ability {
         this.can_use = can_use;
     }
 
-    public bool TryUse() {
+    public bool TryUse(float input = 0) {
         if (!on_cooldown && CanUseAbility() && character.TrySpendEnergy(_energy_cost)) {
             PutOnCooldown();
-            UseAbility();
+            UseAbility(input);
             return true;
         } else {
             return false;
@@ -50,7 +50,7 @@ public abstract class ActiveAbility : Ability {
         return can_use != null ? can_use() : true;
     }
 
-    protected abstract void UseAbility();
+    protected abstract void UseAbility(float input);
 
     [System.Serializable]
     class Events {
