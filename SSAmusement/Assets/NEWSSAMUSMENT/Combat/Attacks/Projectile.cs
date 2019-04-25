@@ -14,7 +14,6 @@ public class Projectile : MonoBehaviour {
 
     Animator anim;
     Rigidbody2D rb;
-    protected Vector3 move;
     float timer = 0;
     bool is_exploded;
 
@@ -34,16 +33,10 @@ public class Projectile : MonoBehaviour {
         if (timer > max_lifetime && max_lifetime != 0) {
             Explode();
         }
-    }
-
-    protected virtual void FixedUpdate() {
-        if (is_exploded) {
-            return;
-        }
 
         Turn();
-        move = (transform.localRotation * base_direction * speed * Time.deltaTime);
-        rb.MovePosition(transform.position + move);
+
+        transform.position += transform.localRotation * base_direction * speed * Time.deltaTime;
     }
 
     protected virtual void Turn() {
