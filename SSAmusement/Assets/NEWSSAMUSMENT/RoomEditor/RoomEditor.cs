@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+#if (UNITY_EDITOR) 
+
 public class RoomEditor : MonoBehaviour {
 
     [SerializeField] SpriteRenderer background;
@@ -214,3 +216,5 @@ public class RoomEditor : MonoBehaviour {
         }
     }
 }
+
+#endif

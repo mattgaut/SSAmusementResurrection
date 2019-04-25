@@ -519,7 +519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1413934921443510, guid: c14386d86c21bea45aa24a26d1166d6a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
         type: 3}
@@ -578,12 +578,12 @@ PrefabInstance:
     - target: {fileID: 224744495369450736, guid: c14386d86c21bea45aa24a26d1166d6a,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224744495369450736, guid: c14386d86c21bea45aa24a26d1166d6a,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c14386d86c21bea45aa24a26d1166d6a, type: 3}
@@ -1250,6 +1250,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopTerminal
       objectReference: {fileID: 0}
+    - target: {fileID: 5946443575471377592, guid: aebfaa63f434e934783652f91b015073,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5946443575471377599, guid: aebfaa63f434e934783652f91b015073,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1640,7 +1645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1068494373224362, guid: 72729a89b78e09748a65560e39946275, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114169939856335424, guid: 72729a89b78e09748a65560e39946275,
         type: 3}
@@ -1694,12 +1699,12 @@ PrefabInstance:
     - target: {fileID: 224553128589119410, guid: 72729a89b78e09748a65560e39946275,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224553128589119410, guid: 72729a89b78e09748a65560e39946275,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72729a89b78e09748a65560e39946275, type: 3}

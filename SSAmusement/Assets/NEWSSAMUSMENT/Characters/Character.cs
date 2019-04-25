@@ -262,15 +262,15 @@ public class Character : MonoBehaviour, ICombatant {
 
         while (knockback_dissipation_time > 0) {
             knockback_force = force * Mathf.Pow(knockback_dissipation_time / length, 0.8f);
-            knockback_dissipation_time -= Time.fixedDeltaTime;
+            knockback_dissipation_time -= Time.deltaTime;
             if (is_knocked_back == false) {
                 break;
             }
-            yield return new WaitForFixedUpdate();
+            yield return null;
         }
         knockback_force = Vector3.zero;
         while (is_knocked_back) {
-            yield return new WaitForFixedUpdate();
+            yield return null;
         }
     }
 

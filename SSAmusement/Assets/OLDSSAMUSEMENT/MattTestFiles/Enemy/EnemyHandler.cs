@@ -168,7 +168,7 @@ public abstract class EnemyHandler : StateMachineController, IInputHandler {
             if (knocked_back_last_frame == false) gravity_force = Vector3.zero;
             knocked_back_last_frame = true;
             velocity.y = 0;
-            movement = (gravity_force + enemy.knockback_force) * Time.deltaTime;
+            movement = ((gravity_force + enemy.knockback_force) * Time.deltaTime);
         }
 
         cont.Move(movement);

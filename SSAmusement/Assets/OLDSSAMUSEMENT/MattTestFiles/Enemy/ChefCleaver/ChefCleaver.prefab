@@ -225,7 +225,7 @@ MonoBehaviour:
         height: 0
     coroutine_name: WalkTowardsTarget
     coroutine_index: 3
-  active_on_start: 1
+  active_on_start: 0
   flip_object: {fileID: 1531273540077442}
   line_of_sight_origin: {fileID: 4441290769745768}
   line_of_sight_blocking_mask:
