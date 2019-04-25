@@ -9,12 +9,14 @@ public class SwordsmanInputHandler : PlayerInputHandler {
 
     MeleeAttackAbility basic_ability;
     SwordsmanCounterAbility ability_1;
+    DashAbility dash;
 
     protected override void OnAwake() {
         swordsman = GetComponent<Swordsman>();
 
         basic_ability = swordsman.basic_ability as MeleeAttackAbility;
         ability_1 = swordsman.ability_1 as SwordsmanCounterAbility;
+        dash = swordsman.ability_2 as DashAbility;
     }
 
     protected override void OnBasicAttackButton() {
@@ -23,6 +25,10 @@ public class SwordsmanInputHandler : PlayerInputHandler {
 
     protected override void OnSkill1Button() {
         ability_1.TryUse();
+    }
+
+    protected override void OnSkill2Button() {
+        dash.TryUse();
     }
 
 }

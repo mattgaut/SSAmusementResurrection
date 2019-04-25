@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController), typeof(Enemy))]
-public abstract class EnemyHandler : StateMachineController {
+public abstract class EnemyHandler : StateMachineController, IInputHandler {
 
     protected CharacterController cont;
     [SerializeField] bool active_on_start;
@@ -37,7 +37,6 @@ public abstract class EnemyHandler : StateMachineController {
 
     Coroutine drop_routine;
 
-    protected bool flipped { get; private set; }
     protected bool can_flip = true;
 
     protected float aggro_range { get { return _aggro_range; } }
@@ -46,7 +45,12 @@ public abstract class EnemyHandler : StateMachineController {
     protected Enemy enemy { get; private set; }
 
     protected Player target;
-    protected Vector2 input;
+
+    protected Vector2 _input;
+
+    public Vector2 input { get { return _input; } set { _input = value; } }
+
+    public int facing { get; private set; }
 
     public bool CanHunt() {
         return target != null && CustomCanHunt() && Vector2.Distance(target.transform.position, transform.position) <= aggro_range && (!need_line_of_sight || HasLineOfSight());
@@ -129,7 +133,7 @@ public abstract class EnemyHandler : StateMachineController {
 
     protected override void Deactivate() {
         base.Deactivate();
-        input = Vector2.zero;
+        _input = Vector2.zero;
         enemy.animator.Rebind();
         enemy.health.current = enemy.health;
         can_flip = true;
@@ -148,16 +152,16 @@ public abstract class EnemyHandler : StateMachineController {
         }
         gravity_force.y += gravity * Time.fixedDeltaTime;
 
-        if (!enemy.knocked_back) {
+        if (!enemy.is_knocked_back) {
             knocked_back_last_frame = false;
-            if (input.y > 0 && cont.collisions.below) {
+            if (_input.y > 0 && cont.collisions.below) {
                 velocity.y = jump_velocity;
             }
-            if (input.y < 0 && drop_routine == null) {
+            if (_input.y < 0 && drop_routine == null) {
                 drop_routine = StartCoroutine(DropRoutine());
             }
 
-            velocity.x = input.x;
+            velocity.x = _input.x;
             movement = (velocity + gravity_force) * Time.deltaTime;
             Face(movement.x);
         } else {
@@ -169,13 +173,13 @@ public abstract class EnemyHandler : StateMachineController {
 
         cont.Move(movement);
 
-        if (enemy.knocked_back && (cont.collisions.left || cont.collisions.right)) {
+        if (enemy.is_knocked_back && (cont.collisions.left || cont.collisions.right)) {
             enemy.CancelXKnockBack();
         }
-        if (enemy.knocked_back && cont.collisions.above) {
+        if (enemy.is_knocked_back && cont.collisions.above) {
             enemy.CancelYKnockBack();
         }
-        if (enemy.knocked_back && cont.collisions.below) {
+        if (enemy.is_knocked_back && cont.collisions.below) {
             enemy.CancelKnockBack();
         }
     }
@@ -198,10 +202,10 @@ public abstract class EnemyHandler : StateMachineController {
         if (!can_flip) return;
         if (i > 0) {
             flip_object.transform.localRotation = Quaternion.Euler(0, 180f, 0);
-            flipped = true;
+            facing = 1;
         } else if (i < 0) {
             flip_object.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            flipped = false;
+            facing = -1;
         }
     }
     protected bool ShouldStopMoving(int direction) {

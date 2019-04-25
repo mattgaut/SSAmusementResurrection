@@ -9,7 +9,7 @@ public class MoveRightEnemyHandler : EnemyHandler {
     protected IEnumerator AIRoutine() {
         while (true) {
             yield return null;
-            input.x = enemy.speed;
+            _input.x = enemy.speed;
 
             if (cont.collisions.right && !finished) {
                 Debug.Log("Done: " + Time.time);

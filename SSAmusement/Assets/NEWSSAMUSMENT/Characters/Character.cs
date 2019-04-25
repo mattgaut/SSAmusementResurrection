@@ -54,7 +54,14 @@ public class Character : MonoBehaviour, ICombatant {
     public Vector3 knockback_force {
         get; private set;
     }
-    public bool knocked_back {
+    public bool is_knocked_back {
+        get; private set;
+    }
+
+    public Vector2 dash_force {
+        get; set;
+    }
+    public bool is_dashing {
         get; private set;
     }
 
@@ -66,7 +73,7 @@ public class Character : MonoBehaviour, ICombatant {
     }
 
     public bool can_input {
-        get { return alive && !knocked_back; }
+        get { return alive && !is_knocked_back; }
     }
     public bool can_move {
         get { return movement_locks == 0; }
@@ -93,6 +100,8 @@ public class Character : MonoBehaviour, ICombatant {
     float knockback_dissipation_time;
     Coroutine knockback_routine;
     Vector3 original_knockback_force;
+
+    Coroutine dash_routine;
 
     Coroutine iframes;
 
@@ -139,6 +148,9 @@ public class Character : MonoBehaviour, ICombatant {
         if (knockback_resistant) {
             return;
         }
+        if (is_dashing) {
+            EndDash();
+        }
 
         knockback_force = force;
         knockback_dissipation_time = length;
@@ -146,6 +158,13 @@ public class Character : MonoBehaviour, ICombatant {
             StopCoroutine(knockback_routine);
         }
         knockback_routine = StartCoroutine(KnockbackRoutine(force, length));
+    }
+
+    public void Dash(Vector2 dash, float time) {
+        if (dash_routine != null) {
+            EndDash();
+        }
+        dash_routine = StartCoroutine(DashRoutine(dash, time));
     }
 
     public virtual void GiveKillCredit(ICombatant killed) {
@@ -164,7 +183,7 @@ public class Character : MonoBehaviour, ICombatant {
     public virtual void LogBuff(Buff b) { }
 
     public void CancelKnockBack() {
-        knocked_back = false;
+        is_knocked_back = false;
     }
     public void CancelYKnockBack() {
         knockback_force = new Vector3(knockback_force.x, 0, knockback_force.z);
@@ -239,20 +258,41 @@ public class Character : MonoBehaviour, ICombatant {
     }
 
     IEnumerator KnockbackRoutine(Vector3 force, float length) {
-        knocked_back = true;
+        is_knocked_back = true;
 
         while (knockback_dissipation_time > 0) {
             knockback_force = force * Mathf.Pow(knockback_dissipation_time / length, 0.8f);
             knockback_dissipation_time -= Time.fixedDeltaTime;
-            if (knocked_back == false) {
+            if (is_knocked_back == false) {
                 break;
             }
             yield return new WaitForFixedUpdate();
         }
         knockback_force = Vector3.zero;
-        while (knocked_back) {
+        while (is_knocked_back) {
             yield return new WaitForFixedUpdate();
         }
+    }
+
+    IEnumerator DashRoutine(Vector2 dash, float length) {
+        is_dashing = true;
+
+        float timer = length;
+        while (is_dashing && timer > 0) {
+            float time_step = Time.fixedDeltaTime;
+            dash_force += dash * (time_step / length);
+            timer -= time_step;
+            yield return new WaitForFixedUpdate();
+        }
+
+        EndDash();
+    }
+
+    void EndDash() {
+        if (dash_routine != null) StopCoroutine(dash_routine);
+        dash_routine = null;
+        dash_force = Vector2.zero;
+        is_dashing = false;
     }
 }
 

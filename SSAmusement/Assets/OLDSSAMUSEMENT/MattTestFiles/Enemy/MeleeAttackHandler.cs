@@ -49,19 +49,19 @@ public class MeleeAttackHandler : EnemyHandler {
         float wander_length = Random.Range(0.5f, 2f);
         while (!ShouldStopMoving(direction) && wander_length > 0) {
             wander_length -= Time.fixedDeltaTime;
-            input.x = direction * enemy.speed;
+            _input.x = direction * enemy.speed;
             if (CanHunt()) {
                 break;
             }
             yield return new WaitForFixedUpdate();
         }
-        input.x = 0;
+        _input.x = 0;
     }
 
     protected IEnumerator Hunt() {
         enemy.animator.SetBool("Mad", true);
         Face(target.transform.position.x - transform.position.x);
-        input.x = 0;
+        _input.x = 0;
         yield return new WaitForFixedUpdate();
     }
 
@@ -71,7 +71,7 @@ public class MeleeAttackHandler : EnemyHandler {
         last_attack = 0;
         enemy.animator.SetTrigger("Attack");
 
-        input.x = 0;
+        _input.x = 0;
 
         attack_over = false;
         while (!attack_over) {
@@ -84,9 +84,9 @@ public class MeleeAttackHandler : EnemyHandler {
     protected IEnumerator WalkTowardsTarget() {
         float direction = target.transform.position.x - transform.position.x;
         if (!ShouldStopMoving(direction) && Mathf.Abs(direction) > 0.05f) {
-            input.x = Mathf.Sign(direction) * enemy.speed;
+            _input.x = Mathf.Sign(direction) * enemy.speed;
         } else {
-            input.x = 0;
+            _input.x = 0;
         }
         yield return new WaitForFixedUpdate();
     }

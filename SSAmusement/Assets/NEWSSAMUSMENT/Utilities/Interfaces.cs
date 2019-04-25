@@ -11,7 +11,7 @@ public interface IDamageable {
     void TakeKnockback(ICombatant source, Vector3 force, float length = 0.5f);
 
     Vector3 knockback_force { get; }
-    bool knocked_back { get; }
+    bool is_knocked_back { get; }
     bool invincible { get; }
 }
 
@@ -36,4 +36,9 @@ public interface ICombatant : IDamageable, IStats {
 
 public interface IInteractable {
     void Interact(Player player);
+}
+
+public interface IInputHandler {
+    Vector2 input { get; }
+    int facing { get; }
 }

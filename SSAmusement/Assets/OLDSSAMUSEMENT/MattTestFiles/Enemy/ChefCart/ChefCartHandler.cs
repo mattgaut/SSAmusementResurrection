@@ -59,7 +59,7 @@ public class ChefCartHandler : EnemyHandler {
         float wander_length = Random.Range(0.5f, 2f);
         while (!ShouldStopMoving(direction) && wander_length > 0) {
             wander_length -= Time.fixedDeltaTime;
-            input.x = direction * enemy.speed;
+            _input.x = direction * enemy.speed;
             if (CanHunt()) {
                 break;
             }
@@ -86,12 +86,12 @@ public class ChefCartHandler : EnemyHandler {
                     speed = enemy.speed * 4f;
                 }
             }
-            input.x = speed * direction;
+            _input.x = speed * direction;
             percent_bonus_speed = ((speed - enemy.speed) / (enemy.speed * 3f));
 
         }
         percent_bonus_speed = 0;
-        input = Vector2.zero;
+        _input = Vector2.zero;
         enemy.animator.SetBool("Charging", false);
         bump_damage = false;
         float rest_time = time_to_rest;

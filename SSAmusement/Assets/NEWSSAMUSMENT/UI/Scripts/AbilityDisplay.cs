@@ -32,11 +32,11 @@ public class AbilityDisplay : MonoBehaviour {
 
     IEnumerator Cooldown() {
         while (ability.on_cooldown) {
-            float time_left = ability.time_until_cooldown_ends / ability.cooldown;
+            float time_left = ability.time_until_cooldown_ends;
             if (time_left > 1) {
-                slider.SetFill(time_left, time_left.ToString("0"));
+                slider.SetFill(time_left, ability.cooldown, time_left.ToString("0"));
             } else {
-                slider.SetFill(time_left, time_left.ToString("0.0"));
+                slider.SetFill(time_left, ability.cooldown, time_left.ToString("0.0"));
             }
 
             yield return null;

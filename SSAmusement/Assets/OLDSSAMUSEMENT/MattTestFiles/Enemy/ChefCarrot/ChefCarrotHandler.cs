@@ -49,13 +49,13 @@ public class ChefCarrotHandler : EnemyHandler {
         float wander_length = Random.Range(0.5f, 2f);
         while (!ShouldStopMoving(direction) && wander_length > 0) {
             wander_length -= Time.fixedDeltaTime;
-            input.x = direction * enemy.speed;
+            _input.x = direction * enemy.speed;
             if (CanHunt()) {
                 break;
             }
             yield return new WaitForFixedUpdate();
         }
-        input.x = 0;
+        _input.x = 0;
     }
 
     protected IEnumerator Hunt() {
@@ -80,18 +80,18 @@ public class ChefCarrotHandler : EnemyHandler {
     protected IEnumerator WalkTowardsTarget() {
         float direction = target.transform.position.x - transform.position.x;
         if (!ShouldStopMoving(direction)) {
-            input.x = Mathf.Sign(direction) * enemy.speed;
+            _input.x = Mathf.Sign(direction) * enemy.speed;
         }
         yield return new WaitForFixedUpdate();
-        input.x = 0;
+        _input.x = 0;
     }
     protected IEnumerator WalkAwayFromTarget() {
         float direction = -target.transform.position.x + transform.position.x;
         if (!ShouldStopMoving(direction)) {
-            input.x = Mathf.Sign(direction) * enemy.speed;
+            _input.x = Mathf.Sign(direction) * enemy.speed;
         }
         yield return new WaitForFixedUpdate();
-        input.x = 0;
+        _input.x = 0;
     }
 
     protected override bool ShouldStopMoving(float direction) {

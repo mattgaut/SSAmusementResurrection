@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController), typeof(Player))]
-public abstract class PlayerInputHandler : MonoBehaviour {
+public abstract class PlayerInputHandler : MonoBehaviour, IInputHandler {
+
+    public Vector2 input { get; protected set; }
+
+    public int facing { get; private set; }
 
     CharacterController cont;
     Player player;
@@ -54,7 +58,12 @@ public abstract class PlayerInputHandler : MonoBehaviour {
             if (Input.GetButtonDown("Skill1")) {
                 OnSkill1Button();
             }
+            if (Input.GetButtonDown("Skill2")) {
+                OnSkill2Button();
+            }
         }
+
+        input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         Move();
     }
@@ -64,9 +73,9 @@ public abstract class PlayerInputHandler : MonoBehaviour {
             gravity_force.y = 0;
             velocity.y = 0;
         }
-        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        Vector2 adjusted_input = input;
         if (!player.can_input || !UIHandler.input_active || !player.can_move) {
-            input = Vector2.zero;
+            adjusted_input = Vector2.zero;
         }
 
         if (!jumping) gravity_force.y += gravity * Time.deltaTime;
@@ -78,64 +87,76 @@ public abstract class PlayerInputHandler : MonoBehaviour {
             jumping = false;
             gravity_force.y = 0;
             cont.Move((velocity + gravity_force) * Time.deltaTime);
-        } else if (!player.knocked_back) {
-            knocked_back_last_frame = false;
-            if (UIHandler.input_active && player.can_input) {
-                if (input.y < -0.25 && Input.GetButtonDown("Jump") && drop_routine == null && cont.OverPlatform()) {
-                    if (cont.OverPlatform()) {
+        } else if (!player.is_knocked_back) {
+            if (player.is_dashing) {
+                player.animator.SetBool("Running", false);
+                player.animator.speed = 1f;
+
+                cont.Move(player.dash_force);
+                player.dash_force = Vector2.zero;
+                velocity = Vector3.zero;
+                gravity_force = Vector3.zero;
+            } else {
+                knocked_back_last_frame = false;
+                if (UIHandler.input_active && player.can_input) {
+                    if (adjusted_input.y < -0.25 && Input.GetButtonDown("Jump") && drop_routine == null && cont.OverPlatform()) {
+                        if (cont.OverPlatform()) {
+                            drop_routine = StartCoroutine(DropRoutine());
+                        }
+                    } else if (Input.GetButtonDown("Drop") && drop_routine == null && player.can_input) {
                         drop_routine = StartCoroutine(DropRoutine());
+                    } else if (Input.GetButtonDown("Jump") && cont.collisions.below && player.can_move && player.can_input) {
+                        gravity_force.y = 0;
+                        velocity.y = jump_velocity;
+                        StartCoroutine(JumpRoutine());
+                    } else if (jumping) {
+                        velocity.y = jump_velocity;
                     }
-                } else if (Input.GetButtonDown("Drop") && drop_routine == null) {
-                    drop_routine = StartCoroutine(DropRoutine());
-                } else if (Input.GetButtonDown("Jump") && cont.collisions.below) {
-                    gravity_force.y = 0;
-                    velocity.y = jump_velocity;
-                    StartCoroutine(JumpRoutine());
                 } else if (jumping) {
                     velocity.y = jump_velocity;
                 }
-            } else if (jumping) {
-                velocity.y = jump_velocity;
-            }
 
-            float target_velocity_x = input.x * player.speed;
-            //velocity.x = Mathf.SmoothDamp(velocity.x, target_velocity_x, ref x_smooth, cont.collisions.below ? acceleration_grounded : acceleration_airborne);
-            velocity.x = target_velocity_x;
+                float target_velocity_x = adjusted_input.x * player.speed;
+                //velocity.x = Mathf.SmoothDamp(velocity.x, target_velocity_x, ref x_smooth, cont.collisions.below ? acceleration_grounded : acceleration_airborne);
+                velocity.x = target_velocity_x;
 
-            if (input.x != 0 && (cont.collisions.below || cont.collisions.below_last_frame)) {
-                player.animator.SetBool("Running", true);
-                if (player.animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerRun")) {
-                    player.animator.speed = Mathf.Abs(velocity.x / 5f);
+                if (adjusted_input.x != 0 && (cont.collisions.below || cont.collisions.below_last_frame)) {
+                    player.animator.SetBool("Running", true);
+                    if (player.animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerRun")) {
+                        player.animator.speed = Mathf.Abs(velocity.x / 5f);
+                    } else {
+                        player.animator.speed = 1f;
+                    }
                 } else {
+                    player.animator.SetBool("Running", false);
                     player.animator.speed = 1f;
                 }
-            } else {
-                player.animator.SetBool("Running", false);
-                player.animator.speed = 1f;
-            }
 
-            if (player.can_change_facing) {
-                if (input.x < 0) {
-                    flip_object.transform.localRotation = Quaternion.Euler(0,180f,0);
-                } else if (input.x > 0) {
-                    flip_object.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                if (player.can_change_facing) {
+                    if (adjusted_input.x < 0) {
+                        facing = -1;
+                        flip_object.transform.localRotation = Quaternion.Euler(0, 180f, 0);
+                    } else if (adjusted_input.x > 0) {
+                        facing = 1;
+                        flip_object.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                    }
                 }
-            }
 
-            cont.Move((velocity + gravity_force) * Time.deltaTime);
+                cont.Move((velocity + gravity_force) * Time.deltaTime);
+            }
         } else {
             if (knocked_back_last_frame == false) gravity_force = Vector3.zero;
             knocked_back_last_frame = true;
             velocity.y = 0;
             cont.Move((gravity_force + player.knockback_force) * Time.deltaTime);
         }
-        if (player.knocked_back && (cont.collisions.left || cont.collisions.right)) {
+        if (player.is_knocked_back && (cont.collisions.left || cont.collisions.right)) {
             player.CancelXKnockBack();
         }
-        if (player.knocked_back && cont.collisions.above) {
+        if (player.is_knocked_back && cont.collisions.above) {
             player.CancelYKnockBack();
         }
-        if (player.knocked_back && cont.collisions.below) {
+        if (player.is_knocked_back && cont.collisions.below) {
             player.CancelKnockBack();
         }
     }

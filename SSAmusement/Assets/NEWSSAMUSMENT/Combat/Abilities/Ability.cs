@@ -9,6 +9,8 @@ public class Ability : MonoBehaviour {
 
     public Sprite icon { get { return _icon; } }
 
+    public string ability_name { get { return _ability_name; } }
+
     [SerializeField] protected string _ability_name;
     [SerializeField] protected Sprite _icon;
 

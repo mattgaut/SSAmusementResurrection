@@ -30,7 +30,7 @@ public class Wander : EnemyHandler {
             float wander_length = Random.Range(0.5f, 2f);
             while (!ShouldStopMoving(direction) && wander_length > 0) {
                 wander_length -= Time.fixedDeltaTime;
-                input.x = direction * enemy.speed;
+                _input.x = direction * enemy.speed;
                 yield return new WaitForFixedUpdate();
             }
         }
