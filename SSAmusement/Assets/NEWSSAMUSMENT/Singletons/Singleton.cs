@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
 
-    public static T instance { get; private set; }
+    static T _instance;
+    public static T instance {
+        get {
+            if (_instance == null)
+                Debug.LogError("Singleton of type " + typeof(T) + "not loaded.");
+            return _instance;
+        }
+        set { _instance = value; }
+    }
+
 
     void Awake() {
-        if (instance == null) {
+        if (_instance == null) {
             instance = GetComponent<T>();
             DontDestroyOnLoad(instance);
             OnAwake();

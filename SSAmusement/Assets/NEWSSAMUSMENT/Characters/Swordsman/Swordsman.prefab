@@ -2063,6 +2063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroy_on:
   - TitleScene
+  - RestartScene
 --- !u!114 &1925046958
 MonoBehaviour:
   m_ObjectHideFlags: 0

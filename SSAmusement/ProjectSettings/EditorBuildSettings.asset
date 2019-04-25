@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/NEWSSAMUSMENT/Singletons/Singletons.unity
     guid: 623494e1c3f6c67499b1c95f485ca307
+  - enabled: 1
+    path: Assets/RestartScene.unity
+    guid: a13348edd5084b44299ab86d1db17aef
   m_configObjects: {}
