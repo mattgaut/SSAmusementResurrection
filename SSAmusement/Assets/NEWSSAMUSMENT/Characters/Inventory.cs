@@ -18,6 +18,8 @@ public class Inventory : MonoBehaviour {
         get { return new ReadOnlyCollection<Item>(items_in_inventory); }
     }
 
+    int pet_count;
+
     private void Awake() {
         boss_keycards += 1;
         player = GetComponent<Player>();
@@ -46,6 +48,17 @@ public class Inventory : MonoBehaviour {
             if (i.item_name == name) count++;
         }
         return count;
+    }
+
+    public int PetCount() {
+        return pet_count;
+    }
+
+    public void AddPet() {
+        pet_count++;
+    }
+    public void RemovePet() {
+        pet_count--;
     }
 
     public void AddItem(Item i) {

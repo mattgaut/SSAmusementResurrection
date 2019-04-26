@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 918683328654682863}
   - component: {fileID: 918683328654682862}
   - component: {fileID: 918683328654682857}
-  - component: {fileID: 918683328654682856}
-  m_Layer: 0
-  m_Name: AutoDefenseTurret
+  - component: {fileID: 6034317083254651646}
+  - component: {fileID: 404487520510937350}
+  m_Layer: 26
+  m_Name: CombatTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,12 +95,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5407d6a339d491c4db4f6704205e369e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item_name: Auto Defense Turret
-  _item_description: Retaliates against enemies when damage is taken.
+  _item_name: Combat Turret
+  _item_description: Stores Energy on hit. When fully charged releases energy to fire
+    a laser at a nearby opponent.
   sprite: {fileID: 21300000, guid: e13647f1ae6f83c4eb51674e8830b8d2, type: 3}
   effects:
-  - {fileID: 918683328654682856}
---- !u!114 &918683328654682856
+  - {fileID: 6034317083254651646}
+--- !u!114 &6034317083254651646
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,11 +110,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 918683328654682860}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a39fc2f9255ea104ca9352c19cede546, type: 3}
+  m_Script: {fileID: 11500000, guid: f4528afbc87ea8a4cadad82e68eb277e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage_multiplier: 0.25
+  damage_to_store: 10
+  multiplier: 1
+  aggro_range: 6
+  charge_per_second: 0
   pet: {fileID: 805314904535986419}
+--- !u!58 &404487520510937350
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918683328654682860}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 6
 --- !u!1001 &805314904449141491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -123,7 +144,7 @@ PrefabInstance:
     - target: {fileID: 545740660460180688, guid: fe0ab57abe4c2ff438c4dca3a5021177,
         type: 3}
       propertyPath: m_Name
-      value: AutoDefenseTurret
+      value: CombatTurret
       objectReference: {fileID: 0}
     - target: {fileID: 545740660460180688, guid: fe0ab57abe4c2ff438c4dca3a5021177,
         type: 3}

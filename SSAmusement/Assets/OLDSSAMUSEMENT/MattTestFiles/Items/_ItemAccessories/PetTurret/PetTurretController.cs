@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AutoDefenseTurretController : MonoBehaviour {
+public class PetTurretController : MonoBehaviour {
     [SerializeField] HomingCallbackProjectile laser;
 
     [SerializeField] Animator animator;
@@ -31,17 +31,24 @@ public class AutoDefenseTurretController : MonoBehaviour {
         orbit_center = transform;
     }
 
-    public void AddTargetToQueue(CharacterDefinition target, Action callback) {
-        queue.Add(new TargetCallback(target, callback));
+    public void AddTargetToQueue(CharacterDefinition target, Action success_callback, Action fail_callback = null) {
+        queue.Add(new TargetCallback(target, success_callback, fail_callback));
         animator.SetBool("LasersQueued", true);
     }
 
+    /// <summary>
+    /// Should only be called via Animation
+    /// 
+    /// Searches Queue in order for a valid target to Shoot.
+    /// Invokes callback for all failed targets.
+    /// </summary>
     public void ShootQueuedLaser() {
         TargetCallback next_target = null;
         while (next_target == null && queue.Count != 0) {
             next_target = queue[0];
             queue.RemoveAt(0);
             if (next_target.target.center_mass == null) {
+                if (next_target.fail_callback != null) next_target.fail_callback.Invoke();
                 next_target = null;
             }
         }
@@ -56,7 +63,7 @@ public class AutoDefenseTurretController : MonoBehaviour {
         laser.transform.position = transform.position;
 
         Transform target = target_callback.target.center_mass;
-        new_laser.SetTarget(target, target_callback.callback);
+        new_laser.SetTarget(target, target_callback.success_callback);
 
         float angle = 0;
         Vector3 to_target = target.transform.position - transform.position;
@@ -93,11 +100,13 @@ public class AutoDefenseTurretController : MonoBehaviour {
 
     class TargetCallback {
         public CharacterDefinition target;
-        public Action callback;
+        public Action success_callback;
+        public Action fail_callback;
 
-        public TargetCallback(CharacterDefinition target, Action callback) {
+        public TargetCallback(CharacterDefinition target, Action success_callback, Action fail_callback) {
             this.target = target;
-            this.callback = callback;
+            this.success_callback = success_callback;
+            this.fail_callback = fail_callback;
         }
     }
 }
