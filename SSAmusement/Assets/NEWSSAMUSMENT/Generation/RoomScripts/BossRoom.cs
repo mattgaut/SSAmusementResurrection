@@ -61,7 +61,7 @@ public class BossRoom : Room {
         if (boss_blocker) boss_blocker.enabled = false;
     }
 
-    public override Vector3 ClampToCameraBounds(Vector3 position) {
+    public override Vector3 ClampToBounds(Vector3 position) {
         Vector3 offset = -new Vector3(0.5f, 0.5f, 0) + new Vector3(Section.width / 2f, Section.height / 2f);
         Vector3 local_position = position - transform.position - offset;
         if (!fighting && !boss_dead) {

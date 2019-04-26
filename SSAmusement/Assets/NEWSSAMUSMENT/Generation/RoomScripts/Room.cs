@@ -31,6 +31,11 @@ public class Room : MonoBehaviour {
 
     Dictionary<Enemy, Vector3> enemies;
 
+
+    /// <summary>
+    /// Tries to spawn a roomset, takes note of all enemies in room
+    /// and gives them loot based on loot tables
+    /// </summary>
     public virtual void Init() {
         SpawnRandomRoomset();
 
@@ -44,6 +49,10 @@ public class Room : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Changes size of the room and clears all but the outer walls
+    /// </summary>
+    /// <param name="new_size"></param>
     public void SetSize(Vector2Int new_size) {
         Section[] new_sections = new Section[new_size.x * new_size.y];
 
@@ -96,6 +105,11 @@ public class Room : MonoBehaviour {
         swaptiles = new Tile[sections.Length * Section.width];
     }
 
+    /// <summary>
+    /// Returns the section at the local position given if it is in rooms range
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <returns>Section at position, null if out of bounds</returns>
     public Section GetSection(Vector2Int pos) {
         if (pos.x < 0 || pos.y < 0 || pos.x >= size.x || pos.y >= size.y) {
             return null;
@@ -103,18 +117,37 @@ public class Room : MonoBehaviour {
 
         return sections[pos.x + size.x * pos.y];
     }
+
+    /// <summary>
+    /// Gets all sections in room
+    /// </summary>
+    /// <returns>List of Sections</returns>
     public List<Section> GetSections() {
         return new List<Section>(sections);
     }
 
+    /// <summary>
+    /// Gets all tiles in room
+    /// </summary>
+    /// <returns>List of Tiles in room</returns>
     public List<Tile> GetTiles() {
         return new List<Tile>(tiles);
     }
 
+
+    /// <summary>
+    /// Gets all swap tiles in room
+    /// </summary>
+    /// <returns>List of swaptiles in room</returns>
     public List<Tile> GetSwapTiles() {
         return new List<Tile>(swaptiles);
     }
 
+
+    /// <summary>
+    /// Get list of each local coordinate that room has a section in
+    /// </summary>
+    /// <returns>List of local section positions</returns>
     public List<Vector2Int> GetLocalCoordinatesList() {
         List<Vector2Int> vectors = new List<Vector2Int>();
 
@@ -127,6 +160,12 @@ public class Room : MonoBehaviour {
         return vectors;
     }
 
+    /// <summary>
+    /// Checks if room has a doorway that can be opened at the local position in the direction given
+    /// </summary>
+    /// <param name="pos">Position to check</param>
+    /// <param name="direction">Direction to check</param>
+    /// <returns>Whether openable doorway exists</returns>
     public bool HasOpenableDoorway(Vector2Int pos, Direction direction) {
         int id = pos.x + size.x * pos.y;
         if (id < sections.Length && sections[id].HasDoorway(direction)) {
@@ -135,6 +174,13 @@ public class Room : MonoBehaviour {
         return false;
     }
 
+    /// <summary>
+    /// Adds tile to Room at given coordinates
+    /// Adjusts borders adjacent to newly added tile
+    /// </summary>
+    /// <param name="tile"></param>
+    /// <param name="x">Local x coordinate</param>
+    /// <param name="y">Local y coordinate</param>
     public void AddTile(Tile tile, int x, int y) {
         if (IsTilePositionInBounds(x, y) && tile != null) {
             int index = x + (size.x * Section.width * y);
@@ -178,6 +224,11 @@ public class Room : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Add swap tile at local coordinate (x, 0)
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="tile"></param>
     public void AddSwapTile(int x, Tile tile) {
         if (IsTilePositionInBounds(x, 0)) {
             tile.position = new Vector2Int(x, 0);
@@ -185,6 +236,11 @@ public class Room : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Remove swap tile at local coordinate (x, 0)
+    /// </summary>
+    /// <param name="x"></param>
+    /// <returns></returns>
     public Tile RemoveSwapTile(int x) {
         if (IsTilePositionInBounds(x, 0)) {
             Tile tile = swaptiles[x];
@@ -194,17 +250,43 @@ public class Room : MonoBehaviour {
         return null;
     }
 
+    /// <summary>
+    /// Checks if local coordinate (x, y) exists in room bounds
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <returns>True if in bounds</returns>
     public bool IsTilePositionInBounds(int x, int y) {
         return (x >= 0 && size.x * Section.width > x && y >= 0 && size.y * Section.height > y);
     }
+
+    /// <summary>
+    /// Checks if local coordinate (x, y) exists in room bounds excluding border positions
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <returns>True if in bounds and not on border</returns>
     public bool IsTilePositionInEditableBounds(int x, int y) {
         return (x >= 1 && (size.x * Section.width) - 1 > x && y >= 1 && (size.y * Section.height) - 1 > y);
     }
 
+    /// <summary>
+    /// Checks if tile exists at coordinate (x, y)
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <returns>True if tile exists</returns>
     public bool HasTile(int x, int y) {
         return IsTilePositionInBounds(x, y) && tiles[x + (size.x * Section.width * y)] != null;
     }
 
+    /// <summary>
+    /// Removes tile at local coordinate (x, y)
+    /// Adjusts borders of tiles adjacent to removed tile
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <returns>Tile removed, null if none found</returns>
     public Tile RemoveTile(int x, int y) {
         if (!HasTile(x, y)) {
             return null;
@@ -236,6 +318,11 @@ public class Room : MonoBehaviour {
         SetSize(new Vector2Int(x, y));
     }
 
+    /// <summary>
+    /// Toggles ability to have an open doorway at local position in direction
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="direction"></param>
     public void ToggleDoorwayCanOpen(Vector2Int position, Direction direction) {
         if (position.x < size.x && position.y < size.y && sections[position.x + size.x * position.y].HasDoorway(direction)) {
             Doorway doorway = sections[position.x + size.x * position.y].GetDoorway(direction);
@@ -245,6 +332,13 @@ public class Room : MonoBehaviour {
             doorway.can_open = !doorway.can_open;
         }
     }
+
+    /// <summary>
+    /// Sets ability to have an open doorway at local position in direction
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="direction"></param>
+    /// <param name="can_open"></param>
     public void SetDoorwayCanOpen(Vector2Int position, Direction direction, bool can_open) {
         if (position.x < size.x && position.y < size.y && sections[position.x + size.x * position.y].HasDoorway(direction)) {
             Doorway doorway = sections[position.x + size.x * position.y].GetDoorway(direction);
@@ -258,12 +352,23 @@ public class Room : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Toggles whether doorway is open at position in direction if one exists
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="direction"></param>
     public void ToggleDoorwayOpen(Vector2Int position, Direction direction) {
         if (position.x < size.x && position.y < size.y && sections[position.x + size.x * position.y].HasDoorway(direction)) {
             SetDoorwayOpen(position, direction, !sections[position.x + size.x * position.y].GetDoorway(direction).is_open);
         }
     }
 
+    /// <summary>
+    /// Sets whether doorway is open at position in direction if one exists
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="direction"></param>
+    /// <param name="is_open"></param>
     public void SetDoorwayOpen(Vector2Int position, Direction direction, bool is_open) {
         if (position.x < size.x && position.y < size.y && sections[position.x + size.x * position.y].HasDoorway(direction)) {
             if (!sections[position.x + size.x * position.y].GetDoorway(direction).can_open && is_open) {
@@ -271,6 +376,8 @@ public class Room : MonoBehaviour {
                 return;
             }
             sections[position.x + size.x * position.y].GetDoorway(direction).is_open = is_open;
+
+            // TODO fix this ugly mess and make remove magic numbers
 
             int num_blocks_wide = Section.width * size.x;
             if (direction == Direction.LEFT) {
@@ -301,6 +408,10 @@ public class Room : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Applies input Tile Set to each tile and swaptile in room
+    /// </summary>
+    /// <param name="set"></param>
     public void LoadTileSet(TileSet set) {
         foreach (Tile t in tiles) {
             if (t != null) {
@@ -314,10 +425,18 @@ public class Room : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Add Room set to possible room sets
+    /// </summary>
+    /// <param name="room_set"></param>
     public void AddRoomSet(RoomSet room_set) {
         room_sets.Add(room_set);
     }
 
+    /// <summary>
+    /// Spawns a random room set from possible roomsets if one exists.
+    /// Deletes previously loaded roomset if one exists
+    /// </summary>
     protected virtual void SpawnRandomRoomset() {
         if (loaded_room_set != null && room_sets.Count > 0) {
             Destroy(loaded_room_set.gameObject);
@@ -339,7 +458,12 @@ public class Room : MonoBehaviour {
         }
     }
 
-    public virtual Vector3 ClampToCameraBounds(Vector3 position) {
+    /// <summary>
+    /// Clamps position to area defined by the centers of each room section
+    /// </summary>
+    /// <param name="position"></param>
+    /// <returns>Clamped position in bounds</returns>
+    public virtual Vector3 ClampToBounds(Vector3 position) {
         Vector3 offset = - new Vector3(0.5f, 0.5f, 0) + new Vector3(Section.width / 2f, Section.height / 2f);
         Vector3 local_position = position - transform.position - offset;
         if (local_position.x < 0.5f) {
@@ -407,6 +531,10 @@ public class Room : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Class the defines a 1 Unit Section of a room.
+    /// Static Variables define the shape of a section and its connections
+    /// </summary>
     [System.Serializable]
     public class Section {
         public static int width { get { return 18; } }
@@ -436,6 +564,11 @@ public class Room : MonoBehaviour {
             _room = room;
         }
 
+        /// <summary>
+        /// Get doorway in section in given direction
+        /// </summary>
+        /// <param name="direction"></param>
+        /// <returns>Returns doorway, null if none found</returns>
         public Doorway GetDoorway(Direction direction) {
             if (direction == Direction.LEFT) {
                 return left;
@@ -448,10 +581,18 @@ public class Room : MonoBehaviour {
             }
         }
 
+        /// <summary>
+        /// Removes all doorways
+        /// </summary>
         public void ClearDoorways() {
             left = right = top = bottom = null;
         }
 
+        /// <summary>
+        /// Sets doorway in direction equal to input doorway
+        /// </summary>
+        /// <param name="doorway"></param>
+        /// <param name="direction"></param>
         public void SetDoorway(Doorway doorway, Direction direction) {
             if (direction == Direction.LEFT) {
                 left = doorway;
@@ -464,6 +605,11 @@ public class Room : MonoBehaviour {
             }
         }
 
+        /// <summary>
+        /// Checks if doorway exists in direction
+        /// </summary>
+        /// <param name="direction"></param>
+        /// <returns></returns>
         public bool HasDoorway(Direction direction) {
             if (direction == Direction.LEFT) {
                 return left != null;
@@ -476,6 +622,11 @@ public class Room : MonoBehaviour {
             }
         }
 
+        /// <summary>
+        /// Checks if doorway exists and is open in direction
+        /// </summary>
+        /// <param name="direction"></param>
+        /// <returns></returns>
         public bool HasOpenDoorway(Direction direction) {
             if (direction == Direction.LEFT) {
                 return left != null && left.is_open;
@@ -488,6 +639,11 @@ public class Room : MonoBehaviour {
             }
         }
 
+        /// <summary>
+        /// Checks if doorway exists and can be opened in direction
+        /// </summary>
+        /// <param name="direction"></param>
+        /// <returns></returns>
         public bool HasOpenableDoorway(Direction direction) {
             if (direction == Direction.LEFT) {
                 return left != null && left.can_open;
@@ -500,11 +656,20 @@ public class Room : MonoBehaviour {
             }
         }
 
+        /// <summary>
+        /// Sets if doorway in direction is open
+        /// </summary>
+        /// <param name="direction"></param>
+        /// <param name="is_open"></param>
         public void SetDoorwayOpen(Direction direction, bool is_open = true) {
             room.SetDoorwayOpen(position, direction, is_open);
         }
     }
 
+    /// <summary>
+    /// Class that defines Doorways
+    /// contains bools defining whether doorway is open and wheter it can be opened
+    /// </summary>
     [System.Serializable]
     public class Doorway {
         [SerializeField] private bool _is_open;

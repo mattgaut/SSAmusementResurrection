@@ -23,9 +23,9 @@ public class CameraFollow : MonoBehaviour {
         if (!lerping) {
             new_position = follow.transform.position + 10 * Vector3.back;
             if (boundary_room != null) {
-                new_position = boundary_room.ClampToCameraBounds(new_position);
+                new_position = boundary_room.ClampToBounds(new_position);
             } else if (RoomManager.instance != null && RoomManager.instance.active != null) {
-                new_position = RoomManager.instance.active.ClampToCameraBounds(new_position);
+                new_position = RoomManager.instance.active.ClampToBounds(new_position);
             }
         }
         transform.position = new_position;
@@ -57,9 +57,9 @@ public class CameraFollow : MonoBehaviour {
 
     Vector3 Clamped(Vector3 position) {
         if (boundary_room != null) {
-            return boundary_room.ClampToCameraBounds(position);
+            return boundary_room.ClampToBounds(position);
         } else if (RoomManager.instance != null && RoomManager.instance.active != null) {
-            return RoomManager.instance.active.ClampToCameraBounds(position);
+            return RoomManager.instance.active.ClampToBounds(position);
         } else {
             return position;
         }
