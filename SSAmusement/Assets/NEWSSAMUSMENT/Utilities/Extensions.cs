@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class Extension {
+
+    /// <summary>
+    /// Shuffles a list using the Knuth\Fisher-Yates shuffle method
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="list"></param>
+    /// <returns></returns>
     public static List<T> Shuffle<T>(this List<T> list) {
         int n = list.Count;
         while (n > 1) {
@@ -15,6 +22,13 @@ public static class Extension {
         return list;
     }
 
+    /// <summary>
+    /// Shuffles a list using the Knuth\Fisher-Yates shuffle method
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="list"></param>
+    /// <param name="rng">RNG instance to use</param>
+    /// <returns></returns>
     public static List<T> Shuffle<T>(this List<T> list, RNG rng) {
         int n = list.Count;
         while (n > 1) {
@@ -27,6 +41,14 @@ public static class Extension {
         return list;
     }
 
+    /// <summary>
+    /// Moves object from one index to another
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="list"></param>
+    /// <param name="index_from"></param>
+    /// <param name="index_to"></param>
+    /// <returns>bool that corresponds to whether the move was performed</returns>
     public static bool Move<T>(this List<T> list, int index_from, int index_to) {
         if (list.Count <= index_from) {
             return false;

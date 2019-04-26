@@ -31,13 +31,20 @@ public interface ICombatant : IDamageable, IStats {
     void GiveKillCredit(ICombatant killed);
     void LogBuff(Buff b);
     Coroutine StartCoroutine(IEnumerator start);
-    void DropObject(GameObject obj);
+    void DropObject(GameObject obj, bool should_handle_instantiation = false);
 }
 
+/// <summary>
+/// Interface for interactables to Iherit that allows interaction with Player
+/// </summary>
 public interface IInteractable {
     void Interact(Player player);
 }
 
+/// <summary>
+/// Interface to generalize and allow access to what inputs characters are 
+/// recieving from their ai or player controllers
+/// </summary>
 public interface IInputHandler {
     Vector2 input { get; }
     int facing { get; }

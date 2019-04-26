@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Class The Defines State Machine Scriptable object
+/// </summary>
 [CreateAssetMenu(fileName = "StateMachine", menuName = "ScriptableObjects/StateMachine", order = 1)]
 public class StateMachine : ScriptableObject {
 
@@ -25,10 +28,15 @@ public class StateMachine : ScriptableObject {
         Init();
     }
 
+    /// <summary>
+    /// Assigns new ids to states
+    /// Removes invalid transitions
+    /// Loads Dicitionaries
+    /// Assigns Entry State
+    /// </summary>
     public void Init() {
         for (int i = 0; i < states.Count; i++) {
-            State s = states[i];
-            s.id = i;
+            states[i].id = i;
         }
 
         for (int i = 0; i < transitions.Count; i++) {
@@ -56,6 +64,10 @@ public class StateMachine : ScriptableObject {
         }
     }
 
+    /// <summary>
+    /// Creates an Object to track position in this state machine
+    /// </summary>
+    /// <returns>Instance of StateMachine tracking object</returns>
     public Instance GetStateMachineInstance() {
         return new Instance(this);
     }
@@ -72,6 +84,12 @@ public class StateMachine : ScriptableObject {
         return new List<State>(states);
     }
 
+    /// <summary>
+    /// Creates a new state, if the name already exists appends numbers on the end
+    /// until the new name doesn not exist
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns>Newly created state</returns>
     public State CreateState(string name) {
         State new_state = new State(0, new Rect(), name);
 
@@ -99,6 +117,11 @@ public class StateMachine : ScriptableObject {
         LoadDictionaries();
     }
 
+    /// <summary>
+    /// Creates a one way transition between to States
+    /// </summary>
+    /// <param name="from"></param>
+    /// <param name="to"></param>
     public void CreateTransition(State from, State to) {
         if (!state_dictionary.ContainsKey(from.name) || !state_dictionary.ContainsKey(to.name)) {
             return;
@@ -116,6 +139,11 @@ public class StateMachine : ScriptableObject {
         InsertTransitionIntoDictionary(new_transition);
     }
 
+    /// <summary>
+    /// Deletes a transition between two states if it exists
+    /// </summary>
+    /// <param name="from"></param>
+    /// <param name="to"></param>
     public void DeleteTransition(State from, State to) {
         if (!state_dictionary.ContainsKey(from.name) || !state_dictionary.ContainsKey(to.name)) {
             return;
@@ -143,6 +171,11 @@ public class StateMachine : ScriptableObject {
         transitions.Remove(transition);
     }
 
+    /// <summary>
+    /// Gets all transitions leaving State
+    /// </summary>
+    /// <param name="s">State</param>
+    /// <returns>List of transitions leaving state</returns>
     public List<Transition> GetTransitions(State s) {
         List<Transition> to_return = new List<Transition>();
         if (transition_dictionary.ContainsKey(s)) {
@@ -162,6 +195,10 @@ public class StateMachine : ScriptableObject {
         return null;
     }
 
+    /// <summary>
+    /// Removes All transitions to or from state
+    /// </summary>
+    /// <param name="state"></param>
     public void RemoveAllTransitionsContainingState(State state) {
         if (transition_dictionary.ContainsKey(state)) {
             foreach (Transition t in transition_dictionary[state]) {
@@ -181,11 +218,21 @@ public class StateMachine : ScriptableObject {
         }
     }
     
+    /// <summary>
+    /// Adds new paramater if name is taken appends numbers onto end
+    /// until name is valid
+    /// </summary>
+    /// <param name="name"></param>
     public void AddParameter(string name) {
         Parameter new_parameter = new Parameter(ValidatedParameterName(name));
         parameters.Add(new_parameter);
     }
 
+    /// <summary>
+    /// Renames paramater if new name is taken appends numbers onto end
+    /// until name is valid
+    /// </summary>
+    /// <param name="name"></param>
     public void RenameParameter(Parameter param, string new_name) {
         if (param.name == new_name) {
             return;
@@ -210,6 +257,10 @@ public class StateMachine : ScriptableObject {
     public List<Parameter> GetParameters() {
         return new List<Parameter>(parameters);
     }
+    /// <summary>
+    /// Gets list of all parameter names is State Machine
+    /// </summary>
+    /// <returns>List parameter names as strings</returns>
     public List<string> GetParameterNames() {
         List<string> names = new List<string>();
         foreach (Parameter p in parameters) {
@@ -247,9 +298,9 @@ public class StateMachine : ScriptableObject {
     }
 
     string ValidatedParameterName(string name) {
-        if (ParameterNameTaken(name)) {
+        if (IsParameterNameTaken(name)) {
             int count = 0;
-            while (ParameterNameTaken(name + " " + count)) {
+            while (IsParameterNameTaken(name + " " + count)) {
                 count++;
             }
             return name + " " + count;
@@ -257,7 +308,7 @@ public class StateMachine : ScriptableObject {
         return name;
     }
 
-    bool ParameterNameTaken(string name) {
+    bool IsParameterNameTaken(string name) {
         return parameters.Contains(new Parameter(name));
     }
 
@@ -284,6 +335,10 @@ public class StateMachine : ScriptableObject {
         }
     }
 
+    /// <summary>
+    /// Class that defines an instane of a state machince
+    /// Must Set Parameter callbacks before use
+    /// </summary>
     public class Instance {
         StateMachine machine;
         public State current_state { get; private set; }
@@ -296,10 +351,18 @@ public class StateMachine : ScriptableObject {
             parameter_callbacks = new Dictionary<Parameter, System.Func<bool>>();
         }
 
+        /// <summary>
+        /// Sets parameter callbacks so that they can be read to judge transitions
+        /// </summary>
+        /// <param name="callbacks">Dictionary of Parameter to Bool Callbacks</param>
         public void SetCallbacks(Dictionary<Parameter, System.Func<bool>> callbacks) {
             parameter_callbacks = callbacks;
         }
 
+        /// <summary>
+        /// Transition State machine to next state using supplied parameter bool dictionary
+        /// </summary>
+        /// <param name="parameter_values"></param>
         public void Tansition(Dictionary<Parameter, bool> parameter_values) {
             foreach (Transition t in machine.GetTransitions(current_state)) {
                 bool should_transition = true;
@@ -315,6 +378,10 @@ public class StateMachine : ScriptableObject {
             }
         }
 
+        /// <summary>
+        /// Transition State machine to next state using previously set callbacks
+        /// See: SetCallbacks
+        /// </summary>
         public void TransitionUsingCallbacks() {
             foreach (Transition t in machine.GetTransitions(current_state)) {
                 bool should_transition = true;
@@ -332,6 +399,11 @@ public class StateMachine : ScriptableObject {
     }
 }
 
+/// <summary>
+/// Class Defining Parameter
+/// simply string wrappend in a class and some accessors to allow passing value by reference
+/// so parameter name can be altered at all referenced places easily
+/// </summary>
 [System.Serializable]
 public class Parameter {
     [SerializeField] string _name;
@@ -365,6 +437,13 @@ public class Parameter {
     }
 }
 
+/// <summary>
+/// Class Defining State
+/// string wrappend in a class and some accessors to allow passing value by reference
+/// so parameter name can be altered at all referenced places easily
+/// 
+/// Contains Rect so that State Machine Editor can save the position of states between uses
+/// </summary>
 [System.Serializable]
 public class State {
     [SerializeField] string _name;
@@ -392,6 +471,11 @@ public class State {
     }
 }
 
+/// <summary>
+/// Class Defining Transition
+/// Contains an origin and a destination state and a list of conditions that govern whether the 
+/// transition is valid
+/// </summary>
 [System.Serializable]
 public class Transition {
     [SerializeField] State _to, _from;
@@ -429,6 +513,11 @@ public class Transition {
 }
 
 
+/// <summary>
+/// Class defining Condition
+/// Contains a parameter and a bool that defines
+/// whether the parameter should bet true or false
+/// </summary>
 [System.Serializable]
 public class Condition {
     [SerializeField] Parameter _parameter;

@@ -23,8 +23,8 @@ public class SwordsmanCounterAbility : ActiveAbility {
     IEnumerator Counter() {
         using_ability = true;
         character.LockMovement();
-        character.LockGrav();
-        character.CancelVelocity();
+        character.LockGravity();
+        character.RaiseCancelVelocityFlag();
         character.animator.SetTrigger(counter_anim_trigger_name);
         float time = 0;
 
@@ -52,9 +52,9 @@ public class SwordsmanCounterAbility : ActiveAbility {
 
             counter_attack.Disable();
             swordsman_hitbox.enabled = true;
-            character.UnlockGrav();
+            character.UnlockGravity();
         } else {
-            character.UnlockGrav();
+            character.UnlockGravity();
             counter_hitbox.enabled = false;
 
             character.animator.SetBool(fail_anim_bool_name, true);

@@ -2,10 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class to Inherit from to create new Item Effects
+/// </summary>
 public abstract class ItemEffect : MonoBehaviour {
 
-    public abstract void OnPickup(Item i);
+    /// <summary>
+    /// Method to define Item Effect behaviour upon being picked up
+    /// </summary>
+    /// <param name="item">Item Effect belongs to</param>
+    public abstract void OnPickup(Item item);
 
-    public abstract void OnDrop(Item i);
+
+    /// <summary>
+    /// Method to define Item Effect behaviour upon being dropped
+    /// </summary>
+    /// <param name="item">Item effect belongs to</param>
+    public abstract void OnDrop(Item item);
 
 }

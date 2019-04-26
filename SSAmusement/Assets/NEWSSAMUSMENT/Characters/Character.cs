@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Base class for Characters in the game.
+/// Inherits ICombatant
+/// </summary>
 public class Character : MonoBehaviour, ICombatant {
     [SerializeField] CharacterDefinition _char_definition;
 
@@ -113,6 +117,14 @@ public class Character : MonoBehaviour, ICombatant {
         return false;
     }
 
+
+    /// <summary>
+    /// Deals Damage to target and calls all OnHitCallbacks with proper info
+    /// </summary>
+    /// <param name="damage"></param>
+    /// <param name="target"></param>
+    /// <param name="trigger_on_hit">"Should this damage instance trigger on hit effects?"</param>
+    /// <returns>Damage target took</returns>
     public float DealDamage(float damage, IDamageable target, bool trigger_on_hit = true) {
         float damage_dealt = target.TakeDamage(damage, this);
         if (damage_dealt > 0 && trigger_on_hit) {
@@ -123,6 +135,14 @@ public class Character : MonoBehaviour, ICombatant {
         return damage_dealt;
     }
 
+    /// <summary>
+    /// If damage source is a Character or ICombatant use ICombatant.DealDamage instead 
+    /// 
+    /// Takes damage and calls OnTakeDamage effects.
+    /// </summary>
+    /// <param name="damage"></param>
+    /// <param name="source"></param>
+    /// <returns>Damage Taken</returns>
     public float TakeDamage(float damage, ICombatant source) {
         float old = health.current;
         float post_mitigation_damage = Mathf.Max(damage - armor, 0);
@@ -144,6 +164,12 @@ public class Character : MonoBehaviour, ICombatant {
         return old - health.current;
     }
 
+    /// <summary>
+    ///  Invokes KnockBack routine and cancels dashes.
+    /// </summary>
+    /// <param name="source">ICombatant that initiated knockback if any</param>
+    /// <param name="force">The force of the knockback</param>
+    /// <param name="length">Knockback Duration</param>
     public void TakeKnockback(ICombatant source, Vector3 force, float length = 0.5f) {
         if (knockback_resistant) {
             return;
@@ -160,6 +186,11 @@ public class Character : MonoBehaviour, ICombatant {
         knockback_routine = StartCoroutine(KnockbackRoutine(force, length));
     }
 
+    /// <summary>
+    /// Initiates Dash Routine
+    /// </summary>
+    /// <param name="dash">Dash distance and direction</param>
+    /// <param name="time">Dash Duration</param>
     public void Dash(Vector2 dash, float time) {
         if (dash_routine != null) {
             EndDash();
@@ -167,54 +198,131 @@ public class Character : MonoBehaviour, ICombatant {
         dash_routine = StartCoroutine(DashRoutine(dash, time));
     }
 
+
+    /// <summary>
+    /// Invokes OnKillCallbacks
+    /// </summary>
+    /// <param name="killed"></param>
     public virtual void GiveKillCredit(ICombatant killed) {
         foreach (OnKillCallback ok in on_kills) {
             ok(this, killed);
         }
     }
 
-    public void DropObject(GameObject obj) {
+
+    /// <summary>
+    /// Lightly shoots an object out of character in upward arc
+    /// Gameobject must have rigidbody
+    /// </summary>
+    /// <param name="obj">Object to Shoot</param>
+    /// <param name="should_instantiate_copy">Should Character handle object instantiation?</param>
+    public void DropObject(GameObject obj, bool should_instantiate_copy = false) {
+        if (should_instantiate_copy) {
+            obj = Instantiate(obj);
+        }
         obj.transform.position = transform.position + Vector3.up * 0.5f;
         float angle = Random.Range(0f, 90f) - 45f;
         Rigidbody2D body = obj.GetComponent<Rigidbody2D>();
         body.AddForce(Quaternion.Euler(0, 0, angle) * Vector2.up * 8f, ForceMode2D.Impulse);
     }
 
-    public virtual void LogBuff(Buff b) { }
+    /// <summary>
+    /// Adds buff to buff tracker if one exists
+    /// </summary>
+    /// <param name="buff"></param>
+    public virtual void LogBuff(Buff buff) { }
 
     public void CancelKnockBack() {
         is_knocked_back = false;
     }
+
+    /// <summary>
+    /// Cancels knockback in vertical axis
+    /// </summary>
     public void CancelYKnockBack() {
         knockback_force = new Vector3(knockback_force.x, 0, knockback_force.z);
     }
+
+    /// <summary>
+    /// Cancels knockback in horizontal axis
+    /// </summary>
     public void CancelXKnockBack() {
         knockback_force = new Vector3(0, knockback_force.y, knockback_force.z);
     }
 
-    public bool CheckCancelVelocity() {
+
+    /// <summary>
+    /// Checks if character wants to cancel velocity
+    /// Set should clear to false if not handling velocity cancellation
+    /// </summary>
+    /// <param name="should_clear">Should clear cancel velocity flag? (Should be false if not handling cancellation)</param>
+    /// <returns>Cancel Velocity flag</returns>
+    public bool CheckCancelVelocityFlag(bool should_clear = true) {
         bool to_return = cancel_velocity;
-        cancel_velocity = false;
+        if (should_clear) cancel_velocity = false;
         return to_return;
     }
 
-    public void CancelVelocity() {
+    /// <summary>
+    /// Set Cancel Velocity Flag to true
+    /// </summary>
+    public void RaiseCancelVelocityFlag() {
         cancel_velocity = true;
     }
 
+
+    // TODO: Make Locks give and require code when locking and unlocking
+
+    /// <summary>
+    /// Adds lock to character movement
+    /// </summary>
     public void LockMovement() { movement_locks++; }
+    /// <summary>
+    /// Removes lock from character movement
+    /// </summary>
     public void UnlockMovement() { movement_locks--; }
 
-    public void LockGrav() { anti_grav_locks++; }
-    public void UnlockGrav() { anti_grav_locks--; }
+    /// <summary>
+    /// Adds lock to character gravity
+    /// </summary>
+    public void LockGravity() { anti_grav_locks++; }
 
+    /// <summary>
+    /// Removes lock from character gravity
+    /// </summary>
+    public void UnlockGravity() { anti_grav_locks--; }
+
+    /// <summary>
+    /// Adds OnKillCallback to character
+    /// </summary>
+    /// <param name="ok">OnKillCallback or equivalent</param>
     public void AddOnKill(OnKillCallback ok) { on_kills.Add(ok); }
+    /// <summary>
+    /// Removes OnKillCallback from character
+    /// </summary>
+    /// <param name="ok">OnKillCallback or equivalent</param>
     public void RemoveOnKill(OnKillCallback ok) { on_kills.Remove(ok); }
 
+    /// <summary>
+    /// Adds OnHitCallback to character
+    /// </summary>
+    /// <param name="oh">OnHitCallback or equivalent</param>
     public void AddOnHit(OnHitCallback oh) { on_hits.Add(oh); }
+    /// <summary>
+    /// Removes OnHitCallback from character
+    /// </summary>
+    /// <param name="oh">OnHitCallback or equivalent</param>
     public void RemoveOnHit(OnHitCallback oh) { on_hits.Remove(oh); }
 
+    /// <summary>
+    /// Adds OnTakeDamage to character
+    /// </summary>
+    /// <param name="otd">OnTakeDamage or equivalent</param>
     public void AddOnTakeDamage(OnTakeDamage otd) { on_take_damages.Add(otd); }
+    /// <summary>
+    /// Removes OnTakeDamage from character
+    /// </summary>
+    /// <param name="otd">OnTakeDamage or equivalent</param>
     public void RemoveOnTakeDamage(OnTakeDamage otd) { on_take_damages.Remove(otd); }
 
     protected void Awake() {
@@ -230,12 +338,18 @@ public class Character : MonoBehaviour, ICombatant {
         OnAwake();
     }
 
+    /// <summary>
+    /// Overload this method instead of hiding Awake
+    /// </summary>
     protected virtual void OnAwake() { }
 
     protected void Start() {
         OnStart();
     }
 
+    /// <summary>
+    /// Overload this method instead of hiding Start
+    /// </summary>
     protected virtual void OnStart() {
 
     }
@@ -247,6 +361,10 @@ public class Character : MonoBehaviour, ICombatant {
         Destroy(gameObject);
     }
 
+    /// <summary>
+    /// Makes Player temporarily invincible
+    /// </summary>
+    /// <returns>IEnumerator</returns>
     protected virtual IEnumerator IFrames() {
         float time = 0;
         invincible = true;
@@ -257,6 +375,12 @@ public class Character : MonoBehaviour, ICombatant {
         invincible = false;
     }
 
+    /// <summary>
+    /// Applies a dissipating knockback force to the character
+    /// </summary>
+    /// <param name="force">Initial force</param>
+    /// <param name="length">Maximum Length of force application</param>
+    /// <returns>Ienumerator</returns>
     IEnumerator KnockbackRoutine(Vector3 force, float length) {
         is_knocked_back = true;
 
@@ -274,6 +398,12 @@ public class Character : MonoBehaviour, ICombatant {
         }
     }
 
+    /// <summary>
+    /// Applies a fixed dash force to the character
+    /// </summary>
+    /// <param name="dash">Dash force</param>
+    /// <param name="length">Dash duration</param>
+    /// <returns>IEnumerator</returns>
     IEnumerator DashRoutine(Vector2 dash, float length) {
         is_dashing = true;
 
@@ -296,6 +426,10 @@ public class Character : MonoBehaviour, ICombatant {
     }
 }
 
+/// <summary>
+/// Outlines the base stats of a character as well as providing
+/// transforms to target different places of a character.
+/// </summary>
 [System.Serializable]
 public struct CharacterDefinition {
 

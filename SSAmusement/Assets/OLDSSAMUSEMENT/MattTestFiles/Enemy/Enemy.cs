@@ -9,6 +9,9 @@ public class Enemy : Character, ICombatant {
         get { return _icon; }
     }
 
+    /// <summary>
+    /// Room the enemy exists in if any
+    /// </summary>
     public Room home {
         get; private set;
     }
@@ -17,14 +20,26 @@ public class Enemy : Character, ICombatant {
 
     [SerializeField] List<Pickup> drop_on_death;
 
+    /// <summary>
+    /// Sets home room
+    /// </summary>
+    /// <param name="r">Room</param>
     public void SetRoom(Room r) {
         home = r;
     }
 
+    /// <summary>
+    /// Add Object to be droped upon death
+    /// </summary>
+    /// <param name="pickup_prefab_to_drop"></param>
     public void AddDropOnDeath(Pickup pickup_prefab_to_drop) {
         drop_on_death.Add(pickup_prefab_to_drop);
     }
 
+    /// <summary>
+    /// Set Callback to be invoked on death before object is destroyed
+    /// </summary>
+    /// <param name="die_event"></param>
     public void SetDieEvent(System.Func<IEnumerator> die_event) {
         die_function = die_event;
     }
@@ -48,8 +63,7 @@ public class Enemy : Character, ICombatant {
 
     void DropPickups() {
         foreach (Pickup pickup in drop_on_death) {
-            Pickup p = Instantiate(pickup);
-            DropObject(p.gameObject);
+            DropObject(pickup.gameObject, true);
         }
     }
 

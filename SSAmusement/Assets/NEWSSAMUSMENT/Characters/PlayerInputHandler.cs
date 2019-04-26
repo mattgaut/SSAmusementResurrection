@@ -82,7 +82,7 @@ public abstract class PlayerInputHandler : MonoBehaviour, IInputHandler {
 
         if (player.anti_grav) { gravity_force.y = 0; }
 
-        if (player.CheckCancelVelocity()) {
+        if (player.CheckCancelVelocityFlag()) {
             velocity = Vector3.zero;
             jumping = false;
             gravity_force.y = 0;
