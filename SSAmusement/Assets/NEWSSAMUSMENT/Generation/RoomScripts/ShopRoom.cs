@@ -11,7 +11,9 @@ public class ShopRoom : Room {
 
     }
 
+
     protected override void Start() {
+        base.Start();
         LoadShopTerminals();
     }
 

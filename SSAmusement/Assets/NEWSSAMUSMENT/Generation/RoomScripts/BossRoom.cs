@@ -61,6 +61,12 @@ public class BossRoom : Room {
         if (boss_blocker) boss_blocker.enabled = false;
     }
 
+    /// <summary>
+    /// Clamps position to bounds dependant on what stage of boss fight the room is in
+    /// Pre, During, or Post, Boss fight
+    /// </summary>
+    /// <param name="position"></param>
+    /// <returns></returns>
     public override Vector3 ClampToBounds(Vector3 position) {
         Vector3 offset = -new Vector3(0.5f, 0.5f, 0) + new Vector3(Section.width / 2f, Section.height / 2f);
         Vector3 local_position = position - transform.position - offset;
@@ -79,6 +85,7 @@ public class BossRoom : Room {
 
         return position;
     }
+
     Vector3 ClampToEntranceAndFightingBlock(Vector3 position) {
         float top_bound = (Mathf.Max(fighting_block_coord.y, entrance_block_coord.y) * Section.height) + 0.5f;
         float bottom_bound = (Mathf.Min(fighting_block_coord.y, entrance_block_coord.y) * Section.height) + 0.5f;
@@ -108,6 +115,10 @@ public class BossRoom : Room {
         return position;
     }
 
+    /// <summary>
+    /// Removes enemy calls OnBossDefeated if it was the rooms boss
+    /// </summary>
+    /// <param name="enemy"></param>
     public override void RemoveEnemy(Enemy enemy) {
         base.RemoveEnemy(enemy);
         if (enemy == boss) {
