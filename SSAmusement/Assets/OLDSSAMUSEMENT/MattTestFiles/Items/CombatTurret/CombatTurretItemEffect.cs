@@ -5,17 +5,20 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class CombatTurretItemEffect : OnHitItemEffect {
 
-    [SerializeField] float damage_to_store;
+    [SerializeField] float energy_per_shot;
     [SerializeField] float multiplier;
     [SerializeField] float aggro_range;
-    [SerializeField] float charge_per_second;
+    [SerializeField] float percent_charge_per_second;
 
     [SerializeField] PetTurretController pet;
+    [SerializeField] HomingCallbackProjectile laser;
 
     float stored_energy;
     CircleCollider2D aggro_range_collider;
 
     List<Character> targets;
+
+    Character owner;
 
     public override void OnPickup(Item item) {
         base.OnPickup(item);
@@ -25,9 +28,11 @@ public class CombatTurretItemEffect : OnHitItemEffect {
         item.owner.inventory.AddPet();
         pet.GetComponent<SpriteRenderer>().sortingOrder = item.owner.inventory.PetCount() * -1;
         pet.SetOrbit(item.owner.char_definition.center_mass);
+        if (laser) pet.SetLaser(laser);
 
         transform.localPosition = Vector3.zero;
 
+        owner = item.owner;
 
         targets = new List<Character>();
     }
@@ -37,6 +42,8 @@ public class CombatTurretItemEffect : OnHitItemEffect {
 
         item.owner.inventory.RemovePet();
 
+        owner = null;
+
         pet.transform.SetParent(transform, true);
         pet.gameObject.SetActive(false);
     }
@@ -44,13 +51,8 @@ public class CombatTurretItemEffect : OnHitItemEffect {
 
     protected override void OnHit(Character character, float pre_damage, float post_damage, IDamageable hit) {
         stored_energy += post_damage;
-        if (stored_energy > damage_to_store) {
-            Character to_shoot = GetRandomTarget();
-            if (to_shoot != null) {
-                float damage_to_send = stored_energy;
-                pet.AddTargetToQueue(to_shoot.char_definition, () => OnTurretLaserHit(character, to_shoot, damage_to_send), () => stored_energy += damage_to_send);
-                stored_energy = 0;
-            }
+        if (stored_energy > energy_per_shot) {
+            Shoot();
         }
     }
 
@@ -86,8 +88,24 @@ public class CombatTurretItemEffect : OnHitItemEffect {
         }
     }
 
+    private void FixedUpdate() {
+        stored_energy += (percent_charge_per_second * energy_per_shot) * Time.fixedDeltaTime;
+        if (stored_energy > energy_per_shot) {
+            Shoot();
+        }
+    }
+
     private void Awake() {
         aggro_range_collider = GetComponent<CircleCollider2D>();
         aggro_range_collider.radius = aggro_range;
+    }
+
+    void Shoot() {
+        Character to_shoot = GetRandomTarget();
+        if (to_shoot != null) {
+            float damage_to_send = stored_energy;
+            pet.AddTargetToQueue(to_shoot, (actually_hit) => OnTurretLaserHit(owner, actually_hit, damage_to_send), () => stored_energy += damage_to_send);
+            stored_energy = 0;
+        }
     }
 }

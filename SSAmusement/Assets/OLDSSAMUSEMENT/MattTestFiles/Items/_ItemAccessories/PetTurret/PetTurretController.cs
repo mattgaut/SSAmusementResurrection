@@ -27,12 +27,22 @@ public class PetTurretController : MonoBehaviour {
         queue = new List<TargetCallback>();
     }
 
+    public void SetLaser(HomingCallbackProjectile laser) {
+        this.laser = laser;
+    }
+
     public void SetOrbit(Transform transform) {
         orbit_center = transform;
     }
 
-    public void AddTargetToQueue(CharacterDefinition target, Action success_callback, Action fail_callback = null) {
-        queue.Add(new TargetCallback(target, success_callback, fail_callback));
+    /// <summary>
+    /// Add target to queue attached to callbacks
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="hit_callback">Callback that executes on character laser hits</param>
+    /// <param name="fail_callback">Callback that executes if target is no longer valid when laser fired</param>
+    public void AddTargetToQueue(Character target, Action<Character> hit_callback, Action fail_callback = null) {
+        queue.Add(new TargetCallback(target, hit_callback, fail_callback));
         animator.SetBool("LasersQueued", true);
     }
 
@@ -47,7 +57,7 @@ public class PetTurretController : MonoBehaviour {
         while (next_target == null && queue.Count != 0) {
             next_target = queue[0];
             queue.RemoveAt(0);
-            if (next_target.target.center_mass == null) {
+            if (next_target.target == null) {
                 if (next_target.fail_callback != null) next_target.fail_callback.Invoke();
                 next_target = null;
             }
@@ -62,7 +72,7 @@ public class PetTurretController : MonoBehaviour {
         HomingCallbackProjectile new_laser = Instantiate(laser, transform.position, Quaternion.identity);
         laser.transform.position = transform.position;
 
-        Transform target = target_callback.target.center_mass;
+        Transform target = target_callback.target.char_definition.center_mass;
         new_laser.SetTarget(target, target_callback.success_callback);
 
         float angle = 0;
@@ -99,11 +109,11 @@ public class PetTurretController : MonoBehaviour {
     }
 
     class TargetCallback {
-        public CharacterDefinition target;
-        public Action success_callback;
+        public Character target;
+        public Action<Character> success_callback;
         public Action fail_callback;
 
-        public TargetCallback(CharacterDefinition target, Action success_callback, Action fail_callback) {
+        public TargetCallback(Character target, Action<Character> success_callback, Action fail_callback) {
             this.target = target;
             this.success_callback = success_callback;
             this.fail_callback = fail_callback;

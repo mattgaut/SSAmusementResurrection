@@ -28,6 +28,6 @@ public class AutoDefenseTurretItemEffect : OnTakeDamageItemEffect {
     }
 
     protected override void OnTakeDamage(Character hit, float pre_damage, float post_damage, ICombatant source) {
-        pet.AddTargetToQueue(source.char_definition, () => hit.DealDamage(post_damage * damage_multiplier, source, false));
+        pet.AddTargetToQueue(source.character, (target) => hit.DealDamage(post_damage * damage_multiplier, target, false));
     }
 }
