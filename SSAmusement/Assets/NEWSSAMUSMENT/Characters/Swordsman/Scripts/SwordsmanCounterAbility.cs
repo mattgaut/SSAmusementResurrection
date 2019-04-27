@@ -10,8 +10,9 @@ public class SwordsmanCounterAbility : ActiveAbility {
     [SerializeField] float counter_length, min_counter_length, counter_fail_length, active_hitbox_time;
     [SerializeField] string counter_anim_trigger_name, success_anim_trigger_name, fail_anim_bool_name;
 
-    protected override void Awake() {
-        base.Awake();
+
+    public override void SetCharacter(Character character) {
+        base.SetCharacter(character);
         counter_attack.SetSource(character);
         counter_attack.SetOnHit(AttackOnHit);
     }

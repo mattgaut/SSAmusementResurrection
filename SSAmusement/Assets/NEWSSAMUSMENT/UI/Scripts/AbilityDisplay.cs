@@ -17,10 +17,14 @@ public class AbilityDisplay : MonoBehaviour {
     }
 
     public void SetAbility(ActiveAbility ability) {
+        if (ability != null) {
+            ability_image.sprite = ability.icon;
+        } else {
+            ability_image.sprite = null;
+        }
+
         this.ability = ability;
         slider.SetFill(0, "");
-
-        ability_image.sprite = ability.icon;
     }
 
     public void StartCooldown() {

@@ -9,6 +9,8 @@ using UnityEngine;
 public class Character : MonoBehaviour, ICombatant {
     [SerializeField] CharacterDefinition _char_definition;
 
+    [SerializeField] AbilitySet _abilities;
+
     [SerializeField] float invincibility_length = 0f;
 
     [SerializeField] protected bool knockback_resistant;
@@ -19,28 +21,7 @@ public class Character : MonoBehaviour, ICombatant {
         get { return anim; }
     }
 
-    public virtual Ability basic_ability { get { return null; } }
-    public virtual Ability ability_1 { get { return null; } }
-    public virtual Ability ability_2 { get { return null; } }
-    public virtual Ability ability_3 { get { return null; } }
-
-    public virtual bool can_use_basic_ability {
-        get { return has_basic_ability; }
-    }
-    public virtual bool can_use_skill_1 {
-        get { return has_ability_1; }
-    }
-    public virtual bool can_use_skill_2 {
-        get { return has_ability_2; }
-    }
-    public virtual bool can_use_skill_3 {
-        get { return has_ability_3; }
-    }
-
-    public virtual bool has_basic_ability { get { return basic_ability != null; } }
-    public virtual bool has_ability_1 { get { return ability_1 != null; } }
-    public virtual bool has_ability_2 { get { return ability_2 != null; } }
-    public virtual bool has_ability_3 { get { return ability_3 != null; } }
+    public AbilitySet abilities { get { return _abilities; } }
 
     public Character character { get { return this; } }
     public CharacterDefinition char_definition { get { return _char_definition; } }

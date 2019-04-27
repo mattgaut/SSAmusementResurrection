@@ -10,8 +10,8 @@ public class DashAbility : ActiveAbility {
 
     IInputHandler character_input_handler;
 
-    protected override void Awake() {
-        base.Awake();
+    public override void SetCharacter(Character character) {
+        base.SetCharacter(character);
         character_input_handler = character.GetComponent<IInputHandler>();    
     }
 

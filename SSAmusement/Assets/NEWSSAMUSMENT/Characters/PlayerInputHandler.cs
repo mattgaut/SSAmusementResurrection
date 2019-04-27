@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController), typeof(Player))]
-public abstract class PlayerInputHandler : MonoBehaviour, IInputHandler {
+public class PlayerInputHandler : MonoBehaviour, IInputHandler {
 
     public Vector2 input { get; protected set; }
 
@@ -32,12 +32,18 @@ public abstract class PlayerInputHandler : MonoBehaviour, IInputHandler {
 
     Coroutine drop_routine;
 
-    protected abstract void OnBasicAttackButton(float input);
-    protected abstract void OnSkill1Button(float input);
-    protected virtual void OnSkill2Button(float input) { }
-    protected virtual void OnSkill3Button(float input) { }
+    protected void ProcessSkillButton(float input, int skill_index) {
+        if (player.abilities.HasAbility(skill_index)) {
+            Ability ability = player.abilities.GetAbility(skill_index);
+            if (ability.ability_type == Ability.Type.Active) {
+                ability.active.TryUse(input);
+            }
+        }
+    }
 
     protected virtual void OnAwake() { }
+
+    protected virtual void OnStart() { }
 
     private void Awake() {
         cont = GetComponent<CharacterController>();
@@ -50,16 +56,20 @@ public abstract class PlayerInputHandler : MonoBehaviour, IInputHandler {
         OnAwake();
     }
 
+    private void Start() {
+        OnStart();
+    }
+
     private void Update() {
         if (UIHandler.input_active && player.can_input) {
             if (Input.GetButton("Attack")) {
-                OnBasicAttackButton(Input.GetAxis("Attack"));
+                ProcessSkillButton(Input.GetAxis("Attack"), 0);
             }
             if (Input.GetButtonDown("Skill1")) {
-                OnSkill1Button(Input.GetAxis("Skill1"));
+                ProcessSkillButton(Input.GetAxis("Skill1"), 1);
             }
             if (Input.GetButtonDown("Skill2")) {
-                OnSkill2Button(Input.GetAxis("Skill2"));
+                ProcessSkillButton(Input.GetAxis("Skill2"), 2);
             }
         }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Inventory))]
-public abstract class Player : Character, ICombatant {
+public class Player : Character, ICombatant {
 
     public Inventory inventory {
         get { return _inventory; }
@@ -16,6 +16,19 @@ public abstract class Player : Character, ICombatant {
     /// Can the player turn around?
     /// </summary>
     public bool can_change_facing {
+        get { return true; }
+    }
+
+    public virtual bool can_use_basic_ability {
+        get { return true; }
+    }
+    public virtual bool can_use_skill_1 {
+        get { return true; }
+    }
+    public virtual bool can_use_skill_2 {
+        get { return true; }
+    }
+    public virtual bool can_use_skill_3 {
         get { return true; }
     }
 
@@ -85,7 +98,17 @@ public abstract class Player : Character, ICombatant {
     }
 
     protected override void OnAwake() {
+        base.OnAwake();
+
         _inventory = GetComponent<Inventory>();
+    }
+
+    protected override void OnStart() {
+        base.OnStart();
+
+        for (int i = 0; i < abilities.count; i++) {
+            player_display.SetAbilityDisplay(abilities.GetAbility(i).active, i);
+        }
     }
 
     void Update() {

@@ -5,10 +5,22 @@ using UnityEngine.Events;
 
 public abstract class ActiveAbility : Ability {
 
+    public override Type ability_type {
+        get { return Type.Active; }
+    }
+    public override ActiveAbility active {
+        get { return this; }
+    }
+
     public float cooldown { get { return _cooldown; } }
 
     public bool on_cooldown { get { return time_cooldown_ends > Time.time; } }
     public bool using_ability { get; protected set; }
+    public override bool available {
+        get {
+            return (can_use == null || can_use.Invoke()); 
+        }
+    }
 
     public float time_cooldown_ends { get; private set; }
     public float time_until_cooldown_ends { get { return time_cooldown_ends - Time.time; } }
@@ -32,7 +44,7 @@ public abstract class ActiveAbility : Ability {
     }
 
     public bool TryUse(float input = 0) {
-        if (!on_cooldown && CanUseAbility() && character.TrySpendEnergy(_energy_cost)) {
+        if (!on_cooldown && available && character.TrySpendEnergy(_energy_cost)) {
             PutOnCooldown();
             UseAbility(input);
             return true;
@@ -44,10 +56,6 @@ public abstract class ActiveAbility : Ability {
     protected void PutOnCooldown() {
         time_cooldown_ends = Time.time + _cooldown;
         events.on_begin_cooldown.Invoke();
-    }
-
-    protected bool CanUseAbility() {
-        return can_use != null ? can_use() : true;
     }
 
     protected abstract void UseAbility(float input);

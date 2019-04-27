@@ -1915,14 +1915,15 @@ GameObject:
   m_Component:
   - component: {fileID: 4415544280187094}
   - component: {fileID: 114247873603496828}
-  - component: {fileID: 1925046959}
-  - component: {fileID: 1925046960}
+  - component: {fileID: 6059351883988154245}
+  - component: {fileID: 5770375887674969164}
   - component: {fileID: 50559804081264260}
   - component: {fileID: 114947353369082988}
   - component: {fileID: 114387341800255582}
   - component: {fileID: 1925046958}
   - component: {fileID: 7778841039320395271}
   - component: {fileID: 957571028}
+  - component: {fileID: 5293947553489397090}
   m_Layer: 11
   m_Name: Swordsman
   m_TagString: Untagged
@@ -1965,7 +1966,7 @@ MonoBehaviour:
   collision_mask:
     serializedVersion: 2
     m_Bits: 17039360
---- !u!114 &1925046959
+--- !u!114 &6059351883988154245
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1974,14 +1975,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1844856860675060}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad5d7ddd61baee47ba0356ef3d1cb9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c22555fccd27b04dae5465dbcf3c6ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   flip_object: {fileID: 1468175924548178}
   max_jump_height: 4.3
   min_jump_height: 1.6
   time_to_jump_apex: 0.24
---- !u!114 &1925046960
+--- !u!114 &5770375887674969164
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1990,7 +1991,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1844856860675060}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fd0ffec5a8279641afb827797dd6a90, type: 3}
+  m_Script: {fileID: 11500000, guid: 84087358707ed054b9f8ef2771cd62dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _char_definition:
@@ -2008,14 +2009,12 @@ MonoBehaviour:
     _center_mass: {fileID: 4438645240596368}
     _feet: {fileID: 4906646818280112}
     _head: {fileID: 4390308388250876}
+  _abilities: {fileID: 5293947553489397090}
   invincibility_length: 1.5
   knockback_resistant: 0
   anim: {fileID: 95105598546924122}
   hitbox: {fileID: 61211027134408314}
   _player_display: {fileID: 4465284589776689475}
-  _basic_ability: {fileID: 1925046958}
-  counter: {fileID: 7778841039320395271}
-  dash: {fileID: 957571028}
 --- !u!50 &50559804081264260
 Rigidbody2D:
   serializedVersion: 4
@@ -2180,6 +2179,22 @@ MonoBehaviour:
   base_dash: {x: 2, y: 0}
   modified_by_input: 1
   dash_time: 0.15
+--- !u!114 &5293947553489397090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844856860675060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfe15ddba6eaf6949a19d7dc03e58132, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 5770375887674969164}
+  basic_attack: {fileID: 1925046958}
+  counter: {fileID: 7778841039320395271}
+  dash: {fileID: 957571028}
 --- !u!1 &1859088898386940
 GameObject:
   m_ObjectHideFlags: 0

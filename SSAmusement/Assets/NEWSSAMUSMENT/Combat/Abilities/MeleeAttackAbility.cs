@@ -11,8 +11,8 @@ public class MeleeAttackAbility : ActiveAbility {
 
     [SerializeField] string anim_trigger_name;
 
-    protected override void Awake() {
-        base.Awake();
+    public override void SetCharacter(Character character) {
+        base.SetCharacter(character);
         attack.SetSource(character);
         attack.SetOnHit(AttackOnHit);
     }
