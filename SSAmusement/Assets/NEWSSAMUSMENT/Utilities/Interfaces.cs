@@ -36,7 +36,7 @@ public interface ICombatant : IDamageable, IStats {
 }
 
 /// <summary>
-/// Interface for interactables to Iherit that allows interaction with Player
+/// Interface for interactables that allows interaction with Player
 /// </summary>
 public interface IInteractable {
     void Interact(Player player);

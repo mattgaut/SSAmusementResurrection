@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChefCarrotHandler : EnemyHandler {
+public class ChefCarrotHandler : GroundedEnemyHandler {
 
     [SerializeField] GameObject carrot;
     [SerializeField] Transform carrot_spawn_transform;

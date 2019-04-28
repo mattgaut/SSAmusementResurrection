@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wander : EnemyHandler {
+public class Wander : GroundedEnemyHandler {
 
     [SerializeField] bool get_mad;
 

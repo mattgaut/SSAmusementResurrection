@@ -257,7 +257,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 1925046960, guid: c3f30190b5c8b554d8b7c336d53863e7,
+      objectReference: {fileID: 5770375887674969164, guid: c3f30190b5c8b554d8b7c336d53863e7,
         type: 3}
     - target: {fileID: 114787462853215606, guid: 4df7f49eb6c6cc54ba6a7a55ba3f9fb1,
         type: 3}
@@ -769,21 +769,16 @@ PrefabInstance:
       propertyPath: death_camera
       value: 
       objectReference: {fileID: 1272386462}
-    - target: {fileID: 114654653240067166, guid: acf34a8a987cb6647b1d194fb0fbb8d4,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1552084197}
-    - target: {fileID: 114205386295072416, guid: acf34a8a987cb6647b1d194fb0fbb8d4,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1552084197}
     - target: {fileID: 114765984098593202, guid: acf34a8a987cb6647b1d194fb0fbb8d4,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114654653240067166, guid: acf34a8a987cb6647b1d194fb0fbb8d4,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1552084197}
     - target: {fileID: 114372557705710078, guid: acf34a8a987cb6647b1d194fb0fbb8d4,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
@@ -794,6 +789,11 @@ PrefabInstance:
       propertyPath: to_load
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114205386295072416, guid: acf34a8a987cb6647b1d194fb0fbb8d4,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1552084197}
     m_RemovedComponents:
     - {fileID: 2318672277441317274, guid: acf34a8a987cb6647b1d194fb0fbb8d4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: acf34a8a987cb6647b1d194fb0fbb8d4, type: 3}

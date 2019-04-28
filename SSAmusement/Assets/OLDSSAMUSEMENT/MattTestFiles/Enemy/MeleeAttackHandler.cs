@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeAttackHandler : EnemyHandler {
+public class MeleeAttackHandler : GroundedEnemyHandler {
 
     [SerializeField] float time_between_attacks;
     [SerializeField] Attack attack;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChefCartHandler : EnemyHandler {
+public class ChefCartHandler : GroundedEnemyHandler {
 
     [SerializeField] Transform raycast_origin;
     [SerializeField] LayerMask player_mask;
