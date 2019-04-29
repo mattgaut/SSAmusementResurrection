@@ -159,14 +159,10 @@ MonoBehaviour:
     coroutine_name: AIRoutine
     coroutine_index: 0
   active_on_start: 1
-  flip_object: {fileID: 1233968046}
   line_of_sight_origin: {fileID: 0}
   line_of_sight_blocking_mask:
     serializedVersion: 2
     m_Bits: 0
-  jump_height: 4
-  time_to_jump_apex: 0.4
-  no_gravity: 0
   need_line_of_sight: 0
   _aggro_range: 0
   bump_damage: 0
@@ -2896,6 +2892,7 @@ GameObject:
   - component: {fileID: 107184980265588257}
   - component: {fileID: 104385042433503499}
   - component: {fileID: 487748168373590414}
+  - component: {fileID: 64067885461151094}
   m_Layer: 16
   m_Name: AutoCloche
   m_TagString: Untagged
@@ -2903,6 +2900,40 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &64067885461151094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64067885461151093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4545fe66dce80249a968c485b0dd41e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state_machine: {fileID: 11400000, guid: 1955b76d231ad3742831cbbf5bb2c408, type: 2}
+  parameter_callback_list: []
+  state_coroutine_list:
+  - state:
+      _name: StartRoutine
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    coroutine_name: Wander
+    coroutine_index: 0
+  active_on_start: 1
+  line_of_sight_origin: {fileID: 0}
+  line_of_sight_blocking_mask:
+    serializedVersion: 2
+    m_Bits: 0
+  need_line_of_sight: 0
+  _aggro_range: 0.1
+  bump_damage: 0
+  bump_knockback: {x: 0, y: 0, z: 0}
 --- !u!4 &66159946778681937
 Transform:
   m_ObjectHideFlags: 0
@@ -3111,7 +3142,7 @@ MonoBehaviour:
   _char_definition:
     _name: Enemy
     _health:
-      base_value: 8
+      base_value: 100
     _power:
       base_value: 4
     _armor:
@@ -3299,9 +3330,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1348032847
+  m_SortingLayer: 2
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: cbf5ef84caf9f7344a85f90c23381ec2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3931,14 +3962,10 @@ MonoBehaviour:
     coroutine_name: AIRoutine
     coroutine_index: 0
   active_on_start: 1
-  flip_object: {fileID: 7392272214486884963}
   line_of_sight_origin: {fileID: 0}
   line_of_sight_blocking_mask:
     serializedVersion: 2
     m_Bits: 0
-  jump_height: 4
-  time_to_jump_apex: 0.4
-  no_gravity: 0
   need_line_of_sight: 0
   _aggro_range: 0
   bump_damage: 0

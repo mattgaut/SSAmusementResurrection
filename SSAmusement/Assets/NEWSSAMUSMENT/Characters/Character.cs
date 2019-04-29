@@ -17,6 +17,8 @@ public class Character : MonoBehaviour, ICombatant {
 
     [SerializeField] protected Animator anim;
 
+    [SerializeField] protected bool is_aerial_unit;
+
     public Animator animator {
         get { return anim; }
     }
@@ -159,8 +161,6 @@ public class Character : MonoBehaviour, ICombatant {
             EndDash();
         }
 
-        knockback_force = force;
-        knockback_dissipation_time = length;
         if (knockback_routine != null) {
             StopCoroutine(knockback_routine);
         }
@@ -364,18 +364,22 @@ public class Character : MonoBehaviour, ICombatant {
     /// <returns>Ienumerator</returns>
     IEnumerator KnockbackRoutine(Vector3 force, float length) {
         is_knocked_back = true;
+        knockback_force = force;
+        knockback_dissipation_time = length;
 
-        while (knockback_dissipation_time > 0) {
+        while (knockback_dissipation_time > 0 && is_knocked_back) {
             knockback_force = force * Mathf.Pow(knockback_dissipation_time / length, 0.8f);
             knockback_dissipation_time -= Time.deltaTime;
-            if (is_knocked_back == false) {
-                break;
-            }
             yield return null;
         }
         knockback_force = Vector3.zero;
-        while (is_knocked_back) {
-            yield return null;
+
+        if (!is_aerial_unit) {
+            while (is_knocked_back) {
+                yield return null;
+            }
+        } else {
+            is_knocked_back = false;
         }
     }
 
