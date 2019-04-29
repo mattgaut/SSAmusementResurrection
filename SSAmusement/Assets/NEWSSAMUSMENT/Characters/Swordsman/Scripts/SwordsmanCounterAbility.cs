@@ -9,6 +9,7 @@ public class SwordsmanCounterAbility : ActiveAbility {
     [SerializeField] CounterHitbox counter_hitbox;
     [SerializeField] float counter_length, min_counter_length, counter_fail_length, active_hitbox_time;
     [SerializeField] string counter_anim_trigger_name, success_anim_trigger_name, fail_anim_bool_name;
+    [SerializeField] Vector2 knockback;
 
 
     public override void SetCharacter(Character character) {
@@ -73,6 +74,6 @@ public class SwordsmanCounterAbility : ActiveAbility {
 
     void AttackOnHit(IDamageable d, Attack hit_by) {
         character.DealDamage(character.power, d);
-        d.TakeKnockback(character, new Vector3(5 * Mathf.Sign(d.gameObject.transform.position.x - transform.position.x), 5, 0));
+        d.TakeKnockback(character, new Vector3(knockback.x * Mathf.Sign(d.gameObject.transform.position.x - transform.position.x), knockback.y, 0));
     }
 }

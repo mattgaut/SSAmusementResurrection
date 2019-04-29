@@ -17,8 +17,8 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
     float gravity;
     float jump_velocity;
 
-    Vector3 gravity_force;
-    Vector3 velocity;
+    Vector2 gravity_force;
+    Vector2 velocity;
 
     Coroutine drop_routine;
 
@@ -41,7 +41,7 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
     }
 
     void Move() {
-        Vector3 movement = Vector3.zero;
+        Vector2 movement = Vector2.zero;
         if (cont.collisions.above || cont.collisions.below) {
             velocity.y = 0;
             gravity_force.y = 0;
@@ -61,7 +61,7 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
             movement = (velocity + gravity_force) * Time.deltaTime;
             Face(movement.x);
         } else {
-            if (knocked_back_last_frame == false) gravity_force = Vector3.zero;
+            if (knocked_back_last_frame == false) gravity_force = Vector2.zero;
             knocked_back_last_frame = true;
             velocity.y = 0;
             movement = ((gravity_force + enemy.knockback_force) * Time.deltaTime);

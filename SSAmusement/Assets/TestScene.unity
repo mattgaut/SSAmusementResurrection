@@ -235,6 +235,7 @@ MonoBehaviour:
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 1979606058}
+  is_aerial_unit: 0
   _icon: {fileID: 21300000, guid: 63ddf26841bb40a4a8ecb4e84528873a, type: 3}
   drop_on_death: []
 --- !u!114 &32309508
@@ -1562,7 +1563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4532ec8168f3041965e5a2323861b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  follow: {fileID: 0}
+  follow: {fileID: 68709950005397725}
   boundary_room: {fileID: 0}
   grab_player: 1
 --- !u!81 &1010181229
@@ -1715,6 +1716,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72729a89b78e09748a65560e39946275, type: 3}
+--- !u!1 &1156590229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1156590230}
+  m_Layer: 16
+  m_Name: BoundBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1156590230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156590229}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 68709950005397725}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1197868597
 GameObject:
   m_ObjectHideFlags: 0
@@ -2272,6 +2303,24 @@ PrefabInstance:
     - target: {fileID: 4415544280187094, guid: c3f30190b5c8b554d8b7c336d53863e7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1925046958, guid: c3f30190b5c8b554d8b7c336d53863e7, type: 3}
+      propertyPath: knockback.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1925046958, guid: c3f30190b5c8b554d8b7c336d53863e7, type: 3}
+      propertyPath: knockback.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778841039320395271, guid: c3f30190b5c8b554d8b7c336d53863e7,
+        type: 3}
+      propertyPath: knockback.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778841039320395271, guid: c3f30190b5c8b554d8b7c336d53863e7,
+        type: 3}
+      propertyPath: knockback.y
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3f30190b5c8b554d8b7c336d53863e7, type: 3}
@@ -2934,6 +2983,7 @@ MonoBehaviour:
   _aggro_range: 0.1
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
+  pivot_object: {fileID: 464072158832903082}
 --- !u!4 &66159946778681937
 Transform:
   m_ObjectHideFlags: 0
@@ -2947,7 +2997,7 @@ Transform:
   m_Children:
   - {fileID: 286733296394183135}
   m_Father: {fileID: 68709950005397725}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &68709950005397725
 Transform:
@@ -2957,9 +3007,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 64067885461151093}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.04, y: 16.46, z: 0}
+  m_LocalPosition: {x: 2.36, y: 15.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1156590230}
   - {fileID: 466772816581036222}
   - {fileID: 66159946778681937}
   m_Father: {fileID: 0}
@@ -3148,7 +3199,7 @@ MonoBehaviour:
     _armor:
       base_value: 0
     _speed:
-      base_value: 2.5
+      base_value: 3
     _energy:
       base_value: 0
     _center_mass: {fileID: 6870635815948729628}
@@ -3158,6 +3209,7 @@ MonoBehaviour:
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 515396672203959802}
+  is_aerial_unit: 1
   _icon: {fileID: 21300000, guid: d3ca833b52499d84ba0fb73897b882df, type: 3}
   drop_on_death: []
 --- !u!222 &284172302489087145
@@ -3382,7 +3434,7 @@ GameObject:
   m_Component:
   - component: {fileID: 466772816581036222}
   m_Layer: 16
-  m_Name: FlipObject
+  m_Name: PivotObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3405,8 +3457,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!60 &464192175008232763
-PolygonCollider2D:
+--- !u!61 &464192175008232763
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3418,7 +3470,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.45}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3428,12 +3480,9 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.15, y: 0.625}
-      - {x: -0.4, y: 0.3}
-      - {x: 0.4, y: 0.3}
-      - {x: 0.14758492, y: 0.625}
+  serializedVersion: 2
+  m_Size: {x: 0.75, y: 0.3}
+  m_EdgeRadius: 0
 --- !u!1 &464484926417991556
 GameObject:
   m_ObjectHideFlags: 0
@@ -3485,7 +3534,7 @@ Transform:
   - {fileID: 460870268370629858}
   - {fileID: 460879829787923704}
   m_Father: {fileID: 68709950005397725}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &466792917185313034
 Transform:
@@ -3495,7 +3544,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465725242448933470}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.613, z: 0}
+  m_LocalPosition: {x: 0, y: 0.632, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 466772816581036222}
@@ -3596,7 +3645,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7115406400728470208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.485, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 466772816581036222}
@@ -4467,6 +4516,7 @@ MonoBehaviour:
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 7476073372332311845}
+  is_aerial_unit: 0
   _icon: {fileID: 21300000, guid: 63ddf26841bb40a4a8ecb4e84528873a, type: 3}
   drop_on_death: []
 --- !u!114 &7425249086126455633

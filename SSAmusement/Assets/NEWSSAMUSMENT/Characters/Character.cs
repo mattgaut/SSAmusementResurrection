@@ -38,7 +38,7 @@ public class Character : MonoBehaviour, ICombatant {
     public delegate void OnKillCallback(Character killer, ICombatant killed);
     public delegate void OnTakeDamage(Character hit_character, float pre_mitigation_damage, float post_mitigation_damage, ICombatant hit_by);
 
-    public Vector3 knockback_force {
+    public Vector2 knockback_force {
         get; private set;
     }
     public bool is_knocked_back {
@@ -153,7 +153,7 @@ public class Character : MonoBehaviour, ICombatant {
     /// <param name="source">ICombatant that initiated knockback if any</param>
     /// <param name="force">The force of the knockback</param>
     /// <param name="length">Knockback Duration</param>
-    public void TakeKnockback(ICombatant source, Vector3 force, float length = 0.5f) {
+    public void TakeKnockback(ICombatant source, Vector2 force, float length = 0.5f) {
         if (knockback_resistant) {
             return;
         }
@@ -221,14 +221,14 @@ public class Character : MonoBehaviour, ICombatant {
     /// Cancels knockback in vertical axis
     /// </summary>
     public void CancelYKnockBack() {
-        knockback_force = new Vector3(knockback_force.x, 0, knockback_force.z);
+        knockback_force = new Vector2(knockback_force.x, 0);
     }
 
     /// <summary>
     /// Cancels knockback in horizontal axis
     /// </summary>
     public void CancelXKnockBack() {
-        knockback_force = new Vector3(0, knockback_force.y, knockback_force.z);
+        knockback_force = new Vector2(0, knockback_force.y);
     }
 
 

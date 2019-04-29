@@ -27,8 +27,8 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
 
     bool jumping, knocked_back_last_frame;
 
-    Vector3 velocity;
-    Vector3 gravity_force;
+    Vector2 velocity;
+    Vector2 gravity_force;
 
     Coroutine drop_routine;
 

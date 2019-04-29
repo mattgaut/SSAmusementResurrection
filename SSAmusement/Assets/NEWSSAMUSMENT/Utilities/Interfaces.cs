@@ -10,9 +10,9 @@ public interface IDamageable {
         get;
     }
     float TakeDamage(float damage, ICombatant source);
-    void TakeKnockback(ICombatant source, Vector3 force, float length = 0.5f);
+    void TakeKnockback(ICombatant source, Vector2 force, float length = 0.5f);
 
-    Vector3 knockback_force { get; }
+    Vector2 knockback_force { get; }
     bool is_knocked_back { get; }
     bool invincible { get; }
 }

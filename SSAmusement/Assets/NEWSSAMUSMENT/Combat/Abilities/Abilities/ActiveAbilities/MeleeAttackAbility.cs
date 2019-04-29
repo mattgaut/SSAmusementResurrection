@@ -11,6 +11,8 @@ public class MeleeAttackAbility : ActiveAbility {
 
     [SerializeField] string anim_trigger_name;
 
+    [SerializeField] Vector2 knockback;
+
     public override void SetCharacter(Character character) {
         base.SetCharacter(character);
         attack.SetSource(character);
@@ -42,6 +44,6 @@ public class MeleeAttackAbility : ActiveAbility {
 
     void AttackOnHit(IDamageable d, Attack hit_by) {
         character.DealDamage(character.power, d);
-        d.TakeKnockback(character, new Vector3(5 * Mathf.Sign(d.gameObject.transform.position.x - transform.position.x), 5, 0));
+        d.TakeKnockback(character, new Vector2(knockback.x * Mathf.Sign(d.gameObject.transform.position.x - transform.position.x), knockback.y));
     }
 }

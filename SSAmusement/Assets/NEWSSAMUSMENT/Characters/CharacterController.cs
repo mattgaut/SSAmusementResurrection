@@ -47,11 +47,11 @@ public class CharacterController : MonoBehaviour {
         return false;
     }
 
-    public void Move(Vector3 velocity) {
+    public void Move(Vector2 velocity) {
         SetRayOrigins();
         collisions.Reset();
         collisions.velocity_old = velocity;
-        Vector3 before = velocity;
+        Vector2 before = velocity;
         if (can_travel_slopes && velocity.y < 0) {
             DescendSlope(ref velocity);
         }
@@ -59,12 +59,12 @@ public class CharacterController : MonoBehaviour {
             HorizontalCollisions(ref velocity);
         }
         VerticalCollisions(ref velocity);
-        Vector3 after = velocity;
+        Vector2 after = velocity;
 
         transform.Translate(velocity);
     }
 
-    void HorizontalCollisions(ref Vector3 velocity) {
+    void HorizontalCollisions(ref Vector2 velocity) {
         float direction_x = Mathf.Sign(velocity.x);
         float ray_length = Mathf.Abs(velocity.x) + skin_width;
         for (int i = 0; i < horizontal_ray_count; i++) {
@@ -103,7 +103,7 @@ public class CharacterController : MonoBehaviour {
             }
         }
     }
-    void VerticalCollisions(ref Vector3 velocity) {
+    void VerticalCollisions(ref Vector2 velocity) {
         float direction_y = Mathf.Sign(velocity.y);
         float ray_length = Mathf.Abs(velocity.y) + skin_width;
 
@@ -175,7 +175,7 @@ public class CharacterController : MonoBehaviour {
             AddPlatformToMask();
         }
     }
-    void ClimbSlope(ref Vector3 velocity, float slope_angle) {
+    void ClimbSlope(ref Vector2 velocity, float slope_angle) {
         float move_distance = Mathf.Abs(velocity.x);
         float climb_velocity_y = Mathf.Tan(slope_angle * Mathf.Deg2Rad) * move_distance;
         if (velocity.y <= climb_velocity_y) {
@@ -187,7 +187,7 @@ public class CharacterController : MonoBehaviour {
         }
     }
 
-    void DescendSlope(ref Vector3 velocity) {
+    void DescendSlope(ref Vector2 velocity) {
         float direction_x = Mathf.Sign(velocity.x);
         Vector2 ray_origin = (direction_x == -1) ? origins.bottom_right : origins.bottom_left;
         RaycastHit2D hit = Physics2D.Raycast(ray_origin, Vector2.down, Mathf.Infinity, floor_collision_mask);
