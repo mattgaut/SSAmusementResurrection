@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController), typeof(Player))]
 public class PlayerInputHandler : MonoBehaviour, IInputHandler {
 
+    [SerializeField] AbilitySet abilities;
+
     public Vector2 input { get; protected set; }
 
     public int facing { get; private set; }
@@ -33,17 +35,13 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
     Coroutine drop_routine;
 
     protected void ProcessSkillButton(float input, int skill_index) {
-        if (player.abilities.HasAbility(skill_index)) {
-            Ability ability = player.abilities.GetAbility(skill_index);
+        if (abilities.HasAbility(skill_index)) {
+            Ability ability = abilities.GetAbility(skill_index);
             if (ability.ability_type == Ability.Type.Active) {
                 ability.active.TryUse(input);
             }
         }
     }
-
-    protected virtual void OnAwake() { }
-
-    protected virtual void OnStart() { }
 
     private void Awake() {
         cont = GetComponent<CharacterController>();
@@ -52,12 +50,14 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
         gravity = -(2 * min_jump_height) / (time_to_jump_apex * time_to_jump_apex);
         jump_velocity = time_to_jump_apex * Mathf.Abs(gravity);
         max_jump_hold = (max_jump_height - min_jump_height) / jump_velocity;
-
-        OnAwake();
     }
 
     private void Start() {
-        OnStart();
+        abilities.SetCharacter(player);
+
+        for (int i = 0; i < abilities.count; i++) {
+            player.player_display.SetAbilityDisplay(abilities.GetAbility(i).active, i);
+        }
     }
 
     private void Update() {

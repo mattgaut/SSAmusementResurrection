@@ -1,0 +1,217 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcc999388e640c646a610d746bb45325, type: 3}
+  m_Name: AutoClocheStateMachine
+  m_EditorClassIdentifier: 
+  states:
+  - _name: Wander
+    rect:
+      serializedVersion: 2
+      x: 171
+      y: 210
+      width: 200
+      height: 40.95508
+  - _name: Hunt
+    rect:
+      serializedVersion: 2
+      x: 57
+      y: 433
+      width: 200
+      height: 40.95508
+  - _name: DiveBomb
+    rect:
+      serializedVersion: 2
+      x: 229
+      y: 567
+      width: 200
+      height: 40.95508
+  - _name: CircleTarget
+    rect:
+      serializedVersion: 2
+      x: 322
+      y: 295
+      width: 200
+      height: 40.95508
+  - _name: Sweep
+    rect:
+      serializedVersion: 2
+      x: 454
+      y: 500
+      width: 200
+      height: 40.95508
+  transitions:
+  - _to:
+      _name: Hunt
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 433
+        width: 200
+        height: 40.95508
+    _from:
+      _name: Wander
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 210
+        width: 200
+        height: 40.95508
+    _conditions:
+    - _parameter:
+        _name: CanHunt
+      _should_parameter_be_true: 1
+  - _to:
+      _name: Hunt
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 433
+        width: 200
+        height: 40.95508
+    _from:
+      _name: DiveBomb
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 567
+        width: 200
+        height: 40.95508
+    _conditions: []
+  - _to:
+      _name: CircleTarget
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 295
+        width: 200
+        height: 40.95508
+    _from:
+      _name: Hunt
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 433
+        width: 200
+        height: 40.95508
+    _conditions:
+    - _parameter:
+        _name: CanHunt
+      _should_parameter_be_true: 1
+  - _to:
+      _name: DiveBomb
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 567
+        width: 200
+        height: 40.95508
+    _from:
+      _name: CircleTarget
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 295
+        width: 200
+        height: 40.95508
+    _conditions:
+    - _parameter:
+        _name: CanDiveBomb
+      _should_parameter_be_true: 1
+  - _to:
+      _name: Wander
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 210
+        width: 200
+        height: 40.95508
+    _from:
+      _name: CircleTarget
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 295
+        width: 200
+        height: 40.95508
+    _conditions:
+    - _parameter:
+        _name: CanHunt
+      _should_parameter_be_true: 0
+  - _to:
+      _name: Wander
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 210
+        width: 200
+        height: 40.95508
+    _from:
+      _name: Hunt
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 433
+        width: 200
+        height: 40.95508
+    _conditions:
+    - _parameter:
+        _name: CanHunt
+      _should_parameter_be_true: 0
+  - _to:
+      _name: Sweep
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 500
+        width: 200
+        height: 40.95508
+    _from:
+      _name: CircleTarget
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 295
+        width: 200
+        height: 40.95508
+    _conditions:
+    - _parameter:
+        _name: CanSweep
+      _should_parameter_be_true: 1
+  - _to:
+      _name: Hunt
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 433
+        width: 200
+        height: 40.95508
+    _from:
+      _name: Sweep
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 500
+        width: 200
+        height: 40.95508
+    _conditions: []
+  parameters:
+  - _name: CanHunt
+  - _name: CanDiveBomb
+  - _name: CanSweep
+  entry_state:
+    _name: Wander
+    rect:
+      serializedVersion: 2
+      x: 171
+      y: 210
+      width: 200
+      height: 40.95508

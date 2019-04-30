@@ -734,7 +734,8 @@ MonoBehaviour:
   boundary_collider: {fileID: 61800274352053140}
   collision_mask:
     serializedVersion: 2
-    m_Bits: 4460544
+    m_Bits: 4456448
+  uses_platforms: 1
 --- !u!114 &114661332712236760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -762,9 +763,11 @@ MonoBehaviour:
     _center_mass: {fileID: 5283852580587119312}
     _feet: {fileID: 4474835095881310}
     _head: {fileID: 4788624235181360}
+  _abilities: {fileID: 0}
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 95148018003385476}
+  is_aerial_unit: 0
   _icon: {fileID: 21300000, guid: 9f74f644843bcf342b35fd264d844838, type: 3}
   drop_on_death: []
 --- !u!114 &114632732373311626
@@ -821,8 +824,8 @@ MonoBehaviour:
   - parameter:
       _name: CanHunt
     callback_name: CanHunt
-    callback_index: 0
     callback_is_field: 0
+    callback_index: 0
   state_coroutine_list:
   - state:
       _name: Wander
@@ -845,18 +848,18 @@ MonoBehaviour:
     coroutine_name: Charge
     coroutine_index: 1
   active_on_start: 0
-  flip_object: {fileID: 1240051925892814}
   line_of_sight_origin: {fileID: 0}
   line_of_sight_blocking_mask:
     serializedVersion: 2
     m_Bits: 262144
-  jump_height: 4
-  time_to_jump_apex: 0.4
-  no_gravity: 0
   need_line_of_sight: 0
   _aggro_range: 10
   bump_damage: 0
   bump_knockback: {x: 10, y: 10, z: 0}
+  flip_object: {fileID: 1240051925892814}
+  jump_height: 4
+  time_to_jump_apex: 0.4
+  no_gravity: 0
   raycast_origin: {fileID: 4788624235181360}
   player_mask:
     serializedVersion: 2

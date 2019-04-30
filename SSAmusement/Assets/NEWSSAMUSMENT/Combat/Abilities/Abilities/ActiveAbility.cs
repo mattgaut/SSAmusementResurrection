@@ -18,7 +18,7 @@ public abstract class ActiveAbility : Ability {
     public bool using_ability { get; protected set; }
     public override bool available {
         get {
-            return (can_use == null || can_use.Invoke()); 
+            return (can_use == null || can_use.Invoke()) && !on_cooldown; 
         }
     }
 
@@ -44,7 +44,7 @@ public abstract class ActiveAbility : Ability {
     }
 
     public bool TryUse(float input = 0) {
-        if (!on_cooldown && available && character.TrySpendEnergy(_energy_cost)) {
+        if (available && character.TrySpendEnergy(_energy_cost)) {
             PutOnCooldown();
             UseAbility(input);
             return true;

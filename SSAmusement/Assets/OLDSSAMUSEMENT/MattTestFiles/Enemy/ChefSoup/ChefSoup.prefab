@@ -56,7 +56,8 @@ MonoBehaviour:
   boundary_collider: {fileID: 61068798693420062}
   collision_mask:
     serializedVersion: 2
-    m_Bits: 4460544
+    m_Bits: 4456448
+  uses_platforms: 1
 --- !u!114 &114055846295303654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,9 +85,11 @@ MonoBehaviour:
     _center_mass: {fileID: 856250453218880483}
     _feet: {fileID: 4090401177434348}
     _head: {fileID: 4222802027142606}
+  _abilities: {fileID: 0}
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 95571586174542020}
+  is_aerial_unit: 0
   _icon: {fileID: 21300000, guid: 72456c8f8e7084349b73a0b547444121, type: 3}
   drop_on_death: []
 --- !u!114 &114741983880177120
@@ -143,18 +146,18 @@ MonoBehaviour:
   - parameter:
       _name: IsInRange
     callback_name: IsInAttackRange
-    callback_index: 0
     callback_is_field: 0
+    callback_index: 0
   - parameter:
       _name: CanHunt
     callback_name: CanHunt
-    callback_index: 2
     callback_is_field: 0
+    callback_index: 2
   - parameter:
       _name: IsAttackOffCooldown
     callback_name: AttackReady
-    callback_index: 1
     callback_is_field: 0
+    callback_index: 1
   state_coroutine_list:
   - state:
       _name: Wander
@@ -197,18 +200,18 @@ MonoBehaviour:
     coroutine_name: WalkTowardsTarget
     coroutine_index: 3
   active_on_start: 0
-  flip_object: {fileID: 1531273540077442}
   line_of_sight_origin: {fileID: 4222802027142606}
   line_of_sight_blocking_mask:
     serializedVersion: 2
     m_Bits: 4456448
-  jump_height: 4
-  time_to_jump_apex: 0.4
-  no_gravity: 0
   need_line_of_sight: 1
   _aggro_range: 8
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
+  flip_object: {fileID: 1531273540077442}
+  jump_height: 4
+  time_to_jump_apex: 0.4
+  no_gravity: 0
   time_between_attacks: 3
   attack: {fileID: 114144826854405730}
   attack_range: 2

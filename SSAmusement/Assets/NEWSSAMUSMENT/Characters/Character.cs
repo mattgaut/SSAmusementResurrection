@@ -9,8 +9,6 @@ using UnityEngine;
 public class Character : MonoBehaviour, ICombatant {
     [SerializeField] CharacterDefinition _char_definition;
 
-    [SerializeField] AbilitySet _abilities;
-
     [SerializeField] float invincibility_length = 0f;
 
     [SerializeField] protected bool knockback_resistant;
@@ -22,8 +20,6 @@ public class Character : MonoBehaviour, ICombatant {
     public Animator animator {
         get { return anim; }
     }
-
-    public AbilitySet abilities { get { return _abilities; } }
 
     public Character character { get { return this; } }
     public CharacterDefinition char_definition { get { return _char_definition; } }
@@ -177,6 +173,13 @@ public class Character : MonoBehaviour, ICombatant {
             EndDash();
         }
         dash_routine = StartCoroutine(DashRoutine(dash, time));
+    }
+
+    public void Dash(CustomDash dash) {
+        if (dash_routine != null) {
+            EndDash();
+        }
+        dash_routine = StartCoroutine(CustomDashRoutine(dash));
     }
 
 
@@ -395,8 +398,29 @@ public class Character : MonoBehaviour, ICombatant {
         float timer = length;
         while (is_dashing && timer > 0) {
             float time_step = Time.fixedDeltaTime;
-            dash_force += dash * (time_step / length);
             timer -= time_step;
+            if (timer < 0) {
+                time_step += timer;
+            }
+            dash_force += dash * (time_step / length);
+            yield return new WaitForFixedUpdate();
+        }
+
+        EndDash();
+    }
+
+    IEnumerator CustomDashRoutine(CustomDash dash) {
+        is_dashing = true;
+
+        float timer = dash.length;
+        Vector2 dash_start = transform.position;
+        while (is_dashing && timer > 0) {
+            float time_step = Time.fixedDeltaTime;
+            timer -= time_step;
+            if (timer < 0) {
+                time_step += timer;
+            }
+            dash_force += dash.GetNext(dash.length - timer);
             yield return new WaitForFixedUpdate();
         }
 
@@ -408,6 +432,37 @@ public class Character : MonoBehaviour, ICombatant {
         dash_routine = null;
         dash_force = Vector2.zero;
         is_dashing = false;
+    }
+
+    public class CustomDash {
+        public System.Func<float, float, Vector2> dash_callback { get; private set; }
+        public float length { get; private set; }
+
+        float last_time;
+        Vector2 scale;
+
+        public CustomDash(System.Func<float, float, Vector2> callback, float length, Vector2 scale) {
+            dash_callback = callback;
+            this.length = length;
+            last_time = 0;
+            this.scale = scale;
+        }
+
+        public CustomDash(System.Func<float, float, Vector2> callback, float length) {
+            dash_callback = callback;
+            this.length = length;
+            last_time = 0;
+            scale = Vector2.one;
+        }
+
+        public Vector2 GetNext(float time) {
+            if (time > length) {
+                time = length;
+            }
+            Vector2 to_return = dash_callback(last_time, time);
+            last_time = time;
+            return to_return * scale;
+        }
     }
 }
 

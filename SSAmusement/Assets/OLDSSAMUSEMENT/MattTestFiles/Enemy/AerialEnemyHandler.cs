@@ -4,14 +4,26 @@ using UnityEngine;
 
 public class AerialEnemyHandler : EnemyHandler {
 
-    Vector2 velocity;
+    protected bool auto_tilt = true;
+
+    protected Vector2 velocity;
+
+    [SerializeField] protected GameObject pivot_object;
+
     Vector2 smooth_damp_velocity;
     float smooth_damp_time = 1f;
-    [SerializeField] GameObject pivot_object;
 
-    protected IEnumerator Wander() {
+    float min_hover_distance = 2f;
+    float hover_distance = 2.5f;
+    float max_hover_distance = 3.5f;
+
+    float circle_speed = (1f / 15f); // Number of rotations per second
+    float circle_angle;
+
+    protected virtual IEnumerator Wander() {
+        enemy.animator.SetBool("Mad", false);
         Vector2 direction = Vector2.zero;
-        if (Random.Range(0f, 1f) < 1f) {
+        if (Random.Range(0f, 1f) < 0.5f) {
             float max_angle = 360, min_angle = 0;
             direction = Vector2.up;
             if (collision_info.left) {
@@ -56,21 +68,50 @@ public class AerialEnemyHandler : EnemyHandler {
         _input = Vector2.zero;
     }
 
+    protected virtual IEnumerator StartCirclingTarget() {
+        enemy.animator.SetBool("Mad", true);
+        Vector3 target_position = -(target.char_definition.center_mass.position - transform.position);
+        circle_angle = Vector2.Angle(target_position, Vector2.up);
+        yield return null;
+    }
+
+    protected virtual IEnumerator CircleTarget() {
+
+        Vector3 target_position = -(target.char_definition.center_mass.position - transform.position);
+        Vector3 hover_distance_vector = new Vector3(0, hover_distance, 0);
+
+        target_position = target.char_definition.center_mass.position +  (Quaternion.Euler(0, 0, circle_angle) * hover_distance_vector);
+
+        _input = (target_position - transform.position).normalized;
+
+        circle_angle += circle_speed * 360 * Time.fixedDeltaTime;
+        circle_angle = circle_angle % 360;
+        yield return new WaitForFixedUpdate();
+    }
+
     protected override void Update() {
         base.Update();
         Move();
     }
 
-    void Move() {
+    protected virtual void Move() {
         Vector3 movement = Vector3.zero;
 
         if (!enemy.is_knocked_back) {
-            velocity = Vector2.SmoothDamp(velocity, input, ref smooth_damp_velocity, 0.5f);
-            Tilt(velocity.x);
-            movement = velocity * enemy.speed * Time.deltaTime;
-            //Face(movement.x);
+            if (enemy.is_dashing) {
+                movement = enemy.dash_force;
+                if (movement != Vector3.zero && auto_tilt) {
+                    Tilt((movement.x / Time.deltaTime) / enemy.speed);
+                }
+                enemy.dash_force = Vector2.zero;
+            } else {
+                velocity = Vector2.SmoothDamp(velocity, input * enemy.speed, ref smooth_damp_velocity, 0.5f);
+                if (auto_tilt) Tilt(velocity.x / enemy.speed);
+                movement = velocity * Time.deltaTime;
+            }
+            
         } else {
-            Tilt(enemy.knockback_force.x / enemy.speed);
+            if (auto_tilt) Tilt(enemy.knockback_force.x / enemy.speed);
             movement = enemy.knockback_force * Time.deltaTime;
             velocity = movement;
         }
@@ -78,7 +119,14 @@ public class AerialEnemyHandler : EnemyHandler {
         cont.Move(movement);
     }
 
-    void Tilt(float input) {
+    protected void Tilt(float input) {
         pivot_object.transform.localRotation = Quaternion.Euler(0,0, -Mathf.Clamp(input, -1f, 1f) * 45f);
+    }
+
+    protected void LerpToUnclampedTilt(float angle_1, float angle_2, float time) {
+        pivot_object.transform.localRotation = Quaternion.Euler(0, 0, Mathf.Lerp(angle_1, angle_2, time));
+    }
+    protected void SetUnclampedTilt(float angle) {
+        pivot_object.transform.localRotation = Quaternion.Euler(0, 0, angle);
     }
 }

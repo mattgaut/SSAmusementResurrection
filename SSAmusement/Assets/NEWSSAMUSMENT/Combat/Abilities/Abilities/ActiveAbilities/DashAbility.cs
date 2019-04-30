@@ -25,5 +25,16 @@ public class DashAbility : ActiveAbility {
         }
 
         character.Dash(dash, dash_time);
+        StartCoroutine(Dash());
+    }
+
+    protected IEnumerator Dash() {
+        using_ability = true;
+
+        while (character.is_dashing) {
+            yield return null;
+        }
+
+        using_ability = false;
     }
 }

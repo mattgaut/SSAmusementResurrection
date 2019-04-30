@@ -3,6 +3,7 @@ guid: cbf5ef84caf9f7344a85f90c23381ec2
 TextureImporter:
   fileIDToRecycleName:
     21300000: AutoCloche_0
+    21300002: AutoCloche_1
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -110,7 +111,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2d2c00f428bab34799738a1838e2f7e
+      spriteID: 55600e7a8ab747d4397b124a72a97072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AutoCloche_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 067494ce1e4f2f04f8e3ef34dced1ec2
       vertices: []
       indices: 
       edges: []

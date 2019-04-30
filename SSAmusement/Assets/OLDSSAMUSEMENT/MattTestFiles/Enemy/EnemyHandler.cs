@@ -98,7 +98,7 @@ public abstract class EnemyHandler : StateMachineController {
         enemy = GetComponent<Enemy>();
     }
 
-    protected void Start() {
+    protected virtual void Start() {
         Ini();
         if (active_on_start) {
             target = FindObjectOfType<Player>();

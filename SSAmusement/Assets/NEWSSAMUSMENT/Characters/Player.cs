@@ -103,14 +103,6 @@ public class Player : Character, ICombatant {
         _inventory = GetComponent<Inventory>();
     }
 
-    protected override void OnStart() {
-        base.OnStart();
-
-        for (int i = 0; i < abilities.count; i++) {
-            player_display.SetAbilityDisplay(abilities.GetAbility(i).active, i);
-        }
-    }
-
     void Update() {
         player_display.UpdateHealthBar(health.current, health.max);
         player_display.UpdateEnergyBar(energy.current, energy.max);

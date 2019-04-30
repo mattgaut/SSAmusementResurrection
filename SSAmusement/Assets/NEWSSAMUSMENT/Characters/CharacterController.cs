@@ -17,6 +17,7 @@ public class CharacterController : MonoBehaviour {
 
     [SerializeField] Collider2D boundary_collider;
     [SerializeField] LayerMask collision_mask;
+    [SerializeField] bool uses_platforms;
 
     LayerMask floor_collision_mask;
     RaycastOrigins origins;
@@ -31,6 +32,7 @@ public class CharacterController : MonoBehaviour {
     }
 
     public bool AddPlatformToMask() {
+        if (!uses_platforms) return false;
         if ((floor_collision_mask & (1 << LayerMask.NameToLayer("Platform"))) == 0) {
             floor_collision_mask += 1 << LayerMask.NameToLayer("Platform");
             collisions.droping_platform = false;
@@ -39,6 +41,7 @@ public class CharacterController : MonoBehaviour {
         return false;
     }
     public bool RemovePlatformFromMask() {
+        if (!uses_platforms) return false;
         if ((floor_collision_mask & (1 << LayerMask.NameToLayer("Platform"))) != 0) {
             floor_collision_mask -= 1 << LayerMask.NameToLayer("Platform");
             collisions.droping_platform = true;

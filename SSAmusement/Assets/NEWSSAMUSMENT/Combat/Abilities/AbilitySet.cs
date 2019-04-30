@@ -44,16 +44,37 @@ public abstract class AbilitySet : MonoBehaviour {
         return null;
     }
 
-    protected abstract void LoadSkills();
+    /// <summary>
+    /// Get ability by name
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns>First Ability matching name, null if none exists</returns>
+    public Ability GetAbility(string name) {
+        for (int i = 0; i < abilities.Count; i++) {
+            if (abilities[i].ability_name.ToLower() == name.ToLower()) {
+                return abilities[i];
+            }
+        }
+        return null;
+    }
 
-    protected virtual void Awake() {
-        character = GetComponent<Character>();
-        abilities = new List<Ability>();
-
-        LoadSkills();
+    /// <summary>
+    /// Set Character of all abilities
+    /// </summary>
+    /// <param name="character"></param>
+    public void SetCharacter(Character character) {
+        this.character = character;
 
         foreach (Ability a in abilities) {
             a.SetCharacter(character);
         }
+    }
+
+    protected abstract void LoadSkills();
+
+    protected void Awake() {
+        abilities = new List<Ability>();
+
+        LoadSkills();
     }
 }
