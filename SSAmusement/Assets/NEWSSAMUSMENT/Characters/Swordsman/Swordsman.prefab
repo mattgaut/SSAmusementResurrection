@@ -1966,6 +1966,7 @@ MonoBehaviour:
   collision_mask:
     serializedVersion: 2
     m_Bits: 17039360
+  uses_platforms: 1
 --- !u!114 &6059351883988154245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1978,6 +1979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c22555fccd27b04dae5465dbcf3c6ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilities: {fileID: 5293947553489397090}
   flip_object: {fileID: 1468175924548178}
   max_jump_height: 4.3
   min_jump_height: 1.6
@@ -2009,10 +2011,10 @@ MonoBehaviour:
     _center_mass: {fileID: 4438645240596368}
     _feet: {fileID: 4906646818280112}
     _head: {fileID: 4390308388250876}
-  _abilities: {fileID: 5293947553489397090}
   invincibility_length: 1.5
   knockback_resistant: 0
   anim: {fileID: 95105598546924122}
+  is_aerial_unit: 0
   hitbox: {fileID: 61211027134408314}
   _player_display: {fileID: 4465284589776689475}
 --- !u!50 &50559804081264260
@@ -2100,6 +2102,7 @@ MonoBehaviour:
   active_hitbox_time: 0.12
   attack: {fileID: 114215308427159830}
   anim_trigger_name: Attack
+  knockback: {x: 10, y: 10}
 --- !u!114 &7778841039320395271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2143,6 +2146,7 @@ MonoBehaviour:
   counter_anim_trigger_name: Counter
   success_anim_trigger_name: CounterSuccess
   fail_anim_bool_name: CounterFail
+  knockback: {x: 10, y: 10}
 --- !u!114 &957571028
 MonoBehaviour:
   m_ObjectHideFlags: 0

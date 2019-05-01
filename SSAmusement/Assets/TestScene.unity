@@ -2295,34 +2295,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1925046958, guid: c3f30190b5c8b554d8b7c336d53863e7, type: 3}
-      propertyPath: knockback.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1925046958, guid: c3f30190b5c8b554d8b7c336d53863e7, type: 3}
-      propertyPath: knockback.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7778841039320395271, guid: c3f30190b5c8b554d8b7c336d53863e7,
-        type: 3}
-      propertyPath: knockback.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7778841039320395271, guid: c3f30190b5c8b554d8b7c336d53863e7,
-        type: 3}
-      propertyPath: knockback.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114247873603496828, guid: c3f30190b5c8b554d8b7c336d53863e7,
-        type: 3}
-      propertyPath: collision_mask.m_Bits
-      value: 17039360
-      objectReference: {fileID: 0}
-    - target: {fileID: 114247873603496828, guid: c3f30190b5c8b554d8b7c336d53863e7,
-        type: 3}
-      propertyPath: uses_platforms
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6059351883988154245, guid: c3f30190b5c8b554d8b7c336d53863e7,
         type: 3}
       propertyPath: abilities

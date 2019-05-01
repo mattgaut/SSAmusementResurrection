@@ -8,7 +8,7 @@ public class RoomManager : MonoBehaviour {
         get; private set;
     }
 
-    public Room active { get; private set; }
+    public RoomController active { get; private set; }
 
     [SerializeField] List<GameObject> objects_to_center_on_active_room;
     Dictionary<Room, List<Room>> rooms;
@@ -25,17 +25,17 @@ public class RoomManager : MonoBehaviour {
         this.rooms = rooms;
     }
 
-    public void SetActiveRoom(Room r) {
+    public void SetActiveRoom(RoomController r) {
         if (r != active) {
             if (active) {
-                active.OnDeactivate();
+                active.Deactivate();
             }
             active = r;
-            active.OnActivate();
-            UIHandler.FocusRoom(active);
+            active.Activate();
+            UIHandler.FocusRoom(active.room);
             if (active != null) {
                 foreach (GameObject go in objects_to_center_on_active_room) {
-                    go.transform.position = active.transform.position + new Vector3(active.size.x * Room.Section.width, active.size.y * Room.Section.height, 0)/2f;
+                    go.transform.position = active.transform.position + new Vector3(active.room.size.x * Room.Section.width, active.room.size.y * Room.Section.height, 0)/2f;
                 }
             }
         }

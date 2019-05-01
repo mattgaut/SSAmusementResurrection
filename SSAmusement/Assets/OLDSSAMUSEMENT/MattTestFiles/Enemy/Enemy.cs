@@ -12,7 +12,7 @@ public class Enemy : Character, ICombatant {
     /// <summary>
     /// Room the enemy exists in if any
     /// </summary>
-    public Room home {
+    public RoomController home {
         get; private set;
     }
 
@@ -23,8 +23,8 @@ public class Enemy : Character, ICombatant {
     /// <summary>
     /// Sets home room
     /// </summary>
-    /// <param name="r">Room</param>
-    public void SetRoom(Room r) {
+    /// <param name="r">Room Controller</param>
+    public void SetHome(RoomController r) {
         home = r;
     }
 

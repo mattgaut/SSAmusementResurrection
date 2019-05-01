@@ -11,7 +11,7 @@ public class RoomSpawner : MonoBehaviour {
     Dictionary<Room.Section, List<Room.Section>> possible_neighbors;
     Dictionary<Room, List<Room>> adjacent_rooms;
     List<Room> rooms;
-    BossRoom boss_room;
+    BossRoomController boss_room_controller;
 
     private void Awake() {
         positions_to_rooms = new Dictionary<Vector2Int, Room>();
@@ -49,6 +49,7 @@ public class RoomSpawner : MonoBehaviour {
         positions_to_rooms = new Dictionary<Vector2Int, Room>();
         foreach (Vector2Int v in room_dict.Keys) {
             Room new_room = Instantiate(room_dict[v], new Vector3(v.x * room_width, v.y * room_height, 0), Quaternion.identity);
+            RoomController new_room_controller = new_room.GetComponent<RoomController>();
             new_room.position = v;
             adjacent_rooms.Add(new_room, new List<Room>());
             foreach (Vector2Int pos in new_room.GetLocalCoordinatesList()) {
@@ -60,9 +61,9 @@ public class RoomSpawner : MonoBehaviour {
                 }
             }
             new_room.LoadTileSet(ts);
-            new_room.Init();
-            if (new_room as BossRoom != null) {
-                boss_room = new_room as BossRoom;
+            new_room_controller.Init();
+            if (new_room_controller.room_type == RoomType.boss) {
+                boss_room_controller = new_room_controller as BossRoomController;
             } else {
                 rooms.Add(new_room);
             }
@@ -82,8 +83,8 @@ public class RoomSpawner : MonoBehaviour {
             }
         }
 
-        if (boss_room != null && boss_room.reward != null) {
-            boss_room.reward.SetSpawnItem(ItemListSingleton.instance.GetRandomItem(RNGSingleton.instance.item_rng));
+        if (boss_room_controller != null && boss_room_controller.reward != null) {
+            boss_room_controller.reward.SetSpawnItem(ItemListSingleton.instance.GetRandomItem(RNGSingleton.instance.item_rng));
         }
         foreach (Room r in rooms) {
             foreach (ItemSpawner ispawn in r.GetComponentsInChildren<ItemSpawner>()) {

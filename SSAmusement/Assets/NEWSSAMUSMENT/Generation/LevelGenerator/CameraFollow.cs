@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour {
 
     [SerializeField] Transform follow;
-    [SerializeField] Room boundary_room;
+    [SerializeField] RoomController boundary_room;
 
     [SerializeField] bool grab_player;
 

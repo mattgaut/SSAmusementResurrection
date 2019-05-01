@@ -4,9 +4,10 @@ using UnityEngine;
 
 public enum Direction { TOP, BOTTOM, LEFT, RIGHT }
 
-public class Room : MonoBehaviour {
+public enum RoomType { basic, boss, shop }
 
-    public enum Type { basic, boss, shop }
+[RequireComponent(typeof(RoomController))]
+public class Room : MonoBehaviour {
 
     [SerializeField] protected Tile[] tiles;
 
@@ -16,10 +17,6 @@ public class Room : MonoBehaviour {
 
     [SerializeField] protected Vector2Int _size;
 
-    [SerializeField] protected List<RoomSet> room_sets;
-
-    protected RoomSet loaded_room_set;
-
     protected Vector2Int _position; // Achored to bottom leftmost block
 
     BoundaryBox enemy_bound_box;
@@ -27,27 +24,6 @@ public class Room : MonoBehaviour {
     public Vector2Int size { get { return _size; } private set { _size = value; } }
     public Vector2Int position { get { return _position; } set { _position = value; } }
     public Vector2 local_center { get { return new Vector2(size.x * Section.width, size.y * Section.height) / 2f; } }
-    public virtual Type room_type { get { return Type.basic; } }
-
-    Dictionary<Enemy, Vector3> enemies;
-
-
-    /// <summary>
-    /// Tries to spawn a roomset, takes note of all enemies in room
-    /// and gives them loot based on loot tables
-    /// </summary>
-    public virtual void Init() {
-        SpawnRandomRoomset();
-
-        List<PickupChance> pickups_table = LootTablesSingleton.instance.GetPickupsTable();
-        foreach (Enemy e in enemies.Keys) {
-            foreach (PickupChance p in pickups_table) {
-                if (RNGSingleton.instance.loot_rng.GetFloat() < p.chance_per_roll) {
-                    e.AddDropOnDeath(p.loot);
-                }
-            }
-        }
-    }
 
     /// <summary>
     /// Changes size of the room and clears all but the outer walls
@@ -425,78 +401,11 @@ public class Room : MonoBehaviour {
         }
     }
 
-    /// <summary>
-    /// Add Room set to possible room sets
-    /// </summary>
-    /// <param name="room_set"></param>
-    public void AddRoomSet(RoomSet room_set) {
-        room_sets.Add(room_set);
-    }
-
-    /// <summary>
-    /// Spawns a random room set from possible roomsets if one exists.
-    /// Deletes previously loaded roomset if one exists
-    /// </summary>
-    protected virtual void SpawnRandomRoomset() {
-        if (loaded_room_set != null && room_sets.Count > 0) {
-            Destroy(loaded_room_set.gameObject);
-        }
-
-        enemies = new Dictionary<Enemy, Vector3>();
-
-        Vector3 offset = new Vector3(1,1) + (new Vector3(Section.width, Section.height) / 2f);
-
-        if (room_sets.Count > 0) {
-            loaded_room_set = Instantiate(room_sets[RNGSingleton.instance.room_gen_rng.GetInt(0, room_sets.Count)]);
-            loaded_room_set.transform.SetParent(transform);
-            loaded_room_set.transform.position = transform.position;
-
-            foreach (Enemy e in loaded_room_set.GetEnemies()) {
-                enemies.Add(e, e.transform.position);
-                e.SetRoom(this);
-            }
-        }
-    }
-
-    /// <summary>
-    /// Clamps position to area defined by the centers of each room section
-    /// </summary>
-    /// <param name="position"></param>
-    /// <returns>Clamped position in bounds</returns>
-    public virtual Vector3 ClampToBounds(Vector3 position) {
-        Vector3 offset = - new Vector3(0.5f, 0.5f, 0) + new Vector3(Section.width / 2f, Section.height / 2f);
-        Vector3 local_position = position - transform.position - offset;
-        if (local_position.x < 0.5f) {
-            local_position.x = 0.5f;
-        } else if (local_position.x > ((size.x - 1) * Section.width) + 0.5f) {
-            local_position.x = ((size.x - 1) * Section.width) + 0.5f;
-        }
-        if (local_position.y < 0.5f) {
-            local_position.y = 0.5f;
-        } else if (local_position.y >= ((size.y - 1) * Section.height) + 0.5f) {
-            local_position.y = ((size.y - 1) * Section.height) + 0.5f;
-        }
-        return local_position + transform.position + offset;
-    }
-
     public virtual void OnActivate() {
-        foreach (Enemy enemy in enemies.Keys) {
-            enemy.GetComponent<EnemyHandler>().SetActive(true);
-        }
         enemy_bound_box.Enable();
     }
     public virtual void OnDeactivate() {
-        foreach (Enemy enemy in enemies.Keys) {
-            enemy.GetComponent<EnemyHandler>().SetActive(false);
-            enemy.transform.position = enemies[enemy];
-        }
         enemy_bound_box.Disable();
-    }
-
-    public virtual void RemoveEnemy(Enemy enemy) {
-        if (enemies.ContainsKey(enemy)) {
-            enemies.Remove(enemy);
-        }
     }
 
     protected virtual void Awake() {
@@ -509,11 +418,20 @@ public class Room : MonoBehaviour {
             enemy_bound_box.Set(this);
             enemy_bound_box.Disable();
         }
-
-        enemies = new Dictionary<Enemy, Vector3>();
     }
 
-    protected virtual void Start() { }
+    protected virtual void Start() {
+        foreach (Tile t in tiles) {
+            if (t == null) continue;
+            if (t.tile_type != TileType.Platform) {
+                if (t.tile_type == TileType.Square) {
+                    t.GetComponent<BoxCollider2D>().usedByComposite = true;
+                } else {
+                    t.GetComponent<PolygonCollider2D>().usedByComposite = true;
+                }
+            }
+        }
+    }
 
     void SwapTile(int id) {
         if (IsTilePositionInBounds(id, 0)) {

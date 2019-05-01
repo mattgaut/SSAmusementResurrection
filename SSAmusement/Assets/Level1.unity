@@ -303,13 +303,13 @@ PrefabInstance:
         type: 3}
       propertyPath: boss_room
       value: 
-      objectReference: {fileID: 7162155847144817770, guid: 22804b2e181af044b9022bfa75c3269d,
+      objectReference: {fileID: 7800962385613225740, guid: 22804b2e181af044b9022bfa75c3269d,
         type: 3}
     - target: {fileID: 114850936473325640, guid: 4df7f49eb6c6cc54ba6a7a55ba3f9fb1,
         type: 3}
       propertyPath: possible_rooms.Array.data[5]
       value: 
-      objectReference: {fileID: 2060776269, guid: 971034f94f3303745b8089d0d29c2c29,
+      objectReference: {fileID: 4514925430453041601, guid: 971034f94f3303745b8089d0d29c2c29,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4df7f49eb6c6cc54ba6a7a55ba3f9fb1, type: 3}

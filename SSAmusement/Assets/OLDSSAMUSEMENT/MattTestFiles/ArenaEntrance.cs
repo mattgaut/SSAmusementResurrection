@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ArenaEntrance : MonoBehaviour {
 
-    [SerializeField] BossRoom room;
+    [SerializeField] BossRoomController room;
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.layer == LayerMask.NameToLayer("PlayerBoundBox")) {

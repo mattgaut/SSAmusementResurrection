@@ -35,7 +35,7 @@ public class Tester : MonoBehaviour {
         rooms = lg.Generate();
         rs.Generate(rooms);
         rm.SetRooms(rs.GetNeighbors());
-        rm.SetActiveRoom(rs.GetOrigin());
+        rm.SetActiveRoom(rs.GetOrigin().GetComponent<RoomController>());
 
         player.transform.position = new Vector3(2, 1, 0);
     }
