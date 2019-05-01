@@ -10,6 +10,8 @@ public class ShopTerminal : MonoBehaviour, IInteractable {
     [SerializeField] Text sale_price_text;
     [SerializeField] Image item_image_display;
 
+    int text_size;
+
     bool used;
 
     public UnityEvent on_purchase { get; private set; }
@@ -36,6 +38,7 @@ public class ShopTerminal : MonoBehaviour, IInteractable {
         if (on_sale != null) SetItemOnSale(on_sale, price);
         used = false;
         on_purchase = new UnityEvent();
+        text_size = sale_price_text.fontSize;
     }
 
     private void SellItem(Player player) {
@@ -46,6 +49,14 @@ public class ShopTerminal : MonoBehaviour, IInteractable {
             on_purchase.Invoke();
 
             CloseTerminal();
+        }
+    }
+
+    public void SetHighlight(bool is_highlighted) {
+        if (is_highlighted) {
+            sale_price_text.fontSize = 2 * text_size;
+        } else {
+            sale_price_text.fontSize = text_size;
         }
     }
 }

@@ -25,4 +25,8 @@ public class ItemChest : MonoBehaviour, IInteractable {
             GetComponent<SpriteRenderer>().sprite = open_sprite;
         }
     }
+
+    public void SetHighlight(bool is_highlighted) {
+        
+    }
 }
