@@ -6,8 +6,8 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
 
     [SerializeField] GameObject flip_object;
 
-    [SerializeField] [Range(0, 20)] float jump_height = 4;
-    [SerializeField] [Range(0, 5)] float time_to_jump_apex = .4f;
+    /*[SerializeField] [Range(0, 20)] */float jump_height = 1.6f;
+    /*[SerializeField] [Range(0, 5)] */float time_to_jump_apex = 0.24f;
     [SerializeField] bool no_gravity;
 
     protected bool can_flip = true;
