@@ -12,13 +12,13 @@ public class ShopRoomController : RoomController {
         get { return RoomType.shop; }
     }
 
-    public override RoomSet GetRoomsetToLoad() {
-        return room_set;
-    }
-
     public override void Init() {
         base.Init();
         LoadShopTerminals();
+    }
+
+    protected override RoomSet GetRoomsetToLoad() {
+        return room_set;
     }
 
     void LoadShopTerminals() {

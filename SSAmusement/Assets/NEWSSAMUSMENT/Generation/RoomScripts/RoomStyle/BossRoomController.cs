@@ -21,10 +21,9 @@ public class BossRoomController : RoomController {
         get { return RoomType.boss; }
     }
 
-    public override RoomSet GetRoomsetToLoad() {
-        return room_set;
-    }
-
+    /// <summary>
+    /// Triggers the beginning of the boss fight
+    /// </summary>
     public void OnEnterArena() {
         FindObjectOfType<CameraFollow>().LerpToFollow(0.25f);
 
@@ -51,6 +50,17 @@ public class BossRoomController : RoomController {
     }
 
     /// <summary>
+    /// Removes enemy calls OnBossDefeated if it was the rooms boss
+    /// </summary>
+    /// <param name="enemy"></param>
+    public override void RemoveEnemy(Enemy enemy) {
+        base.RemoveEnemy(enemy);
+        if (enemy == boss) {
+            OnBossDefeated();
+        }
+    }
+
+    /// <summary>
     /// Clamps position to bounds dependant on what stage of boss fight the room is in
     /// Pre, During, or Post, Boss fight
     /// </summary>
@@ -66,6 +76,24 @@ public class BossRoomController : RoomController {
         } else {
             return ClampToFightingBlock(local_position) + transform.position + offset;
         }
+    }
+
+    protected override RoomSet GetRoomsetToLoad() {
+        return room_set;
+    }
+
+    protected void OnBossDefeated() {
+        fighting = false;
+        boss_dead = true;
+
+        FindObjectOfType<CameraFollow>().LerpToFollow(1f);
+
+        if (door_to_next_floor) {
+            door_to_next_floor.SetHardLocked(false);
+            door_to_next_floor.Open();
+        }
+
+        if (boss_blocker) boss_blocker.enabled = false;
     }
 
     Vector3 ClampToEntranceBlock(Vector3 position) {
@@ -102,30 +130,5 @@ public class BossRoomController : RoomController {
         position.y = Mathf.Max(Mathf.Min(top_bound, position.y), bottom_bound);
 
         return position;
-    }
-
-    /// <summary>
-    /// Removes enemy calls OnBossDefeated if it was the rooms boss
-    /// </summary>
-    /// <param name="enemy"></param>
-    public override void RemoveEnemy(Enemy enemy) {
-        base.RemoveEnemy(enemy);
-        if (enemy == boss) {
-            OnBossDefeated();
-        }
-    }
-
-    public void OnBossDefeated() {
-        fighting = false;
-        boss_dead = true;
-
-        FindObjectOfType<CameraFollow>().LerpToFollow(1f);
-
-        if (door_to_next_floor) {
-            door_to_next_floor.SetHardLocked(false);
-            door_to_next_floor.Open();
-        }
-
-        if (boss_blocker) boss_blocker.enabled = false;
     }
 }

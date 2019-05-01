@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Class Dedicated to controlling the game logic that occurs in relation to rooms
+/// </summary>
 [RequireComponent(typeof(Room))]
 public abstract class RoomController : MonoBehaviour {
 
@@ -32,8 +36,6 @@ public abstract class RoomController : MonoBehaviour {
         room.OnDeactivate();
     }
 
-    public abstract RoomSet GetRoomsetToLoad();
-
     /// <summary>
     /// Clamps position to area defined by the centers of each room section
     /// </summary>
@@ -60,6 +62,8 @@ public abstract class RoomController : MonoBehaviour {
             enemies.Remove(enemy);
         }
     }
+
+    protected abstract RoomSet GetRoomsetToLoad();
 
     /// <summary>
     /// Loads a roomset, takes note of all enemies in room
