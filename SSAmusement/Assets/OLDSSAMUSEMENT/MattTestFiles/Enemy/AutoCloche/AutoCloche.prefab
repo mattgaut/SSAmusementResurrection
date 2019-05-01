@@ -740,7 +740,7 @@ MonoBehaviour:
   knockback_resistant: 0
   anim: {fileID: 182148984190305365}
   is_aerial_unit: 1
-  _icon: {fileID: 21300000, guid: d3ca833b52499d84ba0fb73897b882df, type: 3}
+  _icon: {fileID: 21300000, guid: cbf5ef84caf9f7344a85f90c23381ec2, type: 3}
   drop_on_death: []
 --- !u!114 &347560742085646500
 MonoBehaviour:

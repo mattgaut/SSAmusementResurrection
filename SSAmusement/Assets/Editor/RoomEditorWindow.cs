@@ -316,7 +316,7 @@ class RoomEditorWindow : EditorWindow {
 
         enemy_icons = new Texture2D[available_enemies.Count];
         for (int i = 0; i < available_enemies.Count; i++) {
-            enemy_icons[i] = available_enemies[i].icon.texture;
+            enemy_icons[i] = GetSpriteTexture(available_enemies[i].icon);
         }
     }
 

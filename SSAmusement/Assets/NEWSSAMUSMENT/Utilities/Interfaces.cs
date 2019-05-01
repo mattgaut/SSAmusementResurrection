@@ -40,6 +40,8 @@ public interface ICombatant : IDamageable, IStats {
 /// </summary>
 public interface IInteractable {
     void Interact(Player player);
+
+    void SetHighlight(bool is_highlighted);
 }
 
 /// <summary>

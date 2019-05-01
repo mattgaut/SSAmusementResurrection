@@ -114,12 +114,11 @@ MonoBehaviour:
     _center_mass: {fileID: 124629734}
     _feet: {fileID: 4090401177434348}
     _head: {fileID: 4441290769745768}
-  _abilities: {fileID: 0}
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 95571586174542020}
   is_aerial_unit: 0
-  _icon: {fileID: 21300000, guid: 63ddf26841bb40a4a8ecb4e84528873a, type: 3}
+  _icon: {fileID: 21300000, guid: 286ca90e821b6e447ac28032a1585499, type: 3}
   drop_on_death: []
 --- !u!114 &114741983880177120
 MonoBehaviour:
