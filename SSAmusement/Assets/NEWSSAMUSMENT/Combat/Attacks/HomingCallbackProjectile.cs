@@ -27,8 +27,6 @@ public class HomingCallbackProjectile : HomingProjectile {
         } else if (target != null && collision.gameObject.transform.root == target.transform.root) {
             if (callback != null) callback.Invoke(target.gameObject.GetComponentInParent<Character>());
             Explode();
-        } else {
-            base.OnTriggerEnter2D(collision);
         }
     }
 
