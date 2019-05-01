@@ -98,10 +98,10 @@ public class UIHandler : MonoBehaviour {
         Time.timeScale = pause ? 0 : 1;
     }
     
-    public static void FocusRoom(Room r) {
+    public static void FocusRoom(RoomController room_controller) {
         if (instance == null) return;
-        instance.mini_map.FocusRoom(r);
-        instance.info_map.FocusRoom(r);
+        instance.mini_map.FocusRoom(room_controller);
+        instance.info_map.FocusRoom(room_controller);
     }
 
     public static void DisplayItem(Item i, bool display_on_screen = true) {

@@ -781,26 +781,11 @@ PrefabInstance:
       propertyPath: death_camera
       value: 
       objectReference: {fileID: 1272386462}
-    - target: {fileID: 114765984098593202, guid: acf34a8a987cb6647b1d194fb0fbb8d4,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 114654653240067166, guid: acf34a8a987cb6647b1d194fb0fbb8d4,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1552084197}
-    - target: {fileID: 114372557705710078, guid: acf34a8a987cb6647b1d194fb0fbb8d4,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114947150567442094, guid: acf34a8a987cb6647b1d194fb0fbb8d4,
-        type: 3}
-      propertyPath: to_load
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 114205386295072416, guid: acf34a8a987cb6647b1d194fb0fbb8d4,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target

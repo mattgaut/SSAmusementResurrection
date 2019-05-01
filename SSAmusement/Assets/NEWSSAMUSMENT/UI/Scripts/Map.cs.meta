@@ -1,11 +1,14 @@
 fileFormatVersion: 2
 guid: 4b3f53e7469c93649a459a0fb82ef0c0
-timeCreated: 1510954171
-licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - map_object: {fileID: 114039365632162610, guid: efbd348a04f27124fa020c507708af57,
+      type: 3}
+  - door_icon: {fileID: 1143506431853796, guid: ba00db4896036df4ca46359b5f6fbd71,
+      type: 3}
+  - container: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
