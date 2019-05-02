@@ -98,6 +98,10 @@ public abstract class RoomController : MonoBehaviour {
         }
     }
 
+    public IEnumerable<Enemy> GetEnemies() {
+        return enemies.Keys;
+    }
+
     private void Awake() {
         enemies = new Dictionary<Enemy, Vector3>();
         room = GetComponent<Room>();

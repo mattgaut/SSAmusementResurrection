@@ -21,7 +21,7 @@ public class Inventory : MonoBehaviour {
     int pet_count;
 
     private void Awake() {
-        boss_keycards += 1;
+        //boss_keycards += 1;
         player = GetComponent<Player>();
         items_in_inventory = new List<Item>();
     }
@@ -34,6 +34,14 @@ public class Inventory : MonoBehaviour {
 
         player.player_display.UpdateCurrencyText(curreny);
         return true;
+    }
+
+    public bool TrySpendKeycard() {
+        if (boss_keycards >= 1) {
+            RemoveKeycard();
+            return true;
+        }
+        return false;
     }
 
     public void AddCurrency(int to_add) {
@@ -71,20 +79,14 @@ public class Inventory : MonoBehaviour {
     public void AddKeycard(int i = 1) {
         if (i > 0) {
             boss_keycards += i;
+
+            player.player_display.UpdateBossKey(boss_keycards);
         }
     }
 
     void RemoveKeycard(int i = 1) {
-        if (i > 0 && boss_keycards > i) {
-            boss_keycards -= i;
-        }
-    }
+        boss_keycards -= i;
 
-    public bool TrySpendKeycard() {
-        if (boss_keycards >= 1) {
-            RemoveKeycard();
-            return true;
-        }
-        return false;
+        player.player_display.UpdateBossKey(boss_keycards);
     }
 }

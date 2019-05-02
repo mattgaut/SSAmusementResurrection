@@ -6,6 +6,7 @@ TextureImporter:
     21300002: TeleporterSprite_1
     21300004: TeleporterSprite_2
     21300006: TeleporterSprite_3
+    21300008: TeleporterSprite_4
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -113,7 +114,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88803b7a324cca943854099fa7561ad3
+      spriteID: 946b672b0d2156e4baf44d606eed7ac3
       vertices: []
       indices: 
       edges: []
@@ -133,7 +134,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9fdcdb1cc694a740b8ee0bf054a2a3c
+      spriteID: 8cd19113e090e8245a329c9f2eab967b
       vertices: []
       indices: 
       edges: []
@@ -153,7 +154,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f4c5e74d33fee24c856653728ce864f
+      spriteID: 19f58eba2c9897f478a713482602f911
       vertices: []
       indices: 
       edges: []
@@ -173,7 +174,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf24d088cee4efa47bae412b093f43ab
+      spriteID: 7f6b31353913e30488e7a1cfe59a9e84
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TeleporterSprite_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 100
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a051dbabf0401348b68ecca49e7d3e7
       vertices: []
       indices: 
       edges: []

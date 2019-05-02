@@ -7,6 +7,9 @@ public class Teleporter : MonoBehaviour, IInteractable {
     [SerializeField] RoomController home;
     [SerializeField] Teleporter linked_teleporter;
     [SerializeField] Transform teleportation_point;
+    [SerializeField] bool open;
+
+    [SerializeField] Animator anim;
 
     bool teleporting;
     float cutscene_length = 2f;
@@ -24,6 +27,12 @@ public class Teleporter : MonoBehaviour, IInteractable {
 
     public void SetHighlight(bool is_highlighted) {
 
+    }
+
+    public void SetOpen(bool open) {
+        this.open = open;
+
+        anim.SetBool("Open", open);
     }
 
     private IEnumerator TeleportRoutine(Player player, Teleporter teleport_to) {
@@ -45,6 +54,10 @@ public class Teleporter : MonoBehaviour, IInteractable {
         teleporting = false;
 
         UIHandler.EndCutscene();
+    }
+
+    void Awake() {
+        anim.SetBool("Open", open);
     }
 
 }

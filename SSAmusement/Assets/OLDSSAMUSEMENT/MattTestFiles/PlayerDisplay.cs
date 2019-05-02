@@ -11,6 +11,7 @@ public class PlayerDisplay : MonoBehaviour {
     [SerializeField] DisplayBuff buff_prefab;
     [SerializeField] GameObject canvas;
     [SerializeField] Text currency_text;
+    [SerializeField] Image boss_key_image;
 
     [SerializeField] AbilityDisplay[] ability_displays;
 
@@ -24,6 +25,14 @@ public class PlayerDisplay : MonoBehaviour {
 
     public void UpdateEnergyBar(float over, float under) {
         energy_bar.SetFill(over, under);
+    }
+
+    public void UpdateBossKey(int i) {
+        if (i > 0) {
+            boss_key_image.color = Color.white;
+        } else {
+            boss_key_image.color = Color.black;
+        }
     }
 
     public void DisplayTimedBuff(PowerUp p) {

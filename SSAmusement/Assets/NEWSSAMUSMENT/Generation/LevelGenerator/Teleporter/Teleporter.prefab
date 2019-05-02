@@ -147,6 +147,8 @@ MonoBehaviour:
   home: {fileID: 0}
   linked_teleporter: {fileID: 0}
   teleportation_point: {fileID: 7502964314397196298}
+  open: 0
+  anim: {fileID: 7502964314932952047}
 --- !u!61 &7502964314932952049
 BoxCollider2D:
   m_ObjectHideFlags: 0

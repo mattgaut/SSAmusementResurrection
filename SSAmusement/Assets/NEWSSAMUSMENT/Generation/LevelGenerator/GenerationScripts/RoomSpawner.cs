@@ -7,6 +7,7 @@ public class RoomSpawner : MonoBehaviour {
     [SerializeField] TileSet ts;
     [SerializeField] float room_width, room_height;
     [SerializeField] [Range(0, 1)] float mobility;
+    [SerializeField] BossKeyPickup boss_key;
     Dictionary<Vector2Int, Room> positions_to_rooms;
     Dictionary<Room.Section, List<Room.Section>> possible_neighbors;
     Dictionary<Room, List<Room>> adjacent_rooms;
@@ -48,6 +49,7 @@ public class RoomSpawner : MonoBehaviour {
 
     void SpawnRooms(Dictionary<Vector2Int, Room> room_dict) {
         positions_to_rooms = new Dictionary<Vector2Int, Room>();
+        List<Enemy> enemies = new List<Enemy>();
         foreach (Vector2Int v in room_dict.Keys) {
             Room new_room = Instantiate(room_dict[v], new Vector3(v.x * room_width, v.y * room_height, 0), Quaternion.identity);
             RoomController new_room_controller = new_room.GetComponent<RoomController>();
@@ -63,6 +65,7 @@ public class RoomSpawner : MonoBehaviour {
             }
             new_room.LoadTileSet(ts);
             new_room_controller.Init();
+            enemies.AddRange(new_room_controller.GetEnemies());
             if (new_room_controller.room_type == RoomType.boss) {
                 boss_room_controller = new_room_controller as BossRoomController;
             } else if (new_room_controller.room_type == RoomType.teleporter) {
@@ -93,7 +96,13 @@ public class RoomSpawner : MonoBehaviour {
             if (teleporter_room_controller != null) {
                 boss_room_controller.teleporter.Link(teleporter_room_controller.teleporter);
             }
+            foreach (Enemy e in boss_room_controller.GetEnemies()) {
+                enemies.Remove(e);
+            }
         }
+
+        enemies[RNGSingleton.instance.loot_rng.GetInt(0, enemies.Count)].AddDropOnDeath(boss_key);
+
         foreach (Room r in rooms) {
             foreach (ItemSpawner ispawn in r.GetComponentsInChildren<ItemSpawner>()) {
                 Destroy(ispawn.gameObject);
