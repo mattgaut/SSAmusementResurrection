@@ -13,9 +13,15 @@ public class BossRoomController : RoomController {
 
     [SerializeField] RoomSet room_set;
 
+    [SerializeField] Teleporter _teleporter;
+
     bool fighting, boss_dead;
 
     public ItemChest reward { get { return _reward; } }
+
+    public Teleporter teleporter {
+        get { return _teleporter; }
+    }
 
     public override RoomType room_type {
         get { return RoomType.boss; }

@@ -12,6 +12,7 @@ public class RoomSpawner : MonoBehaviour {
     Dictionary<Room, List<Room>> adjacent_rooms;
     List<Room> rooms;
     BossRoomController boss_room_controller;
+    TeleporterRoomController teleporter_room_controller;
 
     private void Awake() {
         positions_to_rooms = new Dictionary<Vector2Int, Room>();
@@ -64,6 +65,8 @@ public class RoomSpawner : MonoBehaviour {
             new_room_controller.Init();
             if (new_room_controller.room_type == RoomType.boss) {
                 boss_room_controller = new_room_controller as BossRoomController;
+            } else if (new_room_controller.room_type == RoomType.teleporter) {
+                teleporter_room_controller = new_room_controller as TeleporterRoomController;
             } else {
                 rooms.Add(new_room);
             }
@@ -83,8 +86,13 @@ public class RoomSpawner : MonoBehaviour {
             }
         }
 
-        if (boss_room_controller != null && boss_room_controller.reward != null) {
-            boss_room_controller.reward.SetSpawnItem(ItemListSingleton.instance.GetRandomItem(RNGSingleton.instance.item_rng));
+        if (boss_room_controller != null) {
+            if (boss_room_controller != null) {
+                boss_room_controller.reward.SetSpawnItem(ItemListSingleton.instance.GetRandomItem(RNGSingleton.instance.item_rng));
+            }
+            if (teleporter_room_controller != null) {
+                boss_room_controller.teleporter.Link(teleporter_room_controller.teleporter);
+            }
         }
         foreach (Room r in rooms) {
             foreach (ItemSpawner ispawn in r.GetComponentsInChildren<ItemSpawner>()) {

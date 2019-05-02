@@ -9,7 +9,7 @@ public class UIHandler : MonoBehaviour {
 
     static UIHandler instance;
 
-    bool info, pause;
+    bool is_info_screen_up, is_paused, is_cutscene_running;
 
     [SerializeField] GameObject pause_screen, pause_screen_active_selection;
     [SerializeField] GameObject info_screen;
@@ -31,7 +31,7 @@ public class UIHandler : MonoBehaviour {
 
     bool unpaused_this_frame, fading;
     public static bool input_active {
-        get { return instance == null || (!instance.info && !instance.pause && !instance.unpaused_this_frame && !instance.fading); }
+        get { return instance == null || (!instance.is_info_screen_up && !instance.is_paused && !instance.unpaused_this_frame && !instance.fading && !instance.is_cutscene_running); }
     }
 
     bool take_input = true;
@@ -45,7 +45,7 @@ public class UIHandler : MonoBehaviour {
 		    if (Input.GetButtonDown("Pause")) {
                 TogglePause();
             }
-            if (Input.GetButtonDown("InfoScreen") && !pause) {
+            if (Input.GetButtonDown("InfoScreen") && !is_paused) {
                 ToggleShowInfoScreen();
             }
         }
@@ -56,12 +56,20 @@ public class UIHandler : MonoBehaviour {
     }
 
     public void TogglePause() {
-        pause = !pause;
-        if (pause) {
+        is_paused = !is_paused;
+        if (is_paused) {
             Pause();
         } else {
             UnPause();
         }
+    }
+
+    public static void StartCutscene() {
+        if (instance) instance.is_cutscene_running = true;
+    }
+
+    public static void EndCutscene() {
+        if (instance) instance.is_cutscene_running = false;
     }
 
     void Pause() {
@@ -72,14 +80,14 @@ public class UIHandler : MonoBehaviour {
     }
 
     void UnPause() {
-        Time.timeScale = info ? 0 : 1;
+        Time.timeScale = is_info_screen_up ? 0 : 1;
         pause_screen.SetActive(false);
         unpaused_this_frame = true;
     }
 
     void ToggleShowInfoScreen() {
-        info = !info;
-        if (info) {
+        is_info_screen_up = !is_info_screen_up;
+        if (is_info_screen_up) {
             OpenInfo();
         } else {
             CloseInfo();
@@ -95,7 +103,7 @@ public class UIHandler : MonoBehaviour {
     void CloseInfo() {
         mini_map_object.SetActive(true);
         info_screen.SetActive(false);
-        Time.timeScale = pause ? 0 : 1;
+        Time.timeScale = is_paused ? 0 : 1;
     }
     
     public static void FocusRoom(RoomController room_controller) {
@@ -113,6 +121,9 @@ public class UIHandler : MonoBehaviour {
     public static IEnumerator FadeToBlack(float fade_in_timer) {
         yield return instance.FadeOut(fade_in_timer);
     }
+    public static IEnumerator FadeInFromBlack(float fade_in_timer) {
+        yield return instance.FadeIn(fade_in_timer);
+    }
 
     IEnumerator FadeOut(float fade_in_timer) {
         float timer = 0;
@@ -125,6 +136,21 @@ public class UIHandler : MonoBehaviour {
         }
         fading = false;
         game_over_screen.color = new Color(0, 0, 0, 1);
+    }
+
+    IEnumerator FadeIn(float fade_in_timer) {
+        float timer = 0;
+        game_over_screen.enabled = true;
+        game_over_screen.color = new Color(0, 0, 0, 1);
+        fading = true;
+        while (timer < fade_in_timer) {
+            timer += Time.deltaTime;
+            game_over_screen.color = new Color(0, 0, 0, 1 - (timer / fade_in_timer));
+            yield return null;
+        }
+        fading = false;
+        game_over_screen.color = new Color(0, 0, 0, 0);
+        game_over_screen.enabled = false;
     }
 
     public static void GameOver() {

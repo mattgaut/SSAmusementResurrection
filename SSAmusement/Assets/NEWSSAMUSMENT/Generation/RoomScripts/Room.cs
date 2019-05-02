@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum Direction { TOP, BOTTOM, LEFT, RIGHT }
 
-public enum RoomType { basic, boss, shop }
+public enum RoomType { basic, boss, shop, teleporter }
 
 [RequireComponent(typeof(RoomController))]
 public class Room : MonoBehaviour {

@@ -10,6 +10,7 @@ public abstract class LevelGenerator : MonoBehaviour {
     [SerializeField] protected Room origin;
     [SerializeField] protected List<Room> possible_rooms;
     [SerializeField] protected Room boss_room;
+    [SerializeField] protected Room teleporter_room;
     protected List<Vector2Int> adjacent_spaces;
 
     protected virtual void Clear() {

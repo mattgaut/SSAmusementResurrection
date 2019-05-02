@@ -25,14 +25,14 @@ public class RoomManager : MonoBehaviour {
         this.rooms = rooms;
     }
 
-    public void SetActiveRoom(RoomController room_controller) {
+    public void SetActiveRoom(RoomController room_controller, bool set_focus = true) {
         if (room_controller != active) {
             if (active) {
                 active.Deactivate();
             }
             active = room_controller;
             active.Activate();
-            UIHandler.FocusRoom(room_controller);
+            if (set_focus) UIHandler.FocusRoom(room_controller);
             if (active != null) {
                 foreach (GameObject go in objects_to_center_on_active_room) {
                     go.transform.position = active.transform.position + new Vector3(active.room.size.x * Room.Section.width, active.room.size.y * Room.Section.height, 0)/2f;

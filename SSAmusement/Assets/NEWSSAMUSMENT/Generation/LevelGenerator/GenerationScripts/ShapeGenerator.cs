@@ -45,8 +45,8 @@ public class ShapeGenerator : LevelGenerator {
                 InsertRoom(r, next_space + offset);
         }
 
-        bool boss_room_placed = false;
-        while (!boss_room_placed && boss_room != null) {
+        bool teleporter_room_placed = false;
+        while (!teleporter_room_placed && boss_room != null) {
             Vector2Int next_space;
             List<Room> remaining_rooms = new List<Room>(possible_rooms);
             Vector2Int offset = Vector2Int.zero;
@@ -55,19 +55,22 @@ public class ShapeGenerator : LevelGenerator {
             do {
                 next_space = possible_spaces[RNGSingleton.instance.room_gen_rng.GetInt(0, possible_spaces.Count)];
                 possible_spaces.Remove(next_space);
-                foreach (Vector2Int i in boss_room.GetLocalCoordinatesList().Shuffle(RNGSingleton.instance.room_gen_rng)) {
-                    if (RoomCanFit(boss_room, next_space + i)) {
-                        boss_room_placed = true;
+                foreach (Vector2Int i in teleporter_room.GetLocalCoordinatesList().Shuffle(RNGSingleton.instance.room_gen_rng)) {
+                    if (RoomCanFit(teleporter_room, next_space + i)) {
+                        teleporter_room_placed = true;
                         offset = i;
                         break;
                     }
                 }
-            } while (!boss_room_placed && possible_spaces.Count > 0);
-            if (!boss_room_placed) {
+            } while (!teleporter_room_placed && possible_spaces.Count > 0);
+            if (!teleporter_room_placed) {
                 break;
-            } else
-                InsertRoom(boss_room, next_space + offset);
+            } else {
+                InsertRoom(teleporter_room, next_space + offset);
+            }
         }
+
+        InsertRoom(boss_room, boss_room.size * -1);
 
         return room_origins;
     }

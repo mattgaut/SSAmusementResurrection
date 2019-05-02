@@ -342,6 +342,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopTerminal (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
+        type: 3}
+      propertyPath: on_sale
+      value: 
+      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
+        type: 3}
     - target: {fileID: 5946443575471377599, guid: aebfaa63f434e934783652f91b015073,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -397,12 +403,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
-        type: 3}
-      propertyPath: on_sale
-      value: 
-      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aebfaa63f434e934783652f91b015073, type: 3}
 --- !u!1 &225716036
@@ -519,6 +519,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114369658998819200, guid: c14386d86c21bea45aa24a26d1166d6a,
+        type: 3}
+      propertyPath: collision_mask.m_Bits
+      value: 4460544
+      objectReference: {fileID: 0}
     - target: {fileID: 114335495822685826, guid: c14386d86c21bea45aa24a26d1166d6a,
         type: 3}
       propertyPath: active_on_start
@@ -583,11 +588,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114369658998819200, guid: c14386d86c21bea45aa24a26d1166d6a,
-        type: 3}
-      propertyPath: collision_mask.m_Bits
-      value: 4460544
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c14386d86c21bea45aa24a26d1166d6a, type: 3}
 --- !u!1001 &351797576
@@ -602,6 +602,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopTerminal (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
+        type: 3}
+      propertyPath: on_sale
+      value: 
+      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
+        type: 3}
     - target: {fileID: 5946443575471377599, guid: aebfaa63f434e934783652f91b015073,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -657,12 +663,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
-        type: 3}
-      propertyPath: on_sale
-      value: 
-      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aebfaa63f434e934783652f91b015073, type: 3}
 --- !u!1001 &392167609
@@ -677,6 +677,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopTerminal (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
+        type: 3}
+      propertyPath: on_sale
+      value: 
+      objectReference: {fileID: 918683328654682857, guid: d814e338cacc2d341a7c7eb5827c79c7,
+        type: 3}
     - target: {fileID: 5946443575471377599, guid: aebfaa63f434e934783652f91b015073,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -732,12 +738,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
-        type: 3}
-      propertyPath: on_sale
-      value: 
-      objectReference: {fileID: 918683328654682857, guid: d814e338cacc2d341a7c7eb5827c79c7,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aebfaa63f434e934783652f91b015073, type: 3}
 --- !u!1001 &424043704
@@ -752,6 +752,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopTerminal (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
+        type: 3}
+      propertyPath: on_sale
+      value: 
+      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
+        type: 3}
     - target: {fileID: 5946443575471377599, guid: aebfaa63f434e934783652f91b015073,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -807,12 +813,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
-        type: 3}
-      propertyPath: on_sale
-      value: 
-      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aebfaa63f434e934783652f91b015073, type: 3}
 --- !u!1001 &491677057
@@ -1146,6 +1146,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopTerminal (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
+        type: 3}
+      propertyPath: on_sale
+      value: 
+      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
+        type: 3}
     - target: {fileID: 5946443575471377599, guid: aebfaa63f434e934783652f91b015073,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1201,12 +1207,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
-        type: 3}
-      propertyPath: on_sale
-      value: 
-      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aebfaa63f434e934783652f91b015073, type: 3}
 --- !u!1 &768056590
@@ -1262,6 +1262,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
+        type: 3}
+      propertyPath: on_sale
+      value: 
+      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
+        type: 3}
     - target: {fileID: 5946443575471377599, guid: aebfaa63f434e934783652f91b015073,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1317,12 +1323,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
-        type: 3}
-      propertyPath: on_sale
-      value: 
-      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aebfaa63f434e934783652f91b015073, type: 3}
 --- !u!1 &862144945
@@ -1403,6 +1403,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopTerminal (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
+        type: 3}
+      propertyPath: on_sale
+      value: 
+      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
+        type: 3}
     - target: {fileID: 5946443575471377599, guid: aebfaa63f434e934783652f91b015073,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1458,12 +1464,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
-        type: 3}
-      propertyPath: on_sale
-      value: 
-      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aebfaa63f434e934783652f91b015073, type: 3}
 --- !u!1001 &996399099
@@ -1478,6 +1478,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopTerminal (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
+        type: 3}
+      propertyPath: on_sale
+      value: 
+      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
+        type: 3}
     - target: {fileID: 5946443575471377599, guid: aebfaa63f434e934783652f91b015073,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1533,12 +1539,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
-        type: 3}
-      propertyPath: on_sale
-      value: 
-      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aebfaa63f434e934783652f91b015073, type: 3}
 --- !u!1 &1010181227
@@ -1654,6 +1654,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114055846295303654, guid: 72729a89b78e09748a65560e39946275,
+        type: 3}
+      propertyPath: _char_definition._power.base_value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114055846295303654, guid: 72729a89b78e09748a65560e39946275,
+        type: 3}
+      propertyPath: _char_definition._health.base_value
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 114169939856335424, guid: 72729a89b78e09748a65560e39946275,
         type: 3}
       propertyPath: active_on_start
@@ -1712,16 +1722,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114055846295303654, guid: 72729a89b78e09748a65560e39946275,
-        type: 3}
-      propertyPath: _char_definition._power.base_value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114055846295303654, guid: 72729a89b78e09748a65560e39946275,
-        type: 3}
-      propertyPath: _char_definition._health.base_value
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72729a89b78e09748a65560e39946275, type: 3}
@@ -2090,6 +2090,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopTerminal (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
+        type: 3}
+      propertyPath: on_sale
+      value: 
+      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
+        type: 3}
     - target: {fileID: 5946443575471377599, guid: aebfaa63f434e934783652f91b015073,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2145,12 +2151,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
-        type: 3}
-      propertyPath: on_sale
-      value: 
-      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aebfaa63f434e934783652f91b015073, type: 3}
 --- !u!1001 &1592621397
@@ -2165,6 +2165,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopTerminal (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
+        type: 3}
+      propertyPath: on_sale
+      value: 
+      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
+        type: 3}
     - target: {fileID: 5946443575471377599, guid: aebfaa63f434e934783652f91b015073,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2220,12 +2226,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
-        type: 3}
-      propertyPath: on_sale
-      value: 
-      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aebfaa63f434e934783652f91b015073, type: 3}
 --- !u!1001 &1659670044
@@ -2414,6 +2414,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopTerminal (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
+        type: 3}
+      propertyPath: on_sale
+      value: 
+      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
+        type: 3}
     - target: {fileID: 5946443575471377599, guid: aebfaa63f434e934783652f91b015073,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2469,12 +2475,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
-        type: 3}
-      propertyPath: on_sale
-      value: 
-      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aebfaa63f434e934783652f91b015073, type: 3}
 --- !u!1001 &1867670892
@@ -2489,6 +2489,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopTerminal (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
+        type: 3}
+      propertyPath: on_sale
+      value: 
+      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
+        type: 3}
     - target: {fileID: 5946443575471377599, guid: aebfaa63f434e934783652f91b015073,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2544,12 +2550,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
-        type: 3}
-      propertyPath: on_sale
-      value: 
-      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aebfaa63f434e934783652f91b015073, type: 3}
 --- !u!1 &1979606054
@@ -2722,6 +2722,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopTerminal (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
+        type: 3}
+      propertyPath: on_sale
+      value: 
+      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
+        type: 3}
     - target: {fileID: 5946443575471377599, guid: aebfaa63f434e934783652f91b015073,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2777,12 +2783,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5946443575471377598, guid: aebfaa63f434e934783652f91b015073,
-        type: 3}
-      propertyPath: on_sale
-      value: 
-      objectReference: {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aebfaa63f434e934783652f91b015073, type: 3}
 --- !u!4 &68709950005397725 stripped
@@ -2802,6 +2802,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AutoCloche
+      objectReference: {fileID: 0}
+    - target: {fileID: 6555402521560290483, guid: d5df1ec67a476f743b371f15d033714c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 383943233612636530, guid: d5df1ec67a476f743b371f15d033714c,
         type: 3}
@@ -2858,6 +2863,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 379301158337000664, guid: d5df1ec67a476f743b371f15d033714c,
+        type: 3}
+      propertyPath: active_on_start
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 457721240948554232, guid: d5df1ec67a476f743b371f15d033714c,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2867,16 +2877,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6555402521560290483, guid: d5df1ec67a476f743b371f15d033714c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 379301158337000664, guid: d5df1ec67a476f743b371f15d033714c,
-        type: 3}
-      propertyPath: active_on_start
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5df1ec67a476f743b371f15d033714c, type: 3}

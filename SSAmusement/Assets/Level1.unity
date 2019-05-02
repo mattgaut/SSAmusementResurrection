@@ -323,6 +323,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8025569430263598288, guid: 2c8c10560a7b35b4fa383e909de1257c,
         type: 3}
+    - target: {fileID: 114850936473325640, guid: 4df7f49eb6c6cc54ba6a7a55ba3f9fb1,
+        type: 3}
+      propertyPath: teleporter_room
+      value: 
+      objectReference: {fileID: 7913962, guid: 0f552b8b7f84cce409f4c38a22791584, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4df7f49eb6c6cc54ba6a7a55ba3f9fb1, type: 3}
 --- !u!1 &1096758008
