@@ -15,7 +15,7 @@ public class Teleporter : MonoBehaviour, IInteractable {
     float cutscene_length = 2f;
 
     public void Interact(Player player) {
-        if (!teleporting) {
+        if (!teleporting && open) {
             StartCoroutine(TeleportRoutine(player, linked_teleporter));
         }
     }
