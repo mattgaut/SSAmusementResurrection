@@ -61,7 +61,7 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
     }
 
     private void Update() {
-        if (UIHandler.input_active && player.can_input) {
+        if (GameManager.instance.input_active && player.can_input) {
             if (Input.GetButton("Attack")) {
                 ProcessSkillButton(Input.GetAxis("Attack"), 0);
             }
@@ -84,7 +84,7 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
             velocity.y = 0;
         }
         Vector2 adjusted_input = input;
-        if (!player.can_input || !UIHandler.input_active || !player.can_move) {
+        if (!player.can_input || !GameManager.instance.input_active || !player.can_move) {
             adjusted_input = Vector2.zero;
         }
 
@@ -108,7 +108,7 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
                 gravity_force = Vector3.zero;
             } else {
                 knocked_back_last_frame = false;
-                if (UIHandler.input_active && player.can_input) {
+                if (GameManager.instance.input_active && player.can_input) {
                     if (adjusted_input.y <= -.99f && Input.GetButtonDown("Jump") && drop_routine == null && cont.OverPlatform()) {
                         if (cont.OverPlatform()) {
                             drop_routine = StartCoroutine(DropRoutine());

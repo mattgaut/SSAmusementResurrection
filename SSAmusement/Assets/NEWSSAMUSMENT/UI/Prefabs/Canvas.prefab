@@ -406,8 +406,6 @@ MonoBehaviour:
   game_over_active_selection: {fileID: 1290040475142558}
   game_over_panel: {fileID: 1512978737538354}
   death_camera: {fileID: 0}
-  disable_on_death:
-  - {fileID: 1079915632221672}
   crawl_bg: {fileID: 114564745368113696}
   crawl_fade: {fileID: 114898950880706608}
   crawl_text: {fileID: 114227344564804648}
@@ -1998,7 +1996,7 @@ GameObject:
   - component: {fileID: 222028882312816900}
   - component: {fileID: 114765984098593202}
   - component: {fileID: 114755019795372334}
-  - component: {fileID: 114601047841005828}
+  - component: {fileID: 4793061688380468206}
   m_Layer: 5
   m_Name: StartOver
   m_TagString: Untagged
@@ -2075,9 +2073,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114601047841005828}
-        m_MethodName: LoadScene
-        m_Mode: 3
+      - m_Target: {fileID: 4793061688380468206}
+        m_MethodName: Load
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2123,7 +2121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text_box: {fileID: 114514713198748250}
---- !u!114 &114601047841005828
+--- !u!114 &4793061688380468206
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2132,10 +2130,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1290040475142558}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ab7736cf5da4c64a9c00656c703c6f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 222503ae47a664840a2e58b457bd17b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  to_load: 
+  scene: RestartScene
+  mode: 0
+  reset: 1
+  destroy_player_first: 1
 --- !u!1 &1297867341245656
 GameObject:
   m_ObjectHideFlags: 0
@@ -2750,7 +2751,7 @@ GameObject:
   - component: {fileID: 222030028042692000}
   - component: {fileID: 114286650242161282}
   - component: {fileID: 114038697737334364}
-  - component: {fileID: 114338761412865148}
+  - component: {fileID: 1881197734}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -2827,9 +2828,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114338761412865148}
-        m_MethodName: LoadScene
-        m_Mode: 3
+      - m_Target: {fileID: 1881197734}
+        m_MethodName: Load
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2864,7 +2865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text_box: {fileID: 114953017897462590}
---- !u!114 &114338761412865148
+--- !u!114 &1881197734
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2873,10 +2874,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1466525531745970}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ab7736cf5da4c64a9c00656c703c6f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 222503ae47a664840a2e58b457bd17b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  to_load: 
+  scene: TitleScene
+  mode: 0
+  reset: 1
+  destroy_player_first: 1
 --- !u!1 &1487415533840788
 GameObject:
   m_ObjectHideFlags: 0
@@ -3304,6 +3308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   to_load: 
+  dont_load_on_start: 0
 --- !u!1 &1542636440144804
 GameObject:
   m_ObjectHideFlags: 0
@@ -3697,6 +3702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   to_load: 
+  dont_load_on_start: 0
 --- !u!1 &1599123464774120
 GameObject:
   m_ObjectHideFlags: 0
@@ -3783,7 +3789,7 @@ GameObject:
   - component: {fileID: 222238741988646614}
   - component: {fileID: 114919888563679596}
   - component: {fileID: 114311353436681572}
-  - component: {fileID: 114364132963020362}
+  - component: {fileID: 2183025951939992336}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -3860,20 +3866,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114190688217054912}
-        m_MethodName: TogglePause
+      - m_Target: {fileID: 2183025951939992336}
+        m_MethodName: Load
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114364132963020362}
-        m_MethodName: LoadScene
-        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3908,7 +3903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text_box: {fileID: 114435292886160944}
---- !u!114 &114364132963020362
+--- !u!114 &2183025951939992336
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3917,10 +3912,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1607845429857584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ab7736cf5da4c64a9c00656c703c6f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 222503ae47a664840a2e58b457bd17b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  to_load: 
+  scene: TitleScene
+  mode: 0
+  reset: 1
+  destroy_player_first: 1
 --- !u!1 &1618797384536372
 GameObject:
   m_ObjectHideFlags: 0
@@ -4204,7 +4202,7 @@ GameObject:
   - component: {fileID: 222208061558536172}
   - component: {fileID: 114372557705710078}
   - component: {fileID: 114295771959918526}
-  - component: {fileID: 114947150567442094}
+  - component: {fileID: 1881197736}
   m_Layer: 5
   m_Name: StartOver
   m_TagString: Untagged
@@ -4281,20 +4279,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114190688217054912}
-        m_MethodName: TogglePause
+      - m_Target: {fileID: 1881197736}
+        m_MethodName: Load
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114947150567442094}
-        m_MethodName: LoadScene
-        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4340,7 +4327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text_box: {fileID: 114968763382128606}
---- !u!114 &114947150567442094
+--- !u!114 &1881197736
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4349,10 +4336,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1634027275230778}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ab7736cf5da4c64a9c00656c703c6f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 222503ae47a664840a2e58b457bd17b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  to_load: 
+  scene: Level1
+  mode: 0
+  reset: 1
+  destroy_player_first: 1
 --- !u!1 &1637946472050026
 GameObject:
   m_ObjectHideFlags: 0

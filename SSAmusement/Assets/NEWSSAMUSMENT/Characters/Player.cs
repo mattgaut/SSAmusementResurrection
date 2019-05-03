@@ -82,7 +82,7 @@ public class Player : Character, ICombatant {
         last_hit_by.GiveKillCredit(this);
 
         alive = false;
-        UIHandler.GameOver();
+        GameManager.instance.GameOver();
         hitbox.gameObject.SetActive(false);
         anim.SetTrigger("Death");
         anim.SetBool("Flicker", false);

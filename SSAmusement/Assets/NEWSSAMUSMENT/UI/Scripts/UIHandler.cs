@@ -9,9 +9,8 @@ public class UIHandler : MonoBehaviour {
 
     static UIHandler instance;
 
-    bool is_info_screen_up, is_paused, is_cutscene_running;
-
     [SerializeField] GameObject pause_screen, pause_screen_active_selection;
+    [SerializeField] Button unpause_button;
     [SerializeField] GameObject info_screen;
     [SerializeField] GameObject mini_map_object;
     [SerializeField] Map mini_map;
@@ -23,87 +22,30 @@ public class UIHandler : MonoBehaviour {
     [SerializeField] Text game_over_text;
     [SerializeField] GameObject game_over_active_selection, game_over_panel;
     [SerializeField] Camera death_camera;
-    [SerializeField] List<GameObject> disable_on_death;
 
     [SerializeField] Image crawl_bg, crawl_fade;
     [SerializeField] Text crawl_text;
     [SerializeField] float fade_length, hold_length;
 
-    bool unpaused_this_frame, fading;
-    public static bool input_active {
-        get { return instance == null || (!instance.is_info_screen_up && !instance.is_paused && !instance.unpaused_this_frame && !instance.fading && !instance.is_cutscene_running); }
+    public void TogglePauseScreen(bool is_paused) {
+        if (is_paused) OnPause();
+        else OnUnPause();
     }
 
-    bool take_input = true;
-
-    private void Awake() {
-        if (instance != null) Destroy(gameObject);
-        instance = this;
-    }
-    void Update () {
-        if (take_input) {
-		    if (Input.GetButtonDown("Pause")) {
-                TogglePause();
-            }
-            if (Input.GetButtonDown("InfoScreen") && !is_paused) {
-                ToggleShowInfoScreen();
-            }
-        }
-    }
-
-    private void LateUpdate() {
-        unpaused_this_frame = false;
-    }
-
-    public void TogglePause() {
-        is_paused = !is_paused;
-        if (is_paused) {
-            Pause();
-        } else {
-            UnPause();
-        }
-    }
-
-    public static void StartCutscene() {
-        if (instance) instance.is_cutscene_running = true;
-    }
-
-    public static void EndCutscene() {
-        if (instance) instance.is_cutscene_running = false;
-    }
-
-    void Pause() {
-        Time.timeScale = 0;
-        pause_screen.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(pause_screen_active_selection);
-    }
-
-    void UnPause() {
-        Time.timeScale = is_info_screen_up ? 0 : 1;
-        pause_screen.SetActive(false);
-        unpaused_this_frame = true;
-    }
-
-    void ToggleShowInfoScreen() {
-        is_info_screen_up = !is_info_screen_up;
-        if (is_info_screen_up) {
+    public void ToggleShowInfoScreen(bool is_screen_up) {
+        if (is_screen_up) {
             OpenInfo();
         } else {
             CloseInfo();
         }
     }
 
-    void OpenInfo() {
-        mini_map_object.SetActive(false);
-        info_screen.SetActive(true);
-        Time.timeScale = 0;
+    public static Coroutine StartEndCrawl() {
+        return instance ? instance.LocalStartEndCrawl() : null;
     }
 
-    void CloseInfo() {
-        mini_map_object.SetActive(true);
-        info_screen.SetActive(false);
-        Time.timeScale = is_paused ? 0 : 1;
+    public Coroutine LocalStartEndCrawl() {
+        return StartCoroutine(EndCrawl());
     }
     
     public static void FocusRoom(RoomController room_controller) {
@@ -125,16 +67,38 @@ public class UIHandler : MonoBehaviour {
         yield return instance.FadeIn(fade_in_timer);
     }
 
+    public void StartGameOverCutscene() {
+        mini_map_object.SetActive(false);
+        StartCoroutine(GameOverRoutine());
+    }
+
+    private void Awake() {
+        if (instance != null) Destroy(gameObject);
+        instance = this;
+    }
+
+    private void Start() {
+        GameManager.instance.AddOnGameOverEvent(StartGameOverCutscene);
+        GameManager.instance.AddOnPauseEvent(TogglePauseScreen);
+        GameManager.instance.AddOnSelectEvent(ToggleShowInfoScreen);
+
+        unpause_button.onClick.AddListener(GameManager.instance.TogglePause);
+    }
+
+    private void OnDestroy() {
+        GameManager.instance.RemoveOnGameOverEvent(StartGameOverCutscene);
+        GameManager.instance.RemoveOnPauseEvent(TogglePauseScreen);
+        GameManager.instance.RemoveOnSelectEvent(ToggleShowInfoScreen);
+    }
+
     IEnumerator FadeOut(float fade_in_timer) {
         float timer = 0;
         game_over_screen.enabled = true;
-        fading = true;
         while (timer < fade_in_timer) {
             timer += Time.deltaTime;
             game_over_screen.color = new Color(0, 0, 0, timer / fade_in_timer);
             yield return null;
         }
-        fading = false;
         game_over_screen.color = new Color(0, 0, 0, 1);
     }
 
@@ -142,28 +106,13 @@ public class UIHandler : MonoBehaviour {
         float timer = 0;
         game_over_screen.enabled = true;
         game_over_screen.color = new Color(0, 0, 0, 1);
-        fading = true;
         while (timer < fade_in_timer) {
             timer += Time.deltaTime;
             game_over_screen.color = new Color(0, 0, 0, 1 - (timer / fade_in_timer));
             yield return null;
         }
-        fading = false;
         game_over_screen.color = new Color(0, 0, 0, 0);
         game_over_screen.enabled = false;
-    }
-
-    public static void GameOver() {
-        if (instance == null) return;
-        instance._GameOver();
-    }
-
-    void _GameOver() {
-        StartCoroutine(GameOverRoutine());
-        take_input = false;
-        foreach (GameObject go in disable_on_death) {
-            go.SetActive(false);
-        }
     }
 
     IEnumerator GameOverRoutine() {
@@ -206,15 +155,6 @@ public class UIHandler : MonoBehaviour {
         EventSystem.current.SetSelectedGameObject(game_over_active_selection);
     }
 
-    public static Coroutine StartEndCrawl() {
-        return instance ? instance.LocalStartEndCrawl() : null;
-    }
-
-    public Coroutine LocalStartEndCrawl() {
-        take_input = false;
-        return StartCoroutine(EndCrawl());
-    }
-
     IEnumerator EndCrawl() {
         // Fade in
         crawl_fade.enabled = true;
@@ -245,5 +185,25 @@ public class UIHandler : MonoBehaviour {
         }
         crawl_fade.color = Color.black;
         SceneManager.LoadScene("TitleScene");
+    }
+
+    void OnPause() {
+        pause_screen.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(pause_screen_active_selection);
+    }
+
+    void OnUnPause() {
+        pause_screen.SetActive(false);
+    }
+
+    void OpenInfo() {
+        mini_map_object.SetActive(false);
+        info_screen.SetActive(true);
+    }
+
+    void CloseInfo() {
+        mini_map_object.SetActive(true);
+        info_screen.SetActive(false);
     }
 }

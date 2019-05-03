@@ -112,6 +112,39 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &2003600635 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4727880421587381436, guid: 06f08f6c2bb72f3478d34895e46a967b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4727880422662913534}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2003600636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003600635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57aa0aa8e619bcb4989e1b93ef42314c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  on_game_over:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  on_select:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEventBool, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  on_pause:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEventBool, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1001 &4727880422662913534
 PrefabInstance:
   m_ObjectHideFlags: 0

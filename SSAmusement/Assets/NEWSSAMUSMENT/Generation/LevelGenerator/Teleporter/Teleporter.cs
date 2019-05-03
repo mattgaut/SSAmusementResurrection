@@ -38,7 +38,7 @@ public class Teleporter : MonoBehaviour, IInteractable {
     private IEnumerator TeleportRoutine(Player player, Teleporter teleport_to) {
         float length = cutscene_length;
 
-        UIHandler.StartCutscene();
+        GameManager.instance.StartCutscene();
 
         teleport_to.teleporting = true;
         teleporting = true;
@@ -53,7 +53,7 @@ public class Teleporter : MonoBehaviour, IInteractable {
         teleport_to.teleporting = false;
         teleporting = false;
 
-        UIHandler.EndCutscene();
+        GameManager.instance.EndCutscene();
     }
 
     void Awake() {

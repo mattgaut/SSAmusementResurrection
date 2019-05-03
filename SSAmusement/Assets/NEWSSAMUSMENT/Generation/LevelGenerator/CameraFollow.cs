@@ -20,7 +20,7 @@ public class CameraFollow : MonoBehaviour {
     }
 
     private void LateUpdate() {
-        if (!lerping) {
+        if (!lerping && follow != null) {
             new_position = follow.transform.position + 10 * Vector3.back;
             if (boundary_room != null) {
                 new_position = boundary_room.ClampToBounds(new_position);

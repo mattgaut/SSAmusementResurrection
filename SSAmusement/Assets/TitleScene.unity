@@ -3464,18 +3464,16 @@ MonoBehaviour:
     coroutine_name: AIRoutine
     coroutine_index: 0
   active_on_start: 1
-  flip_object: {fileID: 1240053618498604}
   line_of_sight_origin: {fileID: 0}
   line_of_sight_blocking_mask:
     serializedVersion: 2
     m_Bits: 0
-  jump_height: 4
-  time_to_jump_apex: 0.4
-  no_gravity: 0
   need_line_of_sight: 0
   _aggro_range: 0
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
+  flip_object: {fileID: 1240053618498604}
+  no_gravity: 0
   get_mad: 0
 --- !u!1 &68658630
 GameObject:
@@ -8682,18 +8680,16 @@ MonoBehaviour:
     coroutine_name: AIRoutine
     coroutine_index: 0
   active_on_start: 1
-  flip_object: {fileID: 1580720331719401}
   line_of_sight_origin: {fileID: 0}
   line_of_sight_blocking_mask:
     serializedVersion: 2
     m_Bits: 0
-  jump_height: 4
-  time_to_jump_apex: 0.4
-  no_gravity: 0
   need_line_of_sight: 0
   _aggro_range: 0
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
+  flip_object: {fileID: 1580720331719401}
+  no_gravity: 0
   get_mad: 1
 --- !u!1 &180658813
 GameObject:
@@ -15758,6 +15754,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab7736cf5da4c64a9c00656c703c6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  to_load: 
+  dont_load_on_start: 0
 --- !u!114 &314360402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16133,18 +16131,16 @@ MonoBehaviour:
     coroutine_name: AIRoutine
     coroutine_index: 0
   active_on_start: 1
-  flip_object: {fileID: 1580721241121716}
   line_of_sight_origin: {fileID: 0}
   line_of_sight_blocking_mask:
     serializedVersion: 2
     m_Bits: 0
-  jump_height: 4
-  time_to_jump_apex: 0.4
-  no_gravity: 0
   need_line_of_sight: 0
   _aggro_range: 0
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
+  flip_object: {fileID: 1580721241121716}
+  no_gravity: 0
   get_mad: 1
 --- !u!1 &330073621
 GameObject:
@@ -20272,6 +20268,7 @@ MonoBehaviour:
   invincibility_length: 0
   knockback_resistant: 1
   anim: {fileID: 116818884}
+  is_aerial_unit: 0
   _icon: {fileID: 0}
   drop_on_death: []
 --- !u!114 &438775508
@@ -20301,14 +20298,10 @@ MonoBehaviour:
     coroutine_name: AIRoutine
     coroutine_index: 0
   active_on_start: 0
-  flip_object: {fileID: 0}
   line_of_sight_origin: {fileID: 0}
   line_of_sight_blocking_mask:
     serializedVersion: 2
     m_Bits: 0
-  jump_height: 4
-  time_to_jump_apex: 0.4
-  no_gravity: 1
   need_line_of_sight: 0
   _aggro_range: 0
   bump_damage: 0
@@ -20427,6 +20420,7 @@ MonoBehaviour:
   collision_mask:
     serializedVersion: 2
     m_Bits: 4456448
+  uses_platforms: 0
 --- !u!1 &442011935
 GameObject:
   m_ObjectHideFlags: 0
@@ -49244,18 +49238,16 @@ MonoBehaviour:
     coroutine_name: AIRoutine
     coroutine_index: 0
   active_on_start: 1
-  flip_object: {fileID: 1531273757434099}
   line_of_sight_origin: {fileID: 0}
   line_of_sight_blocking_mask:
     serializedVersion: 2
     m_Bits: 0
-  jump_height: 4
-  time_to_jump_apex: 0.4
-  no_gravity: 0
   need_line_of_sight: 0
   _aggro_range: 0
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
+  flip_object: {fileID: 1531273757434099}
+  no_gravity: 0
   get_mad: 1
 --- !u!1 &1047747070
 GameObject:
@@ -50272,18 +50264,16 @@ MonoBehaviour:
     coroutine_name: AIRoutine
     coroutine_index: 0
   active_on_start: 1
-  flip_object: {fileID: 1531273428624453}
   line_of_sight_origin: {fileID: 0}
   line_of_sight_blocking_mask:
     serializedVersion: 2
     m_Bits: 0
-  jump_height: 4
-  time_to_jump_apex: 0.4
-  no_gravity: 0
   need_line_of_sight: 0
   _aggro_range: 0
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
+  flip_object: {fileID: 1531273428624453}
+  no_gravity: 0
   get_mad: 0
 --- !u!1 &1075072590
 GameObject:
@@ -50769,6 +50759,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab7736cf5da4c64a9c00656c703c6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  to_load: 
+  dont_load_on_start: 1
 --- !u!114 &1079853045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51021,18 +51013,16 @@ MonoBehaviour:
     coroutine_name: AIRoutine
     coroutine_index: 0
   active_on_start: 1
-  flip_object: {fileID: 1531273446902775}
   line_of_sight_origin: {fileID: 0}
   line_of_sight_blocking_mask:
     serializedVersion: 2
     m_Bits: 0
-  jump_height: 4
-  time_to_jump_apex: 0.4
-  no_gravity: 0
   need_line_of_sight: 0
   _aggro_range: 0
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
+  flip_object: {fileID: 1531273446902775}
+  no_gravity: 0
   get_mad: 1
 --- !u!1 &1083226155
 GameObject:
@@ -63990,7 +63980,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 100.00004, y: -80.000046}
-  m_SizeDelta: {x: 167.53926, y: 53.612564}
+  m_SizeDelta: {x: 167.89087, y: 53.72508}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1353940218
 MonoBehaviour:
@@ -72802,7 +72792,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 100.00004, y: 0}
-  m_SizeDelta: {x: 102.19895, y: 53.612564}
+  m_SizeDelta: {x: 102.41344, y: 53.72508}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1548691654
 MonoBehaviour:
@@ -74521,7 +74511,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 100.00004, y: -159.99998}
-  m_SizeDelta: {x: 88.79581, y: 53.612564}
+  m_SizeDelta: {x: 88.98216, y: 53.72508}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1594795641
 MonoBehaviour:
@@ -74610,6 +74600,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab7736cf5da4c64a9c00656c703c6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  to_load: 
+  dont_load_on_start: 0
 --- !u!1 &1594890928
 GameObject:
   m_ObjectHideFlags: 0
@@ -74718,18 +74710,16 @@ MonoBehaviour:
     coroutine_name: AIRoutine
     coroutine_index: 0
   active_on_start: 1
-  flip_object: {fileID: 1240053156229116}
   line_of_sight_origin: {fileID: 0}
   line_of_sight_blocking_mask:
     serializedVersion: 2
     m_Bits: 0
-  jump_height: 4
-  time_to_jump_apex: 0.4
-  no_gravity: 0
   need_line_of_sight: 0
   _aggro_range: 0
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
+  flip_object: {fileID: 1240053156229116}
+  no_gravity: 0
   get_mad: 0
 --- !u!1 &1599475783
 GameObject:
@@ -75015,7 +75005,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 100.00004, y: 160.00005}
-  m_SizeDelta: {x: 475.81152, y: 132.35602}
+  m_SizeDelta: {x: 476.8101, y: 132.63379}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1602931647
 MonoBehaviour:
@@ -86087,18 +86077,16 @@ MonoBehaviour:
     coroutine_name: AIRoutine
     coroutine_index: 0
   active_on_start: 1
-  flip_object: {fileID: 1531273663147707}
   line_of_sight_origin: {fileID: 0}
   line_of_sight_blocking_mask:
     serializedVersion: 2
     m_Bits: 0
-  jump_height: 4
-  time_to_jump_apex: 0.4
-  no_gravity: 0
   need_line_of_sight: 0
   _aggro_range: 0
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
+  flip_object: {fileID: 1531273663147707}
+  no_gravity: 0
   get_mad: 0
 --- !u!1 &1823129618
 GameObject:
@@ -87293,6 +87281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab7736cf5da4c64a9c00656c703c6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  to_load: 
+  dont_load_on_start: 0
 --- !u!114 &1848884256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89224,18 +89214,16 @@ MonoBehaviour:
     coroutine_name: AIRoutine
     coroutine_index: 0
   active_on_start: 1
-  flip_object: {fileID: 1580720610573252}
   line_of_sight_origin: {fileID: 0}
   line_of_sight_blocking_mask:
     serializedVersion: 2
     m_Bits: 0
-  jump_height: 4
-  time_to_jump_apex: 0.4
-  no_gravity: 0
   need_line_of_sight: 0
   _aggro_range: 0
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
+  flip_object: {fileID: 1580720610573252}
+  no_gravity: 0
   get_mad: 1
 --- !u!1 &1902585698
 GameObject:
@@ -104119,6 +104107,7 @@ MonoBehaviour:
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 95571586496153525}
+  is_aerial_unit: 0
   _icon: {fileID: 21300000, guid: 63ddf26841bb40a4a8ecb4e84528873a, type: 3}
   drop_on_death: []
 --- !u!114 &114055846164110559
@@ -104151,6 +104140,7 @@ MonoBehaviour:
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 95571586053704189}
+  is_aerial_unit: 0
   _icon: {fileID: 21300000, guid: 63ddf26841bb40a4a8ecb4e84528873a, type: 3}
   drop_on_death: []
 --- !u!114 &114055846317439379
@@ -104183,6 +104173,7 @@ MonoBehaviour:
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 95571586135862449}
+  is_aerial_unit: 0
   _icon: {fileID: 21300000, guid: 63ddf26841bb40a4a8ecb4e84528873a, type: 3}
   drop_on_death: []
 --- !u!114 &114055846334404129
@@ -104215,6 +104206,7 @@ MonoBehaviour:
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 95571586150597379}
+  is_aerial_unit: 0
   _icon: {fileID: 21300000, guid: 63ddf26841bb40a4a8ecb4e84528873a, type: 3}
   drop_on_death: []
 --- !u!114 &114059993754769520
@@ -104334,6 +104326,7 @@ MonoBehaviour:
   collision_mask:
     serializedVersion: 2
     m_Bits: 4456448
+  uses_platforms: 0
 --- !u!114 &114114803171541403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104353,6 +104346,7 @@ MonoBehaviour:
   collision_mask:
     serializedVersion: 2
     m_Bits: 4456448
+  uses_platforms: 0
 --- !u!114 &114114803342887781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104372,6 +104366,7 @@ MonoBehaviour:
   collision_mask:
     serializedVersion: 2
     m_Bits: 4456448
+  uses_platforms: 0
 --- !u!114 &114114803357902039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104391,6 +104386,7 @@ MonoBehaviour:
   collision_mask:
     serializedVersion: 2
     m_Bits: 4456448
+  uses_platforms: 0
 --- !u!114 &114128917823428479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105052,6 +105048,7 @@ MonoBehaviour:
   collision_mask:
     serializedVersion: 2
     m_Bits: 4456448
+  uses_platforms: 0
 --- !u!114 &114369659429710241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105071,6 +105068,7 @@ MonoBehaviour:
   collision_mask:
     serializedVersion: 2
     m_Bits: 4456448
+  uses_platforms: 0
 --- !u!114 &114369659654115468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105090,6 +105088,7 @@ MonoBehaviour:
   collision_mask:
     serializedVersion: 2
     m_Bits: 4456448
+  uses_platforms: 0
 --- !u!114 &114489772835181305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105635,6 +105634,7 @@ MonoBehaviour:
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 95148017560714854}
+  is_aerial_unit: 0
   _icon: {fileID: 21300000, guid: 9f74f644843bcf342b35fd264d844838, type: 3}
   drop_on_death: []
 --- !u!114 &114661331753482218
@@ -105667,6 +105667,7 @@ MonoBehaviour:
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 95148017082305974}
+  is_aerial_unit: 0
   _icon: {fileID: 21300000, guid: 9f74f644843bcf342b35fd264d844838, type: 3}
   drop_on_death: []
 --- !u!114 &114675294377199188
@@ -105699,6 +105700,7 @@ MonoBehaviour:
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 95178166495088100}
+  is_aerial_unit: 0
   _icon: {fileID: 21300000, guid: d3ca833b52499d84ba0fb73897b882df, type: 3}
   drop_on_death: []
 --- !u!114 &114675295555004169
@@ -105731,6 +105733,7 @@ MonoBehaviour:
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 95178166382652601}
+  is_aerial_unit: 0
   _icon: {fileID: 21300000, guid: d3ca833b52499d84ba0fb73897b882df, type: 3}
   drop_on_death: []
 --- !u!114 &114675295884566052
@@ -105763,6 +105766,7 @@ MonoBehaviour:
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 95178166124647828}
+  is_aerial_unit: 0
   _icon: {fileID: 21300000, guid: d3ca833b52499d84ba0fb73897b882df, type: 3}
   drop_on_death: []
 --- !u!114 &114685991601640288
@@ -106240,6 +106244,7 @@ MonoBehaviour:
   collision_mask:
     serializedVersion: 2
     m_Bits: 4456448
+  uses_platforms: 0
 --- !u!114 &114903658088043928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106259,6 +106264,7 @@ MonoBehaviour:
   collision_mask:
     serializedVersion: 2
     m_Bits: 4456448
+  uses_platforms: 0
 --- !u!114 &114979636045448472
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,6 +12,10 @@ public class PlayerLoadHandler : MonoBehaviour {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    private void OnDestroy() {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     void OnSceneLoaded(Scene loaded, LoadSceneMode mode) {
         if (destroy_on.Contains(loaded.name)) {
             SceneManager.sceneLoaded -= OnSceneLoaded;
