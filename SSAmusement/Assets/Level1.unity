@@ -218,11 +218,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4604255425029654, guid: 4df7f49eb6c6cc54ba6a7a55ba3f9fb1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4604255425029654, guid: 4df7f49eb6c6cc54ba6a7a55ba3f9fb1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4604255425029654, guid: 4df7f49eb6c6cc54ba6a7a55ba3f9fb1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -257,8 +257,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 5770375887674969164, guid: c3f30190b5c8b554d8b7c336d53863e7,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 114787462853215606, guid: 4df7f49eb6c6cc54ba6a7a55ba3f9fb1,
         type: 3}
       propertyPath: m_Enabled
@@ -328,6 +327,14 @@ PrefabInstance:
       propertyPath: teleporter_room
       value: 
       objectReference: {fileID: 7913962, guid: 0f552b8b7f84cce409f4c38a22791584, type: 3}
+    - target: {fileID: 4691735284384470, guid: 4df7f49eb6c6cc54ba6a7a55ba3f9fb1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691735284384470, guid: 4df7f49eb6c6cc54ba6a7a55ba3f9fb1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4df7f49eb6c6cc54ba6a7a55ba3f9fb1, type: 3}
 --- !u!1 &1096758008

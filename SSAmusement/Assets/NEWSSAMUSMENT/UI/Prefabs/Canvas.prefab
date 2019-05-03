@@ -394,6 +394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pause_screen: {fileID: 1237100975732582}
   pause_screen_active_selection: {fileID: 1918104867818960}
+  unpause_button: {fileID: 114591843744536666}
   info_screen: {fileID: 1434535115125538}
   mini_map_object: {fileID: 1079915632221672}
   mini_map: {fileID: 114959947019608378}
@@ -2074,7 +2075,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4793061688380468206}
-        m_MethodName: Load
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2135,8 +2136,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: RestartScene
   mode: 0
-  reset: 1
-  destroy_player_first: 1
+  selection: {fileID: 5770375887674969164, guid: c3f30190b5c8b554d8b7c336d53863e7,
+    type: 3}
 --- !u!1 &1297867341245656
 GameObject:
   m_ObjectHideFlags: 0
@@ -2879,8 +2880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: TitleScene
   mode: 0
-  reset: 1
-  destroy_player_first: 1
+  selection: {fileID: 0}
 --- !u!1 &1487415533840788
 GameObject:
   m_ObjectHideFlags: 0
@@ -3917,8 +3917,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: TitleScene
   mode: 0
-  reset: 1
-  destroy_player_first: 1
+  selection: {fileID: 0}
 --- !u!1 &1618797384536372
 GameObject:
   m_ObjectHideFlags: 0
@@ -4280,7 +4279,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1881197736}
-        m_MethodName: Load
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4341,8 +4340,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: Level1
   mode: 0
-  reset: 1
-  destroy_player_first: 1
+  selection: {fileID: 5770375887674969164, guid: c3f30190b5c8b554d8b7c336d53863e7,
+    type: 3}
 --- !u!1 &1637946472050026
 GameObject:
   m_ObjectHideFlags: 0
@@ -6460,18 +6459,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114058279287323088}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114190688217054912}
-        m_MethodName: TogglePause
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114870861557340220

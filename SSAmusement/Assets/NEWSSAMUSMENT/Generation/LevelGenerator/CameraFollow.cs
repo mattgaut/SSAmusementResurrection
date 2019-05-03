@@ -15,7 +15,7 @@ public class CameraFollow : MonoBehaviour {
     private void Start() {
         lerping = false;
         if (grab_player) {
-            follow = FindObjectOfType<Player>().transform;
+            follow = GameManager.instance.player.transform;
         }
     }
 

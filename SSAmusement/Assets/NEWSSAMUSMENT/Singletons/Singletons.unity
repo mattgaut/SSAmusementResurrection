@@ -145,6 +145,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEventBool, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  spawn_on_start: 1
+  _player: {fileID: 5770375887674969164, guid: c3f30190b5c8b554d8b7c336d53863e7, type: 3}
 --- !u!1001 &4727880422662913534
 PrefabInstance:
   m_ObjectHideFlags: 0

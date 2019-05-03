@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerLoadHandler : MonoBehaviour {
 
-    [SerializeField] List<string> destroy_on;
-
     private void Start() {
         DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -17,17 +15,8 @@ public class PlayerLoadHandler : MonoBehaviour {
     }
 
     void OnSceneLoaded(Scene loaded, LoadSceneMode mode) {
-        if (destroy_on.Contains(loaded.name)) {
-            SceneManager.sceneLoaded -= OnSceneLoaded;
-            Destroy(gameObject);
-        } else {
-            Tester tester = FindObjectOfType<Tester>();
-            if (tester) {
-                transform.position = tester.spawn_point;
-            }
-            foreach (Item i in GetComponent<Player>().inventory.items) {
-                UIHandler.DisplayItem(i, false);
-            }
+        foreach (Item i in GetComponent<Player>().inventory.items) {
+            UIHandler.DisplayItem(i, false);
         }
     }
 }

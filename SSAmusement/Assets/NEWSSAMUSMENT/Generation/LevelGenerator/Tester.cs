@@ -14,16 +14,10 @@ public class Tester : MonoBehaviour {
 
     public Vector3 spawn_point { get { return initial_player_position.position; } }
     List<GameObject> spawned_object;
-    [SerializeField] Player _player;
     public Player player {
         get; private set;
     }
     private void Awake() {
-        player = FindObjectOfType<Player>();
-        if (player == null) {
-            player = Instantiate(_player);
-            DontDestroyOnLoad(player);
-        }
         SoundManager.PlaySong(level_theme);
     }
 
@@ -37,7 +31,7 @@ public class Tester : MonoBehaviour {
         rm.SetRooms(rs.GetNeighbors());
         rm.SetActiveRoom(rs.GetOrigin().GetComponent<RoomController>());
 
-        player.transform.position = new Vector3(2, 1, 0);
+        GameManager.instance.player.transform.position = spawn_point;
     }
 
     IEnumerator WaitOneFrame() {

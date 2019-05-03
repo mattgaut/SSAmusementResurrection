@@ -10,11 +10,18 @@ public class GameManager : Singleton<GameManager> {
         get { return input_locks == 0; }
     }
 
+    public Player player {
+        get; private set;
+    }
+
     bool is_paused, is_select_screen_up, is_cutscene_running;
     int input_locks;
 
     [SerializeField] UnityEvent on_game_over;
     [SerializeField] UnityEventBool on_select, on_pause;
+
+    [SerializeField] bool spawn_on_start;
+    [SerializeField] Player _player;
 
     public void AddOnPauseEvent(UnityAction<bool> action) {
         on_pause.AddListener(action);
@@ -40,30 +47,65 @@ public class GameManager : Singleton<GameManager> {
         on_game_over.RemoveListener(action);
     }
 
+    /// <summary>
+    /// Locks player input and invokes on game over event
+    /// </summary>
     public void GameOver() {
         on_game_over.Invoke();
         input_locks += 1;
     }
 
+    /// <summary>
+    /// Locks player input and raises Cutscene Running flag
+    /// </summary>
     public void StartCutscene() {
         input_locks += 1;
         is_cutscene_running = true;
     }
 
+    /// <summary>
+    /// Removes player input lock and lowers Cutscene Running flag
+    /// </summary>
     public void EndCutscene() {
         input_locks -= 1;
         is_cutscene_running = false;
     }
 
+    /// <summary>
+    /// Destroys Currently Loaded Player
+    /// </summary>
     public void DestroyPlayer() {
-        Player p = FindObjectOfType<Player>();
-        Destroy(p.gameObject);
+        if (player != null) {
+            Destroy(player.gameObject);
+            player = null;
+        }
     }
 
+    /// <summary>
+    /// Destroys player, instantiates new one and loads first level.
+    /// </summary>
+    /// <param name="selected_player_prefab">Player prefab to instantiate</param>
+    public void StartGame(Player selected_player_prefab) {
+        DestroyPlayer();
+        ResetMemory();
+        LoadScene("Level1", LoadSceneMode.Single);
+        SpawnPlayer(selected_player_prefab);
+    }
+
+    /// <summary>
+    /// Loads level of the game
+    /// </summary>
+    /// <param name="level_id">Level id to load</param>
     public void LoadNextLevel(int level_id) {
 
     }
 
+    /// <summary>
+    /// Destroy the player and loads a given scene.
+    /// Use this to navigate to menu scenes.
+    /// </summary>
+    /// <param name="scene"></param>
+    /// <param name="mode"></param>
     public void LoadScene(string scene, LoadSceneMode mode) {
         ResetMemory();
 
@@ -72,18 +114,9 @@ public class GameManager : Singleton<GameManager> {
         SceneManager.LoadScene(scene, mode);
     }
 
-    public void LoadScene() {
-
-    }
-
-    protected override void OnAwake() {
-        base.OnAwake();
-    }
-
-    private void Start() {
-        SceneManager.UnloadSceneAsync("Singletons");
-    }
-
+    /// <summary>
+    /// Toggles pause and Invokes on pause event with current pause status
+    /// </summary>
     public void TogglePause() {
         is_paused = !is_paused;
         on_pause.Invoke(is_paused);
@@ -94,6 +127,15 @@ public class GameManager : Singleton<GameManager> {
         }
     }
 
+    protected override void OnAwake() {
+        base.OnAwake();
+        if (spawn_on_start) SpawnPlayer(_player);
+    }
+
+    private void Start() {
+        SceneManager.UnloadSceneAsync("Singletons");
+    }
+
     void Update() {
         if (Input.GetButtonDown("Pause")) {
             TogglePause();
@@ -101,6 +143,10 @@ public class GameManager : Singleton<GameManager> {
         if (Input.GetButtonDown("Select") && !is_paused) {
             ToggleShowInfoScreen();
         }
+    }
+
+    void SpawnPlayer(Player prefab) {
+        player = Instantiate(prefab);
     }
 
     void ResetMemory() {
