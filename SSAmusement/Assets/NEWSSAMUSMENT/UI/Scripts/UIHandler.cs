@@ -86,9 +86,11 @@ public class UIHandler : MonoBehaviour {
     }
 
     private void OnDestroy() {
-        GameManager.instance.RemoveOnGameOverEvent(StartGameOverCutscene);
-        GameManager.instance.RemoveOnPauseEvent(TogglePauseScreen);
-        GameManager.instance.RemoveOnSelectEvent(ToggleShowInfoScreen);
+        if (GameManager.instance != null) {
+            GameManager.instance.RemoveOnGameOverEvent(StartGameOverCutscene);
+            GameManager.instance.RemoveOnPauseEvent(TogglePauseScreen);
+            GameManager.instance.RemoveOnSelectEvent(ToggleShowInfoScreen);
+        }
     }
 
     IEnumerator FadeOut(float fade_in_timer) {
