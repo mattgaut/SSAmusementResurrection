@@ -13,6 +13,12 @@ public class RNG {
         state = Random.state;
     }
 
+    /// <summary>
+    /// Returns an int in between inclusive lower and exclusive upper bound.
+    /// </summary>
+    /// <param name="lower_bound"></param>
+    /// <param name="upper_bound"></param>
+    /// <returns></returns>
     public int GetInt(int lower_bound, int upper_bound) {
         Random.state = state;
 
@@ -22,6 +28,11 @@ public class RNG {
 
         return to_return;
     }
+
+    /// <summary>
+    /// Returns a float value between 0 and 1
+    /// </summary>
+    /// <returns>float between 0 and 1</returns>
     public float GetFloat() {
         Random.state = state;
 

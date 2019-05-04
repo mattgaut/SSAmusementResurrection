@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4727880421587381434}
   - component: {fileID: 4727880421587381437}
   - component: {fileID: 4727880421587381432}
+  - component: {fileID: 6168822246216961477}
   m_Layer: 0
   m_Name: Singletons
   m_TagString: Untagged
@@ -95,3 +96,41 @@ MonoBehaviour:
     _chance_per_roll: 0.05
   - _loot: {fileID: 7074109383489225008, guid: 77a94d3caf06cb34e86bc092a564c419, type: 3}
     _chance_per_roll: 0.025
+--- !u!114 &6168822246216961477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4727880421587381436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57aa0aa8e619bcb4989e1b93ef42314c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  on_game_over:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  on_select:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEventBool, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  on_pause:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEventBool, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  spawn_on_start: 1
+  _player: {fileID: 5770375887674969164, guid: c3f30190b5c8b554d8b7c336d53863e7, type: 3}
+  cat:
+    use_range: 1
+    fixed_number: 2
+    min: 2
+    max: 7
+    avg: 5
+    rooms:
+    - {fileID: 7800962385613225740, guid: 22804b2e181af044b9022bfa75c3269d, type: 3}
+    - {fileID: 7800962385613225740, guid: 22804b2e181af044b9022bfa75c3269d, type: 3}
