@@ -9,22 +9,32 @@ public class LevelParameters : ScriptableObject {
         get { return _level_name; }
     }
 
-    public IEnumerable<Room> unweighted_rooms {
+    public IEnumerable<RoomController> unweighted_rooms {
         get { return _unweighted_rooms; }
     }
 
-    [SerializeField] string _level_name;
-    [SerializeField] List<Room> _unweighted_rooms;
-    [SerializeField] RoomGroup _shop_rooms, _boss_rooms;
+    public IEnumerable<BossRoomController> boss_rooms {
+        get { return _boss_rooms; }
+    }
 
+    [SerializeField] string _level_name;
+    [SerializeField] LevelSet set;
+    [SerializeField] List<RoomController> _unweighted_rooms;
+    [SerializeField] List<BossRoomController> _boss_rooms;
+    [SerializeField] WeightedRoomGroup _shop_rooms;
 
     [System.Serializable]
-    public class RoomGroup : ISerializationCallbackReceiver {
+    public class WeightedRoomGroup : ISerializationCallbackReceiver {
+
+        public IEnumerable<RoomController> rooms {
+            get { return rooms; }
+        }
+
         [SerializeField] bool use_range;
         [SerializeField] int fixed_number;
         [SerializeField] int min, max;
         [SerializeField] float avg;
-        [SerializeField] List<Room> rooms;
+        [SerializeField] List<RoomController> _rooms;
 
         public int GetNumberToSpawn(RNG rng) {
             if (!use_range) {

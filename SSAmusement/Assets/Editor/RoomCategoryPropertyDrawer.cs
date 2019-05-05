@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(LevelParameters.RoomGroup))]
+[CustomPropertyDrawer(typeof(LevelParameters.WeightedRoomGroup))]
 public class RoomCategoryPropertyDrawer : PropertyDrawer {
 
     bool is_out;

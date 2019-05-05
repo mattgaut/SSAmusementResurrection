@@ -41,6 +41,7 @@ class RoomEditorWindow : EditorWindow {
 
     GameObject mouse_object, prefab_asset_to_spawn;
 
+    List<Enemy> available_enemies;
     List<Enemy> placed_enemies;
 
     List<RoomProp> placed_props;
@@ -89,6 +90,13 @@ class RoomEditorWindow : EditorWindow {
         
         for (int i = 0; i < prop_icons.Length; i++) {
             prop_icons[i] = GetSpriteTexture(available_props[i].sprite);
+        }
+
+        available_enemies = new List<Enemy>();
+        string[] enemy_guids = AssetDatabase.FindAssets("t:GameObject", new string[] { "Assets/Enemy/StandardEnemies" });
+        foreach (string s in enemy_guids) {
+            Enemy e = AssetDatabase.LoadAssetAtPath<Enemy>(AssetDatabase.GUIDToAssetPath(s));
+            if (e != null) available_enemies.Add(e);
         }
     }
 
@@ -312,8 +320,6 @@ class RoomEditorWindow : EditorWindow {
         this.level_set = level_set;
         room_editor.SetLevelSet(level_set);
 
-        List<Enemy> available_enemies = level_set.available_enemies;
-
         enemy_icons = new Texture2D[available_enemies.Count];
         for (int i = 0; i < available_enemies.Count; i++) {
             enemy_icons[i] = GetSpriteTexture(available_enemies[i].icon);
@@ -332,7 +338,7 @@ class RoomEditorWindow : EditorWindow {
         object_selection_number = GUILayout.SelectionGrid(object_selection_number, enemy_icons, number_can_fit, GUILayout.Height(icon_size * Mathf.CeilToInt((float)enemy_icons.Length / number_can_fit)), GUILayout.MinWidth(icon_size * number_can_fit));
 
         if (object_selection_number != old_enemy) {
-            Enemy to_copy = level_set.available_enemies[object_selection_number];
+            Enemy to_copy = available_enemies[object_selection_number];
             SetMouseHoverObject(to_copy.gameObject);
             mouse_object.SetActive(false);
             mouse_object.name = to_copy.name;
