@@ -899,6 +899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c47cf1e93e40d354b81db703642b25a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _room: {fileID: 4607723399053582375}
   entrance_block_coord: {x: 0, y: 0}
   fighting_block_coord: {x: 1, y: 0}
   leaving_block_coord: {x: 1, y: 0}
@@ -910,6 +911,7 @@ MonoBehaviour:
   boss_theme: {fileID: 0}
   boss_blocker: {fileID: 0}
   room_set: {fileID: 8411447280379786889}
+  _teleporter: {fileID: 0}
 --- !u!1 &47965312954893238
 GameObject:
   m_ObjectHideFlags: 0

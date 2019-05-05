@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(LevelParameters.WeightedRoomGroup))]
+[CustomPropertyDrawer(typeof(Level.WeightedRoomGroup))]
 public class RoomCategoryPropertyDrawer : PropertyDrawer {
 
     bool is_out;
@@ -47,7 +47,7 @@ public class RoomCategoryPropertyDrawer : PropertyDrawer {
                 rect.position += shift_vector;
             }
 
-            child = property.FindPropertyRelative("rooms");
+            child = property.FindPropertyRelative("_rooms");
             bool expand = EditorGUI.PropertyField(rect, child);
             rect.position += shift_vector;
             if (expand) {
@@ -56,7 +56,7 @@ public class RoomCategoryPropertyDrawer : PropertyDrawer {
                 EditorGUI.PropertyField(rect, child, new GUIContent("Size"));
                 rect.position += shift_vector;
 
-                child = property.FindPropertyRelative("rooms");
+                child = property.FindPropertyRelative("_rooms");
 
                 for (int i = 0; i < child.arraySize; i++) {
                     SerializedProperty array_child = child.GetArrayElementAtIndex(i);

@@ -577,6 +577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c34bbffa3ef96304a8ff551be8092fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _room: {fileID: 4514925430453041601}
   room_set: {fileID: 2007473331971426575}
   shop_terminals:
   - {fileID: 5946443575378518879}

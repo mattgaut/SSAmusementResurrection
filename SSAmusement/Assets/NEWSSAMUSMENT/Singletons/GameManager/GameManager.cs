@@ -14,14 +14,24 @@ public class GameManager : Singleton<GameManager> {
         get; private set;
     }
 
+    public Level current_level {
+        get; private set;
+    }
+
     bool is_paused, is_select_screen_up, is_cutscene_running;
     int input_locks;
 
     [SerializeField] UnityEvent on_game_over;
     [SerializeField] UnityEventBool on_select, on_pause;
 
-    [SerializeField] bool spawn_on_start;
+    [SerializeField] bool start_game_on_start;
     [SerializeField] Player _player;
+
+    [SerializeField] LevelTree level_tree;
+
+    [SerializeField] LevelGenerator level_generator;
+    [SerializeField] RoomSpawner room_spawner;
+    [SerializeField] RoomManager room_manager;
 
     public void AddOnPauseEvent(UnityAction<bool> action) {
         on_pause.AddListener(action);
@@ -88,17 +98,27 @@ public class GameManager : Singleton<GameManager> {
     public void StartGame(Player selected_player_prefab) {
         DestroyPlayer();
         ResetMemory();
-        LoadScene("Level1", LoadSceneMode.Single);
         SpawnPlayer(selected_player_prefab);
+        LoadLevel(level_tree.first_level);
+        player.transform.position = new Vector3(2, 1, 0);
+    }
+
+    /// <summary>
+    /// Loads level of the game at random chosen from the list of levels
+    /// that can possibly follow current level
+    /// </summary>
+    /// <param name="level"></param>
+    public void LoadNextLevelAtRandom() {
+        LoadLevel(level_tree.GetNextLevels(current_level).GetRandom(RNGSingleton.instance.room_gen_rng));
     }
 
     /// <summary>
     /// Loads level of the game
     /// </summary>
-    /// <param name="level_id">Level id to load</param>
-    public void LoadNextLevel(int level_id) {
-
-    }
+    /// <param name="level"></param>
+    public void LoadLevel(Level level) {
+        StartCoroutine(LoadLevelRoutine(level));
+    }   
 
     /// <summary>
     /// Destroy the player and loads a given scene.
@@ -127,13 +147,24 @@ public class GameManager : Singleton<GameManager> {
         }
     }
 
-    protected override void OnAwake() {
-        base.OnAwake();
-        if (spawn_on_start) SpawnPlayer(_player);
+    private void Start() {
+        //SceneManager.UnloadSceneAsync("Singletons");
+        if (start_game_on_start) StartGame(_player);
     }
 
-    private void Start() {
-        SceneManager.UnloadSceneAsync("Singletons");
+    IEnumerator LoadLevelRoutine(Level level) {
+        SceneManager.LoadScene("Level1", LoadSceneMode.Single);
+        current_level = level;
+
+        yield return null;
+
+        var ret = level_generator.GenerateLevel(level, RNGSingleton.instance.room_gen_rng);
+        room_spawner.Generate(ret, RNGSingleton.instance.loot_rng, level.level_set.tile_set);
+        room_manager.LoadBackgrounds();
+        room_manager.SetRooms(room_spawner.GetNeighbors());
+        room_manager.SetActiveRoom(room_spawner.GetOrigin().GetComponent<RoomController>());
+
+        if (player != null) player.transform.position = new Vector3(2, 1, 0);
     }
 
     void Update() {

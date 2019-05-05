@@ -37,7 +37,7 @@ class RoomEditorWindow : EditorWindow {
     KeyCode button_held = KeyCode.None;
     TileType tile_type = TileType.Square;
 
-    LevelSet level_set;
+    LevelAesthetics level_set;
 
     GameObject mouse_object, prefab_asset_to_spawn;
 
@@ -246,8 +246,8 @@ class RoomEditorWindow : EditorWindow {
         RoomModeToggle();
 
         if (room_mode == RoomEditMode.Info) {
-            LevelSet old_level_set = level_set;
-            level_set = (LevelSet)EditorGUILayout.ObjectField("Level Set", level_set, typeof(LevelSet), true);
+            LevelAesthetics old_level_set = level_set;
+            level_set = (LevelAesthetics)EditorGUILayout.ObjectField("Level Set", level_set, typeof(LevelAesthetics), true);
             if (level_set != old_level_set && level_set != null) {
                 SetLevelSet(level_set);
             }
@@ -316,7 +316,7 @@ class RoomEditorWindow : EditorWindow {
         }
     }
 
-    void SetLevelSet(LevelSet level_set) {
+    void SetLevelSet(LevelAesthetics level_set) {
         this.level_set = level_set;
         room_editor.SetLevelSet(level_set);
 

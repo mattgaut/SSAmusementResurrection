@@ -5,27 +5,29 @@ using UnityEngine;
 public abstract class LevelGenerator : MonoBehaviour {
 
     protected Dictionary<Vector2Int, Room.Section> tiles;
-    protected Dictionary<Vector2Int, Room> room_origins;
+    protected Dictionary<Vector2Int, RoomController> room_origins;
     protected HashSet<Vector2Int> available_spaces;
-    [SerializeField] protected Room origin;
-    [SerializeField] protected List<Room> possible_rooms;
-    [SerializeField] protected Room boss_room;
-    [SerializeField] protected Room teleporter_room;
     protected List<Vector2Int> adjacent_spaces;
 
     protected virtual void Clear() {
         tiles = new Dictionary<Vector2Int, Room.Section>();
         available_spaces = new HashSet<Vector2Int>();
-        room_origins = new Dictionary<Vector2Int, Room>();
+        room_origins = new Dictionary<Vector2Int, RoomController>();
         adjacent_spaces = new List<Vector2Int>();
     }
 
-    public abstract Dictionary<Vector2Int, Room> Generate();
+    public Dictionary<Vector2Int, RoomController> GenerateLevel(Level level, RNG rng) {
+        Clear();
 
-    protected virtual void InsertRoom(Room r, Vector2Int position) {
-        room_origins.Add(position, r);
-        foreach (Vector2Int local_position in r.GetLocalCoordinatesList()) {
-            Room.Section section = r.GetSection(local_position);
+        return Generate(level, rng);
+    }
+
+    protected abstract Dictionary<Vector2Int, RoomController> Generate(Level level, RNG rng);
+
+    protected virtual void InsertRoom(RoomController cont, Vector2Int position) {
+        room_origins.Add(position, cont);
+        foreach (Vector2Int local_position in cont.room.GetLocalCoordinatesList()) {
+            Room.Section section = cont.room.GetSection(local_position);
             tiles.Add(position + local_position, section);
             if (available_spaces.Contains(position + local_position)) {
                 available_spaces.Remove(position + local_position);
@@ -83,7 +85,7 @@ public abstract class LevelGenerator : MonoBehaviour {
         return false;
     }
 
-    public Room GetInitialRoom() {
+    public RoomController GetInitialRoom() {
         return room_origins[Vector2Int.zero];
     }
 }

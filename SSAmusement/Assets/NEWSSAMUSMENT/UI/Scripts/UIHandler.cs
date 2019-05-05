@@ -86,7 +86,7 @@ public class UIHandler : MonoBehaviour {
     }
 
     private void OnDestroy() {
-        if (GameManager.instance != null) {
+        if (GameManager.has_instance) {
             GameManager.instance.RemoveOnGameOverEvent(StartGameOverCutscene);
             GameManager.instance.RemoveOnPauseEvent(TogglePauseScreen);
             GameManager.instance.RemoveOnSelectEvent(ToggleShowInfoScreen);

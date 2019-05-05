@@ -1,5 +1,118 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &723861456101383129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3936146724087247994}
+  - component: {fileID: 4753337269797124211}
+  - component: {fileID: 1430125888089228363}
+  - component: {fileID: 7420271915128496320}
+  - component: {fileID: 5863379306266666781}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3936146724087247994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723861456101383129}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4727880421587381435}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4753337269797124211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723861456101383129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57aa0aa8e619bcb4989e1b93ef42314c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  on_game_over:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  on_select:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEventBool, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  on_pause:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEventBool, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  start_game_on_start: 0
+  _player: {fileID: 5770375887674969164, guid: c3f30190b5c8b554d8b7c336d53863e7, type: 3}
+  level_tree: {fileID: 11400000, guid: 80e878dc6262f234f9e76715eeb8e5eb, type: 2}
+  level_generator: {fileID: 7420271915128496320}
+  room_spawner: {fileID: 1430125888089228363}
+  room_manager: {fileID: 5863379306266666781}
+--- !u!114 &1430125888089228363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723861456101383129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a8fd5c47fb3f144a83e5bc54e4636e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room_width: 18
+  room_height: 10
+  mobility: 1
+  boss_key: {fileID: 7804376939123278443, guid: 05d5dc4aee9e3ed4f8e779fc3e68bf73,
+    type: 3}
+--- !u!114 &7420271915128496320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723861456101383129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb6a97cf34826645b7a2a8d0d589fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fill: 1
+  blocks_x: 5
+  blocks_y: 5
+--- !u!114 &5863379306266666781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723861456101383129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23abfd2206fbb746a405d8f7558be08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objects_to_center_on_active_room:
+  - {fileID: 1760262429862262, guid: 5fbac788b4362b74d81b2b91a5a7400b, type: 3}
 --- !u!1 &4727880421587381436
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +125,6 @@ GameObject:
   - component: {fileID: 4727880421587381434}
   - component: {fileID: 4727880421587381437}
   - component: {fileID: 4727880421587381432}
-  - component: {fileID: 6168822246216961477}
   m_Layer: 0
   m_Name: Singletons
   m_TagString: Untagged
@@ -30,7 +142,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 60.842224, y: 26.938265, z: -10.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 3936146724087247994}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -96,41 +209,3 @@ MonoBehaviour:
     _chance_per_roll: 0.05
   - _loot: {fileID: 7074109383489225008, guid: 77a94d3caf06cb34e86bc092a564c419, type: 3}
     _chance_per_roll: 0.025
---- !u!114 &6168822246216961477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4727880421587381436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57aa0aa8e619bcb4989e1b93ef42314c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  on_game_over:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  on_select:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEventBool, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  on_pause:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEventBool, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  spawn_on_start: 1
-  _player: {fileID: 5770375887674969164, guid: c3f30190b5c8b554d8b7c336d53863e7, type: 3}
-  cat:
-    use_range: 1
-    fixed_number: 2
-    min: 2
-    max: 7
-    avg: 5
-    rooms:
-    - {fileID: 7800962385613225740, guid: 22804b2e181af044b9022bfa75c3269d, type: 3}
-    - {fileID: 7800962385613225740, guid: 22804b2e181af044b9022bfa75c3269d, type: 3}

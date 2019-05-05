@@ -8,29 +8,53 @@ public class ShapeGenerator : LevelGenerator {
     [SerializeField] [Range(0, 1)] float fill;
     [SerializeField] [Range(3, 20)] int blocks_x, blocks_y;
 
-    public override Dictionary<Vector2Int, Room> Generate() {
-        Clear();
+    protected override Dictionary<Vector2Int, RoomController> Generate(Level level, RNG rng) {
         GenerateShapes();
         available_spaces = new HashSet<Vector2Int>(shape_blocks);
-        InsertRoom(origin, Vector2Int.zero);
+        InsertRoom(level.spawn_room, Vector2Int.zero);
 
+        int shop_count = level.shop_rooms.GetNumberToSpawn(rng);
+
+        List<RoomController> possible_shops = new List<RoomController>(level.shop_rooms.rooms);
+        while (possible_shops.Count > 0 && shop_count > 0) {
+
+            int cont_index = rng.GetInt(0, possible_shops.Count);
+            RoomController cont = possible_shops[cont_index];
+            possible_shops.RemoveAt(cont_index);
+
+            List<Vector2Int> possible_spaces = new List<Vector2Int>(available_spaces);
+            while (possible_spaces.Count > 0) {
+
+                int position_index = rng.GetInt(0, possible_spaces.Count);
+                Vector2Int position = possible_spaces[position_index];
+                possible_spaces.RemoveAt(position_index);
+
+                if (RoomCanFit(cont.room, position)) {
+                    InsertRoom(cont, position);
+                    shop_count--;
+                    if (shop_count <= 0) {
+                        break;
+                    }
+                }
+            }
+        }
 
         while ((float)available_spaces.Count / shape_blocks.Count > (1 - fill)) {
             Vector2Int next_space;
-            Room r;
-            List<Room> remaining_rooms = new List<Room>(possible_rooms);
+            RoomController cont;
+            List<RoomController> remaining_rooms = new List<RoomController>(level.unweighted_rooms);
             Vector2Int offset = Vector2Int.zero;
 
             bool fit = false;
             do {
-                r = remaining_rooms[RNGSingleton.instance.room_gen_rng.GetInt(0, remaining_rooms.Count)];
-                remaining_rooms.Remove(r);
+                cont = remaining_rooms[rng.GetInt(0, remaining_rooms.Count)];
+                remaining_rooms.Remove(cont);
                 List<Vector2Int> possible_spaces = new List<Vector2Int>(adjacent_spaces);
                 do {
-                    next_space = possible_spaces[RNGSingleton.instance.room_gen_rng.GetInt(0, possible_spaces.Count)];
+                    next_space = possible_spaces[rng.GetInt(0, possible_spaces.Count)];
                     possible_spaces.Remove(next_space);
-                    foreach (Vector2Int i in r.GetLocalCoordinatesList().Shuffle(RNGSingleton.instance.room_gen_rng)) {
-                        if (available_spaces.Contains(next_space + i) && RoomCanFit(r, next_space + i)) {
+                    foreach (Vector2Int i in cont.room.GetLocalCoordinatesList().Shuffle(rng)) {
+                        if (available_spaces.Contains(next_space + i) && RoomCanFit(cont.room, next_space + i)) {
                             fit = true;
                             offset = i;
                             break;
@@ -42,35 +66,36 @@ public class ShapeGenerator : LevelGenerator {
             if (!fit) {
                 break;
             } else
-                InsertRoom(r, next_space + offset);
+                InsertRoom(cont, next_space + offset);
         }
 
-        bool teleporter_room_placed = false;
-        while (!teleporter_room_placed && boss_room != null) {
+        if (level.boss_rooms.Count > 0 && level.teleporter_rooms.Count > 0) {
+            bool teleporter_room_placed = false;
             Vector2Int next_space;
-            List<Room> remaining_rooms = new List<Room>(possible_rooms);
+            List<RoomController> remaining_rooms = new List<RoomController>(level.unweighted_rooms);
             Vector2Int offset = Vector2Int.zero;
-
+            RoomController teleporter_room_controller = level.teleporter_rooms.GetRandom(rng);
             List<Vector2Int> possible_spaces = new List<Vector2Int>(adjacent_spaces);
             do {
                 next_space = possible_spaces[RNGSingleton.instance.room_gen_rng.GetInt(0, possible_spaces.Count)];
                 possible_spaces.Remove(next_space);
-                foreach (Vector2Int i in teleporter_room.GetLocalCoordinatesList().Shuffle(RNGSingleton.instance.room_gen_rng)) {
-                    if (RoomCanFit(teleporter_room, next_space + i)) {
+                foreach (Vector2Int i in teleporter_room_controller.room.GetLocalCoordinatesList().Shuffle(rng)) {
+                    if (RoomCanFit(teleporter_room_controller.room, next_space + i)) {
                         teleporter_room_placed = true;
                         offset = i;
                         break;
                     }
                 }
             } while (!teleporter_room_placed && possible_spaces.Count > 0);
-            if (!teleporter_room_placed) {
-                break;
+            if (teleporter_room_placed) {
+                InsertRoom(teleporter_room_controller, next_space + offset);
             } else {
-                InsertRoom(teleporter_room, next_space + offset);
+                Debug.LogError("No Suitable position for Teleporter Room");
             }
-        }
 
-        InsertRoom(boss_room, boss_room.size * -1);
+            RoomController boss_room_controller = level.boss_rooms.GetRandom(rng); 
+            InsertRoom(boss_room_controller, boss_room_controller.room.size * -1);
+        }
 
         return room_origins;
     }

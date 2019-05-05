@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomSpawner : MonoBehaviour {
 
-    [SerializeField] TileSet ts;
+    TileSet tile_set;
     [SerializeField] float room_width, room_height;
     [SerializeField] [Range(0, 1)] float mobility;
     [SerializeField] BossKeyPickup boss_key;
@@ -15,16 +15,11 @@ public class RoomSpawner : MonoBehaviour {
     BossRoomController boss_room_controller;
     TeleporterRoomController teleporter_room_controller;
 
-    private void Awake() {
-        positions_to_rooms = new Dictionary<Vector2Int, Room>();
-        adjacent_rooms = new Dictionary<Room, List<Room>>();
-        possible_neighbors = new Dictionary<Room.Section, List<Room.Section>>();
+    public void Generate(Dictionary<Vector2Int, RoomController> room_dict, RNG rng, TileSet ts) {
+        Clear();
 
-        rooms = new List<Room>();
-    }
-
-    public void Generate(Dictionary<Vector2Int, Room> room_dict) {
-        SpawnRooms(room_dict);
+        tile_set = ts;
+        SpawnRooms(room_dict, rng);
         foreach (Vector2Int v in positions_to_rooms.Keys) {
             FindPossibleNeighbors(v);
         }
@@ -47,12 +42,20 @@ public class RoomSpawner : MonoBehaviour {
         }
     }
 
-    void SpawnRooms(Dictionary<Vector2Int, Room> room_dict) {
+    public Dictionary<Room, List<Room>> GetNeighbors() {
+        return adjacent_rooms;
+    }
+
+    public Room GetOrigin() {
+        return positions_to_rooms[Vector2Int.zero];
+    }
+
+    void SpawnRooms(Dictionary<Vector2Int, RoomController> room_dict, RNG rng) {
         positions_to_rooms = new Dictionary<Vector2Int, Room>();
         List<Enemy> enemies = new List<Enemy>();
         foreach (Vector2Int v in room_dict.Keys) {
-            Room new_room = Instantiate(room_dict[v], new Vector3(v.x * room_width, v.y * room_height, 0), Quaternion.identity);
-            RoomController new_room_controller = new_room.GetComponent<RoomController>();
+            RoomController new_cont = Instantiate(room_dict[v], new Vector3(v.x * room_width, v.y * room_height, 0), Quaternion.identity);
+            Room new_room = new_cont.room;
             new_room.position = v;
             adjacent_rooms.Add(new_room, new List<Room>());
             foreach (Vector2Int pos in new_room.GetLocalCoordinatesList()) {
@@ -63,35 +66,35 @@ public class RoomSpawner : MonoBehaviour {
                     }
                 }
             }
-            new_room.LoadTileSet(ts);
-            new_room_controller.Init();
-            enemies.AddRange(new_room_controller.GetEnemies());
-            if (new_room_controller.room_type == RoomType.boss) {
-                boss_room_controller = new_room_controller as BossRoomController;
-            } else if (new_room_controller.room_type == RoomType.teleporter) {
-                teleporter_room_controller = new_room_controller as TeleporterRoomController;
+            new_room.LoadTileSet(tile_set);
+            new_cont.Init();
+            enemies.AddRange(new_cont.GetEnemies());
+            if (new_cont.room_type == RoomType.boss) {
+                boss_room_controller = new_cont as BossRoomController;
+            } else if (new_cont.room_type == RoomType.teleporter) {
+                teleporter_room_controller = new_cont as TeleporterRoomController;
             } else {
                 rooms.Add(new_room);
             }
         }
 
-        List<Room> can_spawn_item = new List<Room>(rooms);
-        int target_items = 3;
-        while (can_spawn_item.Count > 0 && target_items > 0) {
-            can_spawn_item.Shuffle();
-            ItemSpawner item_spawn = can_spawn_item[0].GetComponentInChildren<ItemSpawner>();
-            if (item_spawn == null) {
-                can_spawn_item.RemoveAt(0);
-            } else {
-                item_spawn.SpawnItemChest().SetSpawnItem(ItemListSingleton.instance.GetRandomItem(RNGSingleton.instance.item_rng));
-                target_items--;
-                can_spawn_item.RemoveAt(0);
-            }
-        }
+        //List<Room> can_spawn_item = new List<Room>(rooms);
+        //int target_items = 3;
+        //while (can_spawn_item.Count > 0 && target_items > 0) {
+        //    can_spawn_item.Shuffle();
+        //    ItemSpawner item_spawn = can_spawn_item[0].GetComponentInChildren<ItemSpawner>();
+        //    if (item_spawn == null) {
+        //        can_spawn_item.RemoveAt(0);
+        //    } else {
+        //        item_spawn.SpawnItemChest().SetSpawnItem(ItemListSingleton.instance.GetRandomItem(RNGSingleton.instance.item_rng));
+        //        target_items--;
+        //        can_spawn_item.RemoveAt(0);
+        //    }
+        //}
 
         if (boss_room_controller != null) {
             if (boss_room_controller != null) {
-                boss_room_controller.reward.SetSpawnItem(ItemListSingleton.instance.GetRandomItem(RNGSingleton.instance.item_rng));
+                boss_room_controller.reward.SetSpawnItem(ItemListSingleton.instance.GetRandomItem(rng));
             }
             if (teleporter_room_controller != null) {
                 boss_room_controller.teleporter.Link(teleporter_room_controller.teleporter);
@@ -101,13 +104,13 @@ public class RoomSpawner : MonoBehaviour {
             }
         }
 
-        enemies[RNGSingleton.instance.loot_rng.GetInt(0, enemies.Count)].AddDropOnDeath(boss_key);
+        enemies[rng.GetInt(0, enemies.Count)].AddDropOnDeath(boss_key);
 
-        foreach (Room r in rooms) {
-            foreach (ItemSpawner ispawn in r.GetComponentsInChildren<ItemSpawner>()) {
-                Destroy(ispawn.gameObject);
-            }
-        }
+        //foreach (Room r in rooms) {
+        //    foreach (ItemSpawner ispawn in r.GetComponentsInChildren<ItemSpawner>()) {
+        //        Destroy(ispawn.gameObject);
+        //    }
+        //}
     }
 
     void FindPossibleNeighbors(Vector2Int v) {
@@ -143,11 +146,15 @@ public class RoomSpawner : MonoBehaviour {
         return positions_to_rooms[v].GetSection(v - positions_to_rooms[v].position);
     }
 
-    public Dictionary<Room, List<Room>> GetNeighbors() {
-        return adjacent_rooms;
-    }
+    void Clear() {
+        positions_to_rooms = new Dictionary<Vector2Int, Room>();
+        adjacent_rooms = new Dictionary<Room, List<Room>>();
+        possible_neighbors = new Dictionary<Room.Section, List<Room.Section>>();
 
-    public Room GetOrigin() {
-        return positions_to_rooms[Vector2Int.zero];
+        rooms = new List<Room>();
+
+        boss_room_controller = null;
+        teleporter_room_controller = null;
+        tile_set = null;
     }
 }

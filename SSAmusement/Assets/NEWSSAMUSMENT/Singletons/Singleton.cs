@@ -5,6 +5,9 @@ using UnityEngine;
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
 
     static T _instance;
+    public static bool has_instance {
+        get { return _instance != null; }
+    }
     public static T instance {
         get {
             if (_instance == null)
@@ -16,9 +19,9 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
 
 
     void Awake() {
-        if (_instance == null) {
+        if (_instance == null) {            
             instance = GetComponent<T>();
-            DontDestroyOnLoad(instance);
+            DontDestroyOnLoad(instance.transform.root);
             OnAwake();
         } else {
             Destroy(gameObject);
@@ -26,8 +29,4 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
     }
 
     protected virtual void OnAwake() { }
-
-    //public static implicit operator T (Singleton<T> singleton) {
-    //    return instance;
-    //}
 }

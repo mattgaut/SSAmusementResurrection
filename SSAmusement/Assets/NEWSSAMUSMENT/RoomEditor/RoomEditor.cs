@@ -12,7 +12,7 @@ public class RoomEditor : MonoBehaviour {
     [SerializeField] RoomSet _edited_room_set;
 
     [SerializeField] Tile square, upward, downward, platform;
-    [SerializeField] LevelSet level_set;
+    [SerializeField] LevelAesthetics level_set;
 
     TileType current_tile_type;
 
@@ -23,9 +23,9 @@ public class RoomEditor : MonoBehaviour {
         get { return _edited_room_set; }
     }
 
-    public LevelSet current_level_set { get { return level_set; } }
+    public LevelAesthetics current_level_set { get { return level_set; } }
 
-    public void SetLevelSet(LevelSet level_set) {
+    public void SetLevelSet(LevelAesthetics level_set) {
         this.level_set = level_set;
         background.sprite = level_set.background;
 

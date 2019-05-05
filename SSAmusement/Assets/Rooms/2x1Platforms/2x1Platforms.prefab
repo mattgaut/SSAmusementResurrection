@@ -513,6 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: befddd11eb8a110438e11a93a78111d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _room: {fileID: 7913962}
   room_sets:
   - {fileID: 986377081781353221, guid: b69618f72cbbe9f4aafdbee16fccbf66, type: 3}
   - {fileID: 986377081781353221, guid: fcc54a7db5ae2c0408de13447ecb8470, type: 3}

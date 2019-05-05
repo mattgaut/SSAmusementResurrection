@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "LevelSet", menuName = "ScriptableObjects/LevelSetObject", order = 1)]
-public class LevelSet : ScriptableObject {
+[CreateAssetMenu(fileName = "LevelAesthetics", menuName = "ScriptableObjects/LevelAesthetics", order = 1)]
+public class LevelAesthetics : ScriptableObject {
 
     [SerializeField] TileSet _tile_set;
     [SerializeField] Sprite _background;

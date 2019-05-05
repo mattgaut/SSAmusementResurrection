@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6828b0b915902d4b86dd47567c77238, type: 3}
-  m_Name: InnardsLevelSet
+  m_Name: BuffetLevelAesthetics
   m_EditorClassIdentifier: 
-  _tile_set: {fileID: 114390978020554818, guid: 3a7a9bdd4b186fe48ae1f44c56b12510,
+  _tile_set: {fileID: 114390978020554818, guid: 0db5b36e6a2809f4e8cf52a9ee1cd446,
     type: 3}
-  _background: {fileID: 21300000, guid: 528bec40a301662439b426dc0a99a04b, type: 3}
+  _background: {fileID: 21300000, guid: 6eb9e227412e60543881f230409ea618, type: 3}

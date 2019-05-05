@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd164e027d427f49a6cb343cb28426b, type: 3}
+  m_Name: BuffetLevel
+  m_EditorClassIdentifier: 
+  _level_name: Buffet
+  set: {fileID: 11400000, guid: 06c2fe7b75cdbf747a74a23a594c96cd, type: 2}
+  _spawn_room: {fileID: 5189522555062558611, guid: 0f8592f659b9a0e48875f5bd946a9148,
+    type: 3}
+  _unweighted_rooms:
+  - {fileID: 6097406021726078476, guid: 204011fb791c59a45bc1b7c8d6878780, type: 3}
+  - {fileID: 7151414158730367279, guid: b512f8135d57ef744ba6de351b60b9dc, type: 3}
+  - {fileID: 6479971867968841806, guid: f7164cf6bdbedba48bb15e70a27665c9, type: 3}
+  - {fileID: 8025569430263598289, guid: 2c8c10560a7b35b4fa383e909de1257c, type: 3}
+  - {fileID: 6738016568899805712, guid: c8e39940048d910469d3357eb595c496, type: 3}
+  - {fileID: 8025569430263598289, guid: 5f6b6010ec01512428443ba1eb06e7f1, type: 3}
+  - {fileID: 5189522555062558611, guid: 0f8592f659b9a0e48875f5bd946a9148, type: 3}
+  - {fileID: 4457115218438025703, guid: d58fafb8039d75d49866e04b10e71ed6, type: 3}
+  _boss_rooms:
+  - {fileID: 8831496457862234096, guid: 22804b2e181af044b9022bfa75c3269d, type: 3}
+  _teleporter_rooms:
+  - {fileID: 847591222282362295, guid: 0f552b8b7f84cce409f4c38a22791584, type: 3}
+  _shop_rooms:
+    use_range: 0
+    fixed_number: 1
+    min: 1
+    max: 7
+    avg: 4
+    _rooms:
+    - {fileID: 4514925430453041600, guid: 971034f94f3303745b8089d0d29c2c29, type: 3}

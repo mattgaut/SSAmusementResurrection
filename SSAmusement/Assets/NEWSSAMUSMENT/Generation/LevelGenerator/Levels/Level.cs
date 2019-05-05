@@ -2,32 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "LevelGenParameters", menuName = "ScriptableObjects/LevelParameters", order = 2)]
-public class LevelParameters : ScriptableObject {
+[CreateAssetMenu(fileName = "Level", menuName = "ScriptableObjects/Level", order = 2)]
+public class Level : ScriptableObject {
 
     public string level_name {
         get { return _level_name; }
     }
 
-    public IEnumerable<RoomController> unweighted_rooms {
+    public ICollection<RoomController> unweighted_rooms {
         get { return _unweighted_rooms; }
     }
-
-    public IEnumerable<BossRoomController> boss_rooms {
+    public RoomController spawn_room {
+        get { return _spawn_room; }
+    }
+    public ICollection<BossRoomController> boss_rooms {
         get { return _boss_rooms; }
+    }
+    public ICollection<TeleporterRoomController> teleporter_rooms {
+        get { return _teleporter_rooms; }
+    }
+    public WeightedRoomGroup shop_rooms {
+        get { return _shop_rooms; }
+    }
+    public LevelAesthetics level_set {
+        get { return set; }
     }
 
     [SerializeField] string _level_name;
-    [SerializeField] LevelSet set;
+    [SerializeField] LevelAesthetics set;
+    [SerializeField] RoomController _spawn_room;
     [SerializeField] List<RoomController> _unweighted_rooms;
     [SerializeField] List<BossRoomController> _boss_rooms;
+    [SerializeField] List<TeleporterRoomController> _teleporter_rooms;
     [SerializeField] WeightedRoomGroup _shop_rooms;
 
     [System.Serializable]
     public class WeightedRoomGroup : ISerializationCallbackReceiver {
 
-        public IEnumerable<RoomController> rooms {
-            get { return rooms; }
+        public ICollection<RoomController> rooms {
+            get { return _rooms; }
         }
 
         [SerializeField] bool use_range;
