@@ -29,8 +29,8 @@ public class ShapeGenerator : LevelGenerator {
                 Vector2Int position = possible_spaces[position_index];
                 possible_spaces.RemoveAt(position_index);
 
-                if (RoomCanFit(cont.room, position)) {
-                    InsertRoom(cont, position);
+                if (IslandCanFit(cont.room, position)) {
+                    InsertIsland(cont, position);
                     shop_count--;
                     if (shop_count <= 0) {
                         break;

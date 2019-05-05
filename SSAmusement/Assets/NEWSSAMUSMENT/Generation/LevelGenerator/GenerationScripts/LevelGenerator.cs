@@ -7,19 +7,32 @@ public abstract class LevelGenerator : MonoBehaviour {
     protected Dictionary<Vector2Int, Room.Section> tiles;
     protected Dictionary<Vector2Int, RoomController> room_origins;
     protected HashSet<Vector2Int> available_spaces;
-    protected List<Vector2Int> adjacent_spaces;
+    protected HashSet<Vector2Int> adjacent_spaces;
+
+    Dictionary<Vector2Int, Island> islands;
 
     protected virtual void Clear() {
         tiles = new Dictionary<Vector2Int, Room.Section>();
+        islands = new Dictionary<Vector2Int, Island>();
         available_spaces = new HashSet<Vector2Int>();
         room_origins = new Dictionary<Vector2Int, RoomController>();
-        adjacent_spaces = new List<Vector2Int>();
+        adjacent_spaces = new HashSet<Vector2Int>();
     }
 
     public Dictionary<Vector2Int, RoomController> GenerateLevel(Level level, RNG rng) {
         Clear();
 
-        return Generate(level, rng);
+        var ret = Generate(level, rng);
+
+
+        //TODO Look into ways to remove islands from generation
+        if (islands.Count > 0) {
+            foreach (Island i in islands.Values) {
+                ret.Remove(i.origin);
+            }
+        }
+
+        return ret;
     }
 
     protected abstract Dictionary<Vector2Int, RoomController> Generate(Level level, RNG rng);
@@ -29,44 +42,96 @@ public abstract class LevelGenerator : MonoBehaviour {
         foreach (Vector2Int local_position in cont.room.GetLocalCoordinatesList()) {
             Room.Section section = cont.room.GetSection(local_position);
             tiles.Add(position + local_position, section);
-            if (available_spaces.Contains(position + local_position)) {
-                available_spaces.Remove(position + local_position);
-            }
-            adjacent_spaces.Remove(position);
+            available_spaces.Remove(position + local_position);
+            adjacent_spaces.Remove(position + local_position);
 
-
-            Vector2Int pos = local_position + position + Vector2Int.down;
-            if (section.HasOpenableDoorway(Direction.BOTTOM) && !tiles.ContainsKey(pos) && !adjacent_spaces.Contains(pos)) {
-                adjacent_spaces.Add(pos);
-            }
-            pos = local_position + position + Vector2Int.up;
-            if (section.HasOpenableDoorway(Direction.TOP) && !tiles.ContainsKey(pos) && !adjacent_spaces.Contains(pos)) {
-                adjacent_spaces.Add(pos);
-            }
-            pos = local_position + position + Vector2Int.left;
-            if (section.HasOpenableDoorway(Direction.LEFT) && !tiles.ContainsKey(pos) && !adjacent_spaces.Contains(pos)) {
-                adjacent_spaces.Add(pos);
-            }
-            pos = local_position + position + Vector2Int.right;
-            if (section.HasOpenableDoorway(Direction.RIGHT) && !tiles.ContainsKey(pos) && !adjacent_spaces.Contains(pos)) {
-                adjacent_spaces.Add(pos);
-            }
-
+            UpdateAdjacentSpaces(section, local_position + position);
         }
     }
 
-    protected bool RoomCanFit(Room r, Vector2Int position) {
-        foreach (Vector2Int local_position in r.GetLocalCoordinatesList()) {
-            if (tiles.ContainsKey(position + local_position)) {
+    protected virtual void InsertIsland(RoomController cont, Vector2Int position) {
+        room_origins.Add(position, cont);
+        bool is_true_island = true;
+        foreach (Vector2Int local_position in cont.room.GetLocalCoordinatesList()) {
+            Room.Section section = cont.room.GetSection(local_position);
+            islands.Add(position + local_position, new Island(position, section));
+            available_spaces.Remove(position + local_position);
+            adjacent_spaces.Remove(position + local_position);
+
+            Vector2Int pos = local_position + position + Vector2Int.down;
+            if (section.HasOpenableDoorway(Direction.BOTTOM) && tiles.ContainsKey(pos) && tiles[pos].HasOpenableDoorway(Direction.TOP)) {
+                is_true_island = false;
+                break;
+            }
+            pos = local_position + position + Vector2Int.up;
+            if (section.HasOpenableDoorway(Direction.TOP) && tiles.ContainsKey(pos) && tiles[pos].HasOpenableDoorway(Direction.BOTTOM)) {
+                is_true_island = false;
+                break;
+            }
+            pos = local_position + position + Vector2Int.left;
+            if (section.HasOpenableDoorway(Direction.LEFT) && tiles.ContainsKey(pos) && tiles[pos].HasOpenableDoorway(Direction.RIGHT)) {
+                is_true_island = false;
+                break;
+            }
+            pos = local_position + position + Vector2Int.right;
+            if (section.HasOpenableDoorway(Direction.RIGHT) && tiles.ContainsKey(pos) && tiles[pos].HasOpenableDoorway(Direction.LEFT)) {
+                is_true_island = false;
+                break;
+            }
+        }
+        if (!is_true_island) {
+            ConvertIsland(position);
+        }
+    }
+
+    protected virtual void ConvertIsland(Vector2Int position) {
+        Room room = islands[position].section.room;
+        position = islands[position].origin;
+        foreach (Vector2Int local_position in room.GetLocalCoordinatesList()) {
+            Room.Section section = room.GetSection(local_position);
+            islands.Remove(position + local_position);
+            tiles.Add(position + local_position, section);
+            adjacent_spaces.Remove(position + local_position);
+
+            UpdateAdjacentSpaces(section, local_position + position);
+        }
+    }
+
+    /// <summary>
+    /// Checks if room can fit and has something to connect to
+    /// </summary>
+    /// <param name="room"></param>
+    /// <param name="position"></param>
+    /// <returns></returns>
+    protected bool RoomCanFit(Room room, Vector2Int position) {
+        foreach (Vector2Int local_position in room.GetLocalCoordinatesList()) {
+            if (tiles.ContainsKey(position + local_position) || islands.ContainsKey(position + local_position)) {
                 return false;
             }
         }
-        foreach (Vector2Int local_position in r.GetLocalCoordinatesList()) {
-            if (SectionConnects(r.GetSection(local_position), position + local_position)) {
+        foreach (Vector2Int local_position in room.GetLocalCoordinatesList()) {
+            if (SectionConnects(room.GetSection(local_position), position + local_position)) {
                 return true;
             }
         }
         return false;
+    }
+
+    /// <summary>
+    /// Checks if a room can fit in the position
+    /// If room can not freely connect through every doorway may
+    /// not be able to be reached
+    /// </summary>
+    /// <param name="room"></param>
+    /// <param name="position"></param>
+    /// <returns></returns>
+    protected bool IslandCanFit(Room room, Vector2Int position) {
+        foreach (Vector2Int local_position in room.GetLocalCoordinatesList()) {
+            if (tiles.ContainsKey(position + local_position) || islands.ContainsKey(position + local_position)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     protected bool SectionConnects(Room.Section section, Vector2Int position) {
@@ -85,7 +150,52 @@ public abstract class LevelGenerator : MonoBehaviour {
         return false;
     }
 
+    void UpdateAdjacentSpaces(Room.Section section, Vector2Int position) {
+        Vector2Int pos = position + Vector2Int.down;
+        if (section.HasOpenableDoorway(Direction.BOTTOM) && !tiles.ContainsKey(pos)) {
+            if (islands.ContainsKey(pos)) {
+                ConvertIsland(islands[pos].origin);
+            } else {
+                adjacent_spaces.Add(pos);
+            }
+        }
+        pos = position + Vector2Int.up;
+        if (section.HasOpenableDoorway(Direction.TOP) && !tiles.ContainsKey(pos)) {
+            if (islands.ContainsKey(pos)) {
+                ConvertIsland(islands[pos].origin);
+            } else {
+                adjacent_spaces.Add(pos);
+            }
+        }
+        pos = position + Vector2Int.left;
+        if (section.HasOpenableDoorway(Direction.LEFT) && !tiles.ContainsKey(pos)) {
+            if (islands.ContainsKey(pos)) {
+                ConvertIsland(islands[pos].origin);
+            } else {
+                adjacent_spaces.Add(pos);
+            }
+        }
+        pos = position + Vector2Int.right;
+        if (section.HasOpenableDoorway(Direction.RIGHT) && !tiles.ContainsKey(pos)) {
+            if (islands.ContainsKey(pos)) {
+                ConvertIsland(islands[pos].origin);
+            } else {
+                adjacent_spaces.Add(pos);
+            }
+        }
+    }
+
     public RoomController GetInitialRoom() {
         return room_origins[Vector2Int.zero];
+    }
+
+    class Island {
+        public Vector2Int origin;
+        public Room.Section section;
+
+        public Island(Vector2Int origin, Room.Section section) {
+            this.origin = origin;
+            this.section = section;
+        }
     }
 }
