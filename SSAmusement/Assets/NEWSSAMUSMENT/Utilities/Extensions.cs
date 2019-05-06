@@ -114,6 +114,11 @@ public static class Extension {
         return true;
     }
 
+    /// <summary>
+    /// Get IEnumerable that iterates through the cardinal directions adjacent to vector
+    /// </summary>
+    /// <param name="vector"></param>
+    /// <returns>IEnumerable of Vector2Ints adjacent to vector</returns>
     public static IEnumerable<Vector2Int> GetNeighbors(this Vector2Int vector) {
         yield return vector + Vector2Int.up;
         yield return vector + Vector2Int.right;
@@ -121,6 +126,12 @@ public static class Extension {
         yield return vector + Vector2Int.left;
     }
 
+    /// <summary>
+    /// Get IEnumerable that iterates through the cardinal directions adjacent to vector
+    /// and attaches a Direction enum indicating which direction they could go
+    /// </summary>
+    /// <param name="vector"></param>
+    /// <returns>IEnumerable of pair values where first value is Vector2Int and second value is direction</returns>
     public static IEnumerable<Pair<Vector2Int, Direction>> GetNeighborsWithDirection(this Vector2Int vector) {
         yield return new Pair<Vector2Int, Direction>(vector + Vector2Int.up, Direction.TOP);
         yield return new Pair<Vector2Int, Direction>(vector + Vector2Int.right, Direction.RIGHT);

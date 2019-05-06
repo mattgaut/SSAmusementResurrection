@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// enum of cardinal directions. negative value is equal to opposite Direction
+/// </summary>
 public enum Direction { TOP = 1, BOTTOM = -1, LEFT = -2, RIGHT = 2 }
 
 public enum RoomType { basic, boss, shop, teleporter }
