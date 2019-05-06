@@ -39,6 +39,30 @@ public class ShapeGenerator : LevelGenerator {
             }
         }
 
+        if (level.boss_rooms.Count > 0 && level.teleporter_rooms.Count > 0) {
+            bool teleporter_room_placed = false;
+            RoomController teleporter_room_controller = level.teleporter_rooms.GetRandom(rng);
+            List<Vector2Int> possible_spaces = new List<Vector2Int>(available_spaces);
+            while (possible_spaces.Count > 0) {
+
+                int position_index = rng.GetInt(0, possible_spaces.Count);
+                Vector2Int position = possible_spaces[position_index];
+                possible_spaces.RemoveAt(position_index);
+
+                if (IslandCanFit(teleporter_room_controller.room, position)) {
+                    InsertIsland(teleporter_room_controller, position);
+                    teleporter_room_placed = true;
+                    break;
+                }
+            }
+            if (!teleporter_room_placed) {
+                Debug.LogError("No Suitable position for Teleporter Room");
+            }
+
+            RoomController boss_room_controller = level.boss_rooms.GetRandom(rng);
+            InsertRoom(boss_room_controller, boss_room_controller.room.size * -1);
+        }
+
         while ((float)available_spaces.Count / shape_blocks.Count > (1 - fill)) {
             Vector2Int next_space;
             RoomController cont;
@@ -68,34 +92,6 @@ public class ShapeGenerator : LevelGenerator {
             } else
                 InsertRoom(cont, next_space + offset);
         }
-
-        if (level.boss_rooms.Count > 0 && level.teleporter_rooms.Count > 0) {
-            bool teleporter_room_placed = false;
-            Vector2Int next_space;
-            List<RoomController> remaining_rooms = new List<RoomController>(level.unweighted_rooms);
-            Vector2Int offset = Vector2Int.zero;
-            RoomController teleporter_room_controller = level.teleporter_rooms.GetRandom(rng);
-            List<Vector2Int> possible_spaces = new List<Vector2Int>(adjacent_spaces);
-            do {
-                next_space = possible_spaces[RNGSingleton.instance.room_gen_rng.GetInt(0, possible_spaces.Count)];
-                possible_spaces.Remove(next_space);
-                foreach (Vector2Int i in teleporter_room_controller.room.GetLocalCoordinatesList().Shuffle(rng)) {
-                    if (RoomCanFit(teleporter_room_controller.room, next_space + i)) {
-                        teleporter_room_placed = true;
-                        offset = i;
-                        break;
-                    }
-                }
-            } while (!teleporter_room_placed && possible_spaces.Count > 0);
-            if (teleporter_room_placed) {
-                InsertRoom(teleporter_room_controller, next_space + offset);
-            } else {
-                Debug.LogError("No Suitable position for Teleporter Room");
-            }
-
-            RoomController boss_room_controller = level.boss_rooms.GetRandom(rng); 
-            InsertRoom(boss_room_controller, boss_room_controller.room.size * -1);
-        }
     }
 
     protected override void HandleIslands(HashSet<Island> islands, RNG rng) {
@@ -103,16 +99,18 @@ public class ShapeGenerator : LevelGenerator {
             List<Vector2Int> possible_spaces = new List<Vector2Int>(adjacent_spaces);
             possible_spaces.Shuffle(rng);
 
-            while (possible_spaces.Count > 0) {
-                Vector2Int pos = possible_spaces[0];
-                possible_spaces.RemoveAt(0);
+            bool place_found = false;
+            while (possible_spaces.Count > 0 && !place_found) {
+                int index = rng.GetInt(0, possible_spaces.Count);
+                Vector2Int pos = possible_spaces[index];
+                possible_spaces.RemoveAt(index);
                 if (RoomCanFit(island.room, pos)) {
                     InsertRoom(island.cont, pos);
-                    break;
+                    place_found = true;
                 }
             }
 
-            Debug.LogError("Failed to find place for island: " + island.cont);
+            if (!place_found) Debug.LogError("Failed to find place for island: " + island.cont);
         }
     }
 
