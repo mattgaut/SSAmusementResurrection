@@ -22,20 +22,31 @@ public abstract class LevelGenerator : MonoBehaviour {
     public Dictionary<Vector2Int, RoomController> GenerateLevel(Level level, RNG rng) {
         Clear();
 
-        var ret = Generate(level, rng);
+        Generate(level, rng);
 
 
-        //TODO Look into ways to remove islands from generation
-        if (islands.Count > 0) {
-            foreach (Island i in islands.Values) {
-                ret.Remove(i.origin);
+
+        HashSet<Island> unique_islands = new HashSet<Island>();
+        foreach (Island i in islands.Values) {
+            if (room_origins.Remove(i.origin)) {
+                unique_islands.Add(i);
+                foreach (Vector2Int pos in i.room.GetLocalCoordinatesList()) {
+                    available_spaces.Add(i.origin + pos);
+                    if (HasViableNeighbor(i.origin + pos)) {
+                        adjacent_spaces.Add(i.origin + pos);
+                    }
+                }
             }
         }
 
-        return ret;
+        HandleIslands(unique_islands, rng);
+
+        return room_origins;
     }
 
-    protected abstract Dictionary<Vector2Int, RoomController> Generate(Level level, RNG rng);
+    protected abstract void Generate(Level level, RNG rng);
+
+    protected abstract void HandleIslands(HashSet<Island> islands, RNG rng);
 
     protected virtual void InsertRoom(RoomController cont, Vector2Int position) {
         room_origins.Add(position, cont);
@@ -54,7 +65,7 @@ public abstract class LevelGenerator : MonoBehaviour {
         bool is_true_island = true;
         foreach (Vector2Int local_position in cont.room.GetLocalCoordinatesList()) {
             Room.Section section = cont.room.GetSection(local_position);
-            islands.Add(position + local_position, new Island(position, section));
+            islands.Add(position + local_position, new Island(position, cont));
             available_spaces.Remove(position + local_position);
             adjacent_spaces.Remove(position + local_position);
 
@@ -85,7 +96,7 @@ public abstract class LevelGenerator : MonoBehaviour {
     }
 
     protected virtual void ConvertIsland(Vector2Int position) {
-        Room room = islands[position].section.room;
+        Room room = islands[position].room;
         position = islands[position].origin;
         foreach (Vector2Int local_position in room.GetLocalCoordinatesList()) {
             Room.Section section = room.GetSection(local_position);
@@ -185,17 +196,31 @@ public abstract class LevelGenerator : MonoBehaviour {
         }
     }
 
+    bool HasViableNeighbor(Vector2Int vector) {
+        foreach (var pair in vector.GetNeighborsWithDirection()) {
+            if (tiles.ContainsKey(pair.first)) {
+                if (tiles[pair.first].HasOpenableDoorway((Direction)(-(int)pair.second))) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public RoomController GetInitialRoom() {
         return room_origins[Vector2Int.zero];
     }
 
-    class Island {
+    protected class Island {
         public Vector2Int origin;
-        public Room.Section section;
+        public RoomController cont;
+        public Room room {
+            get { return cont.room; }
+        }
 
-        public Island(Vector2Int origin, Room.Section section) {
+        public Island(Vector2Int origin, RoomController cont) {
             this.origin = origin;
-            this.section = section;
+            this.cont = cont;
         }
     }
 }

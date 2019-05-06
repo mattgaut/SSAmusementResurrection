@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 
 public static class Extension {
 
@@ -111,5 +112,19 @@ public static class Extension {
         list.Insert(index_to, to_move);
 
         return true;
+    }
+
+    public static IEnumerable<Vector2Int> GetNeighbors(this Vector2Int vector) {
+        yield return vector + Vector2Int.up;
+        yield return vector + Vector2Int.right;
+        yield return vector + Vector2Int.down;
+        yield return vector + Vector2Int.left;
+    }
+
+    public static IEnumerable<Pair<Vector2Int, Direction>> GetNeighborsWithDirection(this Vector2Int vector) {
+        yield return new Pair<Vector2Int, Direction>(vector + Vector2Int.up, Direction.TOP);
+        yield return new Pair<Vector2Int, Direction>(vector + Vector2Int.right, Direction.RIGHT);
+        yield return new Pair<Vector2Int, Direction>(vector + Vector2Int.down, Direction.BOTTOM);
+        yield return new Pair<Vector2Int, Direction>(vector + Vector2Int.left, Direction.LEFT);
     }
 }

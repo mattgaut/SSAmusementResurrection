@@ -104,7 +104,14 @@ public class RoomSpawner : MonoBehaviour {
             }
         }
 
-        enemies[rng.GetInt(0, enemies.Count)].AddDropOnDeath(boss_key);
+        if (enemies.Count > 0) {
+            enemies[rng.GetInt(0, enemies.Count)].AddDropOnDeath(boss_key);
+        } else {
+            if (teleporter_room_controller != null) {
+                teleporter_room_controller.teleporter.SetOpen(true);
+            }
+        }
+
 
         //foreach (Room r in rooms) {
         //    foreach (ItemSpawner ispawn in r.GetComponentsInChildren<ItemSpawner>()) {

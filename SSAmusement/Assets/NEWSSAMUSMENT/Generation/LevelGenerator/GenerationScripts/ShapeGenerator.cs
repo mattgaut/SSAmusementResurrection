@@ -8,7 +8,7 @@ public class ShapeGenerator : LevelGenerator {
     [SerializeField] [Range(0, 1)] float fill;
     [SerializeField] [Range(3, 20)] int blocks_x, blocks_y;
 
-    protected override Dictionary<Vector2Int, RoomController> Generate(Level level, RNG rng) {
+    protected override void Generate(Level level, RNG rng) {
         GenerateShapes();
         available_spaces = new HashSet<Vector2Int>(shape_blocks);
         InsertRoom(level.spawn_room, Vector2Int.zero);
@@ -96,8 +96,24 @@ public class ShapeGenerator : LevelGenerator {
             RoomController boss_room_controller = level.boss_rooms.GetRandom(rng); 
             InsertRoom(boss_room_controller, boss_room_controller.room.size * -1);
         }
+    }
 
-        return room_origins;
+    protected override void HandleIslands(HashSet<Island> islands, RNG rng) {
+        foreach (Island island in islands) {
+            List<Vector2Int> possible_spaces = new List<Vector2Int>(adjacent_spaces);
+            possible_spaces.Shuffle(rng);
+
+            while (possible_spaces.Count > 0) {
+                Vector2Int pos = possible_spaces[0];
+                possible_spaces.RemoveAt(0);
+                if (RoomCanFit(island.room, pos)) {
+                    InsertRoom(island.cont, pos);
+                    break;
+                }
+            }
+
+            Debug.LogError("Failed to find place for island: " + island.cont);
+        }
     }
 
     void GenerateShapes() {
