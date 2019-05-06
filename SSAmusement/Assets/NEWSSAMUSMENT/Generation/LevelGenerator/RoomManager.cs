@@ -10,8 +10,10 @@ public class RoomManager : MonoBehaviour {
 
     public RoomController active { get; private set; }
 
+    [SerializeField] SpriteRenderer background_prefab;
     [SerializeField] List<GameObject> objects_to_center_on_active_room;
     List<GameObject> loaded_backgrounds;
+    SpriteRenderer main_background;
     Dictionary<Room, List<Room>> rooms;
 
     private void Awake() {
@@ -22,11 +24,13 @@ public class RoomManager : MonoBehaviour {
         }
     }
 
-    public void LoadBackgrounds() {
+    public void LoadBackgrounds(Sprite background) {
         loaded_backgrounds = new List<GameObject>();
         foreach (GameObject go in objects_to_center_on_active_room) {
             loaded_backgrounds.Add(Instantiate(go));
         }
+        main_background = Instantiate(background_prefab, Vector3.zero, Quaternion.identity);
+        main_background.sprite = background;
     }
 
     public void SetRooms(Dictionary<Room, List<Room>> rooms) {

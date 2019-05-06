@@ -216,6 +216,11 @@ PrefabInstance:
       propertyPath: possible_pickups.Array.data[7]._chance_per_roll
       value: 0.025
       objectReference: {fileID: 0}
+    - target: {fileID: 4753337269797124211, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: start_game_on_start
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6168822246216961477, guid: 06f08f6c2bb72f3478d34895e46a967b,
         type: 3}
       propertyPath: on_pause.m_PersistentCalls.m_Calls.Array.size
@@ -245,16 +250,6 @@ PrefabInstance:
         type: 3}
       propertyPath: on_select.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4753337269797124211, guid: 06f08f6c2bb72f3478d34895e46a967b,
-        type: 3}
-      propertyPath: start_game_on_start
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7420271915128496320, guid: 06f08f6c2bb72f3478d34895e46a967b,
-        type: 3}
-      propertyPath: fill
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}

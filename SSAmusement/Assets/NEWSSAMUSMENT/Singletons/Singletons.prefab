@@ -111,6 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b23abfd2206fbb746a405d8f7558be08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  background_prefab: {fileID: 5781715100237972895, guid: d976d7b4a6533a445850260910ab2fd0,
+    type: 3}
   objects_to_center_on_active_room:
   - {fileID: 1760262429862262, guid: 5fbac788b4362b74d81b2b91a5a7400b, type: 3}
 --- !u!1 &4727880421587381436
@@ -170,6 +172,7 @@ MonoBehaviour:
   - {fileID: 9175813155693695719, guid: ef0a001c8cf0ae84fa9fb3663b630293, type: 3}
   - {fileID: 918683328654682857, guid: d814e338cacc2d341a7c7eb5827c79c7, type: 3}
   - {fileID: 9175813155693695719, guid: f3f5a1061c51e28479231354e75beca4, type: 3}
+  - {fileID: 918683328654682857, guid: 58a1d52c6c8f0914ea6eebeafd64aa60, type: 3}
 --- !u!114 &4727880421587381437
 MonoBehaviour:
   m_ObjectHideFlags: 0

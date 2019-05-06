@@ -160,7 +160,7 @@ public class GameManager : Singleton<GameManager> {
 
         var ret = level_generator.GenerateLevel(level, RNGSingleton.instance.room_gen_rng);
         room_spawner.Generate(ret, RNGSingleton.instance.loot_rng, level.level_set.tile_set);
-        room_manager.LoadBackgrounds();
+        room_manager.LoadBackgrounds(level.level_set.background);
         room_manager.SetRooms(room_spawner.GetNeighbors());
         room_manager.SetActiveRoom(room_spawner.GetOrigin().GetComponent<RoomController>());
 
