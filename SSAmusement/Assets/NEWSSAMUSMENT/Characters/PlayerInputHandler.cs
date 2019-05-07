@@ -90,7 +90,7 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
 
         if (!jumping) gravity_force.y += gravity * Time.deltaTime;
 
-        if (player.anti_grav) { gravity_force.y = 0; }
+        if (player.anti_gravity) { gravity_force.y = 0; }
 
         if (player.CheckCancelVelocityFlag()) {
             velocity = Vector3.zero;

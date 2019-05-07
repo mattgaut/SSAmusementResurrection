@@ -121,7 +121,7 @@ MonoBehaviour:
   _ability_name: Fire
   _icon: {fileID: 0}
   _energy_cost: 0
-  _cooldown: 0.2
+  _cooldown: 5
   events:
     _on_begin_cooldown:
       m_PersistentCalls:

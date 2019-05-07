@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 
 /// <summary>
 /// Base class for Characters in the game.
@@ -59,20 +60,17 @@ public class Character : MonoBehaviour, ICombatant {
         get { return alive && !is_knocked_back; }
     }
     public bool can_move {
-        get { return movement_locks == 0; }
-    }
-    public int movement_locks {
-        get; private set;
+        get { return movement_lock.unlocked; }
     }
     public bool cancel_velocity {
         get; private set;
     }
-    public int anti_grav_locks {
-        get; private set;
+    public bool anti_gravity {
+        get { return anti_gravity_lock.unlocked; }
     }
-    public bool anti_grav {
-        get { return anti_grav_locks > 0; }
-    }
+
+    protected Semaphore movement_lock;
+    protected Semaphore anti_gravity_lock;
 
     protected List<OnHitCallback> on_hits;
     protected List<OnKillCallback> on_kills;
@@ -254,27 +252,24 @@ public class Character : MonoBehaviour, ICombatant {
         cancel_velocity = true;
     }
 
-
-    // TODO: Make Locks give and require code when locking and unlocking
-
     /// <summary>
     /// Adds lock to character movement
     /// </summary>
-    public void LockMovement() { movement_locks++; }
+    public int LockMovement() { return movement_lock.AddLock(); }
     /// <summary>
     /// Removes lock from character movement
     /// </summary>
-    public void UnlockMovement() { movement_locks--; }
+    public bool UnlockMovement(int lock_value) { return movement_lock.RemoveLock(lock_value); }
 
     /// <summary>
     /// Adds lock to character gravity
     /// </summary>
-    public void LockGravity() { anti_grav_locks++; }
+    public int LockGravity() { return anti_gravity_lock.AddLock(); }
 
     /// <summary>
     /// Removes lock from character gravity
     /// </summary>
-    public void UnlockGravity() { anti_grav_locks--; }
+    public bool UnlockGravity(int lock_value) { return anti_gravity_lock.RemoveLock(lock_value); }
 
     /// <summary>
     /// Adds OnKillCallback to character
@@ -318,6 +313,9 @@ public class Character : MonoBehaviour, ICombatant {
         on_take_damages = new List<OnTakeDamage>();
 
         alive = true;
+
+        movement_lock = new Semaphore();
+        anti_gravity_lock = new Semaphore();
 
         OnAwake();
     }

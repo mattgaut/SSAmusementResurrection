@@ -3993,15 +3993,10 @@ PrefabInstance:
       propertyPath: active_on_start
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8964366808274051818, guid: ca2aa5fb7a9e5e04496370289338821b,
-        type: 3}
-      propertyPath: _char_definition._health.base_value
-      value: 80000
-      objectReference: {fileID: 0}
     - target: {fileID: 1024881582007325149, guid: ca2aa5fb7a9e5e04496370289338821b,
         type: 3}
       propertyPath: _cooldown
-      value: 0.2
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca2aa5fb7a9e5e04496370289338821b, type: 3}

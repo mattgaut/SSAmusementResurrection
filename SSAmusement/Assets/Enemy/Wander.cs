@@ -15,7 +15,6 @@ public class Wander : GroundedEnemyHandler {
         return false;
     }
 
-    // TODO Update TO State Machine
     protected IEnumerator AIRoutine() {
         if (get_mad) enemy.animator.SetTrigger("Mad");
         while (true) {
