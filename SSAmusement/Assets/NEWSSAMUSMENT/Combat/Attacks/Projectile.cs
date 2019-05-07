@@ -5,12 +5,18 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Projectile : MonoBehaviour {
 
+    public SingleHitAttack attached_attack {
+        get { return attack; }
+    }
+
     [SerializeField] protected LayerMask break_mask, always_break_mask;
     [SerializeField] protected float speed, ignore_wall_timer, max_lifetime;
 
     [SerializeField] protected Vector3 base_direction;
 
     [SerializeField] ParticleSystem particles;
+
+    [SerializeField] protected SingleHitAttack attack;
 
     Animator anim;
     Rigidbody2D rb;

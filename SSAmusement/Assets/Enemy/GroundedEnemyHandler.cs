@@ -5,6 +5,7 @@ using UnityEngine;
 public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
 
     [SerializeField] GameObject flip_object;
+    [SerializeField] [Range(-1, 1)] int base_facing;
 
     /*[SerializeField] [Range(0, 20)] */float jump_height = 1.6f;
     /*[SerializeField] [Range(0, 5)] */float time_to_jump_apex = 0.24f;
@@ -28,6 +29,12 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
         gravity = -(2 * jump_height) / (time_to_jump_apex * time_to_jump_apex);
         if (no_gravity) gravity = 0;
         jump_velocity = time_to_jump_apex * Mathf.Abs(gravity);
+
+        if (flip_object.transform.localRotation.eulerAngles.y == 180) {
+            facing = -base_facing;
+        } else {
+            facing = base_facing;
+        }
     }
 
     protected override void Update() {
@@ -97,10 +104,10 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
 
     public void Face(float i) {
         if (!can_flip) return;
-        if (i > 0) {
+        if (i * base_facing < 0) {
             flip_object.transform.localRotation = Quaternion.Euler(0, 180f, 0);
             facing = 1;
-        } else if (i < 0) {
+        } else if (i * base_facing > 0) {
             flip_object.transform.localRotation = Quaternion.Euler(0, 0, 0);
             facing = -1;
         }

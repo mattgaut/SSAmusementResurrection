@@ -148,6 +148,7 @@ MonoBehaviour:
   max_lifetime: 10
   base_direction: {x: 1, y: 0, z: 0}
   particles: {fileID: 198640046381126014}
+  attack: {fileID: 114345900145110822}
   target: {fileID: 0}
   turn_speed: 80
 --- !u!61 &61855723811600748

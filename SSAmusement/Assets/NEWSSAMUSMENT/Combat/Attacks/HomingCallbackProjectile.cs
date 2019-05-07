@@ -9,8 +9,6 @@ public class HomingCallbackProjectile : HomingProjectile {
     [SerializeField] bool only_hit_target;
     Action<Character> callback;
 
-    [SerializeField] SingleHitAttack attack;
-
     public void SetTarget(Transform target, Action<Character> action) {
         SetTarget(target);
         SetCallback(action);
