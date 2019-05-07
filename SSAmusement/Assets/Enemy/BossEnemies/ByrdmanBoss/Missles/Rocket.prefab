@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 50081895027901710}
   - component: {fileID: 114274280889139486}
   - component: {fileID: 61855723811600748}
-  - component: {fileID: 114345900145110822}
   m_Layer: 19
   m_Name: Rocket
   m_TagString: Untagged
@@ -137,10 +136,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c025285b7126c4b43aaa2101606b704b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targets:
+    serializedVersion: 2
+    m_Bits: 2048
   break_mask:
     serializedVersion: 2
-    m_Bits: 5507072
-  always_break_mask:
+    m_Bits: 2048
+  break_after_timer_mask:
     serializedVersion: 2
     m_Bits: 4456448
   speed: 4
@@ -148,7 +150,6 @@ MonoBehaviour:
   max_lifetime: 10
   base_direction: {x: 1, y: 0, z: 0}
   particles: {fileID: 198640046381126014}
-  attack: {fileID: 114345900145110822}
   target: {fileID: 0}
   turn_speed: 80
 --- !u!61 &61855723811600748
@@ -177,21 +178,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7343162, y: 0.30064183}
   m_EdgeRadius: 0
---- !u!114 &114345900145110822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1106618310676376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3b875617d984b64b86193da53b9e2ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targets:
-    serializedVersion: 2
-    m_Bits: 2048
 --- !u!1 &1261650454390738
 GameObject:
   m_ObjectHideFlags: 0

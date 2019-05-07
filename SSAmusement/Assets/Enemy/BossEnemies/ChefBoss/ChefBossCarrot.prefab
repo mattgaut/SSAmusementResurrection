@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 50302263110799320}
   - component: {fileID: 114079419140536270}
   - component: {fileID: 61109467725384754}
-  - component: {fileID: 114818319889849904}
   m_Layer: 19
   m_Name: ChefBossCarrot
   m_TagString: Untagged
@@ -68,12 +67,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9d4abec906b63e41aaa31b24433b9d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  break_mask:
-    serializedVersion: 2
-    m_Bits: 4458496
-  always_break_mask:
+  targets:
     serializedVersion: 2
     m_Bits: 2048
+  break_mask:
+    serializedVersion: 2
+    m_Bits: 2048
+  break_after_timer_mask:
+    serializedVersion: 2
+    m_Bits: 4456448
   speed: 7
   ignore_wall_timer: 0.5
   max_lifetime: 0
@@ -105,21 +107,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &114818319889849904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1343526335092370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3b875617d984b64b86193da53b9e2ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targets:
-    serializedVersion: 2
-    m_Bits: 2048
 --- !u!1 &1590634115450300
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +237,7 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114818319889849904}
+      - m_Target: {fileID: 0}
         m_MethodName: Disable
         m_Mode: 1
         m_Arguments:
