@@ -11,7 +11,7 @@ public class ShootCarrotAbility : ActiveAbility {
         Projectile new_projectile = Instantiate(projectile_prefab, projectile_spawn_point.transform.position, Quaternion.identity);
         new_projectile.transform.rotation = Quaternion.Euler(0, 0, input < 0 ? 0 : 180);
 
-        new_projectile.attached_attack.SetOnHit(OnHit);
+        new_projectile.SetOnHit(OnHit);
     }
 
     void OnHit(IDamageable hit, Attack hit_by) {

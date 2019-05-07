@@ -52,7 +52,7 @@ public class Character : MonoBehaviour, ICombatant {
         get; protected set;
     }
     public bool invincible {
-        get; private set;
+        get; protected set;
     }
 
     public bool can_input {

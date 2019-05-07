@@ -8,7 +8,7 @@ public class MultiHitAttack : Attack {
 
     protected override bool HitCondition(IDamageable d) {
         if (hit_objects.ContainsKey(d)) {
-            return time - hit_objects[d] > time_between_hits;
+            return timer - hit_objects[d] > time_between_hits;
         } else {
             return true;
         }

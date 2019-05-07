@@ -9,7 +9,7 @@ public abstract class Attack : MonoBehaviour {
 
     protected Collider2D hitbox;
     protected Dictionary<IDamageable, float> hit_objects;
-    protected float time {
+    protected float timer {
         get; private set;
     }
     protected OnHit on_hit {
@@ -22,15 +22,15 @@ public abstract class Attack : MonoBehaviour {
     protected virtual void Awake() {
         hitbox = GetComponent<Collider2D>();
         hit_objects = new Dictionary<IDamageable, float>();
-        time = 0;
+        timer = 0;
     }
 
     protected virtual void Update() {
-        time += Time.deltaTime;
+        timer += Time.deltaTime;
     }
 
-    public void SetOnHit(OnHit _on_hit) {
-        on_hit = _on_hit;
+    public void SetOnHit(OnHit on_hit) {
+        this.on_hit = on_hit;
     }
     public void SetSource(ICombatant _source) {
         source = _source;
@@ -38,37 +38,44 @@ public abstract class Attack : MonoBehaviour {
     public virtual void Enable() {
         hit_objects.Clear();
         StartCoroutine(BumpHitbox());
-        time = 0;
+        timer = 0;
         hitbox.enabled = true;
     }
     public virtual void Disable() {
         hitbox.enabled = false;
     }
 
-    public virtual void OnTriggerEnter2D(Collider2D collision) {
-        if ((1 << collision.gameObject.layer & targets) != 0) {
-            ConfirmHit(collision.gameObject.GetComponentInParent<IDamageable>());
-        }
+    protected void OnTriggerEnter2D(Collider2D collision) {
+        CheckHitboxCollisions(collision);
     }
-    public virtual void OnTriggerStay2D(Collider2D collision) {
+    protected void OnTriggerStay2D(Collider2D collision) {
+        CheckHitboxCollisions(collision);
+    }
+
+    protected virtual void CheckHitboxCollisions(Collider2D collision) {
         if ((1 << collision.gameObject.layer & targets) != 0) {
-            ConfirmHit(collision.gameObject.GetComponentInParent<IDamageable>());
+            bool was_hit = ConfirmHit(collision.gameObject.GetComponentInParent<IDamageable>());
+            if (was_hit) OnCollisionWithTarget();
         }
     }
 
     protected abstract bool HitCondition(IDamageable d);
 
-    void ConfirmHit(IDamageable d) {
+    protected virtual void OnCollisionWithTarget() { }
+
+    bool ConfirmHit(IDamageable d) {
         if (!d.invincible && HitCondition(d)) {
             LogHit(d);
             on_hit(d, this);
+            return true;
         }
+        return false;
     }
     void LogHit(IDamageable d) {
         if (hit_objects.ContainsKey(d)) {
-            hit_objects[d] = time;
+            hit_objects[d] = timer;
         } else {
-            hit_objects.Add(d, time);
+            hit_objects.Add(d, timer);
         }
     }
     IEnumerator BumpHitbox() {

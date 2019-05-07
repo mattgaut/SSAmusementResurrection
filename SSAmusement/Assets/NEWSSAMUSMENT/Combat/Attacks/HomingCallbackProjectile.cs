@@ -16,13 +16,18 @@ public class HomingCallbackProjectile : HomingProjectile {
 
     public void SetCallback(Action<Character> callback) {
         this.callback = callback;
-        if (!only_hit_target) attack.SetOnHit((a, b) => { if (callback != null && a.character != null) HitNonTarget(a.character); });
+        //SetOnHit();
     }
 
-    protected override void OnTriggerEnter2D(Collider2D collision) {
-        if (target == null && ((1 << collision.gameObject.layer &  1 << LayerMask.NameToLayer("Wall")) != 0)) {
-            Explode();
-        } else if (target != null && collision.gameObject.transform.root == target.transform.root) {
+    protected override void CheckHitboxCollisions(Collider2D collision) {
+        if (target == null) {
+            //if () {
+
+            //}
+            if ((1 << collision.gameObject.layer & break_mask) != 0) {
+                Explode();
+            }
+        } else if (collision.gameObject.transform.root == target.transform.root) {
             if (callback != null) callback.Invoke(target.gameObject.GetComponentInParent<Character>());
             Explode();
         }

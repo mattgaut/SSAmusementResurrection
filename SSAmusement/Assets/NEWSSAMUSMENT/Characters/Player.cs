@@ -90,11 +90,9 @@ public class Player : Character, ICombatant {
     }
 
     protected override IEnumerator IFrames() {
-        hitbox.enabled = false;
         anim.SetBool("Flicker", true);
         yield return base.IFrames();
         anim.SetBool("Flicker", false);
-        hitbox.enabled = true;
     }
 
     protected override void OnAwake() {

@@ -3,39 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Projectile : MonoBehaviour {
+public class Projectile : SingleHitAttack {
 
-    public SingleHitAttack attached_attack {
-        get { return attack; }
-    }
-
-    [SerializeField] protected LayerMask break_mask, always_break_mask;
+    [SerializeField] protected LayerMask break_mask, break_after_timer_mask;
     [SerializeField] protected float speed, ignore_wall_timer, max_lifetime;
 
     [SerializeField] protected Vector3 base_direction;
 
     [SerializeField] ParticleSystem particles;
 
-    [SerializeField] protected SingleHitAttack attack;
-
     Animator anim;
     Rigidbody2D rb;
-    float timer = 0;
     bool is_exploded;
 
-    private void Awake() {
+    protected override void Awake() {
+        base.Awake();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         is_exploded = false;
     }
 
-    private void Update() {
+    protected override void Update() {
         if (is_exploded) {
             return;
         }
+        base.Update();
 
-        ignore_wall_timer -= Time.deltaTime;
-        timer += Time.deltaTime;
+        if (ignore_wall_timer >= 0) {
+            ignore_wall_timer -= Time.deltaTime;
+            if (ignore_wall_timer < 0) {
+                break_mask = break_after_timer_mask | break_mask;
+            }
+        }
         if (timer > max_lifetime && max_lifetime != 0) {
             Explode();
         }
@@ -49,12 +48,16 @@ public class Projectile : MonoBehaviour {
 
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D collision) {
-        if (ignore_wall_timer <= 0 && ((1 << collision.gameObject.layer & break_mask) != 0)) {
-            Explode();
-        } else if ((1 << collision.gameObject.layer & always_break_mask) != 0) {
+    protected override void CheckHitboxCollisions(Collider2D collision) {
+        base.CheckHitboxCollisions(collision);
+        if (((1 << collision.gameObject.layer & break_mask) != 0)) {
             Explode();
         }
+    }
+
+    protected override void OnCollisionWithTarget() {
+        base.OnCollisionWithTarget();
+        Explode();
     }
 
     public virtual void Explode() {
@@ -65,6 +68,8 @@ public class Projectile : MonoBehaviour {
         }
         anim.SetTrigger("Explode");
         is_exploded = true;
+
+        hitbox.enabled = false;
     }
 
     public void EndLife() {

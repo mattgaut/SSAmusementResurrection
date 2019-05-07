@@ -2820,6 +2820,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AutoCloche
       objectReference: {fileID: 0}
+    - target: {fileID: 379301158337000666, guid: d5df1ec67a476f743b371f15d033714c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6555402521560290483, guid: d5df1ec67a476f743b371f15d033714c,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -2888,12 +2893,12 @@ PrefabInstance:
     - target: {fileID: 457721240948554232, guid: d5df1ec67a476f743b371f15d033714c,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 457721240948554232, guid: d5df1ec67a476f743b371f15d033714c,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5df1ec67a476f743b371f15d033714c, type: 3}
@@ -3898,6 +3903,11 @@ PrefabInstance:
         type: 3}
       propertyPath: active_on_start
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1024881582007325149, guid: ca2aa5fb7a9e5e04496370289338821b,
+        type: 3}
+      propertyPath: _cooldown
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca2aa5fb7a9e5e04496370289338821b, type: 3}
