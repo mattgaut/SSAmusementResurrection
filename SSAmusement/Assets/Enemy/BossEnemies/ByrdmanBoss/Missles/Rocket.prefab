@@ -151,6 +151,8 @@ MonoBehaviour:
   base_direction: {x: 1, y: 0, z: 0}
   particles: {fileID: 198640046381126014}
   target: {fileID: 0}
+  can_only_hit_target: 0
+  can_break_when_chasing: 1
   turn_speed: 80
 --- !u!61 &61855723811600748
 BoxCollider2D:

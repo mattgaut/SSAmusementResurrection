@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 545740660460180702}
   - component: {fileID: 490027520}
   m_Layer: 0
-  m_Name: AutoDefeseTurret
+  m_Name: PetTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318a0fea02b50174db65e5b5a0083ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laser: {fileID: 1955694882, guid: 4ff0805149010754c984ec534ed8ae06, type: 3}
+  laser: {fileID: 0}
   animator: {fileID: 545740660460180702}
   orbit_center: {fileID: 0}
   orbit_period: 5

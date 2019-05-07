@@ -11,7 +11,6 @@ public class CombatTurretItemEffect : OnHitItemEffect {
     [SerializeField] float percent_charge_per_second;
 
     [SerializeField] PetTurretController pet;
-    [SerializeField] HomingCallbackProjectile laser;
 
     float stored_energy;
     CircleCollider2D aggro_range_collider;
@@ -28,7 +27,6 @@ public class CombatTurretItemEffect : OnHitItemEffect {
         item.owner.inventory.AddPet();
         pet.GetComponent<SpriteRenderer>().sortingOrder = item.owner.inventory.PetCount() * -1;
         pet.SetOrbit(item.owner.char_definition.center_mass);
-        if (laser) pet.SetLaser(laser);
 
         transform.localPosition = Vector3.zero;
 
@@ -49,9 +47,9 @@ public class CombatTurretItemEffect : OnHitItemEffect {
     }
 
 
-    protected override void OnHit(Character character, float pre_damage, float post_damage, IDamageable hit) {
+    protected override void OnOwnerHitEnemy(Character character, float pre_damage, float post_damage, IDamageable hit) {
         stored_energy += post_damage;
-        if (stored_energy > energy_per_shot) {
+        if (stored_energy >= energy_per_shot) {
             Shoot();
         }
     }
@@ -89,8 +87,13 @@ public class CombatTurretItemEffect : OnHitItemEffect {
     }
 
     private void FixedUpdate() {
-        stored_energy += (percent_charge_per_second * energy_per_shot) * Time.fixedDeltaTime;
-        if (stored_energy > energy_per_shot) {
+        if (stored_energy < energy_per_shot) {
+            stored_energy += (percent_charge_per_second * energy_per_shot) * Time.fixedDeltaTime;
+            if (stored_energy > energy_per_shot) {
+                stored_energy = energy_per_shot;
+            }
+        }
+        if (stored_energy >= energy_per_shot) {
             Shoot();
         }
     }

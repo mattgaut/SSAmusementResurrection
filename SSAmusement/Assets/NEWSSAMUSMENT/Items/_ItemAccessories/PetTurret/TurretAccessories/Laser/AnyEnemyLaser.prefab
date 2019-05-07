@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 6779095681943227113}
   - component: {fileID: 6779095681943227118}
   - component: {fileID: 6779095681943227115}
-  - component: {fileID: 1955694882}
+  - component: {fileID: 1911225390486773665}
   - component: {fileID: 1050148197}
-  - component: {fileID: 5312325202241689669}
   m_Layer: 14
   m_Name: AnyEnemyLaser
   m_TagString: Untagged
@@ -30,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6779095681943227116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.2555833, y: 12.070036, z: 0}
+  m_LocalPosition: {x: 4.6596065, y: 11.01007, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -124,7 +123,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1955694882
+--- !u!114 &1911225390486773665
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,13 +132,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 6779095681943227116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb3fad8ff38ee3143958694efbc3424a, type: 3}
+  m_Script: {fileID: 11500000, guid: c025285b7126c4b43aaa2101606b704b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targets:
+    serializedVersion: 2
+    m_Bits: 65536
   break_mask:
     serializedVersion: 2
-    m_Bits: 0
-  always_break_mask:
+    m_Bits: 4456448
+  break_after_timer_mask:
     serializedVersion: 2
     m_Bits: 0
   speed: 10
@@ -148,10 +150,9 @@ MonoBehaviour:
   base_direction: {x: 1, y: 0, z: 0}
   particles: {fileID: 0}
   target: {fileID: 0}
+  can_only_hit_target: 0
+  can_break_when_chasing: 0
   turn_speed: 360
-  max_distance_from_target: 0.18
-  only_hit_target: 0
-  attack: {fileID: 5312325202241689669}
 --- !u!61 &1050148197
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -178,18 +179,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.12044716, y: 0.06194234}
   m_EdgeRadius: 0
---- !u!114 &5312325202241689669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6779095681943227116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3b875617d984b64b86193da53b9e2ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targets:
-    serializedVersion: 2
-    m_Bits: 65536

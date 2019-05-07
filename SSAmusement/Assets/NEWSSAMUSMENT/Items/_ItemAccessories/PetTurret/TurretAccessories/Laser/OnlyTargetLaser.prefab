@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6779095681943227113}
   - component: {fileID: 6779095681943227118}
   - component: {fileID: 6779095681943227115}
-  - component: {fileID: 1955694882}
+  - component: {fileID: 8357445321309970544}
   - component: {fileID: 1050148197}
   m_Layer: 14
   m_Name: OnlyTargetLaser
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6779095681943227116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 78.28394, y: 23.557854, z: 0}
+  m_LocalPosition: {x: 7.618974, y: 11.317878, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -123,7 +123,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1955694882
+--- !u!114 &8357445321309970544
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,13 +132,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 6779095681943227116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb3fad8ff38ee3143958694efbc3424a, type: 3}
+  m_Script: {fileID: 11500000, guid: c025285b7126c4b43aaa2101606b704b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targets:
+    serializedVersion: 2
+    m_Bits: 65536
   break_mask:
     serializedVersion: 2
-    m_Bits: 0
-  always_break_mask:
+    m_Bits: 4456448
+  break_after_timer_mask:
     serializedVersion: 2
     m_Bits: 0
   speed: 10
@@ -147,10 +150,9 @@ MonoBehaviour:
   base_direction: {x: 1, y: 0, z: 0}
   particles: {fileID: 0}
   target: {fileID: 0}
+  can_only_hit_target: 1
+  can_break_when_chasing: 0
   turn_speed: 360
-  max_distance_from_target: 0.18
-  only_hit_target: 1
-  attack: {fileID: 0}
 --- !u!61 &1050148197
 BoxCollider2D:
   m_ObjectHideFlags: 0

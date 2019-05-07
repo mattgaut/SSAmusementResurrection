@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PetTurretController : MonoBehaviour {
-    [SerializeField] HomingCallbackProjectile laser;
+    [SerializeField] HomingProjectile laser;
 
     [SerializeField] Animator animator;
 
@@ -27,7 +27,7 @@ public class PetTurretController : MonoBehaviour {
         queue = new List<TargetCallback>();
     }
 
-    public void SetLaser(HomingCallbackProjectile laser) {
+    public void SetLaser(HomingProjectile laser) {
         this.laser = laser;
     }
 
@@ -58,7 +58,9 @@ public class PetTurretController : MonoBehaviour {
             next_target = queue[0];
             queue.RemoveAt(0);
             if (next_target.target == null) {
-                if (next_target.fail_callback != null) next_target.fail_callback.Invoke();
+                if (next_target.fail_callback != null) {
+                    next_target.fail_callback.Invoke();
+                }
                 next_target = null;
             }
         }
@@ -69,11 +71,12 @@ public class PetTurretController : MonoBehaviour {
     }
 
     void SpawnLaser(TargetCallback target_callback) {
-        HomingCallbackProjectile new_laser = Instantiate(laser, transform.position, Quaternion.identity);
+        HomingProjectile new_laser = Instantiate(laser, transform.position, Quaternion.identity);
         laser.transform.position = transform.position;
 
         Transform target = target_callback.target.char_definition.center_mass;
-        new_laser.SetTarget(target, target_callback.success_callback);
+        new_laser.SetTarget(target);
+        new_laser.SetOnHit((a, b) => target_callback.success_callback(a.character));
 
         float angle = 0;
         Vector3 to_target = target.transform.position - transform.position;

@@ -114,11 +114,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energy_per_shot: 40
-  multiplier: 0.05
+  multiplier: 0.08
   aggro_range: 6
   percent_charge_per_second: 0.08
   pet: {fileID: 805314904535986419}
-  laser: {fileID: 1955694882, guid: 54781e1231356f846b46bb88802c5721, type: 3}
 --- !u!58 &404487520510937350
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -152,6 +151,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 490027520, guid: fe0ab57abe4c2ff438c4dca3a5021177, type: 3}
+      propertyPath: laser
+      value: 
+      objectReference: {fileID: 1911225390486773665, guid: 54781e1231356f846b46bb88802c5721,
+        type: 3}
     - target: {fileID: 545740660460180689, guid: fe0ab57abe4c2ff438c4dca3a5021177,
         type: 3}
       propertyPath: m_LocalPosition.x

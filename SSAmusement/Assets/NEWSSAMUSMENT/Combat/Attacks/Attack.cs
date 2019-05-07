@@ -16,7 +16,7 @@ public abstract class Attack : MonoBehaviour {
         get; private set;
     }
 
-    [SerializeField] LayerMask targets;
+    [SerializeField] protected LayerMask targets;
     ICombatant source;
 
     protected virtual void Awake() {
@@ -54,8 +54,7 @@ public abstract class Attack : MonoBehaviour {
 
     protected virtual void CheckHitboxCollisions(Collider2D collision) {
         if ((1 << collision.gameObject.layer & targets) != 0) {
-            bool was_hit = ConfirmHit(collision.gameObject.GetComponentInParent<IDamageable>());
-            if (was_hit) OnCollisionWithTarget();
+            ConfirmHit(collision.gameObject.GetComponentInParent<IDamageable>());
         }
     }
 
@@ -63,10 +62,11 @@ public abstract class Attack : MonoBehaviour {
 
     protected virtual void OnCollisionWithTarget() { }
 
-    bool ConfirmHit(IDamageable d) {
+    protected bool ConfirmHit(IDamageable d) {
         if (!d.invincible && HitCondition(d)) {
             LogHit(d);
             on_hit(d, this);
+            OnCollisionWithTarget();
             return true;
         }
         return false;

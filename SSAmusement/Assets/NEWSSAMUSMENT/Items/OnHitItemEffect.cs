@@ -4,12 +4,12 @@ using UnityEngine;
 
 public abstract class OnHitItemEffect : ItemEffect {
     public override void OnDrop(Item item) {
-        item.owner.RemoveOnHit(OnHit);
+        item.owner.RemoveOnHit(OnOwnerHitEnemy);
     }
 
     public override void OnPickup(Item item) {
-        item.owner.AddOnHit(OnHit);
+        item.owner.AddOnHit(OnOwnerHitEnemy);
     }
 
-    protected abstract void OnHit(Character character, float pre_damage, float post_damage, IDamageable hit);
+    protected abstract void OnOwnerHitEnemy(Character character, float pre_damage, float post_damage, IDamageable hit);
 }
