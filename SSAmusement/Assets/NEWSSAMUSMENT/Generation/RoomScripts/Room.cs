@@ -350,7 +350,7 @@ public class Room : MonoBehaviour {
     /// <param name="is_open"></param>
     public void SetDoorwayOpen(Vector2Int position, Direction direction, bool is_open) {
         if (position.x < size.x && position.y < size.y && sections[position.x + size.x * position.y].HasDoorway(direction)) {
-            if (!sections[position.x + size.x * position.y].GetDoorway(direction).can_open && is_open) {
+            if (!sections[position.x + size.x * position.y].GetDoorway(direction).can_open) {
                 return;
             }
             sections[position.x + size.x * position.y].GetDoorway(direction).is_open = is_open;

@@ -38,3 +38,11 @@ MonoBehaviour:
     avg: 6
     _rooms:
     - {fileID: 4514925430453041600, guid: 971034f94f3303745b8089d0d29c2c29, type: 3}
+  _swarm_rooms:
+    use_range: 0
+    fixed_number: 1
+    min: 0
+    max: 0
+    avg: 0
+    _rooms:
+    - {fileID: 7963284868146210025, guid: 27bb4460d087a1b4182acaff12d513c1, type: 3}

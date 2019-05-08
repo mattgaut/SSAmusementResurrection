@@ -13,27 +13,28 @@ public class ShapeGenerator : LevelGenerator {
         available_spaces = new HashSet<Vector2Int>(shape_blocks);
         InsertRoom(level.spawn_room, Vector2Int.zero);
 
-        int shop_count = level.shop_rooms.GetNumberToSpawn(rng);
+        foreach (Level.WeightedRoomGroup wrg in level.weighted_groups) {
+            List<RoomController> possible_rooms = new List<RoomController>(wrg.rooms);
+            int room_count = level.shop_rooms.GetNumberToSpawn(rng);
+            while (possible_rooms.Count > 0 && room_count > 0) {
 
-        List<RoomController> possible_shops = new List<RoomController>(level.shop_rooms.rooms);
-        while (possible_shops.Count > 0 && shop_count > 0) {
+                int cont_index = rng.GetInt(0, possible_rooms.Count);
+                RoomController cont = possible_rooms[cont_index];
+                possible_rooms.RemoveAt(cont_index);
 
-            int cont_index = rng.GetInt(0, possible_shops.Count);
-            RoomController cont = possible_shops[cont_index];
-            possible_shops.RemoveAt(cont_index);
+                List<Vector2Int> possible_spaces = new List<Vector2Int>(available_spaces);
+                while (possible_spaces.Count > 0) {
 
-            List<Vector2Int> possible_spaces = new List<Vector2Int>(available_spaces);
-            while (possible_spaces.Count > 0) {
+                    int position_index = rng.GetInt(0, possible_spaces.Count);
+                    Vector2Int position = possible_spaces[position_index];
+                    possible_spaces.RemoveAt(position_index);
 
-                int position_index = rng.GetInt(0, possible_spaces.Count);
-                Vector2Int position = possible_spaces[position_index];
-                possible_spaces.RemoveAt(position_index);
-
-                if (IslandCanFit(cont.room, position)) {
-                    InsertIsland(cont, position);
-                    shop_count--;
-                    if (shop_count <= 0) {
-                        break;
+                    if (IslandCanFit(cont.room, position)) {
+                        InsertIsland(cont, position);
+                        room_count--;
+                        if (room_count <= 0) {
+                            break;
+                        }
                     }
                 }
             }

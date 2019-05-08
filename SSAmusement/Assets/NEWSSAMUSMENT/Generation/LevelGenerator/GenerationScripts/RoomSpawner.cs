@@ -23,6 +23,7 @@ public class RoomSpawner : MonoBehaviour {
         foreach (Vector2Int v in positions_to_rooms.Keys) {
             FindPossibleNeighbors(v);
         }
+        
         foreach (Room.Section s in possible_neighbors.Keys) {
             foreach (Room.Section n in possible_neighbors[s]) {
                 if (n.grid_position.y == s.grid_position.y - 1) {
@@ -37,6 +38,14 @@ public class RoomSpawner : MonoBehaviour {
                 } else if (n.grid_position.x == s.grid_position.x + 1) {
                     s.SetDoorwayOpen(Direction.RIGHT);
                     adjacent_rooms[s.room].Add(n.room);
+                }
+            }
+        }
+
+        foreach (Room.Section s in possible_neighbors.Keys) {
+            foreach (Direction d in System.Enum.GetValues(typeof(Direction))) {
+                if (s.HasDoorway(d) && !s.GetDoorway(d).is_open) {
+                    s.GetDoorway(d).can_open = false;
                 }
             }
         }
