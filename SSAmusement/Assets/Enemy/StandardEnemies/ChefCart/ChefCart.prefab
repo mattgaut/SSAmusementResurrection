@@ -856,8 +856,7 @@ MonoBehaviour:
   bump_damage: 0
   bump_knockback: {x: 10, y: 10, z: 0}
   flip_object: {fileID: 1240051925892814}
-  jump_height: 4
-  time_to_jump_apex: 0.4
+  base_facing: -1
   no_gravity: 0
   raycast_origin: {fileID: 4788624235181360}
   player_mask:

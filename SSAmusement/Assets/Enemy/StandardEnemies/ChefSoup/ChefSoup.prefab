@@ -208,7 +208,7 @@ MonoBehaviour:
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
   flip_object: {fileID: 1531273540077442}
-  base_facing: 0
+  base_facing: -1
   no_gravity: 0
   time_between_attacks: 3
   attack: {fileID: 114144826854405730}
