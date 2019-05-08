@@ -34,6 +34,7 @@ public class Character : MonoBehaviour, ICombatant {
     public delegate void OnHitCallback(Character hitter, float pre_mitigation_damage, float post_mitigation_damage, IDamageable hit);
     public delegate void OnKillCallback(Character killer, ICombatant killed);
     public delegate void OnTakeDamage(Character hit_character, float pre_mitigation_damage, float post_mitigation_damage, ICombatant hit_by);
+    public delegate void OnDeathCallback(Character killed, ICombatant killer);
 
     public Vector2 knockback_force {
         get; private set;
@@ -53,7 +54,7 @@ public class Character : MonoBehaviour, ICombatant {
         get; protected set;
     }
     public bool invincible {
-        get; protected set;
+        get { return invincibility_lock.locked; }
     }
 
     public bool can_input {
@@ -71,10 +72,13 @@ public class Character : MonoBehaviour, ICombatant {
 
     protected Lock movement_lock;
     protected Lock anti_gravity_lock;
+    protected Lock invincibility_lock;
 
+    /// TODO replace with unity events or custom Callback Event Handler
     protected List<OnHitCallback> on_hits;
     protected List<OnKillCallback> on_kills;
     protected List<OnTakeDamage> on_take_damages;
+    protected List<OnDeathCallback> on_deaths;
 
     protected ICombatant last_hit_by;
 
@@ -131,7 +135,7 @@ public class Character : MonoBehaviour, ICombatant {
             }
             health.current -= post_mitigation_damage;
             if (health.current <= 0) {
-                Die();
+                Die(source);
             } else {
                 foreach (OnTakeDamage otd in on_take_damages) {
                     otd(this, damage, post_mitigation_damage, source);
@@ -262,6 +266,15 @@ public class Character : MonoBehaviour, ICombatant {
     public bool UnlockMovement(int lock_value) { return movement_lock.RemoveLock(lock_value); }
 
     /// <summary>
+    /// Adds lock to character Invincibility
+    /// </summary>
+    public int LockInvincibility() { return invincibility_lock.AddLock(); }
+    /// <summary>
+    /// Removes lock from character movement
+    /// </summary>
+    public bool UnlockInvincibility(int lock_value) { return invincibility_lock.RemoveLock(lock_value); }
+
+    /// <summary>
     /// Adds lock to character gravity
     /// </summary>
     public int LockGravity() { return anti_gravity_lock.AddLock(); }
@@ -281,6 +294,16 @@ public class Character : MonoBehaviour, ICombatant {
     /// </summary>
     /// <param name="ok">OnKillCallback or equivalent</param>
     public void RemoveOnKill(OnKillCallback ok) { on_kills.Remove(ok); }
+    /// <summary>
+    /// Adds OnDeathCallback to character
+    /// </summary>
+    /// <param name="od">OnDeathCallback or equivalent</param>
+    public void AddOnDeath(OnDeathCallback od) { on_deaths.Add(od); }
+    /// <summary>
+    /// Removes OnDeathCallback from character
+    /// </summary>
+    /// <param name="od">OnDeathCallback or equivalent</param>
+    public void RemoveOnDeath(OnDeathCallback od) { on_deaths.Remove(od); }
 
     /// <summary>
     /// Adds OnHitCallback to character
@@ -311,11 +334,13 @@ public class Character : MonoBehaviour, ICombatant {
         on_hits = new List<OnHitCallback>();
         on_kills = new List<OnKillCallback>();
         on_take_damages = new List<OnTakeDamage>();
+        on_deaths = new List<OnDeathCallback>();
 
         alive = true;
 
         movement_lock = new Lock();
         anti_gravity_lock = new Lock();
+        invincibility_lock = new Lock();
 
         OnAwake();
     }
@@ -337,9 +362,11 @@ public class Character : MonoBehaviour, ICombatant {
     }
 
 
-    protected virtual void Die() {
+    protected virtual void Die(ICombatant killed_by) {
         last_hit_by.GiveKillCredit(this);
-
+        foreach (OnDeathCallback odc in on_deaths) {
+            odc.Invoke(this, killed_by);
+        }
         Destroy(gameObject);
     }
 
@@ -349,12 +376,12 @@ public class Character : MonoBehaviour, ICombatant {
     /// <returns>IEnumerator</returns>
     protected virtual IEnumerator IFrames() {
         float time = 0;
-        invincible = true;
+        int lock_value = invincibility_lock.AddLock();
         while (time < invincibility_length) {
             time += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
-        invincible = false;
+        invincibility_lock.RemoveLock(lock_value);
     }
 
     /// <summary>

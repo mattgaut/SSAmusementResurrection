@@ -10,6 +10,7 @@ public class RNGSingleton : Singleton<RNGSingleton> {
     public RNG item_rng { get; private set; }
     public RNG room_gen_rng { get; private set; }
     public RNG loot_rng { get; private set; }
+    public RNG swarm_rng { get; private set; }
 
     protected override void OnAwake() {
         if (!use_seed) {
@@ -22,6 +23,7 @@ public class RNGSingleton : Singleton<RNGSingleton> {
         item_rng = new RNG(seed);
         room_gen_rng = new RNG(seed + 1);
         loot_rng = new RNG(seed + 2);
+        swarm_rng = new RNG(seed + 3);
 
         this.seed = seed;
     }

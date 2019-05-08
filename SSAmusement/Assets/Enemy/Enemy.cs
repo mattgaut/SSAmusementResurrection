@@ -44,8 +44,11 @@ public class Enemy : Character, ICombatant {
         die_function = die_event;
     }
 
-    protected override void Die() {
+    protected override void Die(ICombatant killed_by) {
         last_hit_by.GiveKillCredit(this);
+        foreach (OnDeathCallback ocd in on_deaths) {
+            ocd.Invoke(this, killed_by);
+        }
 
         if (die_function != null) {
             StartCoroutine(BeforeDestroy());

@@ -67,8 +67,11 @@ public class Player : Character, ICombatant {
         player_display.DisplayTimedBuff(b);
     }
 
-    protected override void Die() {
+    protected override void Die(ICombatant killed_by) {
         last_hit_by.GiveKillCredit(this);
+        foreach (OnDeathCallback ocd in on_deaths) {
+            ocd.Invoke(this, killed_by);
+        }
 
         alive = false;
         GameManager.instance.GameOver();

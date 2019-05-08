@@ -3,24 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Utilities {
+
     public class Pair<T, U> {
         public Pair() {
         }
 
+        [SerializeField] T _first;
+        [SerializeField] U _second;
+
         public Pair(T first, U second) {
-            this.first = first;
-            this.second = second;
+           _first = first;
+           _second = second;
         }
 
-        public T first { get; set; }
-        public U second { get; set; }
+        public T first { get { return _first; } set { _first = value; } }
+        public U second { get { return _second; } set { _second = value; } }
     };
 
     public class Lock {
         HashSet<int> locks;
 
+        int next_lock;
+
         public Lock() {
             locks = new HashSet<int>();
+            next_lock = int.MinValue;
         }
 
         public bool locked {
@@ -36,10 +43,7 @@ namespace Utilities {
         }
 
         public int AddLock() {
-            int lock_value = Random.Range(int.MinValue, int.MaxValue);
-            while (locks.Contains(lock_value)) {
-                lock_value = Random.Range(int.MinValue, int.MaxValue);
-            }
+            int lock_value = next_lock++;
             locks.Add(lock_value);
             return lock_value;
         }

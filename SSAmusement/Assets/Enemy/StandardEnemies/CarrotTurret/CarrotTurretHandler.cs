@@ -29,6 +29,7 @@ public class CarrotTurretHandler : GroundedEnemyHandler {
     }
 
     IEnumerator Shoot() {
+        if (can_change_facing) Face(target.transform.position.x - transform.position.x);
         abilities.shoot.TryUse(facing);
         yield return new WaitForFixedUpdate();
     }

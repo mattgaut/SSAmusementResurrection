@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public enum Direction { TOP = 1, BOTTOM = -1, LEFT = -2, RIGHT = 2 }
 
-public enum RoomType { basic, boss, shop, teleporter }
+public enum RoomType { basic, boss, shop, teleporter, swarm }
 
 [RequireComponent(typeof(RoomController))]
 public class Room : MonoBehaviour {
@@ -351,7 +351,6 @@ public class Room : MonoBehaviour {
     public void SetDoorwayOpen(Vector2Int position, Direction direction, bool is_open) {
         if (position.x < size.x && position.y < size.y && sections[position.x + size.x * position.y].HasDoorway(direction)) {
             if (!sections[position.x + size.x * position.y].GetDoorway(direction).can_open && is_open) {
-                Debug.Log("Doorway Should not Open");
                 return;
             }
             sections[position.x + size.x * position.y].GetDoorway(direction).is_open = is_open;
@@ -383,6 +382,14 @@ public class Room : MonoBehaviour {
                 tiles[position.x * Section.width + 10 + ((size.y * Section.height - 1) * num_blocks_wide)].gameObject.SetActive(!is_open);
                 tiles[position.x * Section.width + 6 + ((size.y * Section.height - 1) * num_blocks_wide)].SetRightBorder(is_open);
                 tiles[position.x * Section.width + 11 + ((size.y * Section.height - 1) * num_blocks_wide)].SetLeftBorder(is_open);
+            }
+        }
+    }
+
+    public void SetAllDoorwaysOpen(bool is_open) {
+        foreach (Vector2Int s in GetLocalCoordinatesList()) {
+            foreach (Direction d in System.Enum.GetValues(typeof(Direction))) {
+                SetDoorwayOpen(s, d, is_open);
             }
         }
     }
