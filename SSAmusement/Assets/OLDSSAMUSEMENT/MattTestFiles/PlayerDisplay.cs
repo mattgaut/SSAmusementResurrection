@@ -35,18 +35,11 @@ public class PlayerDisplay : MonoBehaviour {
         }
     }
 
-    public void DisplayTimedBuff(PowerUp p) {
-        DisplayBuff new_display_buff = Instantiate(buff_prefab, buff_holder.transform);
-        new_display_buff.SetIcon(p.icon);
-        new_display_buff.SetTime(p.length);
-        new_display_buff.SetBarColor(Color.green);
-    }
-
-    public void DisplayTimedBuff(Buff b) {
+    public void DisplayTimedBuff(IBuff b) {
         DisplayBuff new_display_buff = Instantiate(buff_prefab, buff_holder.transform);
         new_display_buff.SetIcon(b.icon);
-        new_display_buff.SetTime(b.buff_length);
-        new_display_buff.SetBarColor(b.color);
+        new_display_buff.SetTime(b.length);
+        new_display_buff.SetBarColor(b.is_benificial ? Color.green : Color.red);
     }
 
     public void Disable() {

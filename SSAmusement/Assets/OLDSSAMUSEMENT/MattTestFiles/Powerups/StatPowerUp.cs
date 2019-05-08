@@ -6,7 +6,7 @@ public class StatPowerUp : PowerUp {
     [SerializeField] Buff buff;
 
     public override float length {
-        get { return buff.buff_length; }
+        get { return buff.length; }
     }
 
     protected override void AddPowerup(Player p) {

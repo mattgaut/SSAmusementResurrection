@@ -30,7 +30,7 @@ public interface ICombatant : IDamageable, IStats {
         get;
     }
     void GiveKillCredit(ICombatant killed);
-    void LogBuff(Buff b);
+    void LogBuff(IBuff b);
     Coroutine StartCoroutine(IEnumerator start);
     void DropObject(GameObject obj, bool should_handle_instantiation = false);
 }
@@ -51,4 +51,10 @@ public interface IInteractable {
 public interface IInputHandler {
     Vector2 input { get; }
     int facing { get; }
+}
+
+public interface IBuff {
+    Sprite icon { get; }
+    bool is_benificial { get; }
+    float length { get; }
 }

@@ -4,25 +4,24 @@ using UnityEngine;
 
 public enum BuffType { stat, attack, healing, on_hit, tick }
 
-public abstract class Buff : MonoBehaviour {
+public abstract class Buff : MonoBehaviour, IBuff {
     public abstract BuffType type { get; }
 
-    [SerializeField] Sprite _icon;
     public Sprite icon {
         get { return _icon; }
         set { _icon = value; }
     }
+    public bool is_benificial {
+        get { return _is_benificial; }
+    }
+    public float length {
+        get { return remove_after; }
+    }
 
     [SerializeField] bool timed_buff;
     [SerializeField] float remove_after;
-    [SerializeField] Color _color;
-
-    public Color color {
-        get { return _color; }
-    }
-    public float buff_length {
-        get { return remove_after; }
-    }
+    [SerializeField] bool _is_benificial;
+    [SerializeField] Sprite _icon;
 
     public void ApplyTo(ICombatant stat_entity, bool log = false) {
         Apply(stat_entity);

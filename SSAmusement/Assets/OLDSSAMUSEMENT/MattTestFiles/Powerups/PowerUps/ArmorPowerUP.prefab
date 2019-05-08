@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1938c7cb19fdaac49b051e3987e35854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _is_benificial: 0
   buff: {fileID: 114977331491180240}
 --- !u!114 &114977331491180240
 MonoBehaviour:
@@ -135,10 +136,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4577e845efeb2e247b6f90fffa5ff65d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300014, guid: 332c37322e9fbcb4da2338e2965920fd, type: 3}
   timed_buff: 1
   remove_after: 30
-  _color: {r: 0, g: 0, b: 0, a: 0}
+  _is_benificial: 1
+  _icon: {fileID: 21300014, guid: 332c37322e9fbcb4da2338e2965920fd, type: 3}
   health: 0
   energy: 0
   power: 1

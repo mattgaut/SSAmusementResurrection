@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58047d03feaf70b4e957a0a39465e348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _is_benificial: 1
   _length: 30
   lifesteal_percent: 0.25
 --- !u!50 &6900338819765729280

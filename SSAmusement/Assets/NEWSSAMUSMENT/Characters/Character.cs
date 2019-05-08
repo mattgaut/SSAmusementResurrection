@@ -66,11 +66,11 @@ public class Character : MonoBehaviour, ICombatant {
         get; private set;
     }
     public bool anti_gravity {
-        get { return anti_gravity_lock.unlocked; }
+        get { return anti_gravity_lock.locked; }
     }
 
-    protected Semaphore movement_lock;
-    protected Semaphore anti_gravity_lock;
+    protected Lock movement_lock;
+    protected Lock anti_gravity_lock;
 
     protected List<OnHitCallback> on_hits;
     protected List<OnKillCallback> on_kills;
@@ -212,7 +212,7 @@ public class Character : MonoBehaviour, ICombatant {
     /// Adds buff to buff tracker if one exists
     /// </summary>
     /// <param name="buff"></param>
-    public virtual void LogBuff(Buff buff) { }
+    public virtual void LogBuff(IBuff buff) { }
 
     public void CancelKnockBack() {
         is_knocked_back = false;
@@ -314,8 +314,8 @@ public class Character : MonoBehaviour, ICombatant {
 
         alive = true;
 
-        movement_lock = new Semaphore();
-        anti_gravity_lock = new Semaphore();
+        movement_lock = new Lock();
+        anti_gravity_lock = new Lock();
 
         OnAwake();
     }

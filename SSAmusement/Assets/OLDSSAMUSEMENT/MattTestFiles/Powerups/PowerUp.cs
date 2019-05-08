@@ -3,23 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D), typeof(SpriteRenderer))]
-public abstract class PowerUp : Pickup {
+public abstract class PowerUp : Pickup, IBuff {
 
-    Sprite _icon;
     public Sprite icon {
         get { return _icon; }
     }
+    public abstract float length {
+        get;
+    }
+    public bool is_benificial {
+        get { return _is_benificial; }
+    }
 
+    [SerializeField] bool _is_benificial;
+    Sprite _icon;
     protected float timer;
     protected bool countdown;
 
     SpriteRenderer sr;
 
     Collider2D coll;
-
-    public abstract float length {
-        get;
-    }
 
     protected virtual void BeforeDestroy() {
 
@@ -30,7 +33,7 @@ public abstract class PowerUp : Pickup {
     }
 
     protected virtual void AddPowerup(Player p) {
-        p.TrackPowerUp(this);
+        p.LogBuff(this);
         coll.enabled = false;
         sr.enabled = false;
         countdown = true;
@@ -53,5 +56,4 @@ public abstract class PowerUp : Pickup {
         sr = GetComponent<SpriteRenderer>();
         _icon = sr.sprite;
     }
-
 }

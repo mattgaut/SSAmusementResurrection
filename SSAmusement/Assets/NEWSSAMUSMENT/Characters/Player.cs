@@ -63,19 +63,8 @@ public class Player : Character, ICombatant {
     /// Adds buff timer to PlayerDisplay
     /// </summary>
     /// <param name="b">Buff</param>
-    public override void LogBuff(Buff b) {
+    public override void LogBuff(IBuff b) {
         player_display.DisplayTimedBuff(b);
-    }
-
-
-    // TODO Refactor TrackPowerUp into more general TrackBuffGroup
-
-    /// <summary>
-    /// Adds Powerup timer to PlayerDisplay
-    /// </summary>
-    /// <param name="p">Powerup</param>
-    public void TrackPowerUp(PowerUp p) {
-        player_display.DisplayTimedBuff(p);
     }
 
     protected override void Die() {

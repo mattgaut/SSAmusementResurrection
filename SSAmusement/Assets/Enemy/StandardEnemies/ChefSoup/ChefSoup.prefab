@@ -208,8 +208,7 @@ MonoBehaviour:
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
   flip_object: {fileID: 1531273540077442}
-  jump_height: 4
-  time_to_jump_apex: 0.4
+  base_facing: 0
   no_gravity: 0
   time_between_attacks: 3
   attack: {fileID: 114144826854405730}
@@ -229,10 +228,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4577e845efeb2e247b6f90fffa5ff65d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 23449b90019e8444982d693f3415e10a, type: 3}
   timed_buff: 1
   remove_after: 5
-  _color: {r: 1, g: 0, b: 0, a: 1}
+  _is_benificial: 0
+  _icon: {fileID: 21300000, guid: 23449b90019e8444982d693f3415e10a, type: 3}
   health: 0
   energy: 0
   power: 0

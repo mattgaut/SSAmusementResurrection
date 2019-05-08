@@ -5,7 +5,6 @@ using UnityEngine;
 public class MoveRightEnemyHandler : EnemyHandler {
 
     bool finished = false;
-    // TODO Update TO State Machine
     protected IEnumerator AIRoutine() {
         while (true) {
             yield return null;

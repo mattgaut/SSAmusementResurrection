@@ -16,10 +16,10 @@ namespace Utilities {
         public U second { get; set; }
     };
 
-    public class Semaphore {
+    public class Lock {
         HashSet<int> locks;
 
-        public Semaphore() {
+        public Lock() {
             locks = new HashSet<int>();
         }
 
