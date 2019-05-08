@@ -28,7 +28,6 @@ public class EnemySwarmInteractable : MonoBehaviour, IInteractable {
     IEnumerator StartSwarm() {
         if (home) home.SetAllDoorwaysOpen(false);
 
-        instruction.Randomize(RNGSingleton.instance.swarm_rng);
         for (int i = 0; i < instruction.waves.Count; i++) {
             List<Character> enemies = new List<Character>();
             foreach (EnemySwarmInstructions.Spawn s in instruction.waves[i].spawns) {
@@ -42,6 +41,6 @@ public class EnemySwarmInteractable : MonoBehaviour, IInteractable {
             }
         }
 
-        if (home) home.SetAllDoorwaysOpen(false);
+        if (home) home.SetAllDoorwaysOpen(true);
     }
 }

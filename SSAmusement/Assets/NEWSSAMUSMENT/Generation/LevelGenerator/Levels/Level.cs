@@ -24,6 +24,12 @@ public class Level : ScriptableObject {
     public WeightedRoomGroup shop_rooms {
         get { return _shop_rooms; }
     }
+    public WeightedRoomGroup swarm_rooms {
+        get { return _swarm_rooms; }
+    }
+    public List<WeightedRoomGroup> weighted_groups {
+        get { return new List<WeightedRoomGroup>() { shop_rooms, _swarm_rooms }; }
+    }
     public LevelAesthetics level_set {
         get { return set; }
     }
@@ -35,6 +41,7 @@ public class Level : ScriptableObject {
     [SerializeField] List<BossRoomController> _boss_rooms;
     [SerializeField] List<TeleporterRoomController> _teleporter_rooms;
     [SerializeField] WeightedRoomGroup _shop_rooms;
+    [SerializeField] WeightedRoomGroup _swarm_rooms;
 
     [System.Serializable]
     public class WeightedRoomGroup : ISerializationCallbackReceiver {
