@@ -69,8 +69,8 @@ public class Level : ScriptableObject {
 
                 float rng_value = rng.GetFloat();
                 float formula_value = b * Mathf.Pow(rng_value, z) + a;
-                int to_spawn = (int)formula_value / 1;
-                to_spawn += (rng.GetFloat() <= (formula_value % 1f)) ? 1 : 0;
+                int to_spawn = (int)formula_value;
+                to_spawn += (rng.GetFloat() <= (formula_value - to_spawn)) ? 1 : 0;
                 return to_spawn;
             }
         }

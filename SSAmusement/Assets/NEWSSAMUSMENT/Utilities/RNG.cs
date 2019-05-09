@@ -30,6 +30,24 @@ public class RNG {
     }
 
     /// <summary>
+    /// Returns an int inbetween inclusive lower and inclusive upper bound with an 
+    /// average value of avg
+    /// </summary>
+    /// <param name="lower_bound"></param>
+    /// <param name="upper_bound"></param>
+    /// <param name="avg"></param>
+    /// <returns></returns>
+    public int GetInt(int lower_bound, int upper_bound, float avg) {
+
+        float random_value = GetFloat(lower_bound, upper_bound, avg);
+
+        int to_return = (int)random_value;
+        to_return += (GetFloat() <= (random_value - to_return)) ? 1 : 0;
+
+        return to_return;
+    }
+
+    /// <summary>
     /// Returns a float value between 0 and 1
     /// </summary>
     /// <returns>float between 0 and 1</returns>
@@ -48,8 +66,9 @@ public class RNG {
     /// </summary>
     /// <param name="lower_bound"></param>
     /// <param name="upper_bound"></param>
-    /// <returns>float between 0 and 1</returns>
+    /// <returns>float between lower_bound and upper_bound</returns>
     public float GetFloat(float lower_bound, float upper_bound) {
+
         Random.state = state;
 
         float to_return = Random.Range(lower_bound, upper_bound);
@@ -57,5 +76,23 @@ public class RNG {
         state = Random.state;
 
         return to_return;
+    }
+
+    /// <summary>
+    /// Returns a float value between min and max
+    /// </summary>
+    /// <param name="lower_bound"></param>
+    /// <param name="upper_bound"></param>
+    /// <param name="avg"></param>
+    /// <returns>float between lower_bound and upper_bound with an average value of avg</returns>
+    public float GetFloat(float lower_bound, float upper_bound, float avg) {
+        float a, b, c, z;
+
+        a = lower_bound;
+        b = upper_bound - a;
+        c = avg;
+        z = ((upper_bound - lower_bound) / (avg - lower_bound)) - 1f;
+
+        return b * Mathf.Pow(GetFloat(), z) + a;
     }
 }
