@@ -42,4 +42,20 @@ public class RNG {
 
         return to_return;
     }
+
+    /// <summary>
+    /// Returns a float value between min and max
+    /// </summary>
+    /// <param name="lower_bound"></param>
+    /// <param name="upper_bound"></param>
+    /// <returns>float between 0 and 1</returns>
+    public float GetFloat(float lower_bound, float upper_bound) {
+        Random.state = state;
+
+        float to_return = Random.Range(lower_bound, upper_bound);
+
+        state = Random.state;
+
+        return to_return;
+    }
 }
