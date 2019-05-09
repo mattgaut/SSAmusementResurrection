@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemySwarmInteractable : MonoBehaviour, IInteractable {
 
     [SerializeField] EnemySwarmInstructions instruction;
+    [SerializeField] PickupChest reward_chest; 
 
     bool used;
     Room home;
@@ -22,6 +23,9 @@ public class EnemySwarmInteractable : MonoBehaviour, IInteractable {
 
     public void Init(Room room) {
         instruction.Randomize(RNGSingleton.instance.swarm_rng);
+        if (reward_chest != null) {
+            reward_chest.SetSpawnPickups(LootTablesSingleton.instance.GetRolledPickups(RNGSingleton.instance.loot_rng, 0.2f));
+        }
         home = room;
     }
 
@@ -42,5 +46,7 @@ public class EnemySwarmInteractable : MonoBehaviour, IInteractable {
         }
 
         if (home) home.SetAllDoorwaysOpen(true);
+
+        if (reward_chest) reward_chest.Open();
     }
 }

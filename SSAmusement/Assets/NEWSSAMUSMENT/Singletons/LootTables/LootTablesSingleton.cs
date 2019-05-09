@@ -9,6 +9,16 @@ public class LootTablesSingleton : Singleton<LootTablesSingleton> {
     public List<PickupChance> GetPickupsTable() {
         return new List<PickupChance>(possible_pickups);
     }
+
+    public List<Pickup> GetRolledPickups(RNG rng, float modifier) {
+        List<Pickup> to_return = new List<Pickup>();
+        foreach (PickupChance p in possible_pickups) {
+            if (rng.GetFloat() - modifier < p.chance_per_roll) {
+                to_return.Add(p.loot);
+            }
+        }
+        return to_return;
+    }
 }
 
 [System.Serializable]
