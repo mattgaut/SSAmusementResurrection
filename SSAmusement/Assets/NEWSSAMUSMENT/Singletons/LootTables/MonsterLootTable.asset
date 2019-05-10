@@ -38,4 +38,4 @@ MonoBehaviour:
     _chance: 0.3
   min_to_drop: 0
   max_to_drop: 5
-  avg_to_drop: 0.5
+  avg_to_drop: 0.4

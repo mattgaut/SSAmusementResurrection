@@ -187,7 +187,7 @@ PrefabInstance:
     - target: {fileID: 4727880421587381437, guid: 06f08f6c2bb72f3478d34895e46a967b,
         type: 3}
       propertyPath: seed
-      value: 150
+      value: 472
       objectReference: {fileID: 0}
     - target: {fileID: 4727880421587381432, guid: 06f08f6c2bb72f3478d34895e46a967b,
         type: 3}
@@ -216,6 +216,18 @@ PrefabInstance:
       propertyPath: possible_pickups.Array.data[7]._chance_per_roll
       value: 0.025
       objectReference: {fileID: 0}
+    - target: {fileID: 4727880421587381432, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: _regular_chest_loot
+      value: 
+      objectReference: {fileID: 11400000, guid: 0c6b08fbf2c2164438825a8da13d7c88,
+        type: 2}
+    - target: {fileID: 4727880421587381432, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: _monster_loot
+      value: 
+      objectReference: {fileID: 11400000, guid: 4292676bb99def9499720875c1a56503,
+        type: 2}
     - target: {fileID: 4753337269797124211, guid: 06f08f6c2bb72f3478d34895e46a967b,
         type: 3}
       propertyPath: start_game_on_start
