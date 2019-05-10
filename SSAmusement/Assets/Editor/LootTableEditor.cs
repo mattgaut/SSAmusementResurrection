@@ -7,6 +7,19 @@ using UnityEngine;
 public class LootTableEditor : Editor {
     public override void OnInspectorGUI() {
 
+        LootTable table = target as LootTable;
+
+        EditorGUILayout.BeginHorizontal();
+
+        if (GUILayout.Button("Test Number Distribution")) {
+            table.TestNumberDistribution();
+        }
+        if (GUILayout.Button("Test Pickup Distribution")) {
+            table.TestPickupDistribution();
+        }
+
+        EditorGUILayout.EndHorizontal();
+
         EditorGUILayout.BeginHorizontal();
 
         SerializedProperty property = serializedObject.FindProperty("min_to_drop");

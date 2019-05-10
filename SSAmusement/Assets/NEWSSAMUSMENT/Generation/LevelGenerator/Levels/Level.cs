@@ -82,7 +82,7 @@ public class Level : ScriptableObject {
                 a = min;
                 b = max - a;
                 c = avg;
-                z = ((max - min) / (avg - min)) - 1f;
+                z = ((b - a) / (c - a)) - 1f;
             }
         }
 

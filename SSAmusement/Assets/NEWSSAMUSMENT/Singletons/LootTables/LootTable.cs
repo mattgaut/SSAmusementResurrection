@@ -9,6 +9,41 @@ public class LootTable : ScriptableObject {
     [SerializeField] List<PickupCategory> possible_pickup_categories;
     [SerializeField] int min_to_drop, max_to_drop;
     [SerializeField] float avg_to_drop;
+    
+    public void TestNumberDistribution() {
+        Dictionary<int, int> numbers = new Dictionary<int, int>(0);
+        for (int i = min_to_drop; i <= max_to_drop; i++) {
+            numbers.Add(i,0);
+        }
+
+        int test_count = 1000000;
+        RNG rng = new RNG(System.DateTime.Now.Millisecond);
+        for (int i = 0; i < test_count; i++) {
+            numbers[rng.GetInt(min_to_drop, max_to_drop, avg_to_drop)]++;
+        }
+        Debug.Log(name);
+        for (int i = min_to_drop; i <= max_to_drop; i++) {
+            Debug.Log(i + " : " + numbers[i] + " : " + numbers[i]/(test_count / 100f) + "%");
+        }
+    }
+
+    public void TestPickupDistribution() {
+        Dictionary<Pickup, int> pickups = new Dictionary<Pickup, int>(0);
+        int test_count = 1000000;
+        RNG rng = new RNG(System.DateTime.Now.Millisecond);
+        for (int i = 0; i < test_count; i++) {
+            Pickup p = GetRandomPickup(rng, GetRandomCategory(rng));
+            if (pickups.ContainsKey(p)) {
+                pickups[p]++;
+            } else {
+                pickups.Add(p, 1);
+            }
+        }
+        Debug.Log(name);
+        foreach(Pickup p in pickups.Keys) {
+            Debug.Log(p + " : " + pickups[p] + " : " + pickups[p] / (test_count / 100f) + "%");
+        }
+    }
 
     /// <summary>
     /// Gets List of pickups of size number_to_roll where the chance of 

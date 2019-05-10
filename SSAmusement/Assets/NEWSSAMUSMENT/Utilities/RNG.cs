@@ -72,7 +72,7 @@ public class RNG {
         Random.state = state;
 
         float to_return = Random.Range(lower_bound, upper_bound);
-
+        
         state = Random.state;
 
         return to_return;
@@ -81,17 +81,17 @@ public class RNG {
     /// <summary>
     /// Returns a float value between min and max
     /// </summary>
-    /// <param name="lower_bound"></param>
-    /// <param name="upper_bound"></param>
+    /// <param name="min"></param>
+    /// <param name="max"></param>
     /// <param name="avg"></param>
     /// <returns>float between lower_bound and upper_bound with an average value of avg</returns>
-    public float GetFloat(float lower_bound, float upper_bound, float avg) {
+    public float GetFloat(float min, float max, float avg) {
         float a, b, c, z;
 
-        a = lower_bound;
-        b = upper_bound - a;
+        a = min;
+        b = max - a;
         c = avg;
-        z = ((upper_bound - lower_bound) / (avg - lower_bound)) - 1f;
+        z = ((b - a) / (c - a)) - 1f;
 
         return b * Mathf.Pow(GetFloat(), z) + a;
     }

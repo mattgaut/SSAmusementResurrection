@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8d548ba3de0bc545888aa114199ecc0, type: 3}
-  m_Name: MonsterLootTable
+  m_Name: ChestLootTable
   m_EditorClassIdentifier: 
   possible_pickup_categories:
   - possible_pickups:
@@ -36,6 +36,6 @@ MonoBehaviour:
     - loot: {fileID: 114473138798414562, guid: 9c659322bea69c3449316dda6c15b99c, type: 3}
       _chance: 1
     _chance: 0.3
-  min_to_drop: 0
-  max_to_drop: 5
-  avg_to_drop: 0.5
+  min_to_drop: 2
+  max_to_drop: 9
+  avg_to_drop: 3.5
