@@ -87,20 +87,6 @@ public class RoomSpawner : MonoBehaviour {
             }
         }
 
-        //List<Room> can_spawn_item = new List<Room>(rooms);
-        //int target_items = 3;
-        //while (can_spawn_item.Count > 0 && target_items > 0) {
-        //    can_spawn_item.Shuffle();
-        //    ItemSpawner item_spawn = can_spawn_item[0].GetComponentInChildren<ItemSpawner>();
-        //    if (item_spawn == null) {
-        //        can_spawn_item.RemoveAt(0);
-        //    } else {
-        //        item_spawn.SpawnItemChest().SetSpawnItem(ItemListSingleton.instance.GetRandomItem(RNGSingleton.instance.item_rng));
-        //        target_items--;
-        //        can_spawn_item.RemoveAt(0);
-        //    }
-        //}
-
         if (boss_room_controller != null) {
             if (boss_room_controller != null) {
                 boss_room_controller.reward.SetSpawnItem(ItemListSingleton.instance.GetRandomItem(rng));
@@ -120,13 +106,6 @@ public class RoomSpawner : MonoBehaviour {
                 teleporter_room_controller.teleporter.SetOpen(true);
             }
         }
-
-
-        //foreach (Room r in rooms) {
-        //    foreach (ItemSpawner ispawn in r.GetComponentsInChildren<ItemSpawner>()) {
-        //        Destroy(ispawn.gameObject);
-        //    }
-        //}
     }
 
     void FindPossibleNeighbors(Vector2Int v) {
