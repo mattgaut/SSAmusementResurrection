@@ -138,4 +138,20 @@ public static class Extension {
         yield return new Pair<Vector2Int, Direction>(vector + Vector2Int.down, Direction.BOTTOM);
         yield return new Pair<Vector2Int, Direction>(vector + Vector2Int.left, Direction.LEFT);
     }
+
+    public static T GetRandomChanceObject<T>(this RNG rng, List<IChanceObject<T>> list) {
+        float total_chance = 0;
+        foreach (IChanceObject<T> chance_object in list) {
+            total_chance += chance_object.chance;
+        }
+
+        float roll = rng.GetFloat(0, total_chance);
+        foreach (IChanceObject<T> chance_object in list) {
+            roll -= chance_object.chance;
+            if (roll <= 0) {
+                return chance_object.value;
+            }
+        }
+        throw new System.Exception("Value generated exceeds total value of list");
+    }
 }

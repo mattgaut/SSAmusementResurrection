@@ -87,16 +87,10 @@ public abstract class RoomController : MonoBehaviour {
         loaded_room_set.transform.SetParent(transform);
         loaded_room_set.transform.position = transform.position;
 
-        List<PickupChance> pickups_table = LootTablesSingleton.instance.GetPickupsTable();
-
         foreach (Enemy e in loaded_room_set.GetEnemies()) {
             enemies.Add(e, e.transform.position);
             e.SetHome(this);
-            foreach (PickupChance p in pickups_table) {
-                if (RNGSingleton.instance.loot_rng.GetFloat() < p.chance_per_roll) {
-                    e.AddDropOnDeath(p.loot);
-                }
-            }
+            e.AddDropOnDeath(LootTablesSingleton.instance.monster_loot.GetPilePickupes(RNGSingleton.instance.loot_rng));
         }
     }
 

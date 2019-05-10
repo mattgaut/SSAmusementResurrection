@@ -37,6 +37,14 @@ public class Enemy : Character, ICombatant {
     }
 
     /// <summary>
+    /// Add Objects to be droped upon death
+    /// </summary>
+    /// <param name="pickup_prefab_to_drop"></param>
+    public void AddDropOnDeath(List<Pickup> pickup_prefab_to_drop) {
+        drop_on_death.AddRange(pickup_prefab_to_drop);
+    }
+
+    /// <summary>
     /// Set Callback to be invoked on death before object is destroyed
     /// </summary>
     /// <param name="die_event"></param>

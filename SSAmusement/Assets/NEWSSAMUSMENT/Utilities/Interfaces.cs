@@ -58,3 +58,13 @@ public interface IBuff {
     bool is_benificial { get; }
     float length { get; }
 }
+
+/// <summary>
+/// Interface that defines an object in a loot table
+/// allowing use of the RNG class to pick one from a list at random
+/// </summary>
+/// <typeparam name="T"></typeparam>
+public interface IChanceObject<T> {
+    T value { get; }
+    float chance { get; }
+}
