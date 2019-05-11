@@ -477,25 +477,25 @@ public class ByrdmanHandler : EnemyHandler {
         enemy.DealDamage(enemy.power, hit);
         Vector3 knockback = missile_knockback;
         knockback.x *= Mathf.Sign(hit.gameObject.transform.position.x - hit_by.gameObject.transform.position.x);
-        hit.TakeKnockback(enemy, knockback);
+        enemy.GiveKnockback(hit, knockback);
     }
 
     void ZapOnHit(IDamageable hit, Attack hit_by) {
         enemy.DealDamage(enemy.power, hit);
         Vector3 knockback = missile_knockback;
         knockback.x *= Mathf.Sign(UnityEngine.Random.Range(0f, 1f) - 0.5f);
-        hit.TakeKnockback(enemy, knockback);
+        enemy.GiveKnockback(hit, knockback);
     }
     void SpikeOnHit(IDamageable hit, Attack hit_by) {
         enemy.DealDamage(enemy.power, hit);
-        hit.TakeKnockback(enemy, spike_knockback);
+        enemy.GiveKnockback(hit, spike_knockback);
     }
 
     void LaserOnHit(IDamageable hit, Attack hit_by) {
         enemy.DealDamage(enemy.power, hit);
         Vector3 knockback = laser_knockback;
         knockback.x *= Mathf.Sign(hit.gameObject.transform.position.x - hit_by.gameObject.transform.position.x);
-        hit.TakeKnockback(enemy, knockback);
+        enemy.GiveKnockback(hit, knockback);
     }
 
     public void LeverPulled() {

@@ -37,6 +37,6 @@ public class DiveBombAbility : ActiveAbility {
     
     void AttackOnHit(IDamageable d, Attack hit_by) {
         character.DealDamage(character.char_definition.power * damage_multiplier, d);
-        d.TakeKnockback(character, knockback);
+        character.GiveKnockback(d, knockback);
     }
 }

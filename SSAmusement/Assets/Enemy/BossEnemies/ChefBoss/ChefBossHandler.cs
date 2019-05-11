@@ -113,7 +113,7 @@ public class ChefBossHandler : EnemyHandler {
 
     void CleaverOnHit(IDamageable hit, Attack hit_by) {
         enemy.DealDamage(enemy.power * 2, hit);
-        hit.TakeKnockback(enemy, cleaver_knockback);
+        enemy.GiveKnockback(hit, cleaver_knockback);
         force_attack = Random.Range(0, 1f) > 0.5;
     }
 

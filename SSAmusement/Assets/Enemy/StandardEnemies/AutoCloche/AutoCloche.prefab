@@ -733,6 +733,8 @@ MonoBehaviour:
       base_value: 3.5
     _energy:
       base_value: 0
+    _knockback_modifier:
+      base_value: 1
     _center_mass: {fileID: 6555402521560290483}
     _feet: {fileID: 271709942243196247}
     _head: {fileID: 277658213413916837}

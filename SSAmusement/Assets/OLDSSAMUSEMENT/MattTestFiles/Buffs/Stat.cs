@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Stat {
     [SerializeField] float base_value;
-    List<StatBuff> buffs = new List<StatBuff>();
+    List<IStatBuff> buffs = new List<IStatBuff>();
 
     float last_calculated;
     bool changed = true;
@@ -23,22 +23,22 @@ public class Stat {
 
     float GetBuffedValue() {
         float to_ret = base_value;
-        foreach (StatBuff buff in buffs) {
+        foreach (IStatBuff buff in buffs) {
             to_ret += buff.flat;
         }
-        foreach (StatBuff buff in buffs) {
+        foreach (IStatBuff buff in buffs) {
             if (buff.multi != 0)
                 to_ret *= buff.multi;
         }
         return to_ret;
     }
 
-    public virtual void AddBuff(StatBuff buff) {
+    public virtual void AddBuff(IStatBuff buff) {
         buffs.Add(buff);
         changed = true;
     }
 
-    public virtual void RemoveBuff(StatBuff buff) {
+    public virtual void RemoveBuff(IStatBuff buff) {
         buffs.Remove(buff);
         changed = true;
     }
@@ -73,7 +73,7 @@ public class CapStat : Stat {
         get { return this; }
     }
 
-    public override void AddBuff(StatBuff buff) {
+    public override void AddBuff(IStatBuff buff) {
         float value_before = value;
         base.AddBuff(buff);
         float value_after = value;
@@ -84,7 +84,7 @@ public class CapStat : Stat {
             current = value;
         }
     }
-    public override void RemoveBuff(StatBuff buff) {
+    public override void RemoveBuff(IStatBuff buff) {
         base.RemoveBuff(buff);
         if (current > value) {
             current = value;

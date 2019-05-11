@@ -44,6 +44,6 @@ public class MeleeAttackAbility : ActiveAbility {
 
     void AttackOnHit(IDamageable d, Attack hit_by) {
         character.DealDamage(character.power, d);
-        d.TakeKnockback(character, new Vector2(knockback.x * Mathf.Sign(d.gameObject.transform.position.x - transform.position.x), knockback.y));
+        character.GiveKnockback(d, new Vector2(knockback.x * Mathf.Sign(d.gameObject.transform.position.x - transform.position.x), knockback.y));
     }
 }

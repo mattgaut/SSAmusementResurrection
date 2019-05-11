@@ -66,6 +66,6 @@ public class SweepAbility : ActiveAbility {
         if (hit_by.transform.position.x > d.gameObject.transform.position.x) {
             knockback.x *= -1;
         }
-        d.TakeKnockback(character, knockback);
+        character.GiveKnockback(d, knockback);
     }
 }

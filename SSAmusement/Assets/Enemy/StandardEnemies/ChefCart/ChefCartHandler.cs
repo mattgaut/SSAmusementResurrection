@@ -40,7 +40,7 @@ public class ChefCartHandler : GroundedEnemyHandler {
         if (player.transform.position.x < transform.position.x) {
             real_knockback.x *= -1;
         }
-        player.TakeKnockback(enemy, real_knockback);
+        enemy.GiveKnockback(player, real_knockback);
     }
     protected override void Deactivate() {
         base.Deactivate();

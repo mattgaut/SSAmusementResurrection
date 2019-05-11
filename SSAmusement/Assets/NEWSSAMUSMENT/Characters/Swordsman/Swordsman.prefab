@@ -2009,6 +2009,8 @@ MonoBehaviour:
       base_value: 5
     _energy:
       base_value: 80
+    _knockback_modifier:
+      base_value: 1
     _center_mass: {fileID: 4438645240596368}
     _feet: {fileID: 4906646818280112}
     _head: {fileID: 4390308388250876}
@@ -2063,7 +2065,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ecfb9575a6edb45949f916e4c6faec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroy_on: []
 --- !u!114 &1925046958
 MonoBehaviour:
   m_ObjectHideFlags: 0

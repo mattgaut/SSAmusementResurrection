@@ -22,10 +22,12 @@ public interface IStats : IDamageable {
     Stat armor { get; }
     Stat speed { get; }
     CapStat energy { get; }
+    Stat knockback_multiplier { get; }
 }
 
 public interface ICombatant : IDamageable, IStats {
     float DealDamage(float damage, IDamageable target, bool trigger_on_hit);
+    void GiveKnockback(IDamageable target, Vector2 knockback, float duration);
     bool alive {
         get;
     }
@@ -60,6 +62,11 @@ public interface IBuff {
 
     void Apply(ICombatant stat_entity);
     void Remove(ICombatant stat_entity);
+}
+
+public interface IStatBuff {
+    float flat { get; }
+    float multi { get; }
 }
 
 /// <summary>

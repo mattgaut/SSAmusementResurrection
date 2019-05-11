@@ -87,7 +87,7 @@ public abstract class EnemyHandler : StateMachineController {
             if (player.transform.position.x < transform.position.x) {
                 real_knockback.x *= -1;
             }
-            player.TakeKnockback(enemy, real_knockback);
+            enemy.GiveKnockback(player, real_knockback);
         }
         last_bump = 0;
     }

@@ -30,7 +30,7 @@ public class Character : MonoBehaviour, ICombatant {
     public Stat armor { get { return _char_definition.armor; } }
     public Stat speed { get { return _char_definition.speed; } }
     public CapStat energy { get { return _char_definition.energy; } }
-    public Stat knockback_modifier { get { return _char_definition.knockback_modifier; } }
+    public Stat knockback_multiplier { get { return _char_definition.knockback_modifier; } }
 
     public delegate void OnHitCallback(Character hitter, float pre_mitigation_damage, float post_mitigation_damage, IDamageable hit);
     public delegate void OnKillCallback(Character killer, ICombatant killed);
@@ -185,6 +185,17 @@ public class Character : MonoBehaviour, ICombatant {
             StopCoroutine(knockback_routine);
         }
         knockback_routine = StartCoroutine(KnockbackRoutine(force, length));
+    }
+
+    /// <summary>
+    /// Calls Takeknockback on target with specified parameters modified
+    /// by characters stats
+    /// </summary>
+    /// <param name="target">IDamageable that is getting knockedback</param>
+    /// <param name="force">The force of the knockback</param>
+    /// <param name="length">Knockback Duration</param>
+    public void GiveKnockback(IDamageable target, Vector2 force, float length = 0.5f) {
+        target.TakeKnockback(this, force * knockback_multiplier, length);
     }
 
     /// <summary>
@@ -527,7 +538,7 @@ public struct CharacterDefinition {
     [SerializeField] Stat _armor;
     [SerializeField] Stat _speed;
     [SerializeField] CapStat _energy;
-    [HideInInspector][SerializeField] Stat _knockback_modifier;
+    [SerializeField] Stat _knockback_modifier;
 
     [SerializeField] Transform _center_mass, _feet, _head;
 

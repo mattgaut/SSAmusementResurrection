@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatBuff : BuffDefinition {
+public class StatBuff : BuffDefinition, IStatBuff {
 
     [SerializeField] bool health, energy, power, armor, speed;
     [SerializeField] float _flat, _multi;

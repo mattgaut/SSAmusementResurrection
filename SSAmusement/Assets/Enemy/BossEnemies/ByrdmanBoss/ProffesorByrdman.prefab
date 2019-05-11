@@ -553,14 +553,10 @@ MonoBehaviour:
     coroutine_name: AIRoutine
     coroutine_index: 0
   active_on_start: 0
-  flip_object: {fileID: 1496473438016982}
   line_of_sight_origin: {fileID: 0}
   line_of_sight_blocking_mask:
     serializedVersion: 2
     m_Bits: 0
-  jump_height: 4
-  time_to_jump_apex: 0.4
-  no_gravity: 1
   need_line_of_sight: 0
   _aggro_range: 0
   bump_damage: 0
@@ -620,12 +616,15 @@ MonoBehaviour:
       base_value: 0
     _energy:
       base_value: 0
+    _knockback_modifier:
+      base_value: 1
     _center_mass: {fileID: 3725065926333306624}
     _feet: {fileID: 3725065926333306624}
     _head: {fileID: 3725065926333306624}
   invincibility_length: 0
   knockback_resistant: 1
   anim: {fileID: 95752301480101864}
+  is_aerial_unit: 0
   _icon: {fileID: 21300000, guid: cfbfad5f05c58ef4086b7a74c53892b1, type: 3}
   drop_on_death: []
 --- !u!114 &114112411009800804
@@ -647,6 +646,7 @@ MonoBehaviour:
   collision_mask:
     serializedVersion: 2
     m_Bits: 0
+  uses_platforms: 0
 --- !u!114 &114415574579355882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -675,10 +675,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4577e845efeb2e247b6f90fffa5ff65d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
-  timed_buff: 0
-  remove_after: 0
-  _color: {r: 0, g: 0, b: 0, a: 0}
   health: 0
   energy: 0
   power: 0
@@ -698,10 +694,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4577e845efeb2e247b6f90fffa5ff65d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
-  timed_buff: 0
-  remove_after: 0
-  _color: {r: 0, g: 0, b: 0, a: 0}
   health: 0
   energy: 0
   power: 0

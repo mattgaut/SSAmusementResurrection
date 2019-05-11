@@ -104,11 +104,10 @@ public class MeleeAttackHandler : GroundedEnemyHandler {
         enemy.DealDamage(enemy.power, c);
         if (attack_knockback != Vector3.zero) {
             Vector3 real_knockback = attack_knockback;
-            if (target.transform.position.x < transform.position.x) {
+            if (c.gameObject.transform.position.x < transform.position.x) {
                 real_knockback.x *= -1;
             }
-            target.TakeKnockback(enemy, real_knockback);
-            c.TakeKnockback(enemy, real_knockback);
+            enemy.GiveKnockback(c, real_knockback);
         }
     }
 
