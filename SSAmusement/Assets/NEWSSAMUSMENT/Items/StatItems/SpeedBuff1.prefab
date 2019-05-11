@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 212015646122929256}
   - component: {fileID: 7721786158127917021}
   - component: {fileID: 114158808709656130}
+  - component: {fileID: 5129084807583265389}
   - component: {fileID: 114258773967823514}
   m_Layer: 23
   m_Name: SpeedBuff1
@@ -111,8 +112,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 682e5cbe9f53e394ea4cc96e2952b293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffs_to_apply:
+  buff: {fileID: 5129084807583265389}
+--- !u!114 &5129084807583265389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221857315384002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f163ffc0b7d845342a058e341ed7478d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffs:
   - {fileID: 114258773967823514}
+  timed_buff: 0
+  remove_after: 0
+  _is_benificial: 1
+  _icon: {fileID: 0}
 --- !u!114 &114258773967823514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,10 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4577e845efeb2e247b6f90fffa5ff65d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 52edf0f1cc85b9c4daa0257ec02c8c05, type: 3}
-  timed_buff: 0
-  remove_after: 0
-  _color: {r: 0, g: 0, b: 0, a: 0}
   health: 0
   energy: 0
   power: 0

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 212636971121945776}
   - component: {fileID: 5519710990051740026}
   - component: {fileID: 114912634547136554}
+  - component: {fileID: 6305535362350070110}
   - component: {fileID: 114611369574215466}
   m_Layer: 23
   m_Name: HealthBuff
@@ -111,8 +112,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 682e5cbe9f53e394ea4cc96e2952b293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffs_to_apply:
+  buff: {fileID: 6305535362350070110}
+--- !u!114 &6305535362350070110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576548488045020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f163ffc0b7d845342a058e341ed7478d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffs:
   - {fileID: 114611369574215466}
+  timed_buff: 0
+  remove_after: 0
+  _is_benificial: 1
+  _icon: {fileID: 0}
 --- !u!114 &114611369574215466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,10 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4577e845efeb2e247b6f90fffa5ff65d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: dee6f1f2bfc136f43932971e9401ad83, type: 3}
-  timed_buff: 0
-  remove_after: 0
-  _color: {r: 0, g: 0, b: 0, a: 0}
   health: 1
   energy: 0
   power: 0

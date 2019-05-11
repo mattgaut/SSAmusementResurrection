@@ -28,7 +28,9 @@ public class ByrdmanHandler : EnemyHandler {
 
     [SerializeField] float rest_time;
 
-    [SerializeField] Buff has_energy_buff, no_energy_buff;
+    [SerializeField] BuffDefinition has_energy_buff, no_energy_buff;
+
+    IBuff has_energy_buff_instance, no_energy_buff_instance;
 
     
 
@@ -42,6 +44,9 @@ public class ByrdmanHandler : EnemyHandler {
 
     protected override void Ini() {
         base.Ini();
+        has_energy_buff_instance = has_energy_buff.GetBuffInstance();
+        no_energy_buff_instance = no_energy_buff.GetBuffInstance();
+
         active_rockets = new List<GameObject>();
 
         if (target == null) { target = FindObjectOfType<Player>(); }
@@ -65,7 +70,7 @@ public class ByrdmanHandler : EnemyHandler {
 
     protected IEnumerator AIRoutine() {
         yield return new WaitForFixedUpdate();
-        has_energy_buff.ApplyTo(enemy);
+        has_energy_buff_instance.Apply(enemy);
         List<Func<IEnumerator>> round_1_attacks = new List<Func<IEnumerator>>() { Rockets, Electric, SpikeAttack };
         List<Func<IEnumerator>> wall_attacks = new List<Func<IEnumerator>>() { SpikeAttack, Rockets };
         List<Func<IEnumerator>> vertical_attacks = new List<Func<IEnumerator>>() { LaserAttack, Electric };
@@ -118,8 +123,8 @@ public class ByrdmanHandler : EnemyHandler {
                 enemy.transform.position += Vector3.down * to_fall;
                 yield return new WaitForFixedUpdate();
             }
-            has_energy_buff.RemoveFrom(enemy);
-            no_energy_buff.ApplyTo(enemy);
+            has_energy_buff_instance.Remove(enemy);
+            no_energy_buff_instance.Apply(enemy);
             enemy.animator.SetBool("Rest", true);
 
             yield return null;
@@ -132,8 +137,8 @@ public class ByrdmanHandler : EnemyHandler {
             lever_pulled = false;
             enemy.animator.SetTrigger("Refill");
             enemy.animator.SetBool("Rest", false);
-            no_energy_buff.RemoveFrom(enemy);
-            has_energy_buff.ApplyTo(enemy);
+            no_energy_buff_instance.Remove(enemy);
+            has_energy_buff_instance.Apply(enemy);
 
             while (!lever_pulled) {
                 yield return new WaitForFixedUpdate();

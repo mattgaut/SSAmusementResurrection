@@ -30,6 +30,7 @@ public class Character : MonoBehaviour, ICombatant {
     public Stat armor { get { return _char_definition.armor; } }
     public Stat speed { get { return _char_definition.speed; } }
     public CapStat energy { get { return _char_definition.energy; } }
+    public Stat knockback_modifier { get { return _char_definition.knockback_modifier; } }
 
     public delegate void OnHitCallback(Character hitter, float pre_mitigation_damage, float post_mitigation_damage, IDamageable hit);
     public delegate void OnKillCallback(Character killer, ICombatant killed);
@@ -98,6 +99,27 @@ public class Character : MonoBehaviour, ICombatant {
         return false;
     }
 
+    /// <summary>
+    /// Restore Health to the character
+    /// </summary>
+    /// <param name="restore">Amount of health to restore</param>
+    /// <returns>Total health restored</returns>
+    public float RestoreHealth(float restore) {
+        float old = health.current;
+        health.current += restore;
+        return health.current - old;
+    }
+
+    /// <summary>
+    /// Restore Energy to the character
+    /// </summary>
+    /// <param name="restore">Amount of Energy to restore</param>
+    /// <returns>Total Energy restored</returns>
+    public float RestoreEnergy(float restore) {
+        float old = energy.current;
+        energy.current += restore;
+        return energy.current - old;
+    }
 
     /// <summary>
     /// Deals Damage to target and calls all OnHitCallbacks with proper info
@@ -505,6 +527,7 @@ public struct CharacterDefinition {
     [SerializeField] Stat _armor;
     [SerializeField] Stat _speed;
     [SerializeField] CapStat _energy;
+    [HideInInspector][SerializeField] Stat _knockback_modifier;
 
     [SerializeField] Transform _center_mass, _feet, _head;
 
@@ -519,5 +542,6 @@ public struct CharacterDefinition {
     public Stat armor { get { return _armor; } }
     public Stat speed { get { return _speed; } }
     public CapStat energy { get { return _energy; } }
+    public Stat knockback_modifier { get { return _knockback_modifier; } }
 
 }

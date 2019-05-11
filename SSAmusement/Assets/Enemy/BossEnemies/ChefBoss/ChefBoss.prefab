@@ -1102,6 +1102,7 @@ GameObject:
   - component: {fileID: 114240197746803496}
   - component: {fileID: 50097052714497468}
   - component: {fileID: 114259174947277216}
+  - component: {fileID: 4271670033118066255}
   - component: {fileID: 114641016151308318}
   m_Layer: 16
   m_Name: ChefBoss
@@ -1147,6 +1148,7 @@ MonoBehaviour:
   collision_mask:
     serializedVersion: 2
     m_Bits: 4456448
+  uses_platforms: 0
 --- !u!114 &114698809630882490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1177,6 +1179,7 @@ MonoBehaviour:
   invincibility_length: 0
   knockback_resistant: 1
   anim: {fileID: 95148018003385476}
+  is_aerial_unit: 0
   _icon: {fileID: 21300000, guid: b860e039120ba7d43985c37cb0c6c4f9, type: 3}
   drop_on_death: []
 --- !u!114 &114240197746803496
@@ -1242,14 +1245,10 @@ MonoBehaviour:
     coroutine_name: AIRoutine
     coroutine_index: 0
   active_on_start: 0
-  flip_object: {fileID: 0}
   line_of_sight_origin: {fileID: 0}
   line_of_sight_blocking_mask:
     serializedVersion: 2
     m_Bits: 0
-  jump_height: 4
-  time_to_jump_apex: 0.4
-  no_gravity: 1
   need_line_of_sight: 0
   _aggro_range: 0
   bump_damage: 0
@@ -1265,7 +1264,25 @@ MonoBehaviour:
   cleave_attack: {fileID: 114213486454996182}
   cleaver_knockback: {x: -35, y: 10, z: 0}
   soup_attack: {fileID: 114578364903158286}
-  soup_debuff: {fileID: 114641016151308318}
+  soup_debuff: {fileID: 4271670033118066255}
+--- !u!114 &4271670033118066255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840292262480714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f163ffc0b7d845342a058e341ed7478d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffs:
+  - {fileID: 114641016151308318}
+  timed_buff: 1
+  remove_after: 4
+  _is_benificial: 0
+  _icon: {fileID: 0}
 --- !u!114 &114641016151308318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1278,10 +1295,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4577e845efeb2e247b6f90fffa5ff65d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 23449b90019e8444982d693f3415e10a, type: 3}
-  timed_buff: 1
-  remove_after: 10
-  _color: {r: 1, g: 0, b: 0, a: 1}
   health: 0
   energy: 0
   power: 0

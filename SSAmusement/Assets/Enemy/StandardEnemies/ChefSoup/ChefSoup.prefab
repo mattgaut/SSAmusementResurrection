@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 114741983880177120}
   - component: {fileID: 50974002180666026}
   - component: {fileID: 114169939856335424}
+  - component: {fileID: 320768782165135750}
   - component: {fileID: 114220353006272790}
   m_Layer: 16
   m_Name: ChefSoup
@@ -215,7 +216,25 @@ MonoBehaviour:
   attack_range: 2
   attack_knockback: {x: 0, y: 0, z: 0}
   close_distance: 1.5
-  soup_debuff: {fileID: 114220353006272790}
+  soup_debuff: {fileID: 320768782165135750}
+--- !u!114 &320768782165135750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068494373224362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f163ffc0b7d845342a058e341ed7478d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffs:
+  - {fileID: 114220353006272790}
+  timed_buff: 1
+  remove_after: 3
+  _is_benificial: 0
+  _icon: {fileID: 21300000, guid: 23449b90019e8444982d693f3415e10a, type: 3}
 --- !u!114 &114220353006272790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,10 +247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4577e845efeb2e247b6f90fffa5ff65d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timed_buff: 1
-  remove_after: 5
-  _is_benificial: 0
-  _icon: {fileID: 21300000, guid: 23449b90019e8444982d693f3415e10a, type: 3}
   health: 0
   energy: 0
   power: 0

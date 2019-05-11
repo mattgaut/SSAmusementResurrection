@@ -36,29 +36,6 @@ public class Player : Character, ICombatant {
     [SerializeField] Collider2D hitbox;
     [SerializeField] PlayerDisplay _player_display;
 
-
-    /// <summary>
-    /// Restore Health to the player
-    /// </summary>
-    /// <param name="restore">Amount of health to restore</param>
-    /// <returns>Total health restored</returns>
-    public float RestoreHealth(float restore) {
-        float old = health.current;
-        health.current += restore;
-        return health.current - old;
-    }
-
-    /// <summary>
-    /// Restore Energy to the player
-    /// </summary>
-    /// <param name="restore">Amount of Energy to restore</param>
-    /// <returns>Total Energy restored</returns>
-    public float RestoreEnergy(float restore) {
-        float old = energy.current;
-        energy.current += restore;
-        return energy.current - old;
-    }
-
     /// <summary>
     /// Adds buff timer to PlayerDisplay
     /// </summary>

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1505717523420766
+--- !u!1 &1576548488045020
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4672731993930080}
-  - component: {fileID: 6419724345149334404}
-  - component: {fileID: 1087075123151216997}
-  - component: {fileID: 114274808428152264}
-  - component: {fileID: 7156737943840791855}
-  - component: {fileID: 114197254726767554}
+  - component: {fileID: 4915178381931720}
+  - component: {fileID: 212636971121945776}
+  - component: {fileID: 5519710990051740026}
+  - component: {fileID: 114912634547136554}
+  - component: {fileID: 4748181879313264324}
+  - component: {fileID: 114611369574215466}
+  - component: {fileID: 3110942742990512474}
   m_Layer: 23
-  m_Name: AugmentArmor1
+  m_Name: LobsterDinner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4672731993930080
+--- !u!4 &4915178381931720
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505717523420766}
+  m_GameObject: {fileID: 1576548488045020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.986656, y: 0.9969877, z: 0.041992188}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6419724345149334404
+--- !u!212 &212636971121945776
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505717523420766}
+  m_GameObject: {fileID: 1576548488045020}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 386ce9052ec182542992cf9bb26335d1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -83,61 +84,81 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1087075123151216997
+--- !u!114 &5519710990051740026
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505717523420766}
+  m_GameObject: {fileID: 1576548488045020}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5407d6a339d491c4db4f6704205e369e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item_name: Reinforced Plate
-  _item_description: Increase armor by 2.
-  sprite: {fileID: 21300000, guid: 386ce9052ec182542992cf9bb26335d1, type: 3}
+  _item_name: 'Augment: Lifeforce'
+  _item_description: Increase max health by 10 + 10% reduces power.
+  sprite: {fileID: 21300000, guid: dee6f1f2bfc136f43932971e9401ad83, type: 3}
   effects:
-  - {fileID: 114274808428152264}
---- !u!114 &114274808428152264
+  - {fileID: 114912634547136554}
+--- !u!114 &114912634547136554
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505717523420766}
+  m_GameObject: {fileID: 1576548488045020}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 682e5cbe9f53e394ea4cc96e2952b293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buff: {fileID: 7156737943840791855}
---- !u!114 &7156737943840791855
+  buff: {fileID: 4748181879313264324}
+--- !u!114 &4748181879313264324
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505717523420766}
+  m_GameObject: {fileID: 1576548488045020}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f163ffc0b7d845342a058e341ed7478d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buffs:
-  - {fileID: 114197254726767554}
+  - {fileID: 114611369574215466}
+  - {fileID: 3110942742990512474}
   timed_buff: 0
   remove_after: 0
   _is_benificial: 1
   _icon: {fileID: 0}
---- !u!114 &114197254726767554
+--- !u!114 &114611369574215466
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505717523420766}
+  m_GameObject: {fileID: 1576548488045020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4577e845efeb2e247b6f90fffa5ff65d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  energy: 0
+  power: 0
+  armor: 0
+  speed: 0
+  _flat: 10
+  _multi: 1.1
+--- !u!114 &3110942742990512474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576548488045020}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4577e845efeb2e247b6f90fffa5ff65d, type: 3}
@@ -145,8 +166,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   energy: 0
-  power: 0
-  armor: 1
+  power: 1
+  armor: 0
   speed: 0
-  _flat: 2
+  _flat: -1
   _multi: 0

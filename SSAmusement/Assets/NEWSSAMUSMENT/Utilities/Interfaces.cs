@@ -57,6 +57,9 @@ public interface IBuff {
     Sprite icon { get; }
     bool is_benificial { get; }
     float length { get; }
+
+    void Apply(ICombatant stat_entity);
+    void Remove(ICombatant stat_entity);
 }
 
 /// <summary>

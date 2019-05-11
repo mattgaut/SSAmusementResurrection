@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatBuff : Buff {
+public class StatBuff : BuffDefinition {
 
     [SerializeField] bool health, energy, power, armor, speed;
     [SerializeField] float _flat, _multi;
@@ -20,7 +20,7 @@ public class StatBuff : Buff {
         }
     }
 
-    protected override void Apply(ICombatant stat_entity) {
+    public override void Apply(ICombatant stat_entity) {
         if (health) {
             stat_entity.health.AddBuff(this);
         }
@@ -38,7 +38,7 @@ public class StatBuff : Buff {
         }
     }
 
-    protected override void Remove(ICombatant stat_entity) {
+    public override void Remove(ICombatant stat_entity) {
         if (health) {
             stat_entity.health.RemoveBuff(this);
         }
