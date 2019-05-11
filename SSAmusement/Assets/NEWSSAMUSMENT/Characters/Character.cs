@@ -37,6 +37,11 @@ public class Character : MonoBehaviour, ICombatant {
     public delegate void OnTakeDamage(Character hit_character, float pre_mitigation_damage, float post_mitigation_damage, ICombatant hit_by);
     public delegate void OnDeathCallback(Character killed, ICombatant killer);
 
+    public event OnHitCallback on_hit;
+    public event OnKillCallback on_kill;
+    public event OnTakeDamage on_take_damage;
+    public event OnDeathCallback on_death;
+
     public Vector2 knockback_force {
         get; private set;
     }
@@ -74,12 +79,6 @@ public class Character : MonoBehaviour, ICombatant {
     protected Lock movement_lock;
     protected Lock anti_gravity_lock;
     protected Lock invincibility_lock;
-
-    /// TODO replace with unity events or custom Callback Event Handler
-    protected List<OnHitCallback> on_hits;
-    protected List<OnKillCallback> on_kills;
-    protected List<OnTakeDamage> on_take_damages;
-    protected List<OnDeathCallback> on_deaths;
 
     protected ICombatant last_hit_by;
 
@@ -131,9 +130,8 @@ public class Character : MonoBehaviour, ICombatant {
     public float DealDamage(float damage, IDamageable target, bool trigger_on_hit = true) {
         float damage_dealt = target.TakeDamage(damage, this);
         if (damage_dealt > 0 && trigger_on_hit) {
-            foreach (OnHitCallback oh in on_hits) {
-                oh(this, damage, damage_dealt, target);
-            }
+            InvokeOnHit(this, damage, damage_dealt, target);
+
         }
         return damage_dealt;
     }
@@ -159,9 +157,7 @@ public class Character : MonoBehaviour, ICombatant {
             if (health.current <= 0) {
                 Die(source);
             } else {
-                foreach (OnTakeDamage otd in on_take_damages) {
-                    otd(this, damage, post_mitigation_damage, source);
-                }
+                InvokeOnTakeDamage(this, damage, post_mitigation_damage, source);
             }
         }
         return old - health.current;
@@ -223,9 +219,7 @@ public class Character : MonoBehaviour, ICombatant {
     /// </summary>
     /// <param name="killed"></param>
     public virtual void GiveKillCredit(ICombatant killed) {
-        foreach (OnKillCallback ok in on_kills) {
-            ok(this, killed);
-        }
+        InvokeOnKill(this, killed);
     }
 
 
@@ -317,57 +311,22 @@ public class Character : MonoBehaviour, ICombatant {
     /// </summary>
     public bool UnlockGravity(int lock_value) { return anti_gravity_lock.RemoveLock(lock_value); }
 
-    /// <summary>
-    /// Adds OnKillCallback to character
-    /// </summary>
-    /// <param name="ok">OnKillCallback or equivalent</param>
-    public void AddOnKill(OnKillCallback ok) { on_kills.Add(ok); }
-    /// <summary>
-    /// Removes OnKillCallback from character
-    /// </summary>
-    /// <param name="ok">OnKillCallback or equivalent</param>
-    public void RemoveOnKill(OnKillCallback ok) { on_kills.Remove(ok); }
-    /// <summary>
-    /// Adds OnDeathCallback to character
-    /// </summary>
-    /// <param name="od">OnDeathCallback or equivalent</param>
-    public void AddOnDeath(OnDeathCallback od) { on_deaths.Add(od); }
-    /// <summary>
-    /// Removes OnDeathCallback from character
-    /// </summary>
-    /// <param name="od">OnDeathCallback or equivalent</param>
-    public void RemoveOnDeath(OnDeathCallback od) { on_deaths.Remove(od); }
-
-    /// <summary>
-    /// Adds OnHitCallback to character
-    /// </summary>
-    /// <param name="oh">OnHitCallback or equivalent</param>
-    public void AddOnHit(OnHitCallback oh) { on_hits.Add(oh); }
-    /// <summary>
-    /// Removes OnHitCallback from character
-    /// </summary>
-    /// <param name="oh">OnHitCallback or equivalent</param>
-    public void RemoveOnHit(OnHitCallback oh) { on_hits.Remove(oh); }
-
-    /// <summary>
-    /// Adds OnTakeDamage to character
-    /// </summary>
-    /// <param name="otd">OnTakeDamage or equivalent</param>
-    public void AddOnTakeDamage(OnTakeDamage otd) { on_take_damages.Add(otd); }
-    /// <summary>
-    /// Removes OnTakeDamage from character
-    /// </summary>
-    /// <param name="otd">OnTakeDamage or equivalent</param>
-    public void RemoveOnTakeDamage(OnTakeDamage otd) { on_take_damages.Remove(otd); }
+    protected void InvokeOnHit(Character hitter, float pre_mitigation_damage, float post_mitigation_damage, IDamageable hit) {
+        on_hit?.Invoke(hitter, pre_mitigation_damage, post_mitigation_damage, hit);
+    }
+    protected void InvokeOnTakeDamage(Character hit_character, float pre_mitigation_damage, float post_mitigation_damage, ICombatant hit_by) {
+        on_take_damage?.Invoke(hit_character, pre_mitigation_damage, post_mitigation_damage, hit_by);
+    }
+    protected void InvokeOnKill(Character killer, ICombatant killed) {
+        on_kill?.Invoke(killer, killed);
+    }
+    protected void InvokeOnDeath(Character killed, ICombatant killed_by) {
+        on_death?.Invoke(killed, killed_by);
+    }
 
     protected void Awake() {
         health.current = health.max;
         energy.current = energy.max;
-
-        on_hits = new List<OnHitCallback>();
-        on_kills = new List<OnKillCallback>();
-        on_take_damages = new List<OnTakeDamage>();
-        on_deaths = new List<OnDeathCallback>();
 
         alive = true;
 
@@ -397,9 +356,7 @@ public class Character : MonoBehaviour, ICombatant {
 
     protected virtual void Die(ICombatant killed_by) {
         last_hit_by.GiveKillCredit(this);
-        foreach (OnDeathCallback odc in on_deaths) {
-            odc.Invoke(this, killed_by);
-        }
+        InvokeOnDeath(this, killed_by);
         Destroy(gameObject);
     }
 

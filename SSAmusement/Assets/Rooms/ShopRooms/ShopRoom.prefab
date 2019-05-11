@@ -585,7 +585,7 @@ MonoBehaviour:
   - {fileID: 5946443575451763476}
   - {fileID: 8664083524991198270}
   - {fileID: 5946443575405837554}
-  individual_sale_chance: 0.05
+  individual_sale_chance: 0.1
 --- !u!1 &2007473331971426573
 GameObject:
   m_ObjectHideFlags: 0

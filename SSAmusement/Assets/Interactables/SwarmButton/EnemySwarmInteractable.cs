@@ -38,7 +38,7 @@ public class EnemySwarmInteractable : MonoBehaviour, IInteractable {
             foreach (EnemySwarmInstructions.Spawn s in instruction.waves[i].spawns) {
                 Enemy e = s.spawn_point.SpawnEnemy(s.enemy);
                 enemies.Add(e);
-                e.AddOnDeath((killed, killer) => enemies.Remove(killed));
+                e.on_death += ((killed, killer) => enemies.Remove(killed));
             }
 
             while (enemies.Count > 0) {
