@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SoundManager : MonoBehaviour {
-
-    static SoundManager instance;
+public class SoundManager : Singleton<SoundManager> {
 
     [SerializeField] AudioSource main, fade_in;
     float volume = 0.5f;
@@ -42,13 +40,9 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
-    private void Awake() {
+    protected override void OnAwake() {
         main.volume = volume;
-        if (instance == null) {
-            instance = this;
-        }
     }
-
 
     public void LocalPlaySong(AudioClip clip) {
         instance.main.UnPause();
