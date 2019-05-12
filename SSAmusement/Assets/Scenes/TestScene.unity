@@ -340,31 +340,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 212172832687273668, guid: ddcb770da08498949938aeef27b089a1,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: ed22a6a83ec84b3499d566b3057320d8,
-        type: 3}
-    - target: {fileID: 49947020, guid: ddcb770da08498949938aeef27b089a1, type: 3}
-      propertyPath: abilities
-      value: 
-      objectReference: {fileID: 4144601498022036351}
-    - target: {fileID: 4144601498022036351, guid: ddcb770da08498949938aeef27b089a1,
-        type: 3}
-      propertyPath: _cyclone
-      value: 
-      objectReference: {fileID: 4144601498022036350}
-    - target: {fileID: 4144601498022036350, guid: ddcb770da08498949938aeef27b089a1,
-        type: 3}
-      propertyPath: anim_trigger_windup
-      value: Windup
-      objectReference: {fileID: 0}
-    - target: {fileID: 4144601498022036350, guid: ddcb770da08498949938aeef27b089a1,
-        type: 3}
-      propertyPath: anim_trigger_end_spin
-      value: EndSpin
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddcb770da08498949938aeef27b089a1, type: 3}
 --- !u!1 &69196874
@@ -3881,30 +3856,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6384710a91417514eb0b4d028c3d7996, type: 3}
---- !u!114 &4144601498022036350 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4144601498022036350, guid: ddcb770da08498949938aeef27b089a1,
-    type: 3}
-  m_PrefabInstance: {fileID: 49947018}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3feb559c299ed1c43a30d84842cca4ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4144601498022036351 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4144601498022036351, guid: ddcb770da08498949938aeef27b089a1,
-    type: 3}
-  m_PrefabInstance: {fileID: 49947018}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00a67d0ceaf7ae746af3db8243c0622a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &7233373464768418597
 SpriteRenderer:
   m_ObjectHideFlags: 0
