@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: MetalDoor
+  m_Controller: {fileID: 9100000, guid: 5f68c2f919efb4a48969b56c53aafc87, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 90eec02cc0689f54b87d056230631864, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 90eec02cc0689f54b87d056230631864, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: eab6d4631b95a6a45ab6028b9a204a48, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 717668e1d8f0e7046aa48f6d62dada05, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9c1488def74e24a4bad5cb4159c61473, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9f05a0020fac65546ac8f8f987155676, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 8acfae5f2b9a56e41ba605d073ef0a20, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8888880832e376846ace27d886dec44d, type: 2}
