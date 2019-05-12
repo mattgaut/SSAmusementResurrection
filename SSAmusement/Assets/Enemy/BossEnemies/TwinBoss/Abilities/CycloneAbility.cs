@@ -1,0 +1,66 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CycloneAbility : ActiveAbility {
+    public bool winding_up {
+        get; private set;
+    }
+
+    [SerializeField] Attack attack;
+    [SerializeField] float damage_multiplier;
+    [SerializeField] Vector2 knockback;
+    [SerializeField] StatBuff speed_buff;
+    [SerializeField] float duration;
+
+    [SerializeField] string anim_trigger_windup, anim_trigger_end_spin;
+
+    public void FinishWindUp() {
+        winding_up = false;
+    }
+
+    protected override void UseAbility(float input) {
+        StartCoroutine(Cyclone());
+    }
+
+    private void Awake() {
+        attack.SetOnHit(OnHit);
+    }
+
+    IEnumerator Cyclone() {  
+        character.animator.SetTrigger(anim_trigger_windup);
+
+        IBuff buff = null;
+
+        if (speed_buff) {
+            buff = speed_buff.GetBuffInstance();
+        }
+        
+        using_ability = true;
+        winding_up = true;
+        // Wait for anim to finish windup
+        while (winding_up) {
+            yield return null;
+        }
+
+        buff?.Apply(character);
+        attack.Enable();
+
+        float timer = duration;
+        while (timer > 0) {
+            yield return new WaitForFixedUpdate();
+            timer -= Time.deltaTime;
+        }
+
+        attack.Disable();
+        buff?.Remove(character);
+
+        character.animator.SetTrigger(anim_trigger_end_spin);
+        using_ability = false;
+    }
+
+    void OnHit(IDamageable hit, Attack hit_by) {
+        character.DealDamage(character.power * damage_multiplier, hit, true);
+        character.GiveKnockback(hit, new Vector2(knockback.x * Mathf.Sign(hit.gameObject.transform.position.x - hit_by.transform.position.x), knockback.y));
+    }
+}

@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public abstract class AbilitySet : MonoBehaviour {
     protected List<Ability> abilities;
-    [SerializeField] protected Character character;
+    protected Character character;
 
     public int count { get { return abilities.Count; } }
 

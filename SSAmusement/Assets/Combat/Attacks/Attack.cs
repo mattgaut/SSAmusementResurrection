@@ -65,7 +65,7 @@ public abstract class Attack : MonoBehaviour {
     protected bool ConfirmHit(IDamageable d) {
         if (!d.invincible && HitCondition(d)) {
             LogHit(d);
-            on_hit(d, this);
+            on_hit?.Invoke(d, this);
             OnCollisionWithTarget();
             return true;
         }

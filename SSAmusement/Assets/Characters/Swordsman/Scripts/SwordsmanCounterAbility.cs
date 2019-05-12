@@ -74,6 +74,6 @@ public class SwordsmanCounterAbility : ActiveAbility {
 
     void AttackOnHit(IDamageable d, Attack hit_by) {
         character.DealDamage(character.power, d);
-        character.GiveKnockback(d, new Vector3(knockback.x * Mathf.Sign(d.gameObject.transform.position.x - transform.position.x), knockback.y, 0));
+        character.GiveKnockback(d, new Vector2(knockback.x * Mathf.Sign(d.gameObject.transform.position.x - transform.position.x), knockback.y));
     }
 }
