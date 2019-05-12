@@ -49,7 +49,7 @@ public class ChefCarrotHandler : GroundedEnemyHandler {
         float wander_length = Random.Range(0.5f, 2f);
         while (!ShouldStopMoving(direction) && wander_length > 0) {
             wander_length -= Time.fixedDeltaTime;
-            _input.x = direction * enemy.speed;
+            _input.x = direction;
             if (CanHunt()) {
                 break;
             }
@@ -80,7 +80,7 @@ public class ChefCarrotHandler : GroundedEnemyHandler {
     protected IEnumerator WalkTowardsTarget() {
         float direction = target.transform.position.x - transform.position.x;
         if (!ShouldStopMoving(direction)) {
-            _input.x = Mathf.Sign(direction) * enemy.speed;
+            _input.x = Mathf.Sign(direction);
         }
         yield return new WaitForFixedUpdate();
         _input.x = 0;
@@ -88,7 +88,7 @@ public class ChefCarrotHandler : GroundedEnemyHandler {
     protected IEnumerator WalkAwayFromTarget() {
         float direction = -target.transform.position.x + transform.position.x;
         if (!ShouldStopMoving(direction)) {
-            _input.x = Mathf.Sign(direction) * enemy.speed;
+            _input.x = Mathf.Sign(direction);
         }
         yield return new WaitForFixedUpdate();
         _input.x = 0;

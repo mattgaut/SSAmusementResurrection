@@ -65,7 +65,7 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
             }
 
             velocity.x = _input.x;
-            movement = (velocity + gravity_force) * Time.deltaTime;
+            movement = (velocity + gravity_force) * enemy.speed * Time.deltaTime;
             Face(movement.x);
         } else {
             if (knocked_back_last_frame == false) gravity_force = Vector2.zero;

@@ -49,7 +49,7 @@ public class MeleeAttackHandler : GroundedEnemyHandler {
         float wander_length = Random.Range(0.5f, 2f);
         while (!ShouldStopMoving(direction) && wander_length > 0) {
             wander_length -= Time.fixedDeltaTime;
-            _input.x = direction * enemy.speed;
+            _input.x = direction;
             if (CanHunt()) {
                 break;
             }
@@ -84,7 +84,7 @@ public class MeleeAttackHandler : GroundedEnemyHandler {
     protected IEnumerator WalkTowardsTarget() {
         float direction = target.transform.position.x - transform.position.x;
         if (!ShouldStopMoving(direction) && Mathf.Abs(direction) > 0.05f) {
-            _input.x = Mathf.Sign(direction) * enemy.speed;
+            _input.x = Mathf.Sign(direction);
         } else {
             _input.x = 0;
         }

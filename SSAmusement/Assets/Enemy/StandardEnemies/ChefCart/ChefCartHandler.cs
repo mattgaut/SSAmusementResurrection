@@ -59,7 +59,7 @@ public class ChefCartHandler : GroundedEnemyHandler {
         float wander_length = Random.Range(0.5f, 2f);
         while (!ShouldStopMoving(direction) && wander_length > 0) {
             wander_length -= Time.fixedDeltaTime;
-            _input.x = direction * enemy.speed;
+            _input.x = direction;
             if (CanHunt()) {
                 break;
             }
@@ -74,20 +74,21 @@ public class ChefCartHandler : GroundedEnemyHandler {
         float direction = Mathf.Sign(target.transform.position.x - transform.position.x);
 
         float time = 0;
-        float speed = enemy.speed;
+        float speed = 1;
+        float max_speed = 4f;
         float accel_factor = 1.5f;
         while (!ShouldStopMoving(direction) && time < max_charge_length) {
             yield return new WaitForFixedUpdate();
             time += Time.fixedDeltaTime;
-            if (speed < enemy.speed * 4f) {
+            if (speed < max_speed) {
 
-                speed = enemy.speed * Mathf.Pow(time * Mathf.Pow(3, 1/accel_factor)/ 1.2f, accel_factor) + enemy.speed;
-                if (speed >= enemy.speed * 4f) {
-                    speed = enemy.speed * 4f;
+                speed = Mathf.Pow(time * Mathf.Pow(3, 1/accel_factor)/ 1.2f, accel_factor) + 1;
+                if (speed >= max_speed) {
+                    speed = max_speed;
                 }
             }
             _input.x = speed * direction;
-            percent_bonus_speed = ((speed - enemy.speed) / (enemy.speed * 3f));
+            percent_bonus_speed = (speed - 1) / (max_speed - 1);
 
         }
         percent_bonus_speed = 0;
