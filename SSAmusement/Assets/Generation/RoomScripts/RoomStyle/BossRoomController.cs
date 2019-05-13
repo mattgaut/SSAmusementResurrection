@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossRoomController : RoomController {
 
     [SerializeField] Vector2Int entrance_block_coord, fighting_block_coord, leaving_block_coord;
-    [SerializeField] Enemy boss;
+    [SerializeField] List<Enemy> bosses;
     [SerializeField] Door door_in, door_to_next_floor, door_lock_in;
     [SerializeField] ItemChest _reward;
     [SerializeField] AudioClip boss_theme;
@@ -34,23 +34,23 @@ public class BossRoomController : RoomController {
         FindObjectOfType<CameraFollow>().LerpToFollow(0.25f);
 
         door_in.Close();
+        teleporter.SetOpen(false);
         if (door_to_next_floor) door_to_next_floor.Close();
 
         fighting = true;
-
-        if (boss != null) {
-            boss.GetComponent<EnemyDisplay>().Enable(true);
-            boss.SetHome(this);
-            boss.GetComponent<EnemyHandler>().SetActive(true);
-        }
-
 
         door_in.SetHardLocked(true);
         door_lock_in.SetHardLocked(true);
         if (door_to_next_floor) door_to_next_floor.SetHardLocked(true);
         if (boss_theme != null) SoundManager.PlaySong(boss_theme);
 
-        if (boss == null) {
+        if (bosses != null) {
+            foreach (Enemy boss in bosses) {
+                boss.GetComponent<EnemyDisplay>().Enable(true);
+                boss.SetHome(this);
+                boss.GetComponent<EnemyHandler>().SetActive(true);
+            }
+        } else {
             OnBossDefeated();
         }
     }
@@ -61,8 +61,9 @@ public class BossRoomController : RoomController {
     /// <param name="enemy"></param>
     public override void RemoveEnemy(Enemy enemy) {
         base.RemoveEnemy(enemy);
-        if (enemy == boss) {
-            OnBossDefeated();
+        if (bosses.Contains(enemy)) {
+            bosses.Remove(enemy);
+            if (bosses.Count == 0) OnBossDefeated();
         }
     }
 
@@ -98,6 +99,8 @@ public class BossRoomController : RoomController {
             door_to_next_floor.SetHardLocked(false);
             door_to_next_floor.Open();
         }
+
+        teleporter.SetOpen(true);
 
         if (boss_blocker) boss_blocker.enabled = false;
     }
