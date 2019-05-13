@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public abstract class Pickup : MonoBehaviour {
 
+    [SerializeField] AudioClip on_pickup_audio_clip;
+
     bool picked_up = false;
 
     protected abstract void PickupEffect(Player player);
@@ -22,6 +24,8 @@ public abstract class Pickup : MonoBehaviour {
         picked_up = true;
 
         PickupEffect(p);
+
+        SoundManager.instance?.LocalPlaySfx(on_pickup_audio_clip);
 
         Destroy(gameObject);
     }

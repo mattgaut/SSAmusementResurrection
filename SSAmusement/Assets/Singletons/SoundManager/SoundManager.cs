@@ -60,6 +60,10 @@ public class SoundManager : Singleton<SoundManager> {
         }
     }
 
+    public void LocalPlaySfx(AudioClip clip) {
+        StartCoroutine(PlaySFXRoutine(clip));
+    }
+
     public void FadeOut() {
         if (fade_routine != null) StopCoroutine(fade_routine);  
         StartCoroutine(FadeOutMain(2f));
@@ -112,5 +116,17 @@ public class SoundManager : Singleton<SoundManager> {
         fade_in = temp;
 
         fade_routine = null;
+    }
+
+    IEnumerator PlaySFXRoutine(AudioClip clip) {
+        AudioSource audio = gameObject.AddComponent<AudioSource>();
+        audio.clip = clip;
+        audio.Play();
+
+        while (audio.isPlaying) {
+            yield return null;
+        }
+
+        Destroy(audio);
     }
 }
