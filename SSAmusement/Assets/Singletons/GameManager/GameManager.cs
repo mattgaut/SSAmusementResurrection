@@ -153,7 +153,7 @@ public class GameManager : Singleton<GameManager> {
     }
 
     IEnumerator LoadLevelRoutine(Level level) {
-        SceneManager.LoadScene("Level1", LoadSceneMode.Single);
+        SceneManager.LoadScene("LevelScene", LoadSceneMode.Single);
         current_level = level;
 
         yield return null;
