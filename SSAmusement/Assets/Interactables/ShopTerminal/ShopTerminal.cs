@@ -9,6 +9,7 @@ public class ShopTerminal : MonoBehaviour, IInteractable {
     [SerializeField] Item on_sale;
     [SerializeField] Text sale_price_text;
     [SerializeField] Image item_image_display;
+    [SerializeField] AudioClip on_successful_purchase, on_failed_purchase;
 
     int text_size;
 
@@ -46,9 +47,13 @@ public class ShopTerminal : MonoBehaviour, IInteractable {
             Item new_item = Instantiate(on_sale);
             player.inventory.AddItem(new_item);
 
+            SoundManager.instance?.LocalPlaySfx(on_successful_purchase);
+
             on_purchase.Invoke();
 
             CloseTerminal();
+        } else {
+            SoundManager.instance?.LocalPlaySfx(on_failed_purchase);
         }
     }
 
