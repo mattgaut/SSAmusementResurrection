@@ -9,7 +9,6 @@ public enum Direction { TOP = 1, BOTTOM = -1, LEFT = -2, RIGHT = 2 }
 
 public enum RoomType { basic, boss, shop, teleporter, swarm }
 
-[RequireComponent(typeof(RoomController))]
 public class Room : MonoBehaviour {
 
     [SerializeField] protected Tile[] tiles;
