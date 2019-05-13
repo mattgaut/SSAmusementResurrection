@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public abstract class Pickup : MonoBehaviour {
 
-    [SerializeField] AudioClip on_pickup_audio_clip;
+    [SerializeField] SFXClip on_pickup_audio_clip;
 
     bool picked_up = false;
 

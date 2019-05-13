@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SoundManager : Singleton<SoundManager> {
 
-    [SerializeField] AudioSource main, fade_in;
+    [SerializeField] AudioSource main, fade_in, sfx;
     float volume = 0.5f;
 
     Coroutine fade_routine;
@@ -60,8 +60,8 @@ public class SoundManager : Singleton<SoundManager> {
         }
     }
 
-    public void LocalPlaySfx(AudioClip clip) {
-        StartCoroutine(PlaySFXRoutine(clip));
+    public void LocalPlaySfx(SFXClip clip) {
+        clip.PlaySound(sfx);
     }
 
     public void FadeOut() {
@@ -116,17 +116,5 @@ public class SoundManager : Singleton<SoundManager> {
         fade_in = temp;
 
         fade_routine = null;
-    }
-
-    IEnumerator PlaySFXRoutine(AudioClip clip) {
-        AudioSource audio = gameObject.AddComponent<AudioSource>();
-        audio.clip = clip;
-        audio.Play();
-
-        while (audio.isPlaying) {
-            yield return null;
-        }
-
-        Destroy(audio);
     }
 }

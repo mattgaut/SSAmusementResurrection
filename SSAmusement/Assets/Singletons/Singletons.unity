@@ -112,18 +112,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!82 &2053336214 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 2053336214, guid: 06f08f6c2bb72f3478d34895e46a967b,
-    type: 3}
-  m_PrefabInstance: {fileID: 4727880422662913534}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &2053336215 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 2053336215, guid: 06f08f6c2bb72f3478d34895e46a967b,
-    type: 3}
-  m_PrefabInstance: {fileID: 4727880422662913534}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4727880422662913534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -191,18 +179,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4753337269797124211, guid: 06f08f6c2bb72f3478d34895e46a967b,
-        type: 3}
-      propertyPath: start_game_on_start
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2053336213, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}
-      propertyPath: main
-      value: 
-      objectReference: {fileID: 2053336214}
-    - target: {fileID: 2053336213, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}
-      propertyPath: fade_in
-      value: 
-      objectReference: {fileID: 2053336215}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}

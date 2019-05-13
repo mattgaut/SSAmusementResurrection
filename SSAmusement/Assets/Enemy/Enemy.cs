@@ -19,7 +19,7 @@ public class Enemy : Character, ICombatant {
 
     [SerializeField] Sprite _icon;
     [SerializeField] List<Pickup> drop_on_death;
-    [SerializeField] AudioClip on_death_sfx;
+    [SerializeField] SFXClip on_death_sfx;
 
     /// <summary>
     /// Sets home room

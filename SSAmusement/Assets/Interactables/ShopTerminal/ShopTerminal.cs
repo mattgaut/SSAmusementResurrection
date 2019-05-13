@@ -9,7 +9,7 @@ public class ShopTerminal : MonoBehaviour, IInteractable {
     [SerializeField] Item on_sale;
     [SerializeField] Text sale_price_text;
     [SerializeField] Image item_image_display;
-    [SerializeField] AudioClip on_successful_purchase, on_failed_purchase;
+    [SerializeField] SFXClip on_successful_purchase, on_failed_purchase;
 
     int text_size;
 
