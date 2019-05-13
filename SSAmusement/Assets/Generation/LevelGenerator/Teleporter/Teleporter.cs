@@ -1,8 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Teleporter : MonoBehaviour, IInteractable {
+
+    public UnityEvent arrival_event {
+        get { return on_arrival; }
+    }
+    public UnityEvent departure_event {
+        get { return on_departure; }
+    }
 
     [SerializeField] RoomController home;
     [SerializeField] Teleporter linked_teleporter;
@@ -10,6 +18,8 @@ public class Teleporter : MonoBehaviour, IInteractable {
     [SerializeField] bool open;
 
     [SerializeField] Animator anim;
+
+    [SerializeField] UnityEvent on_arrival, on_departure;
 
     bool teleporting;
     float cutscene_length = 2f;
@@ -36,8 +46,9 @@ public class Teleporter : MonoBehaviour, IInteractable {
     }
 
     private IEnumerator TeleportRoutine(Player player, Teleporter teleport_to) {
-        float length = cutscene_length;
+        departure_event.Invoke();
 
+        float length = cutscene_length;
         GameManager.instance.StartCutscene();
 
         teleport_to.teleporting = true;
@@ -54,6 +65,8 @@ public class Teleporter : MonoBehaviour, IInteractable {
         teleporting = false;
 
         GameManager.instance.EndCutscene();
+
+        teleport_to.arrival_event.Invoke();
     }
 
     void Awake() {

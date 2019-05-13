@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd164e027d427f49a6cb343cb28426b, type: 3}
+  m_Name: JustOneRoom
+  m_EditorClassIdentifier: 
+  _level_name: Market
+  set: {fileID: 11400000, guid: 06c2fe7b75cdbf747a74a23a594c96cd, type: 2}
+  _spawn_room: {fileID: 5189522555062558611, guid: 0f8592f659b9a0e48875f5bd946a9148,
+    type: 3}
+  _unweighted_rooms: []
+  _boss_rooms:
+  - {fileID: 8831496457862234096, guid: 22804b2e181af044b9022bfa75c3269d, type: 3}
+  - {fileID: 7121024513451371837, guid: c8504a57f739b934da1277cbdb3b79a9, type: 3}
+  _teleporter_rooms:
+  - {fileID: 847591222282362295, guid: 0f552b8b7f84cce409f4c38a22791584, type: 3}
+  _shop_rooms:
+    use_range: 0
+    fixed_number: 0
+    min: 2
+    max: 8
+    avg: 6
+    _rooms:
+    - {fileID: 4514925430453041600, guid: 971034f94f3303745b8089d0d29c2c29, type: 3}
+  _swarm_rooms:
+    use_range: 0
+    fixed_number: 0
+    min: 0
+    max: 0
+    avg: 1.5
+    _rooms:
+    - {fileID: 7963284868146210025, guid: 27bb4460d087a1b4182acaff12d513c1, type: 3}

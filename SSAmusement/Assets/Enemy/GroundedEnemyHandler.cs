@@ -15,6 +15,10 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
 
     public int facing { get; private set; }
 
+    protected float max_x_movement_per_tick {
+        get { return enemy.speed * Time.fixedDeltaTime; }
+    }
+
     float gravity;
     float jump_velocity;
 
@@ -22,6 +26,24 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
     Vector2 velocity;
 
     Coroutine drop_routine;
+
+    protected void Face(float i) {
+        if (!can_flip) return;
+        if (i * base_facing < 0) {
+            flip_object.transform.localRotation = Quaternion.Euler(0, 180f, 0);
+            facing = 1;
+        } else if (i * base_facing > 0) {
+            flip_object.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            facing = -1;
+        }
+    }
+
+    protected bool ShouldStopMoving(int direction) {
+        return ShouldStopMoving((float)direction);
+    }
+    protected virtual bool ShouldStopMoving(float direction) {
+        return collision_info.past_max;
+    }
 
     protected override void Awake() {
         base.Awake();
@@ -45,6 +67,40 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
     protected override void Deactivate() {
         base.Deactivate();
         can_flip = true;
+    }
+
+    protected IEnumerator MoveTo(Transform target_transform) {
+        float difference = target_transform.position.x - transform.position.x;
+        while (Mathf.Abs(difference) > max_x_movement_per_tick) {
+            _input.x = Mathf.Sign(difference);
+            yield return new WaitForFixedUpdate();
+            difference = target_transform.transform.position.x - transform.position.x;
+        }
+        _input.x = difference / max_x_movement_per_tick;
+        yield return new WaitForFixedUpdate();
+        _input.x = 0;
+    }
+
+    protected IEnumerator MoveTo(Vector2 position) {
+        float difference = position.x - transform.position.x;
+        while (Mathf.Abs(difference) > max_x_movement_per_tick) {
+            _input.x = Mathf.Sign(difference);
+            yield return new WaitForFixedUpdate();
+            difference = position.x - transform.position.x;
+        }
+        _input.x = difference / max_x_movement_per_tick;
+        yield return new WaitForFixedUpdate();
+        _input.x = 0;
+    }
+
+    protected IEnumerator MoveTo(Transform target_transform, float horizontal_distance) {
+        float difference = target_transform.position.x - transform.position.x;
+        while (Mathf.Abs(difference) > horizontal_distance) {
+            _input.x = Mathf.Sign(difference);
+            yield return new WaitForFixedUpdate();
+            difference = target_transform.transform.position.x - transform.position.x;
+        }
+        _input.x = 0;
     }
 
     void Move() {
@@ -99,24 +155,5 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
         }
         cont.AddPlatformToMask();
         drop_routine = null;
-    }
-
-
-    public void Face(float i) {
-        if (!can_flip) return;
-        if (i * base_facing < 0) {
-            flip_object.transform.localRotation = Quaternion.Euler(0, 180f, 0);
-            facing = 1;
-        } else if (i * base_facing > 0) {
-            flip_object.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            facing = -1;
-        }
-    }
-
-    protected bool ShouldStopMoving(int direction) {
-        return ShouldStopMoving((float)direction);
-    }
-    protected virtual bool ShouldStopMoving(float direction) {
-        return collision_info.past_max;
     }
 }

@@ -69,7 +69,9 @@ public class ShapeGenerator : LevelGenerator {
             RoomController cont;
             List<RoomController> remaining_rooms = new List<RoomController>(level.unweighted_rooms);
             Vector2Int offset = Vector2Int.zero;
-
+            if (remaining_rooms.Count == 0) {
+                return;
+            }
             bool fit = false;
             do {
                 cont = remaining_rooms[rng.GetInt(0, remaining_rooms.Count)];

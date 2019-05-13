@@ -27,7 +27,7 @@ public class CycloneAbility : ActiveAbility {
         attack.SetOnHit(OnHit);
     }
 
-    IEnumerator Cyclone() {  
+    IEnumerator Cyclone() {
         character.animator.SetTrigger(anim_trigger_windup);
 
         IBuff buff = null;

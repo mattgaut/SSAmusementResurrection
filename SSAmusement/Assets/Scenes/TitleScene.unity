@@ -3473,6 +3473,7 @@ MonoBehaviour:
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
   flip_object: {fileID: 1240053618498604}
+  base_facing: -1
   no_gravity: 0
   get_mad: 0
 --- !u!1 &68658630
@@ -8689,6 +8690,7 @@ MonoBehaviour:
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
   flip_object: {fileID: 1580720331719401}
+  base_facing: -1
   no_gravity: 0
   get_mad: 1
 --- !u!1 &180658813
@@ -16140,6 +16142,7 @@ MonoBehaviour:
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
   flip_object: {fileID: 1580721241121716}
+  base_facing: -1
   no_gravity: 0
   get_mad: 1
 --- !u!1 &330073621
@@ -20262,6 +20265,8 @@ MonoBehaviour:
       base_value: 0
     _energy:
       base_value: 0
+    _knockback_modifier:
+      base_value: 0
     _center_mass: {fileID: 0}
     _feet: {fileID: 0}
     _head: {fileID: 0}
@@ -20269,8 +20274,10 @@ MonoBehaviour:
   knockback_resistant: 1
   anim: {fileID: 116818884}
   is_aerial_unit: 0
+  base_jump_count: 1
   _icon: {fileID: 0}
   drop_on_death: []
+  on_death_sfx: {fileID: 0}
 --- !u!114 &438775508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20317,7 +20324,7 @@ MonoBehaviour:
   cleave_attack: {fileID: 626060800}
   cleaver_knockback: {x: -35, y: 10, z: 0}
   soup_attack: {fileID: 841399886}
-  soup_debuff: {fileID: 438775509}
+  soup_debuff: {fileID: 0}
 --- !u!114 &438775509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20331,10 +20338,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4577e845efeb2e247b6f90fffa5ff65d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 23449b90019e8444982d693f3415e10a, type: 3}
-  timed_buff: 1
-  remove_after: 10
-  _color: {r: 1, g: 0, b: 0, a: 1}
   health: 0
   energy: 0
   power: 0
@@ -49247,6 +49250,7 @@ MonoBehaviour:
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
   flip_object: {fileID: 1531273757434099}
+  base_facing: -1
   no_gravity: 0
   get_mad: 1
 --- !u!1 &1047747070
@@ -50273,6 +50277,7 @@ MonoBehaviour:
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
   flip_object: {fileID: 1531273428624453}
+  base_facing: -1
   no_gravity: 0
   get_mad: 0
 --- !u!1 &1075072590
@@ -50779,7 +50784,7 @@ MonoBehaviour:
   background: {fileID: 312378646}
   text: {fileID: 1611062423}
   fade_time: 1.5
-  hold_time: 10
+  hold_time: 2
   on_finish:
     m_PersistentCalls:
       m_Calls:
@@ -51024,6 +51029,7 @@ MonoBehaviour:
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
   flip_object: {fileID: 1531273446902775}
+  base_facing: -1
   no_gravity: 0
   get_mad: 1
 --- !u!1 &1083226155
@@ -63982,7 +63988,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 100.00004, y: -80.000046}
-  m_SizeDelta: {x: 168.59853, y: 53.95153}
+  m_SizeDelta: {x: 171.66666, y: 55.833332}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1353940218
 MonoBehaviour:
@@ -72794,7 +72800,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 100.00004, y: 0}
-  m_SizeDelta: {x: 102.8451, y: 53.95153}
+  m_SizeDelta: {x: 105.83333, y: 55.833332}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1548691654
 MonoBehaviour:
@@ -74513,7 +74519,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 100.00004, y: -159.99998}
-  m_SizeDelta: {x: 89.35722, y: 53.95153}
+  m_SizeDelta: {x: 91.666664, y: 55.833332}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1594795641
 MonoBehaviour:
@@ -74721,6 +74727,7 @@ MonoBehaviour:
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
   flip_object: {fileID: 1240053156229116}
+  base_facing: -1
   no_gravity: 0
   get_mad: 0
 --- !u!1 &1599475783
@@ -75007,7 +75014,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 100.00004, y: 160.00005}
-  m_SizeDelta: {x: 478.81982, y: 133.19284}
+  m_SizeDelta: {x: 491.66666, y: 135.83333}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1602931647
 MonoBehaviour:
@@ -86088,6 +86095,7 @@ MonoBehaviour:
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
   flip_object: {fileID: 1531273663147707}
+  base_facing: -1
   no_gravity: 0
   get_mad: 0
 --- !u!1 &1823129618
@@ -89225,6 +89233,7 @@ MonoBehaviour:
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
   flip_object: {fileID: 1580720610573252}
+  base_facing: -1
   no_gravity: 0
   get_mad: 1
 --- !u!1 &1902585698
@@ -104103,6 +104112,8 @@ MonoBehaviour:
       base_value: 4
     _energy:
       base_value: 0
+    _knockback_modifier:
+      base_value: 0
     _center_mass: {fileID: 4090400925015965}
     _feet: {fileID: 4090400925015965}
     _head: {fileID: 4090400925015965}
@@ -104110,8 +104121,10 @@ MonoBehaviour:
   knockback_resistant: 0
   anim: {fileID: 95571586496153525}
   is_aerial_unit: 0
+  base_jump_count: 1
   _icon: {fileID: 21300000, guid: 63ddf26841bb40a4a8ecb4e84528873a, type: 3}
   drop_on_death: []
+  on_death_sfx: {fileID: 0}
 --- !u!114 &114055846164110559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104136,6 +104149,8 @@ MonoBehaviour:
       base_value: 4
     _energy:
       base_value: 0
+    _knockback_modifier:
+      base_value: 0
     _center_mass: {fileID: 4090401040142805}
     _feet: {fileID: 4090401040142805}
     _head: {fileID: 4090401040142805}
@@ -104143,8 +104158,10 @@ MonoBehaviour:
   knockback_resistant: 0
   anim: {fileID: 95571586053704189}
   is_aerial_unit: 0
+  base_jump_count: 1
   _icon: {fileID: 21300000, guid: 63ddf26841bb40a4a8ecb4e84528873a, type: 3}
   drop_on_death: []
+  on_death_sfx: {fileID: 0}
 --- !u!114 &114055846317439379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104169,6 +104186,8 @@ MonoBehaviour:
       base_value: 4
     _energy:
       base_value: 0
+    _knockback_modifier:
+      base_value: 0
     _center_mass: {fileID: 4090401151071385}
     _feet: {fileID: 4090401151071385}
     _head: {fileID: 4090401151071385}
@@ -104176,8 +104195,10 @@ MonoBehaviour:
   knockback_resistant: 0
   anim: {fileID: 95571586135862449}
   is_aerial_unit: 0
+  base_jump_count: 1
   _icon: {fileID: 21300000, guid: 63ddf26841bb40a4a8ecb4e84528873a, type: 3}
   drop_on_death: []
+  on_death_sfx: {fileID: 0}
 --- !u!114 &114055846334404129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104202,6 +104223,8 @@ MonoBehaviour:
       base_value: 4
     _energy:
       base_value: 0
+    _knockback_modifier:
+      base_value: 0
     _center_mass: {fileID: 4090401133042475}
     _feet: {fileID: 4090401133042475}
     _head: {fileID: 4090401133042475}
@@ -104209,8 +104232,10 @@ MonoBehaviour:
   knockback_resistant: 0
   anim: {fileID: 95571586150597379}
   is_aerial_unit: 0
+  base_jump_count: 1
   _icon: {fileID: 21300000, guid: 63ddf26841bb40a4a8ecb4e84528873a, type: 3}
   drop_on_death: []
+  on_death_sfx: {fileID: 0}
 --- !u!114 &114059993754769520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105630,6 +105655,8 @@ MonoBehaviour:
       base_value: 2.5
     _energy:
       base_value: 0
+    _knockback_modifier:
+      base_value: 0
     _center_mass: {fileID: 4474835454715068}
     _feet: {fileID: 4474835454715068}
     _head: {fileID: 4474835454715068}
@@ -105637,8 +105664,10 @@ MonoBehaviour:
   knockback_resistant: 0
   anim: {fileID: 95148017560714854}
   is_aerial_unit: 0
+  base_jump_count: 1
   _icon: {fileID: 21300000, guid: 9f74f644843bcf342b35fd264d844838, type: 3}
   drop_on_death: []
+  on_death_sfx: {fileID: 0}
 --- !u!114 &114661331753482218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105663,6 +105692,8 @@ MonoBehaviour:
       base_value: 2.5
     _energy:
       base_value: 0
+    _knockback_modifier:
+      base_value: 0
     _center_mass: {fileID: 4474836050712428}
     _feet: {fileID: 4474836050712428}
     _head: {fileID: 4474836050712428}
@@ -105670,8 +105701,10 @@ MonoBehaviour:
   knockback_resistant: 0
   anim: {fileID: 95148017082305974}
   is_aerial_unit: 0
+  base_jump_count: 1
   _icon: {fileID: 21300000, guid: 9f74f644843bcf342b35fd264d844838, type: 3}
   drop_on_death: []
+  on_death_sfx: {fileID: 0}
 --- !u!114 &114675294377199188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105696,6 +105729,8 @@ MonoBehaviour:
       base_value: 2.5
     _energy:
       base_value: 0
+    _knockback_modifier:
+      base_value: 0
     _center_mass: {fileID: 4632518503724262}
     _feet: {fileID: 4632518503724262}
     _head: {fileID: 4632518503724262}
@@ -105703,8 +105738,10 @@ MonoBehaviour:
   knockback_resistant: 0
   anim: {fileID: 95178166495088100}
   is_aerial_unit: 0
+  base_jump_count: 1
   _icon: {fileID: 21300000, guid: d3ca833b52499d84ba0fb73897b882df, type: 3}
   drop_on_death: []
+  on_death_sfx: {fileID: 0}
 --- !u!114 &114675295555004169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105729,6 +105766,8 @@ MonoBehaviour:
       base_value: 2.5
     _energy:
       base_value: 0
+    _knockback_modifier:
+      base_value: 0
     _center_mass: {fileID: 4632518340384187}
     _feet: {fileID: 4632518340384187}
     _head: {fileID: 4632518340384187}
@@ -105736,8 +105775,10 @@ MonoBehaviour:
   knockback_resistant: 0
   anim: {fileID: 95178166382652601}
   is_aerial_unit: 0
+  base_jump_count: 1
   _icon: {fileID: 21300000, guid: d3ca833b52499d84ba0fb73897b882df, type: 3}
   drop_on_death: []
+  on_death_sfx: {fileID: 0}
 --- !u!114 &114675295884566052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105762,6 +105803,8 @@ MonoBehaviour:
       base_value: 2.5
     _energy:
       base_value: 0
+    _knockback_modifier:
+      base_value: 0
     _center_mass: {fileID: 4632518066171030}
     _feet: {fileID: 4632518066171030}
     _head: {fileID: 4632518066171030}
@@ -105769,8 +105812,10 @@ MonoBehaviour:
   knockback_resistant: 0
   anim: {fileID: 95178166124647828}
   is_aerial_unit: 0
+  base_jump_count: 1
   _icon: {fileID: 21300000, guid: d3ca833b52499d84ba0fb73897b882df, type: 3}
   drop_on_death: []
+  on_death_sfx: {fileID: 0}
 --- !u!114 &114685991601640288
 MonoBehaviour:
   m_ObjectHideFlags: 0

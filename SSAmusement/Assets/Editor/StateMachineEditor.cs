@@ -31,6 +31,8 @@ public class StateMachineEditor : Editor {
         DrawFoldoutList(ref are_parameters_folded_out, property, property.arraySize + " Parameters");
 
         GUI.enabled = true;
+
+        serialized_machine.ApplyModifiedProperties();
     }
 
     void DrawFoldoutList(ref bool is_folded_out, SerializedProperty array_property, string name) {

@@ -8,6 +8,8 @@ public class Projectile : SingleHitAttack {
     [SerializeField] protected LayerMask break_mask, break_after_timer_mask;
     [SerializeField] protected float speed, ignore_wall_timer, max_lifetime;
 
+    [SerializeField] protected float gravity_force;
+
     [SerializeField] protected Vector3 base_direction;
 
     [SerializeField] ParticleSystem particles;
@@ -15,6 +17,17 @@ public class Projectile : SingleHitAttack {
     Animator anim;
     Rigidbody2D rb;
     bool is_exploded;
+
+    Vector3 gravity_vector;
+
+    public void SetSpeedAndDirection(Vector2 force) {
+        speed = force.magnitude;
+        base_direction = force.normalized;
+    }
+
+    public void EndLife() {
+        Destroy(gameObject);
+    }
 
     protected override void Awake() {
         base.Awake();
@@ -38,10 +51,13 @@ public class Projectile : SingleHitAttack {
         if (timer > max_lifetime && max_lifetime != 0) {
             Explode();
         }
-
         Turn();
 
+
         transform.position += transform.localRotation * base_direction * speed * Time.deltaTime;
+        transform.position += gravity_vector * Time.deltaTime;
+
+        gravity_vector += Vector3.down * gravity_force * Time.deltaTime;
     }
 
     protected virtual void Turn() {
@@ -60,19 +76,19 @@ public class Projectile : SingleHitAttack {
         Explode();
     }
 
-    public virtual void Explode() {
+    protected virtual void Explode() {
         speed = 0;
         if (particles) {
             particles.Stop();
             particles.gameObject.transform.SetParent(null);
         }
-        anim.SetTrigger("Explode");
+        if (anim != null && anim.enabled) {
+            anim.SetTrigger("Explode");
+        } else {
+            EndLife();
+        }
         is_exploded = true;
 
         hitbox.enabled = false;
-    }
-
-    public void EndLife() {
-        Destroy(gameObject);
     }
 }

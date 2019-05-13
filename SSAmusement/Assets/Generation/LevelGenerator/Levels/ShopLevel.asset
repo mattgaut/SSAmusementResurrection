@@ -28,6 +28,7 @@ MonoBehaviour:
   - {fileID: 4457115218438025703, guid: d58fafb8039d75d49866e04b10e71ed6, type: 3}
   _boss_rooms:
   - {fileID: 8831496457862234096, guid: 22804b2e181af044b9022bfa75c3269d, type: 3}
+  - {fileID: 7121024513451371837, guid: c8504a57f739b934da1277cbdb3b79a9, type: 3}
   _teleporter_rooms:
   - {fileID: 847591222282362295, guid: 0f552b8b7f84cce409f4c38a22791584, type: 3}
   _shop_rooms:
@@ -39,10 +40,10 @@ MonoBehaviour:
     _rooms:
     - {fileID: 4514925430453041600, guid: 971034f94f3303745b8089d0d29c2c29, type: 3}
   _swarm_rooms:
-    use_range: 0
+    use_range: 1
     fixed_number: 1
-    min: 0
-    max: 0
-    avg: 0
+    min: 1
+    max: 2
+    avg: 1.5
     _rooms:
     - {fileID: 7963284868146210025, guid: 27bb4460d087a1b4182acaff12d513c1, type: 3}

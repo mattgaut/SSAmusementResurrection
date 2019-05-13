@@ -3,9 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RNG {
+    static int default_seed;
+    static bool is_default_seed_set;
 
     int seed;
     Random.State state;
+
+    public RNG() {
+        if (!is_default_seed_set) {
+            default_seed = System.DateTime.Now.Millisecond;
+        }
+        seed = default_seed;
+        default_seed = (default_seed * System.DateTime.Now.Millisecond) % 10000;
+        Random.InitState(seed);
+        state = Random.state;
+    }
 
     public RNG(int seed) {
         this.seed = seed;

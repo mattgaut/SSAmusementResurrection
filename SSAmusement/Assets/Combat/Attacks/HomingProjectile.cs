@@ -49,7 +49,7 @@ public class HomingProjectile : Projectile {
         }
     }
 
-    public override void Explode() {
+    protected override void Explode() {
         base.Explode();
         turn_speed = 0;
     }

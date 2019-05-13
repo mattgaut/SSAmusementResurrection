@@ -6,7 +6,7 @@ public class BossRoomController : RoomController {
 
     [SerializeField] Vector2Int entrance_block_coord, fighting_block_coord, leaving_block_coord;
     [SerializeField] List<Enemy> bosses;
-    [SerializeField] Door door_in, door_to_next_floor, door_lock_in;
+    [SerializeField] Door door_to_next_floor;
     [SerializeField] ItemChest _reward;
     [SerializeField] AudioClip boss_theme;
     [SerializeField] Collider2D boss_blocker;
@@ -33,15 +33,12 @@ public class BossRoomController : RoomController {
     public void OnEnterArena() {
         FindObjectOfType<CameraFollow>().LerpToFollow(0.25f);
 
-        door_in.Close();
         teleporter.SetOpen(false);
-        if (door_to_next_floor) door_to_next_floor.Close();
+        door_to_next_floor?.Close();
 
         fighting = true;
 
-        door_in.SetHardLocked(true);
-        door_lock_in.SetHardLocked(true);
-        if (door_to_next_floor) door_to_next_floor.SetHardLocked(true);
+        door_to_next_floor?.SetHardLocked(true);
         if (boss_theme != null) SoundManager.PlaySong(boss_theme);
 
         if (bosses != null) {
@@ -100,9 +97,14 @@ public class BossRoomController : RoomController {
             door_to_next_floor.Open();
         }
 
+        teleporter.arrival_event.RemoveListener(() => OnEnterArena());
         teleporter.SetOpen(true);
 
         if (boss_blocker) boss_blocker.enabled = false;
+    }
+
+    private void Awake() {
+        teleporter.arrival_event.AddListener(() => OnEnterArena());
     }
 
     Vector3 ClampToEntranceBlock(Vector3 position) {

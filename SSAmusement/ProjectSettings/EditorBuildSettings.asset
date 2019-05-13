@@ -12,12 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelScene.unity
     guid: 75f1bf4f395f25d44890522256206176
   - enabled: 1
-    path: Assets/Level2.unity
-    guid: e8e3f0ff2555f5e40bf87af6fd0aec1b
-  - enabled: 1
     path: Assets/Singletons/Singletons.unity
     guid: 623494e1c3f6c67499b1c95f485ca307
-  - enabled: 1
-    path: Assets/RestartScene.unity
-    guid: a13348edd5084b44299ab86d1db17aef
   m_configObjects: {}

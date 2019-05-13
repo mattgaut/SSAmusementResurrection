@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy : Character, ICombatant {
 
-    [SerializeField] Sprite _icon;
     public Sprite icon {
         get { return _icon; }
     }
@@ -18,6 +17,7 @@ public class Enemy : Character, ICombatant {
 
     System.Func<IEnumerator> die_function;
 
+    [SerializeField] Sprite _icon;
     [SerializeField] List<Pickup> drop_on_death;
     [SerializeField] AudioClip on_death_sfx;
 
