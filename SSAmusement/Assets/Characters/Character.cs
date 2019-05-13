@@ -18,6 +18,8 @@ public class Character : MonoBehaviour, ICombatant {
 
     [SerializeField] protected bool is_aerial_unit;
 
+    [SerializeField] int base_jump_count = 1;
+
     public Animator animator {
         get { return anim; }
     }
@@ -31,6 +33,9 @@ public class Character : MonoBehaviour, ICombatant {
     public Stat speed { get { return _char_definition.speed; } }
     public CapStat energy { get { return _char_definition.energy; } }
     public Stat knockback_multiplier { get { return _char_definition.knockback_modifier; } }
+
+    public int jump_count { get { return base_jump_count + bonus_jump_count; } }
+    public int bonus_jump_count { get; private set; }
 
     public delegate void OnHitCallback(Character hitter, float pre_mitigation_damage, float post_mitigation_damage, IDamageable hit);
     public delegate void OnKillCallback(Character killer, ICombatant killed);
@@ -310,6 +315,15 @@ public class Character : MonoBehaviour, ICombatant {
     /// Removes lock from character gravity
     /// </summary>
     public bool UnlockGravity(int lock_value) { return anti_gravity_lock.RemoveLock(lock_value); }
+
+    public void AddBonusJump(int add) {
+        bonus_jump_count += add;
+    }
+
+    public void RemoveBonusJump(int subtract) {
+        bonus_jump_count -= subtract;
+        bonus_jump_count = Mathf.Max(bonus_jump_count, 0);
+    }
 
     protected void InvokeOnHit(Character hitter, float pre_mitigation_damage, float post_mitigation_damage, IDamageable hit) {
         on_hit?.Invoke(hitter, pre_mitigation_damage, post_mitigation_damage, hit);
