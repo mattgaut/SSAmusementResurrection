@@ -4,6 +4,7 @@ TextureImporter:
   fileIDToRecycleName:
     21300000: LobsterDinner
     21300002: Chef'sCleaver
+    21300004: Items_0
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -132,6 +133,26 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 2645e80f5b92fab41b0df18aa3d76d03
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Items_0
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 250
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 204c6e1541dcc5f469af314435977893
       vertices: []
       indices: 
       edges: []
