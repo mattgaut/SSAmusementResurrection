@@ -104,7 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283fd950cddd5ff499590f3e3a4571b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 8964366808274051818}
   _shoot: {fileID: 1024881582007325149}
 --- !u!114 &1024881582007325149
 MonoBehaviour:
@@ -463,6 +462,8 @@ MonoBehaviour:
       base_value: 2.5
     _energy:
       base_value: 0
+    _knockback_modifier:
+      base_value: 0
     _center_mass: {fileID: 2468675086223526359}
     _feet: {fileID: 8898629033204391987}
     _head: {fileID: 8890520838633770433}
@@ -470,8 +471,10 @@ MonoBehaviour:
   knockback_resistant: 1
   anim: {fileID: 8807939972094253361}
   is_aerial_unit: 0
+  base_jump_count: 1
   _icon: {fileID: 21300000, guid: 0557551fc7c8f1f49b7414bbbe0cb130, type: 3}
   drop_on_death: []
+  on_death_sfx: {fileID: 8300000, guid: f42344bbfaf35b947bcfd3db1cc15861, type: 3}
 --- !u!114 &8964909368291755456
 MonoBehaviour:
   m_ObjectHideFlags: 0

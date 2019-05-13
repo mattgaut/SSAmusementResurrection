@@ -742,8 +742,10 @@ MonoBehaviour:
   knockback_resistant: 0
   anim: {fileID: 182148984190305365}
   is_aerial_unit: 1
+  base_jump_count: 1
   _icon: {fileID: 21300000, guid: cbf5ef84caf9f7344a85f90c23381ec2, type: 3}
   drop_on_death: []
+  on_death_sfx: {fileID: 8300000, guid: f42344bbfaf35b947bcfd3db1cc15861, type: 3}
 --- !u!114 &347560742085646500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -920,7 +922,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50dc9195b959e2d4fbd31bb063fd114f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 350398035534217102}
   _dive_bomb: {fileID: 405342673215646913}
   _sweep: {fileID: 405342673215646912}
 --- !u!114 &405342673215646913

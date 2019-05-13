@@ -120,8 +120,10 @@ MonoBehaviour:
   knockback_resistant: 0
   anim: {fileID: 95571586174542020}
   is_aerial_unit: 0
+  base_jump_count: 1
   _icon: {fileID: 21300000, guid: 286ca90e821b6e447ac28032a1585499, type: 3}
   drop_on_death: []
+  on_death_sfx: {fileID: 8300000, guid: f42344bbfaf35b947bcfd3db1cc15861, type: 3}
 --- !u!114 &114741983880177120
 MonoBehaviour:
   m_ObjectHideFlags: 0

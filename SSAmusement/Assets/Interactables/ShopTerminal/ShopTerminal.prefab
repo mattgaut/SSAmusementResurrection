@@ -125,6 +125,9 @@ MonoBehaviour:
   on_sale: {fileID: 0}
   sale_price_text: {fileID: 5946443575645014925}
   item_image_display: {fileID: 8029631819795568984}
+  on_successful_purchase: {fileID: 8300000, guid: 33afdefb82687034eaea5079ec0c9224,
+    type: 3}
+  on_failed_purchase: {fileID: 8300000, guid: 6df747f1b3c361f4b8c3ea1988d66de0, type: 3}
 --- !u!61 &5946443575471377597
 BoxCollider2D:
   m_ObjectHideFlags: 0

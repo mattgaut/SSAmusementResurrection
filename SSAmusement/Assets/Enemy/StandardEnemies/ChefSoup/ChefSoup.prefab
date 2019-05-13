@@ -83,6 +83,8 @@ MonoBehaviour:
       base_value: 2.5
     _energy:
       base_value: 0
+    _knockback_modifier:
+      base_value: 0
     _center_mass: {fileID: 856250453218880483}
     _feet: {fileID: 4090401177434348}
     _head: {fileID: 4222802027142606}
@@ -90,8 +92,10 @@ MonoBehaviour:
   knockback_resistant: 0
   anim: {fileID: 95571586174542020}
   is_aerial_unit: 0
+  base_jump_count: 1
   _icon: {fileID: 21300018, guid: ed72b35046af6c94a9686e7d99a20798, type: 3}
   drop_on_death: []
+  on_death_sfx: {fileID: 8300000, guid: f42344bbfaf35b947bcfd3db1cc15861, type: 3}
 --- !u!114 &114741983880177120
 MonoBehaviour:
   m_ObjectHideFlags: 0
