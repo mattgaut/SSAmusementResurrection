@@ -27,6 +27,9 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
     float max_jump_hold;
     float x_smooth;
 
+    int jumps_used;
+    bool grounded_jump_used;
+
     bool jumping, knocked_back_last_frame;
 
     Vector2 velocity;
@@ -83,6 +86,10 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
             gravity_force.y = 0;
             velocity.y = 0;
         }
+        if (cont.collisions.below) {
+            jumps_used = 0;
+            grounded_jump_used = false;
+        }
         Vector2 adjusted_input = input;
         if (!player.can_input || !GameManager.instance.input_active || !player.can_move) {
             adjusted_input = Vector2.zero;
@@ -108,22 +115,23 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
                 gravity_force = Vector3.zero;
             } else {
                 knocked_back_last_frame = false;
-                if (GameManager.instance.input_active && player.can_input) {
+
+                if (jumping) {
+                    velocity.y = jump_velocity;
+                } else if (GameManager.instance.input_active && player.can_input) {
                     if (adjusted_input.y <= -.99f && Input.GetButtonDown("Jump") && drop_routine == null && cont.OverPlatform()) {
                         if (cont.OverPlatform()) {
                             drop_routine = StartCoroutine(DropRoutine());
                         }
                     } else if (Input.GetButtonDown("Drop") && drop_routine == null && player.can_input) {
                         drop_routine = StartCoroutine(DropRoutine());
-                    } else if (Input.GetButtonDown("Jump") && cont.collisions.below && player.can_move && player.can_input) {
-                        gravity_force.y = 0;
-                        velocity.y = jump_velocity;
-                        StartCoroutine(JumpRoutine());
-                    } else if (jumping) {
-                        velocity.y = jump_velocity;
-                    }
-                } else if (jumping) {
-                    velocity.y = jump_velocity;
+                    } else if (Input.GetButtonDown("Jump") && player.can_move && player.can_input) {
+                        if (cont.collisions.below) {
+                            Jump(true);
+                        } else if (jumps_used < (player.jump_count - (grounded_jump_used? 0 : 1))) {
+                            Jump(false);
+                        }
+                    } 
                 }
 
                 float target_velocity_x = adjusted_input.x * player.speed;
@@ -185,6 +193,18 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
         drop_routine = null;
     }
 
+    void Jump(bool grounded) {
+        gravity_force.y = 0;
+        velocity.y = jump_velocity;
+        jumps_used += 1;
+        if (grounded) {
+            StartCoroutine(JumpRoutine());
+            grounded_jump_used = true;
+        } else {
+            StartCoroutine(ForceJumpRoutine(.08f));
+        }
+    }
+
     IEnumerator JumpRoutine() {
         jumping = true;
         float time_left = max_jump_hold;
@@ -192,6 +212,16 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
         while (time_left > 0 && held && !cont.collisions.above) {
             time_left -= Time.fixedDeltaTime;
             held = held && Input.GetButton("Jump");
+            yield return new WaitForFixedUpdate();
+        }
+        jumping = false;
+    }
+
+    IEnumerator ForceJumpRoutine(float force) {
+        jumping = true;
+        float time_left = force;
+        while (time_left > 0 && !cont.collisions.above) {
+            time_left -= Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
         jumping = false;
