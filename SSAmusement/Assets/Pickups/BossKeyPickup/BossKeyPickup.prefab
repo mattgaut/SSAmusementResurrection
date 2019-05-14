@@ -132,6 +132,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad93b4a57869a14fa138ca60b3a13a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  on_pickup_audio_clip:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_boss_key
+    default_clip: {fileID: 0}
 --- !u!1 &5687653134234394156
 GameObject:
   m_ObjectHideFlags: 0

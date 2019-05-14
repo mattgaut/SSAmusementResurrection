@@ -14,3 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sound_effect_list:
   - {fileID: 11400000, guid: 77f768f9abd93c543ada900f4d730295, type: 2}
+  - {fileID: 11400000, guid: 793a14ae39641934faaa99bb53d94f70, type: 2}
+  - {fileID: 11400000, guid: 39bed8aa72e87fe45a9173320cf7667f, type: 2}
+  - {fileID: 11400000, guid: bc612ae3c72f3364b95ddee88bc2b7fc, type: 2}
+  - {fileID: 11400000, guid: ba6dede86007934469a9045adb24115c, type: 2}
+  - {fileID: 11400000, guid: 171b25b09495feb4fb60313bca9c0465, type: 2}
+  - {fileID: 11400000, guid: 0b8f9568ed995bf438c7eb737e5251d2, type: 2}
+  - {fileID: 11400000, guid: 9930a72c5950d7c419ec3ba7010e7ccd, type: 2}
+  - {fileID: 11400000, guid: 4673bf6c5e499a94fa8bb29df44038ff, type: 2}
+  - {fileID: 11400000, guid: b3b8eb8bd04d0ae44a6815bf2524135d, type: 2}

@@ -142,6 +142,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5cd733a94a18ac46a42a1fff672ef09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  on_pickup_audio_clip:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_battery
+    default_clip: {fileID: 0}
   to_restore: 15
 --- !u!1 &5687653134234394156
 GameObject:
