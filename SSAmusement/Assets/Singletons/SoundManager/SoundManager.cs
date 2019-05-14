@@ -61,7 +61,7 @@ public class SoundManager : Singleton<SoundManager> {
     }
 
     public void LocalPlaySfx(SFXClip clip) {
-        clip.PlaySound(sfx);
+        clip?.PlaySound(sfx);
     }
 
     public void FadeOut() {
