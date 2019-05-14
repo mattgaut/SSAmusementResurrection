@@ -1,0 +1,8 @@
+-Pickup
+	-Boss Key, Coins, Heart, Batteries, (Power up)
+-Shop Terminals
+-Damage
+-Jumping and Landing
+-Opening Chest
+-Sliding Door
+-Slash
