@@ -5,9 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Inventory))]
 public class Player : Character, ICombatant {
 
-    public Inventory inventory {
-        get { return _inventory; }
-    }
+    public Inventory inventory { get; private set; }
     public PlayerDisplay player_display {
         get { return _player_display; }
     }
@@ -32,7 +30,6 @@ public class Player : Character, ICombatant {
         get { return true; }
     }
 
-    Inventory _inventory;
     [SerializeField] Collider2D hitbox;
     [SerializeField] PlayerDisplay _player_display;
 
@@ -65,11 +62,12 @@ public class Player : Character, ICombatant {
     protected override void OnAwake() {
         base.OnAwake();
 
-        _inventory = GetComponent<Inventory>();
+        inventory = GetComponent<Inventory>();
     }
 
     void Update() {
         player_display.UpdateHealthBar(health.current, health.max);
         player_display.UpdateEnergyBar(energy.current, energy.max);
     }
+
 }

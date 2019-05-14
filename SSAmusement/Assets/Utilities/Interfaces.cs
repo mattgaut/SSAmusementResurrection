@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -53,6 +54,9 @@ public interface IInteractable {
 public interface IInputHandler {
     Vector2 input { get; }
     int facing { get; }
+
+    event Action<bool> on_jump;
+    event Action on_land;
 }
 
 public interface IBuff {

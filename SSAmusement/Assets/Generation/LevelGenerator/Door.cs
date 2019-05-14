@@ -9,6 +9,9 @@ public class Door : MonoBehaviour {
 
     [SerializeField] bool locked, hard_locked, initially_open, force_open;
 
+    [SerializeField] SFXInfo open_sfx = new SFXInfo("sfx_door_open");
+    [SerializeField] SFXInfo close_sfx = new SFXInfo("sfx_door_close");
+
     private void Awake() {
         anim = GetComponent<Animator>();
         initially_open = force_open || initially_open;
@@ -38,11 +41,14 @@ public class Door : MonoBehaviour {
     public void Open() {
         if (!locked && !hard_locked) {
             anim.SetBool("Open", true);
+            SoundManager.instance.LocalPlaySfx(open_sfx);
         }
     }
     public void Close() {
-        if (!force_open)
+        if (!force_open) {
             anim.SetBool("Open", false);
+            SoundManager.instance.LocalPlaySfx(close_sfx);
+        }
     }
     public void SetLocked(bool _locked) {
         locked = _locked;

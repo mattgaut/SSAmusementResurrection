@@ -19,7 +19,6 @@ public class Enemy : Character, ICombatant {
 
     [SerializeField] Sprite _icon;
     [SerializeField] List<Pickup> drop_on_death;
-    [SerializeField] SFXClip on_death_sfx;
 
     /// <summary>
     /// Sets home room
@@ -67,7 +66,6 @@ public class Enemy : Character, ICombatant {
     void OnDie() {
         DropPickups();
         if (home) home.RemoveEnemy(this);
-        SoundManager.instance?.LocalPlaySfx(on_death_sfx);
         Destroy(gameObject);
     }
 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "SoundBank", menuName = "SFX/SoundBank")]
 public class SoundBank : ScriptableObject {
+    static SoundBank current_soundbank;
+
     Dictionary<string, SFXClip> sound_effects_dictionary;
     [SerializeField] List<SFXClip> _sound_effect_list;
 
@@ -12,6 +14,14 @@ public class SoundBank : ScriptableObject {
         name = name.ToLower();
         name = "sfx_" + name;
         return name;
+    }
+
+    public static SFXClip StaticGetSFXClip(string name) {
+        return current_soundbank?.GetSFXClip(name);
+    }
+
+    public static bool StaticHasSFXClip(string name) {
+        return (bool)current_soundbank?.HasSFXClip(name);
     }
 
     public SFXClip GetSFXClip(string name) {
@@ -38,5 +48,6 @@ public class SoundBank : ScriptableObject {
 
     private void OnEnable() {
         ReloadDictionary();
+        if (current_soundbank == null) current_soundbank = this;
     }
 }

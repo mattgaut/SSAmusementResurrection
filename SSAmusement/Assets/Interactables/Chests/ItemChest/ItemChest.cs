@@ -8,9 +8,7 @@ public class ItemChest : MonoBehaviour, IInteractable {
     bool opened;
     [SerializeField] Sprite open_sprite;
 
-    void Open() {
-
-    }
+    [SerializeField] SFXInfo open_sfx = new SFXInfo("sfx_chest_open");
 
     public void SetSpawnItem(Item i) {
         to_spawn = i;
@@ -23,6 +21,7 @@ public class ItemChest : MonoBehaviour, IInteractable {
             player.inventory.AddItem(new_item);
             opened = true;
             GetComponent<SpriteRenderer>().sprite = open_sprite;
+            SoundManager.instance.LocalPlaySfx(open_sfx);
         }
     }
 

@@ -9,7 +9,7 @@ public class ShopTerminal : MonoBehaviour, IInteractable {
     [SerializeField] Item on_sale;
     [SerializeField] Text sale_price_text;
     [SerializeField] Image item_image_display;
-    [SerializeField] SFXClip on_successful_purchase, on_failed_purchase;
+    [SerializeField] SoundEffects sfxs;
 
     int text_size;
 
@@ -47,13 +47,13 @@ public class ShopTerminal : MonoBehaviour, IInteractable {
             Item new_item = Instantiate(on_sale);
             player.inventory.AddItem(new_item);
 
-            SoundManager.instance?.LocalPlaySfx(on_successful_purchase);
+            SoundManager.instance?.LocalPlaySfx(sfxs.on_successful_purchase);
 
             on_purchase.Invoke();
 
             CloseTerminal();
         } else {
-            SoundManager.instance?.LocalPlaySfx(on_failed_purchase);
+            SoundManager.instance?.LocalPlaySfx(sfxs.on_failed_purchase);
         }
     }
 
@@ -63,5 +63,11 @@ public class ShopTerminal : MonoBehaviour, IInteractable {
         } else {
             sale_price_text.fontSize = text_size;
         }
+    }
+
+    [System.Serializable]
+    class SoundEffects {
+        public SFXInfo on_successful_purchase = new SFXInfo(SoundBankCodenames.sfx_purchase_success);
+        public SFXInfo on_failed_purchase = new SFXInfo(SoundBankCodenames.sfx_purchase_failed);
     }
 }

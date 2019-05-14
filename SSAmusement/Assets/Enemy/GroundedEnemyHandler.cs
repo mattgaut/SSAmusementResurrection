@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,6 +27,9 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
     Vector2 velocity;
 
     Coroutine drop_routine;
+
+    public event Action<bool> on_jump;
+    public event Action on_land;
 
     protected void Face(float i) {
         if (!can_flip) return;
@@ -115,6 +119,7 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
             knocked_back_last_frame = false;
             if (_input.y > 0 && cont.collisions.below) {
                 velocity.y = jump_velocity;
+                on_jump.Invoke(true);
             }
             if (_input.y < 0 && drop_routine == null) {
                 drop_routine = StartCoroutine(DropRoutine());

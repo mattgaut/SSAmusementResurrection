@@ -9,9 +9,9 @@ public class PickupChest : MonoBehaviour {
     [SerializeField] Transform spawn_point;
     [SerializeField] bool locked_to_player;
 
+    [SerializeField] SFXInfo open_sfx = new SFXInfo("sfx_chest_open");
+
     bool opened;
-
-
 
     public void Open() {
         foreach (Pickup p in pickups_to_spawn) {
@@ -19,6 +19,7 @@ public class PickupChest : MonoBehaviour {
         }
         opened = true;
         GetComponent<SpriteRenderer>().sprite = open_sprite;
+        SoundManager.instance.LocalPlaySfx(open_sfx);
     }
 
     public void SetSpawnPickups(List<Pickup> pickups) {

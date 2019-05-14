@@ -1925,6 +1925,7 @@ GameObject:
   - component: {fileID: 7778841039320395271}
   - component: {fileID: 957571028}
   - component: {fileID: 5293947553489397090}
+  - component: {fileID: 7980516069145415447}
   m_Layer: 11
   m_Name: Swordsman
   m_TagString: Untagged
@@ -2018,6 +2019,7 @@ MonoBehaviour:
   knockback_resistant: 0
   anim: {fileID: 95105598546924122}
   is_aerial_unit: 0
+  base_jump_count: 1
   hitbox: {fileID: 61211027134408314}
   _player_display: {fileID: 4465284589776689475}
 --- !u!50 &50559804081264260
@@ -2195,10 +2197,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfe15ddba6eaf6949a19d7dc03e58132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 5770375887674969164}
   basic_attack: {fileID: 1925046958}
   counter: {fileID: 7778841039320395271}
   dash: {fileID: 957571028}
+--- !u!114 &7980516069145415447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844856860675060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e45760071f38a43acc91852f0a3c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  take_damage_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_take_damage
+    default_clip: {fileID: 0}
+  die_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_die
+    default_clip: {fileID: 0}
+  jump_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_jump
+    default_clip: {fileID: 0}
+  land_sfx:
+    _override_clip: {fileID: 11400000, guid: 77f768f9abd93c543ada900f4d730295, type: 2}
+    _default_codename: sfx_character_land
+    default_clip: {fileID: 0}
 --- !u!1 &1859088898386940
 GameObject:
   m_ObjectHideFlags: 0

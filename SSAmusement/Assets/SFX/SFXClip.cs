@@ -12,7 +12,7 @@ public class SFXClip : ScriptableObject {
     [SerializeField] string _codename;
 
     [SerializeField] AudioClip _clip;
-    [SerializeField][Range(0, 1)] float _volume;
+    [SerializeField][Range(0, 1)] float _volume = 1f;
 
     public void PlaySound(AudioSource source) {
         source.PlayOneShot(clip, volume);

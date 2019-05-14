@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,6 +37,9 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
     Vector2 gravity_force;
 
     Coroutine drop_routine;
+
+    public event Action<bool> on_jump;
+    public event Action on_land;
 
     protected void ProcessSkillButton(float input, int skill_index) {
         if (abilities.HasAbility(skill_index)) {
@@ -197,6 +201,7 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
         gravity_force.y = 0;
         velocity.y = jump_velocity;
         jumps_used += 1;
+        on_jump?.Invoke(grounded);
         if (grounded) {
             StartCoroutine(JumpRoutine());
             grounded_jump_used = true;

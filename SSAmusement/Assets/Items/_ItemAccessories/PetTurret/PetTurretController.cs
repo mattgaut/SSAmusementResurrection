@@ -72,7 +72,7 @@ public class PetTurretController : MonoBehaviour {
 
     void SpawnLaser(TargetCallback target_callback) {
         HomingProjectile new_laser = Instantiate(laser, transform.position, Quaternion.identity);
-        laser.transform.position = transform.position;
+        new_laser.transform.position = transform.position;
 
         Transform target = target_callback.target.char_definition.center_mass;
         new_laser.SetTarget(target);
