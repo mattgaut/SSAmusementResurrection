@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6779095681943227116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.5685, y: 7.208315, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -147,6 +147,7 @@ MonoBehaviour:
   speed: 10
   ignore_wall_timer: 0
   max_lifetime: 0
+  gravity_force: 0
   base_direction: {x: 1, y: 0, z: 0}
   particles: {fileID: 0}
   target: {fileID: 0}

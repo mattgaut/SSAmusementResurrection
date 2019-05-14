@@ -1,8 +1,8 @@
 -Pickup
 	-Boss Key, Coins, Heart, Batteries, (Power up)
--Shop Terminals
--Damage
--Jumping and Landing
--Opening Chest
--Sliding Door
+-Shop Terminals (Purchase Success, Purchase Fail)
+-Damage (Character Take Damage)
+-Jumping and Landing (Character Jump, Character Land)
+-Opening Chest (Open Chest)
+-Sliding Door (Open Door)
 -Slash
