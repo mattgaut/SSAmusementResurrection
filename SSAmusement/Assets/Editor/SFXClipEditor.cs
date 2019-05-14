@@ -60,6 +60,6 @@ public class SFXClipEditor : Editor {
     } 
 
     void TestSound(SFXClip clip) {
-        if (sound_object != null) { clip.PlaySound(sound_object); }
+        if (sound_object != null) { clip.PlaySound(sound_object); } 
     }
 }
