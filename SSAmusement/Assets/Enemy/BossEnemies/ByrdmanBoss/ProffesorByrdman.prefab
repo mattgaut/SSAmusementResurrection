@@ -504,6 +504,7 @@ GameObject:
   - component: {fileID: 114415574579355882}
   - component: {fileID: 114557967922550542}
   - component: {fileID: 114368826503045102}
+  - component: {fileID: 629417725518034444}
   m_Layer: 0
   m_Name: ProffesorByrdman
   m_TagString: Untagged
@@ -625,6 +626,7 @@ MonoBehaviour:
   knockback_resistant: 1
   anim: {fileID: 95752301480101864}
   is_aerial_unit: 0
+  base_jump_count: 1
   _icon: {fileID: 21300000, guid: cfbfad5f05c58ef4086b7a74c53892b1, type: 3}
   drop_on_death: []
 --- !u!114 &114112411009800804
@@ -701,6 +703,34 @@ MonoBehaviour:
   speed: 0
   _flat: 2
   _multi: 0
+--- !u!114 &629417725518034444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503095353807374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e45760071f38a43acc91852f0a3c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  take_damage_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_take_damage
+    default_clip: {fileID: 0}
+  die_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_die
+    default_clip: {fileID: 0}
+  jump_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_jump
+    default_clip: {fileID: 0}
+  land_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_land
+    default_clip: {fileID: 0}
 --- !u!1 &1513374149285018
 GameObject:
   m_ObjectHideFlags: 0

@@ -664,6 +664,7 @@ GameObject:
   - component: {fileID: 347560742085646500}
   - component: {fileID: 244537279454867489}
   - component: {fileID: 379301158337000664}
+  - component: {fileID: 3022176287754356753}
   m_Layer: 16
   m_Name: AutoCloche
   m_TagString: Untagged
@@ -745,7 +746,6 @@ MonoBehaviour:
   base_jump_count: 1
   _icon: {fileID: 21300000, guid: cbf5ef84caf9f7344a85f90c23381ec2, type: 3}
   drop_on_death: []
-  on_death_sfx: {fileID: 8300000, guid: f42344bbfaf35b947bcfd3db1cc15861, type: 3}
 --- !u!114 &347560742085646500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -875,6 +875,34 @@ MonoBehaviour:
   pivot_object: {fileID: 274902270793771525}
   abilities: {fileID: 405342673215646914}
   chase_time_out: 4
+--- !u!114 &3022176287754356753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379301158337000666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e45760071f38a43acc91852f0a3c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  take_damage_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_take_damage
+    default_clip: {fileID: 0}
+  die_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_die
+    default_clip: {fileID: 0}
+  jump_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_jump
+    default_clip: {fileID: 0}
+  land_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_land
+    default_clip: {fileID: 0}
 --- !u!1 &405342673215646916
 GameObject:
   m_ObjectHideFlags: 0

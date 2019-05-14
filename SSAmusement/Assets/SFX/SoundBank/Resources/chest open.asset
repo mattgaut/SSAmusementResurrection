@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6893a7d3fcb32624da0f249447c6b51a, type: 3}
-  m_Name: open chest
+  m_Name: chest open
   m_EditorClassIdentifier: 
   _codename: sfx_open_chest
   _clip: {fileID: 8300000, guid: bb2a04fa478bf7c45b72210638476ec2, type: 3}

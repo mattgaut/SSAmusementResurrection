@@ -2225,7 +2225,7 @@ MonoBehaviour:
     _default_codename: sfx_character_jump
     default_clip: {fileID: 0}
   land_sfx:
-    _override_clip: {fileID: 11400000, guid: 77f768f9abd93c543ada900f4d730295, type: 2}
+    _override_clip: {fileID: 0}
     _default_codename: sfx_character_land
     default_clip: {fileID: 0}
 --- !u!1 &1859088898386940

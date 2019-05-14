@@ -394,6 +394,7 @@ GameObject:
   - component: {fileID: 8964909368291755456}
   - component: {fileID: 8926077741594815813}
   - component: {fileID: 3270085753476716395}
+  - component: {fileID: 4378883574576014397}
   m_Layer: 16
   m_Name: CarrotTurret
   m_TagString: Untagged
@@ -474,7 +475,6 @@ MonoBehaviour:
   base_jump_count: 1
   _icon: {fileID: 21300000, guid: 0557551fc7c8f1f49b7414bbbe0cb130, type: 3}
   drop_on_death: []
-  on_death_sfx: {fileID: 8300000, guid: f42344bbfaf35b947bcfd3db1cc15861, type: 3}
 --- !u!114 &8964909368291755456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -584,6 +584,34 @@ MonoBehaviour:
     type: 3}
   projectile_spawn_point: {fileID: 516630728}
   abilities: {fileID: 5431172482756542173}
+--- !u!114 &4378883574576014397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9077151632322128318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e45760071f38a43acc91852f0a3c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  take_damage_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_take_damage
+    default_clip: {fileID: 0}
+  die_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_die
+    default_clip: {fileID: 0}
+  jump_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_jump
+    default_clip: {fileID: 0}
+  land_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_land
+    default_clip: {fileID: 0}
 --- !u!1 &9077451228366793134
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 114169939856335424}
   - component: {fileID: 320768782165135750}
   - component: {fileID: 114220353006272790}
+  - component: {fileID: 3949918887954232129}
   m_Layer: 16
   m_Name: ChefSoup
   m_TagString: Untagged
@@ -95,7 +96,6 @@ MonoBehaviour:
   base_jump_count: 1
   _icon: {fileID: 21300018, guid: ed72b35046af6c94a9686e7d99a20798, type: 3}
   drop_on_death: []
-  on_death_sfx: {fileID: 8300000, guid: f42344bbfaf35b947bcfd3db1cc15861, type: 3}
 --- !u!114 &114741983880177120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,6 +258,34 @@ MonoBehaviour:
   speed: 1
   _flat: 0
   _multi: 0.65
+--- !u!114 &3949918887954232129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068494373224362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e45760071f38a43acc91852f0a3c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  take_damage_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_take_damage
+    default_clip: {fileID: 0}
+  die_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_die
+    default_clip: {fileID: 0}
+  jump_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_jump
+    default_clip: {fileID: 0}
+  land_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_land
+    default_clip: {fileID: 0}
 --- !u!1 &1070475528771246
 GameObject:
   m_ObjectHideFlags: 0

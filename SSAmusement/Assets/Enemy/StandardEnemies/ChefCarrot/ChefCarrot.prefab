@@ -392,6 +392,7 @@ GameObject:
   - component: {fileID: 114979637104084068}
   - component: {fileID: 50101294167849196}
   - component: {fileID: 114335495822685826}
+  - component: {fileID: 5084619128344172082}
   m_Layer: 16
   m_Name: ChefCarrot
   m_TagString: Untagged
@@ -471,7 +472,6 @@ MonoBehaviour:
   base_jump_count: 1
   _icon: {fileID: 21300004, guid: 347819ce6a5113041b373cc0acf44101, type: 3}
   drop_on_death: []
-  on_death_sfx: {fileID: 8300000, guid: f42344bbfaf35b947bcfd3db1cc15861, type: 3}
 --- !u!114 &114979637104084068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -608,6 +608,34 @@ MonoBehaviour:
   no_gravity: 0
   carrot: {fileID: 1343526335092370, guid: 5a67fd61b90a69440a2a66b1aa088855, type: 3}
   carrot_spawn_transform: {fileID: 4798419426721974}
+--- !u!114 &5084619128344172082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413934921443510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e45760071f38a43acc91852f0a3c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  take_damage_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_take_damage
+    default_clip: {fileID: 0}
+  die_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_die
+    default_clip: {fileID: 0}
+  jump_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_jump
+    default_clip: {fileID: 0}
+  land_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_land
+    default_clip: {fileID: 0}
 --- !u!1 &1580720217285320
 GameObject:
   m_ObjectHideFlags: 0

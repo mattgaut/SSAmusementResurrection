@@ -1104,6 +1104,7 @@ GameObject:
   - component: {fileID: 114259174947277216}
   - component: {fileID: 4271670033118066255}
   - component: {fileID: 114641016151308318}
+  - component: {fileID: 4155443100763975333}
   m_Layer: 16
   m_Name: ChefBoss
   m_TagString: Untagged
@@ -1185,7 +1186,6 @@ MonoBehaviour:
   base_jump_count: 1
   _icon: {fileID: 21300000, guid: b860e039120ba7d43985c37cb0c6c4f9, type: 3}
   drop_on_death: []
-  on_death_sfx: {fileID: 0}
 --- !u!114 &114240197746803496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1306,6 +1306,34 @@ MonoBehaviour:
   speed: 1
   _flat: 0
   _multi: 0.5
+--- !u!114 &4155443100763975333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840292262480714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e45760071f38a43acc91852f0a3c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  take_damage_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_take_damage
+    default_clip: {fileID: 0}
+  die_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_die
+    default_clip: {fileID: 0}
+  jump_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_jump
+    default_clip: {fileID: 0}
+  land_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_character_land
+    default_clip: {fileID: 0}
 --- !u!1 &1844856961367980
 GameObject:
   m_ObjectHideFlags: 0

@@ -50,6 +50,7 @@ public class Door : MonoBehaviour {
             SoundManager.instance.LocalPlaySfx(close_sfx);
         }
     }
+
     public void SetLocked(bool _locked) {
         locked = _locked;
         force_open = !locked && force_open;

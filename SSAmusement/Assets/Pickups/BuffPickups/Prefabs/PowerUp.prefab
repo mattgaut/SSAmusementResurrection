@@ -123,6 +123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8694b4fbf4ce5da4badfc6a89bdaf778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  on_pickup_audio_clip:
+    _override_clip: {fileID: 0}
+    _default_codename: 
+    default_clip: {fileID: 0}
   buff: {fileID: 3538778758292267300}
 --- !u!114 &3538778758292267300
 MonoBehaviour:
@@ -140,7 +144,7 @@ MonoBehaviour:
   - {fileID: 114873181405398686}
   timed_buff: 1
   remove_after: 30
-  _is_benificial: 0
+  _is_benificial: 1
   _icon: {fileID: 21300002, guid: 332c37322e9fbcb4da2338e2965920fd, type: 3}
 --- !u!114 &114873181405398686
 MonoBehaviour:

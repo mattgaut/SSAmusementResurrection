@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _codename: sfx_battery
   _clip: {fileID: 8300000, guid: e585886dff1d8c6499d7ab6456d4f8a6, type: 3}
-  _volume: 0
+  _volume: 1
