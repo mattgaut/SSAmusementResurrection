@@ -12,6 +12,8 @@ public class Door : MonoBehaviour {
     [SerializeField] SFXInfo open_sfx = new SFXInfo("sfx_door_open");
     [SerializeField] SFXInfo close_sfx = new SFXInfo("sfx_door_close");
 
+    Coroutine wait_open, wait_close;
+
     private void Awake() {
         anim = GetComponent<Animator>();
         initially_open = force_open || initially_open;
@@ -41,14 +43,29 @@ public class Door : MonoBehaviour {
     public void Open() {
         if (!locked && !hard_locked) {
             anim.SetBool("Open", true);
-            SoundManager.instance.LocalPlaySfx(open_sfx);
+            if (wait_open == null) wait_open = StartCoroutine(WaitForOpen());
         }
     }
     public void Close() {
         if (!force_open) {
             anim.SetBool("Open", false);
-            SoundManager.instance.LocalPlaySfx(close_sfx);
+            if (wait_close == null) wait_close = StartCoroutine(WaitForClose());
         }
+    }
+
+    IEnumerator WaitForOpen() {
+        while (!anim.GetCurrentAnimatorStateInfo(0).IsName("DoorClose")) {
+            yield return null;
+        }
+        SoundManager.instance.LocalPlaySfx(open_sfx);
+        wait_open = null;
+    }
+    IEnumerator WaitForClose() {
+        while (!anim.GetCurrentAnimatorStateInfo(0).IsName("DoorOpen")) {
+            yield return null;
+        }
+        SoundManager.instance.LocalPlaySfx(close_sfx);
+        wait_close = null;
     }
 
     public void SetLocked(bool _locked) {
