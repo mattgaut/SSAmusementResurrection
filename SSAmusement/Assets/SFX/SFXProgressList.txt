@@ -6,3 +6,13 @@
 -Opening Chest (Open Chest)
 -Sliding Door (Open Door)
 -Slash
+-laser shot for laser turret
+-Carrot breaking
+-Chef Boss sfxs
+	-Pounding table
+	-Cleaver swipe
+	-Soup spilling
+-Fish and Chips sfxs
+	-plate breaking
+	-spinning maybe?
+	-cutlery breaking/hitting floor
