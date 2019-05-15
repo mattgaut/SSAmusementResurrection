@@ -17,6 +17,13 @@ public class GameManager : Singleton<GameManager> {
     public Level current_level {
         get; private set;
     }
+    public int level_count {
+        get; private set;
+    }
+
+    public float game_time {
+        get; private set;
+    }
 
     bool is_paused, is_select_screen_up, is_cutscene_running;
     int input_locks;
@@ -153,18 +160,20 @@ public class GameManager : Singleton<GameManager> {
     }
 
     IEnumerator LoadLevelRoutine(Level level) {
+        float last_game_time = game_time;
         SceneManager.LoadScene("LevelScene", LoadSceneMode.Single);
         current_level = level;
 
         yield return null;
-
-        var ret = level_generator.GenerateLevel(level, RNGSingleton.instance.room_gen_rng);
-        room_spawner.Generate(ret, RNGSingleton.instance.loot_rng, level.level_set.tile_set);
+        level_count++;
+        var rooms = level_generator.GenerateLevel(level, RNGSingleton.instance.room_gen_rng);
+        room_spawner.Generate(rooms, level.level_set.tile_set);
         room_manager.LoadBackgrounds(level.level_set.background);
         room_manager.SetRooms(room_spawner.GetNeighbors());
         room_manager.SetActiveRoom(room_spawner.GetOrigin().GetComponent<RoomController>());
 
         if (player != null) player.transform.position = new Vector3(2, 1, 0);
+        game_time = last_game_time;
     }
 
     void Update() {
@@ -174,6 +183,9 @@ public class GameManager : Singleton<GameManager> {
         if (Input.GetButtonDown("Select") && !is_paused) {
             ToggleShowInfoScreen();
         }
+        if (!is_paused && !is_select_screen_up) {
+            game_time += Time.deltaTime;
+        }
     }
 
     void SpawnPlayer(Player prefab) {
@@ -182,7 +194,9 @@ public class GameManager : Singleton<GameManager> {
 
     void ResetMemory() {
         Time.timeScale = 1;
+        level_count = 0;
         input_locks = 0;
+        game_time = 0;
         is_paused = is_select_screen_up = is_cutscene_running = false;
     }
 

@@ -430,9 +430,10 @@ MonoBehaviour:
   container: {fileID: 1915706188335058}
   scale: 60
   icon_map:
-    boss: {fileID: 21300000, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
-    shop: {fileID: 21300004, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
-    teleporter: {fileID: 21300002, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
+    boss: {fileID: 21300006, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
+    shop: {fileID: 21300010, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
+    teleporter: {fileID: 21300008, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
+    treasure: {fileID: 21300012, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
 --- !u!114 &114959947019608378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,9 +452,10 @@ MonoBehaviour:
   container: {fileID: 1257242158609962}
   scale: 40
   icon_map:
-    boss: {fileID: 21300000, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
-    shop: {fileID: 21300004, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
-    teleporter: {fileID: 21300002, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
+    boss: {fileID: 21300006, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
+    shop: {fileID: 21300010, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
+    teleporter: {fileID: 21300008, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
+    treasure: {fileID: 21300012, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
 --- !u!114 &114763530045927504
 MonoBehaviour:
   m_ObjectHideFlags: 0

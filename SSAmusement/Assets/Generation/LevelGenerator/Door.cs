@@ -40,6 +40,14 @@ public class Door : MonoBehaviour {
         }
     }
 
+    public void SetOpen(bool is_open) {
+        if (is_open) {
+            Open();
+        } else {
+            Close();
+        }
+    }
+
     public void Open() {
         if (!locked && !hard_locked) {
             anim.SetBool("Open", true);
@@ -57,14 +65,18 @@ public class Door : MonoBehaviour {
         while (!anim.GetCurrentAnimatorStateInfo(0).IsName("DoorClose")) {
             yield return null;
         }
-        SoundManager.instance.LocalPlaySfx(open_sfx);
+        if (!RoomManager.has_instance || RoomManager.instance.IsInActiveRoom(transform.position)) {
+            SoundManager.instance.LocalPlaySfx(open_sfx);
+        }
         wait_open = null;
     }
     IEnumerator WaitForClose() {
         while (!anim.GetCurrentAnimatorStateInfo(0).IsName("DoorOpen")) {
             yield return null;
         }
-        SoundManager.instance.LocalPlaySfx(close_sfx);
+        if (!RoomManager.has_instance || RoomManager.instance.IsInActiveRoom(transform.position)) {
+            SoundManager.instance.LocalPlaySfx(close_sfx);
+        }
         wait_close = null;
     }
 

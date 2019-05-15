@@ -15,11 +15,11 @@ public class RoomSpawner : MonoBehaviour {
     BossRoomController boss_room_controller;
     TeleporterRoomController teleporter_room_controller;
 
-    public void Generate(Dictionary<Vector2Int, RoomController> room_dict, RNG rng, TileSet ts) {
+    public void Generate(Dictionary<Vector2Int, RoomController> room_dict, TileSet ts) {
         Clear();
 
         tile_set = ts;
-        SpawnRooms(room_dict, rng);
+        SpawnRooms(room_dict);
         foreach (Vector2Int v in positions_to_rooms.Keys) {
             FindPossibleNeighbors(v);
         }
@@ -59,7 +59,7 @@ public class RoomSpawner : MonoBehaviour {
         return positions_to_rooms[Vector2Int.zero];
     }
 
-    void SpawnRooms(Dictionary<Vector2Int, RoomController> room_dict, RNG rng) {
+    void SpawnRooms(Dictionary<Vector2Int, RoomController> room_dict) {
         positions_to_rooms = new Dictionary<Vector2Int, Room>();
         List<Enemy> enemies = new List<Enemy>();
         foreach (Vector2Int v in room_dict.Keys) {
@@ -89,7 +89,7 @@ public class RoomSpawner : MonoBehaviour {
 
         if (boss_room_controller != null) {
             if (boss_room_controller != null) {
-                boss_room_controller.reward.SetSpawnItem(ItemListSingleton.instance.GetRandomItem(rng));
+                boss_room_controller.reward.SetSpawnItem(ItemListSingleton.instance.GetRandomItem(RNGSingleton.instance.item_rng));
             }
             if (teleporter_room_controller != null) {
                 boss_room_controller.teleporter.Link(teleporter_room_controller.teleporter);
@@ -100,7 +100,7 @@ public class RoomSpawner : MonoBehaviour {
         }
 
         if (enemies.Count > 0) {
-            enemies[rng.GetInt(0, enemies.Count)].AddDropOnDeath(boss_key);
+            enemies[RNGSingleton.instance.room_gen_rng.GetInt(0, enemies.Count)].AddDropOnDeath(boss_key);
         } else {
             if (teleporter_room_controller != null) {
                 teleporter_room_controller.teleporter.SetOpen(true);

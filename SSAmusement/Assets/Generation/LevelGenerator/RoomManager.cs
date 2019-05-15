@@ -2,11 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomManager : MonoBehaviour {
-
-    public static RoomManager instance {
-        get; private set;
-    }
+public class RoomManager : Singleton<RoomManager> {
 
     public RoomController active { get; private set; }
 
@@ -15,14 +11,6 @@ public class RoomManager : MonoBehaviour {
     List<GameObject> loaded_backgrounds;
     SpriteRenderer main_background;
     Dictionary<Room, List<Room>> rooms;
-
-    private void Awake() {
-        if (instance == null) {
-            instance = this;
-        } else {
-            Destroy(this);
-        }
-    }
 
     public void LoadBackgrounds(Sprite background) {
         loaded_backgrounds = new List<GameObject>();
@@ -51,5 +39,9 @@ public class RoomManager : MonoBehaviour {
                 }
             }
         }
+    }
+
+    public bool IsInActiveRoom(Vector2 position) {
+        return active.room.bounds.Contains(position);
     }
 }

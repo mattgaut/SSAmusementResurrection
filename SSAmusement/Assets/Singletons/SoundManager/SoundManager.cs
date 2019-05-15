@@ -103,8 +103,8 @@ public class SoundManager : Singleton<SoundManager> {
         fade_in.volume = 0;
         while (timer > 0) {
             timer -= Time.unscaledDeltaTime;
-            main.volume = Mathf.Pow((timer / fade_length), 4f) * volume;
-            fade_in.volume = Mathf.Pow((1 - (timer / fade_length)), 4f) * volume;
+            main.volume = Mathf.Pow(timer / fade_length, 4f) * volume;
+            fade_in.volume = Mathf.Pow(1 - (timer / fade_length), 4f) * volume;
             yield return null;
         }
         main.volume = 0;

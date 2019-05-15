@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 61363546756050974}
   - component: {fileID: 9175813155693695719}
   - component: {fileID: 114220292241571816}
+  - component: {fileID: 6910009399791899915}
   - component: {fileID: 114228412215287560}
   m_Layer: 23
   m_Name: AugmentPrecision
@@ -138,7 +139,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d7214163ba652469ea321d995cebbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  to_apply: {fileID: 114228412215287560}
+  to_apply: {fileID: 6910009399791899915}
+--- !u!114 &6910009399791899915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353146143552790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f163ffc0b7d845342a058e341ed7478d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffs:
+  - {fileID: 114228412215287560}
+  timed_buff: 1
+  remove_after: 4
+  _is_benificial: 0
+  _icon: {fileID: 0}
 --- !u!114 &114228412215287560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,9 +170,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11750ab795828743af5aca479f1e5e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: d428c63f99ce70f49b89cb1d03904009, type: 3}
-  timed_buff: 1
-  remove_after: 5
-  _color: {r: 0, g: 0, b: 0, a: 0}
   tick_rate: 1
-  damage: 0.5
+  damage: 1

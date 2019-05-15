@@ -20,8 +20,6 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
     [SerializeField] [Range(0, 20)] float min_jump_height;
     [SerializeField] [Range(0, 5)] float time_to_jump_apex;
 
-    [SerializeField] ParticleSystem walking_particles;
-
     float acceleration_grounded = 0f;
     float acceleration_airborne = 0f;
 
@@ -147,14 +145,11 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
                 if (adjusted_input.x != 0 && (cont.collisions.below || cont.collisions.below_last_frame)) {
                     player.animator.SetBool("Running", true);
                     if (player.animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerRun")) {
-                        if (!walking_particles.isPlaying) walking_particles.Play();
                         player.animator.speed = Mathf.Abs(velocity.x / 5f);
                     } else {
-                        walking_particles.Stop();
                         player.animator.speed = 1f;
                     }
                 } else {
-                    walking_particles.Stop();
                     player.animator.SetBool("Running", false);
                     player.animator.speed = 1f;
                 }

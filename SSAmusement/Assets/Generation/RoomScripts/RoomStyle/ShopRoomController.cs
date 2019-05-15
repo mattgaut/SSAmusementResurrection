@@ -24,10 +24,9 @@ public class ShopRoomController : RoomController {
     }
 
     void LoadShopTerminals() {
-        List<Item> possible_items = ItemListSingleton.instance.GetAvailableItems();
         for (int i = 0; i < shop_terminals.Length; i++) {
-            int price = (RNGSingleton.instance.item_rng.GetFloat() < individual_sale_chance) ? store_price / 2 : store_price;
-            shop_terminals[i].SetItemOnSale(possible_items[RNGSingleton.instance.item_rng.GetInt(0, possible_items.Count)], price);
+            int price = (RNGSingleton.instance.room_gen_rng.GetFloat() < individual_sale_chance) ? store_price / 2 : store_price;
+            shop_terminals[i].SetItemOnSale(ItemListSingleton.instance.GetRandomItem(RNGSingleton.instance.item_rng), price);
             shop_terminals[i].on_purchase.AddListener(CloseAllTerminals);
         }
     }

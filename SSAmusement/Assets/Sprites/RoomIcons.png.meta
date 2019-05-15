@@ -5,6 +5,10 @@ TextureImporter:
     21300000: BossRoomIcon
     21300002: PortalRoomIcon
     21300004: ShopRoomIcon
+    21300006: RoomIcons_0
+    21300008: RoomIcons_1
+    21300010: RoomIcons_2
+    21300012: RoomIcons_3
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -98,27 +102,27 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BossRoomIcon
+      name: RoomIcons_0
       rect:
         serializedVersion: 2
         x: 0
         y: 80
         width: 20
         height: 20
-      alignment: 9
-      pivot: {x: 0.525, y: 0.525}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d23bb3f677befd41b832d182c09bf58
+      spriteID: c5038b3e5806cbf4ea42c5caac8444ff
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PortalRoomIcon
+      name: RoomIcons_1
       rect:
         serializedVersion: 2
         x: 20
@@ -126,19 +130,19 @@ TextureImporter:
         width: 20
         height: 20
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8570618742824d4f8648fe11d0e50f4
+      spriteID: 911e992b76c34754f8384ce5c6b4fd27
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShopRoomIcon
+      name: RoomIcons_2
       rect:
         serializedVersion: 2
         x: 40
@@ -146,13 +150,33 @@ TextureImporter:
         width: 20
         height: 20
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e60bcb5efd92e743be1047abe84184b
+      spriteID: 1ef14974556eb1945857545b8087b475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomIcons_3
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 80
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1907d420d7e22ca4ba588ade98dc0b18
       vertices: []
       indices: 
       edges: []

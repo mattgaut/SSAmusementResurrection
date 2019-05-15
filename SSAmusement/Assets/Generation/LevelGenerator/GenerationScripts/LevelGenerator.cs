@@ -24,8 +24,6 @@ public abstract class LevelGenerator : MonoBehaviour {
 
         Generate(level, rng);
 
-
-
         HashSet<Island> unique_islands = new HashSet<Island>();
         foreach (Island i in islands.Values) {
             if (room_origins.Remove(i.origin)) {
