@@ -26,7 +26,7 @@ public class CombatTurretItemEffect : OnHitItemEffect {
         pet.gameObject.SetActive(true);
         item.owner.inventory.AddPet();
         pet.GetComponent<SpriteRenderer>().sortingOrder = item.owner.inventory.PetCount() * -1;
-        pet.SetOrbit(item.owner.char_definition.center_mass);
+        pet.SetOrbit(item.owner.char_definition.center_mass, item.owner.inventory.PetCount() / 10f);
 
         transform.localPosition = Vector3.zero;
 

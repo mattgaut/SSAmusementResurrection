@@ -33,8 +33,11 @@ public class PetTurretController : MonoBehaviour {
         this.laser = laser;
     }
 
-    public void SetOrbit(Transform transform) {
+    public void SetOrbit(Transform transform, float starting_percent = 0f) {
+        starting_percent = starting_percent % 1f;
         orbit_center = transform;
+        orbit_direction = (int)Mathf.Sign(starting_percent -.50f);
+        timer = orbit_period  * 2f * (starting_percent % .5f);
     }
 
     /// <summary>
