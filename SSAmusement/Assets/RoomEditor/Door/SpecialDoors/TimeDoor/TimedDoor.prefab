@@ -129,7 +129,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   door: {fileID: 2911574515450705030}
-  seconds_until_closed: 10
   timer_display: {fileID: 3022628007647811881}
 --- !u!61 &3022628007795307032
 BoxCollider2D:
@@ -214,8 +213,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 296386821
-  m_SortingOrder: 0
+  m_SortingLayerID: 1348032847
+  m_SortingOrder: -20
   m_TargetDisplay: 0
 --- !u!114 &3022628008199633984
 MonoBehaviour:

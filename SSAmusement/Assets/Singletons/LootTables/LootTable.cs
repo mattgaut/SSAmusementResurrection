@@ -16,15 +16,18 @@ public class LootTable : ScriptableObject {
             numbers.Add(i,0);
         }
 
-        int test_count = 1000000;
+        int test_count = 40;
         RNG rng = new RNG(System.DateTime.Now.Millisecond);
         for (int i = 0; i < test_count; i++) {
             numbers[rng.GetInt(min_to_drop, max_to_drop, avg_to_drop)]++;
         }
         Debug.Log(name);
+        int total = 0;
         for (int i = min_to_drop; i <= max_to_drop; i++) {
+            total += numbers[i] * i;
             Debug.Log(i + " : " + numbers[i] + " : " + numbers[i]/(test_count / 100f) + "%");
         }
+        Debug.Log("Total: " + total);
     }
 
     public void TestPickupDistribution() {
