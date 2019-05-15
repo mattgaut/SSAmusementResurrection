@@ -976,7 +976,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
   attack: {fileID: 405342674168271967}
   damage_multiplier: 1
-  knockback: {x: -5, y: 10}
+  knockback: {x: -1, y: 2}
   distance: 5
   speed: 10
 --- !u!114 &405342673215646912
@@ -1003,7 +1003,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
   attack: {fileID: 405342673949320160}
   damage_multiplier: 1
-  knockback: {x: 15, y: 10}
+  knockback: {x: 2.5, y: 1}
   dash_length: 1.5
   x_position:
     serializedVersion: 2

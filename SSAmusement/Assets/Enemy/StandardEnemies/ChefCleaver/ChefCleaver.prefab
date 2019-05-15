@@ -246,7 +246,7 @@ MonoBehaviour:
   time_between_attacks: 2
   attack: {fileID: 114144826854405730}
   attack_range: 1
-  attack_knockback: {x: 7.5, y: 7.5, z: 0}
+  attack_knockback: {x: 2.5, y: 2, z: 0}
   close_distance: 0.6
 --- !u!114 &9174945307805304377
 MonoBehaviour:

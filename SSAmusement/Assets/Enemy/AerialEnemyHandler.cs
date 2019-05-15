@@ -111,8 +111,9 @@ public class AerialEnemyHandler : EnemyHandler {
             }
             
         } else {
-            if (auto_tilt) Tilt(enemy.knockback_force.x / enemy.speed);
-            movement = enemy.knockback_force * Time.deltaTime;
+            if (auto_tilt) Tilt(enemy.knockback_force.magnitude / Time.deltaTime);
+            movement = enemy.knockback_force;
+            enemy.knockback_force = Vector2.zero;
             velocity = movement;
         }
 

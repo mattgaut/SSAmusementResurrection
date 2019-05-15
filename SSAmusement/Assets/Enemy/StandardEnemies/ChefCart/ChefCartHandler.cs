@@ -15,7 +15,7 @@ public class ChefCartHandler : GroundedEnemyHandler {
 
     protected override void Ini() {
         base.Ini();
-        charge_knockback_bonus = new Vector3(10, 0, 0);
+        charge_knockback_bonus = new Vector3(1.5f, 0, 0);
     }
 
     protected override bool CustomCanHunt() {

@@ -2104,7 +2104,7 @@ MonoBehaviour:
   active_hitbox_time: 0.12
   attack: {fileID: 114215308427159830}
   anim_trigger_name: Attack
-  knockback: {x: 10, y: 10}
+  knockback: {x: 1.5, y: 1.25}
 --- !u!114 &7778841039320395271
 MonoBehaviour:
   m_ObjectHideFlags: 0

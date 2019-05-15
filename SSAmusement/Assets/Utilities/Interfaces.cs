@@ -13,7 +13,6 @@ public interface IDamageable {
     float TakeDamage(float damage, ICombatant source);
     void TakeKnockback(ICombatant source, Vector2 force, float length = 0.5f);
 
-    Vector2 knockback_force { get; }
     bool is_knocked_back { get; }
     bool invincible { get; }
 }

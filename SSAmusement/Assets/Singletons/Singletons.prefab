@@ -49,6 +49,7 @@ MonoBehaviour:
   main: {fileID: 2053336214}
   fade_in: {fileID: 2053336215}
   sfx: {fileID: 58973488}
+  _sound_bank: {fileID: 11400000, guid: c332695e21102f94ca2f0d8387189585, type: 2}
 --- !u!82 &2053336214
 AudioSource:
   m_ObjectHideFlags: 0

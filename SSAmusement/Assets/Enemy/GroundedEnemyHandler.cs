@@ -132,7 +132,8 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
             if (knocked_back_last_frame == false) gravity_force = Vector2.zero;
             knocked_back_last_frame = true;
             velocity.y = 0;
-            movement = ((gravity_force + enemy.knockback_force) * Time.deltaTime);
+            movement = enemy.knockback_force + (gravity_force * Time.deltaTime);
+            enemy.knockback_force = Vector2.zero;
         }
 
         cont.Move(movement);

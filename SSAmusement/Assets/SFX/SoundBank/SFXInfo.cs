@@ -9,7 +9,7 @@ public class SFXInfo {
         get {
             if (_override_clip == null) {
                 if (default_clip == null) {
-                    default_clip = SoundBank.StaticGetSFXClip(_default_codename);
+                    default_clip = SoundManager.instance.sound_bank.GetSFXClip(_default_codename);
                 }
                 return default_clip;
             } else {

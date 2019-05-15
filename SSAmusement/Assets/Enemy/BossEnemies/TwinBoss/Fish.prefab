@@ -791,7 +791,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
   attack: {fileID: 6110496140434797982}
   damage_multiplier: 1
-  knockback: {x: 15, y: 8}
+  knockback: {x: 2.5, y: 2.5}
   speed_buff: {fileID: 7729146594507197524}
   duration: 6
   anim_trigger_windup: Windup

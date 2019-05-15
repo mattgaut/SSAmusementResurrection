@@ -48,7 +48,7 @@ public class Character : MonoBehaviour, ICombatant {
     public event OnDeathCallback on_death;
 
     public Vector2 knockback_force {
-        get; private set;
+        get; set;
     }
     public bool is_knocked_back {
         get; private set;
@@ -181,6 +181,10 @@ public class Character : MonoBehaviour, ICombatant {
         if (is_dashing) {
             EndDash();
         }
+        if (is_aerial_unit) {
+            force *= 2;
+            length *= 2;
+        }
 
         if (knockback_routine != null) {
             StopCoroutine(knockback_routine);
@@ -267,6 +271,7 @@ public class Character : MonoBehaviour, ICombatant {
     public void CancelXKnockBack() {
         knockback_force = new Vector2(0, knockback_force.y);
     }
+
 
 
     /// <summary>
@@ -394,22 +399,27 @@ public class Character : MonoBehaviour, ICombatant {
     /// <param name="force">Initial force</param>
     /// <param name="length">Maximum Length of force application</param>
     /// <returns>Ienumerator</returns>
-    IEnumerator KnockbackRoutine(Vector3 force, float length) {
+    IEnumerator KnockbackRoutine(Vector2 force, float length) {
         is_knocked_back = true;
-        knockback_force = force;
         knockback_dissipation_time = length;
 
         while (knockback_dissipation_time > 0 && is_knocked_back) {
-            knockback_force = force * Mathf.Pow(knockback_dissipation_time / length, 0.8f);
-            knockback_dissipation_time -= Time.deltaTime;
+            float time_step = Mathf.Min(Time.fixedDeltaTime, knockback_dissipation_time);
+
+            Vector2 old_force = force * Mathf.Pow(knockback_dissipation_time / length, 3f);
+            knockback_dissipation_time -= time_step;
+            Vector2 current_force = force * Mathf.Pow(knockback_dissipation_time / length, 3f);
+
+            knockback_force += old_force - current_force;
             yield return null;
         }
-        knockback_force = Vector3.zero;
+        knockback_force = Vector2.zero;
 
         if (!is_aerial_unit) {
-            while (is_knocked_back) {
-                yield return null;
-            }
+            //while (is_knocked_back) {
+            //    yield return null;
+            //}
+            is_knocked_back = false;
         } else {
             is_knocked_back = false;
         }
@@ -426,13 +436,10 @@ public class Character : MonoBehaviour, ICombatant {
 
         float timer = length;
         while (is_dashing && timer > 0) {
-            float time_step = Time.fixedDeltaTime;
+            float time_step = Mathf.Min(Time.deltaTime, timer);
             timer -= time_step;
-            if (timer < 0) {
-                time_step += timer;
-            }
             dash_force += dash * (time_step / length);
-            yield return new WaitForFixedUpdate();
+            yield return null;
         }
 
         EndDash();
@@ -444,11 +451,8 @@ public class Character : MonoBehaviour, ICombatant {
         float timer = dash.length;
         Vector2 dash_start = transform.position;
         while (is_dashing && timer > 0) {
-            float time_step = Time.fixedDeltaTime;
+            float time_step = Mathf.Min(Time.fixedDeltaTime, timer);
             timer -= time_step;
-            if (timer < 0) {
-                time_step += timer;
-            }
             dash_force += dash.GetNext(dash.length - timer);
             yield return new WaitForFixedUpdate();
         }

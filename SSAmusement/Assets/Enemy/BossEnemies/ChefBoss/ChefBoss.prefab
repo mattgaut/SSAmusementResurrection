@@ -1266,7 +1266,7 @@ MonoBehaviour:
   far_left_rain: {fileID: 4853004805924864}
   far_right_rain: {fileID: 4205765294415968}
   cleave_attack: {fileID: 114213486454996182}
-  cleaver_knockback: {x: -35, y: 10, z: 0}
+  cleaver_knockback: {x: -7, y: 3, z: 0}
   soup_attack: {fileID: 114578364903158286}
   soup_debuff: {fileID: 4271670033118066255}
 --- !u!114 &4271670033118066255

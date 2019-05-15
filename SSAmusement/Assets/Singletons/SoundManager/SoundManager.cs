@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class SoundManager : Singleton<SoundManager> {
 
+    public SoundBank sound_bank { get { return _sound_bank; } }
+
     [SerializeField] AudioSource main, fade_in, sfx;
-    [SerializeField] SoundBank sound_bank;
+    [SerializeField] SoundBank _sound_bank;
     float volume = 0.5f;
 
     Coroutine fade_routine;
@@ -19,9 +21,7 @@ public class SoundManager : Singleton<SoundManager> {
     public static void SetVolume(float volume) {
         if (instance) {
             instance.volume = volume;
-            if (instance.fade_routine == null) {
-                instance.main.volume = volume;
-            }
+            instance.SetAllVolumes(volume);
         }
     }
     public static float GetVolume() {
@@ -42,7 +42,7 @@ public class SoundManager : Singleton<SoundManager> {
     }
 
     protected override void OnAwake() {
-        main.volume = volume;
+        sound_bank.ReloadDictionary();
     }
 
     public void LocalPlaySong(AudioClip clip) {
@@ -68,6 +68,10 @@ public class SoundManager : Singleton<SoundManager> {
     public void FadeOut() {
         if (fade_routine != null) StopCoroutine(fade_routine);  
         StartCoroutine(FadeOutMain(2f));
+    }
+
+    void SetAllVolumes(float volume) {
+        main.volume = fade_in.volume = sfx.volume = volume;
     }
 
     IEnumerator FadeOutMain(float fade_length) {

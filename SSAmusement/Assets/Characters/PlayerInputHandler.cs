@@ -139,7 +139,6 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
                 }
 
                 float target_velocity_x = adjusted_input.x * player.speed;
-                //velocity.x = Mathf.SmoothDamp(velocity.x, target_velocity_x, ref x_smooth, cont.collisions.below ? acceleration_grounded : acceleration_airborne);
                 velocity.x = target_velocity_x;
 
                 if (adjusted_input.x != 0 && (cont.collisions.below || cont.collisions.below_last_frame)) {
@@ -170,7 +169,8 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
             if (knocked_back_last_frame == false) gravity_force = Vector3.zero;
             knocked_back_last_frame = true;
             velocity.y = 0;
-            cont.Move((gravity_force + player.knockback_force) * Time.deltaTime);
+            cont.Move(player.knockback_force + (gravity_force * Time.deltaTime));
+            player.knockback_force = Vector2.zero;
         }
         if (player.is_knocked_back && (cont.collisions.left || cont.collisions.right)) {
             player.CancelXKnockBack();

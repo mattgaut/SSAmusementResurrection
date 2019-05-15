@@ -858,7 +858,7 @@ MonoBehaviour:
   need_line_of_sight: 0
   _aggro_range: 10
   bump_damage: 0
-  bump_knockback: {x: 10, y: 10, z: 0}
+  bump_knockback: {x: 2.5, y: 1, z: 0}
   flip_object: {fileID: 1240051925892814}
   base_facing: -1
   no_gravity: 0

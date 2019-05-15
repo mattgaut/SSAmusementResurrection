@@ -189,10 +189,5 @@ PrefabInstance:
       propertyPath: use_seed
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2053336213, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}
-      propertyPath: sound_bank
-      value: 
-      objectReference: {fileID: 11400000, guid: c332695e21102f94ca2f0d8387189585,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}
