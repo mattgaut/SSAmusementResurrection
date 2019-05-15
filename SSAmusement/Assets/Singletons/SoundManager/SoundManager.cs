@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SoundManager : Singleton<SoundManager> {
 
     [SerializeField] AudioSource main, fade_in, sfx;
+    [SerializeField] SoundBank sound_bank;
     float volume = 0.5f;
 
     Coroutine fade_routine;
