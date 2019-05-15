@@ -10,6 +10,8 @@ public class PetTurretController : MonoBehaviour {
 
     [SerializeField] Transform orbit_center;
 
+    [SerializeField] SFXInfo laser_sfx;
+
     List<TargetCallback> queue;
 
     float base_orbit_speed = 5f;
@@ -73,6 +75,8 @@ public class PetTurretController : MonoBehaviour {
     void SpawnLaser(TargetCallback target_callback) {
         HomingProjectile new_laser = Instantiate(laser, transform.position, Quaternion.identity);
         new_laser.transform.position = transform.position;
+
+        SoundManager.instance?.LocalPlaySfx(laser_sfx);
 
         Transform target = target_callback.target.char_definition.center_mass;
         new_laser.SetTarget(target);

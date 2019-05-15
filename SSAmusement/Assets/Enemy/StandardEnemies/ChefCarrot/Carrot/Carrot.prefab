@@ -148,8 +148,13 @@ MonoBehaviour:
   speed: 6
   ignore_wall_timer: 0
   max_lifetime: 0
+  gravity_force: 0
   base_direction: {x: -1, y: 0, z: 0}
   particles: {fileID: 0}
+  explode_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_carrot_breaking
+    default_clip: {fileID: 0}
 --- !u!61 &61109467725384754
 BoxCollider2D:
   m_ObjectHideFlags: 0

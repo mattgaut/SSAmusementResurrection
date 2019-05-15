@@ -1320,7 +1320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   take_damage_sfx:
     _override_clip: {fileID: 0}
-    _default_codename: sfx_character_take_damage
+    _default_codename: sfx_robot_take_damage
     default_clip: {fileID: 0}
   die_sfx:
     _override_clip: {fileID: 0}

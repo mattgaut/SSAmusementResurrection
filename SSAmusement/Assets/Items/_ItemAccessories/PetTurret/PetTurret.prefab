@@ -116,6 +116,10 @@ MonoBehaviour:
   laser: {fileID: 0}
   animator: {fileID: 545740660460180702}
   orbit_center: {fileID: 0}
+  laser_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_laser
+    default_clip: {fileID: 0}
   orbit_period: 5
   orbit_offset: {x: 0, y: 2}
   min_orbit_angle: -70

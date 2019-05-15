@@ -14,6 +14,8 @@ public class Projectile : SingleHitAttack {
 
     [SerializeField] ParticleSystem particles;
 
+    [SerializeField] SFXInfo explode_sfx;
+
     Animator anim;
     Rigidbody2D rb;
     bool is_exploded;
@@ -78,6 +80,7 @@ public class Projectile : SingleHitAttack {
 
     protected virtual void Explode() {
         speed = 0;
+        SoundManager.instance?.LocalPlaySfx(explode_sfx);
         if (particles) {
             particles.Stop();
             particles.gameObject.transform.SetParent(null);
