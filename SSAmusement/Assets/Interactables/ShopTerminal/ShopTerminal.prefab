@@ -125,9 +125,15 @@ MonoBehaviour:
   on_sale: {fileID: 0}
   sale_price_text: {fileID: 5946443575645014925}
   item_image_display: {fileID: 8029631819795568984}
-  on_successful_purchase: {fileID: 11400000, guid: 77f768f9abd93c543ada900f4d730295,
-    type: 2}
-  on_failed_purchase: {fileID: 0}
+  sfxs:
+    on_successful_purchase:
+      _override_clip: {fileID: 0}
+      _default_codename: sfx_purchase_success
+      default_clip: {fileID: 0}
+    on_failed_purchase:
+      _override_clip: {fileID: 0}
+      _default_codename: sfx_purchase_fail
+      default_clip: {fileID: 0}
 --- !u!61 &5946443575471377597
 BoxCollider2D:
   m_ObjectHideFlags: 0
