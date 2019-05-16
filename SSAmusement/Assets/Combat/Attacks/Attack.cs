@@ -23,7 +23,7 @@ public abstract class Attack : MonoBehaviour {
     protected virtual void Awake() {
         hitbox = GetComponent<Collider2D>();
         hit_objects = new Dictionary<IDamageable, float>();
-        source = GetComponentInParent<ICombatant>();
+        if (source == null) source = GetComponentInParent<ICombatant>();
         timer = 0;
     }
 

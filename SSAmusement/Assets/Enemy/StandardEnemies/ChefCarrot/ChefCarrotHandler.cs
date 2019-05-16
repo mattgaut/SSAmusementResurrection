@@ -111,10 +111,18 @@ public class ChefCarrotHandler : GroundedEnemyHandler {
         float angle = 0;
         Vector3 to_target = target.transform.position - transform.position;
         if (to_target.x < 0) {
-            angle = Vector2.SignedAngle(Vector2.left, to_target);
+            if (enemy.crowd_control_effects.IsCCed(CrowdControl.Type.blinded)) {
+                angle = Random.Range(-45, 45);
+            } else {
+                angle = Vector2.SignedAngle(Vector2.left, to_target);
+            }
             angle = Mathf.Clamp(angle, -45, 45);
         } else {
-            angle = Vector2.SignedAngle(Vector2.right, to_target) + 180;
+            if (enemy.crowd_control_effects.IsCCed(CrowdControl.Type.blinded)) {
+                angle = Random.Range(-135, 225);
+            } else {
+                angle = Vector2.SignedAngle(Vector2.right, to_target);
+            }
             angle = Mathf.Clamp(angle, 135, 225);
         }
         new_carrot.transform.rotation = Quaternion.Euler(0, 0, angle);
