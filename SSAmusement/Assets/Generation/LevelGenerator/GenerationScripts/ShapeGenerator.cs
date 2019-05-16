@@ -15,7 +15,7 @@ public class ShapeGenerator : LevelGenerator {
 
         foreach (Level.WeightedRoomGroup wrg in level.weighted_groups) {
             List<RoomController> possible_rooms = new List<RoomController>(wrg.rooms);
-            int room_count = level.shop_rooms.GetNumberToSpawn(rng);
+            int room_count = wrg.GetNumberToSpawn(rng);
             while (possible_rooms.Count > 0 && room_count > 0) {
 
                 int cont_index = rng.GetInt(0, possible_rooms.Count);

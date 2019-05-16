@@ -31,7 +31,7 @@ public class Level : ScriptableObject {
         get { return _treasure_rooms; }
     }
     public List<WeightedRoomGroup> weighted_groups {
-        get { return new List<WeightedRoomGroup>() { shop_rooms, _swarm_rooms, _treasure_rooms }; }
+        get { return new List<WeightedRoomGroup>() { _shop_rooms, _swarm_rooms, _treasure_rooms }; }
     }
     public LevelAesthetics level_set {
         get { return set; }
@@ -61,8 +61,10 @@ public class Level : ScriptableObject {
 
         public int GetNumberToSpawn(RNG rng) {
             if (!use_range) {
+                Debug.Log("Fixed");
                 return fixed_number;
             } else {
+                Debug.Log("NotFixed");
                 if (min > max) {
                     Debug.LogError("Min value above Max value");
                 }
