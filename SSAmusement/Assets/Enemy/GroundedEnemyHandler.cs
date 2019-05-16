@@ -115,25 +115,27 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
         }
         gravity_force.y += gravity * Time.fixedDeltaTime;
 
-        if (!enemy.is_knocked_back) {
-            knocked_back_last_frame = false;
-            if (_input.y > 0 && cont.collisions.below) {
-                velocity.y = jump_velocity;
-                on_jump.Invoke(true);
-            }
-            if (_input.y < 0 && drop_routine == null) {
-                drop_routine = StartCoroutine(DropRoutine());
-            }
-
-            velocity.x = _input.x;
-            movement = (velocity + gravity_force) * enemy.speed * Time.deltaTime;
-            Face(movement.x);
-        } else {
+        if (enemy.is_knocked_back) {
             if (knocked_back_last_frame == false) gravity_force = Vector2.zero;
             knocked_back_last_frame = true;
             velocity.y = 0;
             movement = enemy.knockback_force + (gravity_force * Time.deltaTime);
             enemy.knockback_force = Vector2.zero;
+        } else {
+            if (enemy.can_move) {
+                knocked_back_last_frame = false;
+                if (_input.y > 0 && cont.collisions.below) {
+                    velocity.y = jump_velocity;
+                    on_jump.Invoke(true);
+                }
+                if (_input.y < 0 && drop_routine == null) {
+                    drop_routine = StartCoroutine(DropRoutine());
+                }
+
+                velocity.x = _input.x;
+                movement = (velocity + gravity_force) * enemy.speed * Time.deltaTime;
+                Face(movement.x);
+            }
         }
 
         cont.Move(movement);

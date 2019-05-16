@@ -110,76 +110,99 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
             cont.Move((velocity + gravity_force) * Time.deltaTime);
         } else if (!player.is_knocked_back) {
             if (player.is_dashing) {
-                player.animator.SetBool("Running", false);
-                player.animator.speed = 1f;
-
-                cont.Move(player.dash_force);
-                player.dash_force = Vector2.zero;
-                velocity = Vector3.zero;
-                gravity_force = Vector3.zero;
+                HandleDashingInput();
             } else {
                 knocked_back_last_frame = false;
 
                 if (jumping) {
                     velocity.y = jump_velocity;
                 } else if (GameManager.instance.input_active && player.can_input) {
-                    if (adjusted_input.y <= -.99f && Input.GetButtonDown("Jump") && drop_routine == null && cont.OverPlatform()) {
-                        if (cont.OverPlatform()) {
-                            drop_routine = StartCoroutine(DropRoutine());
-                        }
-                    } else if (Input.GetButtonDown("Drop") && drop_routine == null && player.can_input) {
-                        drop_routine = StartCoroutine(DropRoutine());
-                    } else if (Input.GetButtonDown("Jump") && player.can_move && player.can_input) {
-                        if (cont.collisions.below) {
-                            Jump(true);
-                        } else if (jumps_used < (player.jump_count - (grounded_jump_used? 0 : 1))) {
-                            Jump(false);
-                        }
-                    } 
+                    HandleYInput(adjusted_input.y);
                 }
 
-                float target_velocity_x = adjusted_input.x * player.speed;
-                velocity.x = target_velocity_x;
-
-                if (adjusted_input.x != 0 && (cont.collisions.below || cont.collisions.below_last_frame)) {
-                    player.animator.SetBool("Running", true);
-                    if (player.animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerRun")) {
-                        player.animator.speed = Mathf.Abs(velocity.x / 5f);
-                    } else {
-                        player.animator.speed = 1f;
-                    }
-                } else {
-                    player.animator.SetBool("Running", false);
-                    player.animator.speed = 1f;
-                }
-
-                if (player.can_change_facing) {
-                    if (adjusted_input.x < 0) {
-                        facing = -1;
-                        flip_object.transform.localRotation = Quaternion.Euler(0, 180f, 0);
-                    } else if (adjusted_input.x > 0) {
-                        facing = 1;
-                        flip_object.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                    }
-                }
+                HandleXInput(adjusted_input.x);
 
                 cont.Move((velocity + gravity_force) * Time.deltaTime);
             }
         } else {
-            if (knocked_back_last_frame == false) gravity_force = Vector3.zero;
-            knocked_back_last_frame = true;
-            velocity.y = 0;
-            cont.Move(player.knockback_force + (gravity_force * Time.deltaTime));
-            player.knockback_force = Vector2.zero;
+            HandleKnockedBackInput();
         }
-        if (player.is_knocked_back && (cont.collisions.left || cont.collisions.right)) {
-            player.CancelXKnockBack();
+
+        if (player.is_knocked_back) {
+            CheckCancelKnockback();
         }
-        if (player.is_knocked_back && cont.collisions.above) {
-            player.CancelYKnockBack();
-        }
-        if (player.is_knocked_back && cont.collisions.below) {
+    }
+
+    void CheckCancelKnockback() {
+        if (cont.collisions.below) {
             player.CancelKnockBack();
+        } else {
+            if (cont.collisions.left || cont.collisions.right) {
+                player.CancelXKnockBack();
+            }
+            if (cont.collisions.above) {
+                player.CancelYKnockBack();
+            }
+        }
+    }
+
+    void HandleKnockedBackInput() {
+        if (knocked_back_last_frame == false) gravity_force = Vector3.zero;
+        knocked_back_last_frame = true;
+        velocity.y = 0;
+        cont.Move(player.knockback_force + (gravity_force * Time.deltaTime));
+        player.knockback_force = Vector2.zero;
+    }
+
+    void HandleDashingInput() {
+        player.animator.SetBool("Running", false);
+        player.animator.speed = 1f;
+
+        cont.Move(player.dash_force);
+        player.dash_force = Vector2.zero;
+        velocity = Vector3.zero;
+        gravity_force = Vector3.zero;
+    }
+
+    void HandleYInput(float y_input) {
+        if (y_input <= -.99f && Input.GetButtonDown("Jump") && drop_routine == null && cont.OverPlatform()) {
+            if (cont.OverPlatform()) {
+                drop_routine = StartCoroutine(DropRoutine());
+            }
+        } else if (Input.GetButtonDown("Drop") && drop_routine == null && player.can_input) {
+            drop_routine = StartCoroutine(DropRoutine());
+        } else if (Input.GetButtonDown("Jump") && player.can_move && player.can_input) {
+            if (cont.collisions.below) {
+                Jump(true);
+            } else if (jumps_used < (player.jump_count - (grounded_jump_used ? 0 : 1))) {
+                Jump(false);
+            }
+        }
+    }
+
+    void HandleXInput(float x_input) {
+        velocity.x = x_input * player.speed;
+
+        if (x_input != 0 && (cont.collisions.below || cont.collisions.below_last_frame)) {
+            player.animator.SetBool("Running", true);
+            if (player.animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerRun")) {
+                player.animator.speed = Mathf.Abs(velocity.x / 5f);
+            } else {
+                player.animator.speed = 1f;
+            }
+        } else {
+            player.animator.SetBool("Running", false);
+            player.animator.speed = 1f;
+        }
+
+        if (player.can_change_facing) {
+            if (x_input < 0) {
+                facing = -1;
+                flip_object.transform.localRotation = Quaternion.Euler(0, 180f, 0);
+            } else if (x_input > 0) {
+                facing = 1;
+                flip_object.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            }
         }
     }
 

@@ -70,10 +70,10 @@ public class Character : MonoBehaviour, ICombatant {
     }
 
     public bool can_input {
-        get { return alive && !is_knocked_back; }
+        get { return alive && !is_knocked_back && !crowd_control_effects.IsCCed(CrowdControl.Type.stunned); }
     }
     public bool can_move {
-        get { return movement_lock.unlocked; }
+        get { return movement_lock.unlocked && !crowd_control_effects.IsCCed(CrowdControl.Type.snared, CrowdControl.Type.stunned); }
     }
     public bool cancel_velocity {
         get; private set;
@@ -95,6 +95,8 @@ public class Character : MonoBehaviour, ICombatant {
     Coroutine dash_routine;
 
     Coroutine iframes;
+
+    float last_cc_update;
 
     public virtual bool TrySpendEnergy(int cost) {
         if (energy.current >= cost) {
@@ -186,8 +188,6 @@ public class Character : MonoBehaviour, ICombatant {
             force *= 2;
             length *= 2;
         }
-
-        crowd_control_effects.ApplyCC(CrowdControl.Type.stunned, length, source);
 
         if (knockback_routine != null) {
             StopCoroutine(knockback_routine);
@@ -375,6 +375,16 @@ public class Character : MonoBehaviour, ICombatant {
     /// </summary>
     protected virtual void OnStart() {
 
+    }
+
+    void Update() {
+        crowd_control_effects.Update(Time.time - last_cc_update);
+        last_cc_update = Time.time;
+    }
+
+    void FixedUpdate() {
+        crowd_control_effects.Update(Time.time - last_cc_update);
+        last_cc_update = Time.time;
     }
 
 
