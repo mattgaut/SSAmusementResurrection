@@ -6,11 +6,11 @@ public class BuffItemEffect : ItemEffect {
 
     [SerializeField] BuffGroup buff;
 
-    public override void OnDrop(Item item) {
+    protected override void OnDrop() {
         buff.Remove(item.owner);
     }
 
-    public override void OnPickup(Item item) {
+    protected override void OnPickup() {
         buff.Apply(item.owner);
     }
 }

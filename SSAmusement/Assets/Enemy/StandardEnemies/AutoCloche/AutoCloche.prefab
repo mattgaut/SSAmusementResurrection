@@ -1201,6 +1201,7 @@ MonoBehaviour:
   targets:
     serializedVersion: 2
     m_Bits: 2048
+  is_blindable: 1
 --- !u!1 &405342674168271938
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,6 +1275,7 @@ MonoBehaviour:
   targets:
     serializedVersion: 2
     m_Bits: 2048
+  is_blindable: 1
 --- !u!1 &7430677082717829999
 GameObject:
   m_ObjectHideFlags: 0

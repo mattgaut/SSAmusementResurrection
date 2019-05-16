@@ -5,11 +5,11 @@ using UnityEngine;
 public class AddJumpItemEffect : ItemEffect {
     [SerializeField] int jumps;
 
-    public override void OnDrop(Item item) {
+    protected override void OnDrop() {
         item.owner.RemoveBonusJump(jumps);
     }
 
-    public override void OnPickup(Item item) {
+    protected override void OnPickup() {
         item.owner.AddBonusJump(jumps);
     }
 }

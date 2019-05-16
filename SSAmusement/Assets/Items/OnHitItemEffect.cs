@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class OnHitItemEffect : ItemEffect {
-    public override void OnDrop(Item item) {
+    protected override void OnDrop() {
         item.owner.on_hit -= OnOwnerHitEnemy;
     }
 
-    public override void OnPickup(Item item) {
+    protected override void OnPickup() {
         item.owner.on_hit += OnOwnerHitEnemy;
     }
 

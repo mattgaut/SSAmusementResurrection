@@ -19,8 +19,8 @@ public class CombatTurretItemEffect : OnHitItemEffect {
 
     Character owner;
 
-    public override void OnPickup(Item item) {
-        base.OnPickup(item);
+    protected override void OnPickup() {
+        base.OnPickup();
         pet.transform.SetParent(null, true);
         pet.transform.localPosition = item.owner.transform.position;
         pet.gameObject.SetActive(true);
@@ -35,8 +35,8 @@ public class CombatTurretItemEffect : OnHitItemEffect {
         targets = new List<Character>();
     }
 
-    public override void OnDrop(Item item) {
-        base.OnDrop(item);
+    protected override void OnDrop() {
+        base.OnDrop();
 
         item.owner.inventory.RemovePet();
 

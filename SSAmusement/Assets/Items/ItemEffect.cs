@@ -7,17 +7,28 @@ using UnityEngine;
 /// </summary>
 public abstract class ItemEffect : MonoBehaviour {
 
+    protected Item item { get; set; }
+
     /// <summary>
     /// Method to define Item Effect behaviour upon being picked up
     /// </summary>
     /// <param name="item">Item Effect belongs to</param>
-    public abstract void OnPickup(Item item);
+    public void OnPickup(Item item) {
+        this.item = item;
+        OnPickup();
+    }
 
+    protected abstract void OnPickup();
 
     /// <summary>
     /// Method to define Item Effect behaviour upon being dropped
     /// </summary>
     /// <param name="item">Item effect belongs to</param>
-    public abstract void OnDrop(Item item);
+    public void OnDrop(Item item) {
+        this.item = item;
+        OnDrop();
+    }
+
+    protected abstract void OnDrop();
 
 }

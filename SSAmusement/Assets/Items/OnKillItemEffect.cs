@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class OnKillItemEffect : ItemEffect {
 
-    public override void OnDrop(Item item) {
+    protected override void OnDrop() {
         item.owner.on_kill -= OnKill;
     }
 
-    public override void OnPickup(Item item) {
+    protected override void OnPickup() {
         item.owner.on_kill += OnKill;
     }
 
