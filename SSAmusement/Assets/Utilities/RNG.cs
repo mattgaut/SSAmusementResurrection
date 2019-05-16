@@ -98,12 +98,11 @@ public class RNG {
     /// <param name="avg"></param>
     /// <returns>float between lower_bound and upper_bound with an average value of avg</returns>
     public float GetFloat(float min, float max, float avg) {
-        float a, b, c, z;
+        float a, b, z;
 
         a = min;
         b = max - a;
-        c = avg;
-        z = ((b - a) / (c - a)) - 1f;
+        z = ((max - min) / (avg - min)) - 1f;
 
         return b * Mathf.Pow(GetFloat(), z) + a;
     }

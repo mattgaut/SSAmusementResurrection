@@ -47,7 +47,7 @@ public class Level : ScriptableObject {
     [SerializeField] WeightedRoomGroup _swarm_rooms, _treasure_rooms;
 
     [System.Serializable]
-    public class WeightedRoomGroup : ISerializationCallbackReceiver {
+    public class WeightedRoomGroup {
 
         public ICollection<RoomController> rooms {
             get { return _rooms; }
@@ -61,42 +61,10 @@ public class Level : ScriptableObject {
 
         public int GetNumberToSpawn(RNG rng) {
             if (!use_range) {
-                Debug.Log("Fixed");
                 return fixed_number;
             } else {
-                Debug.Log("NotFixed");
-                if (min > max) {
-                    Debug.LogError("Min value above Max value");
-                }
-                if (avg <= min || avg >= max) {
-                    Debug.LogError("Avg value outside range");
-                }
-
-                float rng_value = rng.GetFloat();
-                float formula_value = b * Mathf.Pow(rng_value, z) + a;
-                int to_spawn = (int)formula_value;
-                to_spawn += (rng.GetFloat() <= (formula_value - to_spawn)) ? 1 : 0;
-                return to_spawn;
+                return rng.GetInt(min, max, avg);
             }
-        }
-
-        float a, b, c, z;
-
-        void Awake() {
-            if (use_range) {
-                a = min;
-                b = max - a;
-                c = avg;
-                z = ((b - a) / (c - a)) - 1f;
-            }
-        }
-
-        public void OnBeforeSerialize() {
-           
-        }
-
-        public void OnAfterDeserialize() {
-            Awake();
         }
     }
 }

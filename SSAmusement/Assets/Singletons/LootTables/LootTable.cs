@@ -16,7 +16,7 @@ public class LootTable : ScriptableObject {
             numbers.Add(i,0);
         }
 
-        int test_count = 40;
+        int test_count = 100000;
         RNG rng = new RNG(System.DateTime.Now.Millisecond);
         for (int i = 0; i < test_count; i++) {
             numbers[rng.GetInt(min_to_drop, max_to_drop, avg_to_drop)]++;
