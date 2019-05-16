@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _codename: sfx_laser
   _clip: {fileID: 8300000, guid: e35e33d06ea05b94ead31432ce7a0be9, type: 3}
-  _volume: 1
+  _volume: 0.441
