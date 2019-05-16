@@ -13,7 +13,7 @@ public class SoundManager : Singleton<SoundManager> {
 
     Coroutine fade_routine;
 
-    HashSet<SFXClip> clips_played_this_frame;
+    List<SFXClip> clips_played_this_frame;
 
     public static void PlaySong(AudioClip clip) {
         if (instance) {
@@ -75,7 +75,7 @@ public class SoundManager : Singleton<SoundManager> {
     protected override void OnAwake() {
         sound_bank.ReloadDictionary();
         SetAllVolumes(volume);
-        clips_played_this_frame = new HashSet<SFXClip>();
+        clips_played_this_frame = new List<SFXClip>();
     }
 
     private void LateUpdate() {
