@@ -17,6 +17,7 @@ public abstract class Attack : MonoBehaviour {
     }
 
     [SerializeField] protected LayerMask targets;
+    [SerializeField] protected bool is_blindable;
     ICombatant source;
 
     protected virtual void Awake() {
@@ -63,7 +64,7 @@ public abstract class Attack : MonoBehaviour {
     protected virtual void OnCollisionWithTarget() { }
 
     protected bool ConfirmHit(IDamageable d) {
-        if (!d.invincible && HitCondition(d)) {
+        if (!d.invincible && (!is_blindable || !source.crowd_control_effects.IsCCed(CrowdControl.Type.blinded)) && HitCondition(d)) {
             LogHit(d);
             on_hit?.Invoke(d, this);
             OnCollisionWithTarget();

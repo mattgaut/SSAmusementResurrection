@@ -26,6 +26,7 @@ public class Character : MonoBehaviour, ICombatant {
 
     public Character character { get { return this; } }
     public CharacterDefinition char_definition { get { return _char_definition; } }
+    public CrowdControl crowd_control_effects { get; private set; }
 
     public CapStat health { get { return _char_definition.health; } }
     public Stat power { get { return _char_definition.power; } }
@@ -185,6 +186,8 @@ public class Character : MonoBehaviour, ICombatant {
             force *= 2;
             length *= 2;
         }
+
+        crowd_control_effects.ApplyCC(CrowdControl.Type.stunned, length, source);
 
         if (knockback_routine != null) {
             StopCoroutine(knockback_routine);
@@ -346,6 +349,8 @@ public class Character : MonoBehaviour, ICombatant {
     protected void Awake() {
         health.current = health.max;
         energy.current = energy.max;
+
+        crowd_control_effects = new CrowdControl();
 
         alive = true;
 

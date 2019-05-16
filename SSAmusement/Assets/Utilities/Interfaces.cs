@@ -28,13 +28,13 @@ public interface IStats : IDamageable {
 public interface ICombatant : IDamageable, IStats {
     float DealDamage(float damage, IDamageable target, bool trigger_on_hit);
     void GiveKnockback(IDamageable target, Vector2 knockback, float duration);
-    bool alive {
-        get;
-    }
+    bool alive { get; }
+    CrowdControl crowd_control_effects { get; }
     void GiveKillCredit(ICombatant killed);
     void LogBuff(IBuff b);
     Coroutine StartCoroutine(IEnumerator start);
     void DropObject(GameObject obj, bool should_handle_instantiation = false);
+
 }
 
 /// <summary>

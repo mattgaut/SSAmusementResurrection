@@ -111,7 +111,7 @@ public class StateMachineControllerEditor : Editor {
         serialized_target.ApplyModifiedProperties();
     }
 
-    MemberInfo[] GetParameterCandidates(Type type) {
+    MemberInfo[] GetParameterCandidates(System.Type type) {
         List<MemberInfo> member_info_list = new List<MemberInfo>();
 
         member_info_list.AddRange(type.FindMembers(MemberTypes.Method | MemberTypes.Field, BindingFlags.Instance | BindingFlags.Public, (a, b) => MatchParameterCandidate(a, b, type), null));
@@ -119,10 +119,10 @@ public class StateMachineControllerEditor : Editor {
         return member_info_list.ToArray();
     }
 
-    bool MatchParameterCandidate(MemberInfo member, object filter, Type type) {
+    bool MatchParameterCandidate(MemberInfo member, object filter, System.Type type) {
         if (member.MemberType == MemberTypes.Method) {
-            MethodInfo mi = type.GetMethod(member.Name, new Type[0]);
-            if (typeof(StateMachineController).BaseType.GetMethod(member.Name, new Type[0]) != null) {
+            MethodInfo mi = type.GetMethod(member.Name, new System.Type[0]);
+            if (typeof(StateMachineController).BaseType.GetMethod(member.Name, new System.Type[0]) != null) {
                 return false;
             }
 
@@ -134,17 +134,17 @@ public class StateMachineControllerEditor : Editor {
         return false;
     }
 
-    MemberInfo[] GetStateCandidates(Type type) {
+    MemberInfo[] GetStateCandidates(System.Type type) {
         List<MemberInfo> member_info_list = new List<MemberInfo>();
         member_info_list.AddRange(type.FindMembers(MemberTypes.Method, BindingFlags.Instance | BindingFlags.NonPublic, (a, b) => MatchStateCandidate(a, b, type), null));
 
         return member_info_list.ToArray();
     }
 
-    bool MatchStateCandidate(MemberInfo member, object filter, Type type) {
+    bool MatchStateCandidate(MemberInfo member, object filter, System.Type type) {
         if (member.MemberType == MemberTypes.Method && member.Name != "StateMachineCoroutine") {
 
-            MethodInfo mi = type.GetMethod(member.Name, BindingFlags.Instance | BindingFlags.NonPublic, null, new Type[0], new ParameterModifier[0]);            
+            MethodInfo mi = type.GetMethod(member.Name, BindingFlags.Instance | BindingFlags.NonPublic, null, new System.Type[0], new ParameterModifier[0]);            
 
             return mi != null && mi.GetParameters().Length == 0 && mi.ReturnType == typeof(IEnumerator);
         }

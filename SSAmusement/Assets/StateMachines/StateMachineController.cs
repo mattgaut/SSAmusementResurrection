@@ -138,7 +138,7 @@ public class StateMachineController : MonoBehaviour {
         /// </summary>
         /// <param name="grab_from"></param>
         public void Init(System.Object grab_from) {
-            MethodInfo mi = grab_from.GetType().GetMethod(coroutine_name, BindingFlags.Instance | BindingFlags.NonPublic, null, new Type[0], new ParameterModifier[0]);
+            MethodInfo mi = grab_from.GetType().GetMethod(coroutine_name, BindingFlags.Instance | BindingFlags.NonPublic, null, new System.Type[0], new ParameterModifier[0]);
             coroutine = Delegate.CreateDelegate(typeof(Func<IEnumerator>), grab_from, mi) as Func<IEnumerator>;
         }
 
