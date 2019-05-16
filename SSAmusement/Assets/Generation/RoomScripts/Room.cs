@@ -27,7 +27,7 @@ public class Room : MonoBehaviour {
     public Vector2Int position { get { return _position; } set { _position = value; } }
     public Vector2 local_center { get { return new Vector2(size.x * Section.width, size.y * Section.height) / 2f; } }
 
-    public Rect bounds { get { return new Rect(position - (Vector2.one * 0.5f), (size * new Vector2Int(Section.width, Section.height)) + Vector2.one); } }
+    public Rect bounds { get { return new Rect(position * new Vector2Int(Section.width, Section.height) - (Vector2.one * 0.5f), (size * new Vector2Int(Section.width, Section.height)) + Vector2.one); } }
 
     /// <summary>
     /// Changes size of the room and clears all but the outer walls

@@ -9,9 +9,11 @@ public class SoundManager : Singleton<SoundManager> {
 
     [SerializeField] AudioSource main, fade_in, sfx;
     [SerializeField] SoundBank _sound_bank;
-    float volume = 0.5f;
+    [Range(0,1)][SerializeField] float volume = 0.1f;
 
     Coroutine fade_routine;
+
+    HashSet<SFXClip> clips_played_this_frame;
 
     public static void PlaySong(AudioClip clip) {
         if (instance) {
@@ -41,10 +43,6 @@ public class SoundManager : Singleton<SoundManager> {
         }
     }
 
-    protected override void OnAwake() {
-        sound_bank.ReloadDictionary();
-    }
-
     public void LocalPlaySong(AudioClip clip) {
         instance.main.UnPause();
         if (main.clip == null || !main.isPlaying) {
@@ -61,13 +59,27 @@ public class SoundManager : Singleton<SoundManager> {
         }
     }
 
-    public void LocalPlaySfx(SFXClip clip) {
-        clip?.PlaySound(sfx);
+    public void LocalPlaySfx(SFXInfo info, bool is_once_per_frame = true) {
+        if (info == null || info.clip == null) return;
+        if (is_once_per_frame && clips_played_this_frame.Contains(info.clip)) return;
+
+        info.clip.PlaySound(sfx);
+        clips_played_this_frame.Add(info.clip);
     }
 
     public void FadeOut() {
         if (fade_routine != null) StopCoroutine(fade_routine);  
         StartCoroutine(FadeOutMain(2f));
+    }
+
+    protected override void OnAwake() {
+        sound_bank.ReloadDictionary();
+        SetAllVolumes(volume);
+        clips_played_this_frame = new HashSet<SFXClip>();
+    }
+
+    private void LateUpdate() {
+        clips_played_this_frame.Clear();
     }
 
     void SetAllVolumes(float volume) {

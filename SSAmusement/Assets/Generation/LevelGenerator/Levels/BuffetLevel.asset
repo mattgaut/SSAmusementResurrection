@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _level_name: Buffet
   set: {fileID: 11400000, guid: 06c2fe7b75cdbf747a74a23a594c96cd, type: 2}
-  _spawn_room: {fileID: 5189522555062558611, guid: 0f8592f659b9a0e48875f5bd946a9148,
+  _spawn_room: {fileID: 7313883643920262137, guid: 87f15eb0a8362d946a339f0288cfc139,
     type: 3}
   _unweighted_rooms:
   - {fileID: 6097406021726078476, guid: 204011fb791c59a45bc1b7c8d6878780, type: 3}

@@ -66,7 +66,7 @@ public class Door : MonoBehaviour {
             yield return null;
         }
         if (!RoomManager.has_instance || RoomManager.instance.IsInActiveRoom(transform.position)) {
-            SoundManager.instance.LocalPlaySfx(open_sfx);
+            SoundManager.instance.LocalPlaySfx(open_sfx, true);
         }
         wait_open = null;
     }

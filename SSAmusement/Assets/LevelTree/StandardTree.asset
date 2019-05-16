@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1bb20edc54421948b895f8e458c7d28, type: 3}
   m_Name: StandardTree
   m_EditorClassIdentifier: 
-  _first_level: {fileID: 11400000, guid: 4bc5ee5cc1228e148b4d368189af7677, type: 2}
+  _first_level: {fileID: 11400000, guid: b65a03f9adcb1b34d91d093f9c457144, type: 2}
   nodes:
   - level: {fileID: 11400000, guid: b65a03f9adcb1b34d91d093f9c457144, type: 2}
     possible_next_levels:

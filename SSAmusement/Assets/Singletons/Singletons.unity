@@ -189,5 +189,25 @@ PrefabInstance:
       propertyPath: start_game_on_start
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2053336213, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}
+      propertyPath: volume
+      value: 0.144
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053336214, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053336215, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 58973488, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 58973488, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}
