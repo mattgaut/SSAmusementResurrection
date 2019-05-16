@@ -49,8 +49,8 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
         return collision_info.past_max;
     }
 
-    protected override void Awake() {
-        base.Awake();
+    protected override void Ini() {
+        base.Ini();
 
         gravity = -(2 * jump_height) / (time_to_jump_apex * time_to_jump_apex);
         if (no_gravity) gravity = 0;
@@ -61,6 +61,8 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
         } else {
             facing = base_facing;
         }
+
+        enemy.on_take_knockback += (a, b, c) => gravity_force.y = 0;
     }
 
     protected override void Update() {
@@ -113,17 +115,14 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
             velocity.y = 0;
             gravity_force.y = 0;
         }
-        gravity_force.y += gravity * Time.fixedDeltaTime;
+        gravity_force.y += gravity * Time.deltaTime;
 
         if (enemy.is_knocked_back) {
-            if (knocked_back_last_frame == false) gravity_force = Vector2.zero;
-            knocked_back_last_frame = true;
             velocity.y = 0;
             movement = enemy.knockback_force + (gravity_force * Time.deltaTime);
             enemy.knockback_force = Vector2.zero;
         } else {
             if (enemy.can_move) {
-                knocked_back_last_frame = false;
                 if (_input.y > 0 && cont.collisions.below) {
                     velocity.y = jump_velocity;
                     on_jump.Invoke(true);
@@ -133,7 +132,7 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
                 }
 
                 velocity.x = _input.x;
-                movement = (velocity + gravity_force) * enemy.speed * Time.deltaTime;
+                movement = ((velocity * enemy.speed) + gravity_force) * Time.deltaTime;
                 Face(movement.x);
             }
         }

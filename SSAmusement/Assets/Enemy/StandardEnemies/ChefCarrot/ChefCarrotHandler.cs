@@ -29,7 +29,7 @@ public class ChefCarrotHandler : GroundedEnemyHandler {
 
     protected override void Activate() {
         base.Activate();
-        last_throw = 0;
+        last_throw = time_between_throws / 2f;
     }
     protected override void Deactivate() {
         base.Deactivate();

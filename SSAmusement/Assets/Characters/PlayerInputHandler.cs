@@ -65,6 +65,8 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
         for (int i = 0; i < abilities.count; i++) {
             player.player_display.SetAbilityDisplay(abilities.GetAbility(i).active, i);
         }
+
+        player.on_take_knockback += (a, b, c) => gravity_force.y = 0;
     }
 
     private void Update() {
@@ -94,6 +96,7 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
             jumps_used = 0;
             grounded_jump_used = false;
         }
+
         Vector2 adjusted_input = input;
         if (!player.can_input || !GameManager.instance.input_active || !player.can_move) {
             adjusted_input = Vector2.zero;
@@ -112,8 +115,6 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
             if (player.is_dashing) {
                 HandleDashingInput();
             } else {
-                knocked_back_last_frame = false;
-
                 if (jumping) {
                     velocity.y = jump_velocity;
                 } else if (GameManager.instance.input_active && player.can_input) {
@@ -147,8 +148,6 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
     }
 
     void HandleKnockedBackInput() {
-        if (knocked_back_last_frame == false) gravity_force = Vector3.zero;
-        knocked_back_last_frame = true;
         velocity.y = 0;
         cont.Move(player.knockback_force + (gravity_force * Time.deltaTime));
         player.knockback_force = Vector2.zero;

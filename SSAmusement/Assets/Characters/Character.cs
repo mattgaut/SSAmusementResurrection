@@ -42,11 +42,13 @@ public class Character : MonoBehaviour, ICombatant {
     public delegate void OnKillCallback(Character killer, ICombatant killed);
     public delegate void OnTakeDamage(Character hit_character, float pre_mitigation_damage, float post_mitigation_damage, ICombatant hit_by);
     public delegate void OnDeathCallback(Character killed, ICombatant killer);
+    public delegate void OnTakeKnockback(ICombatant source, Vector2 force, float length);
 
     public event OnHitCallback on_hit;
     public event OnKillCallback on_kill;
     public event OnTakeDamage on_take_damage;
     public event OnDeathCallback on_death;
+    public event OnTakeKnockback on_take_knockback;
 
     public Vector2 knockback_force {
         get; set;
@@ -192,6 +194,8 @@ public class Character : MonoBehaviour, ICombatant {
         if (knockback_routine != null) {
             StopCoroutine(knockback_routine);
         }
+
+        on_take_knockback?.Invoke(source, force, length);
         knockback_routine = StartCoroutine(KnockbackRoutine(force, length));
     }
 
@@ -419,7 +423,7 @@ public class Character : MonoBehaviour, ICombatant {
         knockback_dissipation_time = length;
 
         while (knockback_dissipation_time > 0 && is_knocked_back) {
-            float time_step = Mathf.Min(Time.fixedDeltaTime, knockback_dissipation_time);
+            float time_step = Mathf.Min(Time.deltaTime, knockback_dissipation_time);
 
             Vector2 old_force = force * Mathf.Pow(knockback_dissipation_time / length, 3f);
             knockback_dissipation_time -= time_step;

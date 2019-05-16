@@ -156,6 +156,7 @@ public class GameManager : Singleton<GameManager> {
 
     private void Start() {
         //SceneManager.UnloadSceneAsync("Singletons");
+        ResetMemory();
         if (start_game_on_start) StartGame(_player);
     }
 
@@ -193,7 +194,7 @@ public class GameManager : Singleton<GameManager> {
     }
 
     void ResetMemory() {
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
         level_count = 0;
         input_locks = 0;
         game_time = 0;

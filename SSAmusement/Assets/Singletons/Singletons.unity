@@ -187,7 +187,12 @@ PrefabInstance:
     - target: {fileID: 4727880421587381437, guid: 06f08f6c2bb72f3478d34895e46a967b,
         type: 3}
       propertyPath: use_seed
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4753337269797124211, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: start_game_on_start
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}

@@ -22,6 +22,7 @@ public class MeleeAttackHandler : GroundedEnemyHandler {
     }
 
     protected override void Ini() {
+        base.Ini();
         attack.SetOnHit((hit, attack) => AttackOnHit(hit));
     }
 
