@@ -1288,7 +1288,7 @@ MonoBehaviour:
   timed_buff: 1
   remove_after: 4
   _is_benificial: 0
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: 23449b90019e8444982d693f3415e10a, type: 3}
 --- !u!114 &114641016151308318
 MonoBehaviour:
   m_ObjectHideFlags: 0

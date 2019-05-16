@@ -119,7 +119,7 @@ public class ChefCarrotHandler : GroundedEnemyHandler {
             angle = Mathf.Clamp(angle, -45, 45);
         } else {
             if (enemy.crowd_control_effects.IsCCed(CrowdControl.Type.blinded)) {
-                angle = Random.Range(-135, 225);
+                angle = Random.Range(135, 225);
             } else {
                 angle = Vector2.SignedAngle(Vector2.right, to_target);
             }

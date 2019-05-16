@@ -9,7 +9,7 @@ public class AutoDefenseTurretItemEffect : OnTakeDamageItemEffect {
     [SerializeField] PetTurretController pet;
 
     protected override void OnPickup() {
-        base.OnPickup(item);
+        base.OnPickup();
         pet.transform.SetParent(null, true);
         pet.transform.localPosition = item.owner.transform.position;
         pet.gameObject.SetActive(true);
@@ -19,7 +19,7 @@ public class AutoDefenseTurretItemEffect : OnTakeDamageItemEffect {
     }
 
     protected override void OnDrop() {
-        base.OnDrop(item);
+        base.OnDrop();
 
         item.owner.inventory.RemovePet();
 

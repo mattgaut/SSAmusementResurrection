@@ -16,3 +16,4 @@
 	-plate breaking
 	-spinning maybe?
 	-cutlery breaking/hitting floor
+-Smoke Bomb
