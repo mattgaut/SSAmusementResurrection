@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootCarrotAbility : ActiveCooldownAbility {
+public class ShootCarrotAAEffect : ActiveAbilityEffect {
 
     [SerializeField] Transform projectile_spawn_point;
     [SerializeField] Projectile projectile_prefab;

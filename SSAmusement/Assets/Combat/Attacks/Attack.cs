@@ -18,7 +18,7 @@ public abstract class Attack : MonoBehaviour {
 
     [SerializeField] protected LayerMask targets;
     [SerializeField] protected bool is_blindable;
-    ICombatant source;
+    public ICombatant source { get; private set; }
 
     protected virtual void Awake() {
         hitbox = GetComponent<Collider2D>();

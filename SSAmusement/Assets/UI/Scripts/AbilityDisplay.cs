@@ -7,13 +7,11 @@ public class AbilityDisplay : MonoBehaviour {
 
     [SerializeField] MySlider slider;
     [SerializeField] Image ability_image;
-    [SerializeField] ActiveCooldownAbility _ability;
 
     Coroutine cooldown_routine;
 
     public ActiveCooldownAbility ability {
-        get { return _ability;  }
-        private set { _ability = value; }
+        get; private set;
     }
 
     public void SetAbility(ActiveCooldownAbility ability) {
@@ -49,9 +47,5 @@ public class AbilityDisplay : MonoBehaviour {
 
         slider.SetText("");
         slider.SetFill(0, "");
-    }
-
-    private void Awake() {
-        if (ability) SetAbility(ability);
     }
 }

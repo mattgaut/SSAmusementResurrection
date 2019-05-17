@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DiveBombAbility : ActiveCooldownAbility {
+public class DiveBombAAEffect : ActiveAbilityEffect {
 
     [SerializeField] SingleHitAttack attack;
     [SerializeField] float damage_multiplier;
@@ -13,7 +13,6 @@ public class DiveBombAbility : ActiveCooldownAbility {
 
     public override void SetCharacter(Character character) {
         base.SetCharacter(character);
-
         attack.SetOnHit(AttackOnHit);
     }
 

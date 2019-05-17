@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AbilitySet))]
-public abstract class Ability : MonoBehaviour {
+public abstract class Ability {
 
     public enum Type { ActiveCooldown, ActiveCharge, Passive, Toggle }
     public abstract Type ability_type { get; }

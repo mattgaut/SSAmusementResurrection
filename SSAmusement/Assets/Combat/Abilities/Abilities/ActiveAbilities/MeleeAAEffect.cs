@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeAttackAbility : ActiveCooldownAbility {
+public class MeleeAAEffect : ActiveAbilityEffect {
 
     [SerializeField] float wind_up_time;
     [SerializeField] float active_hitbox_time;

@@ -5,7 +5,15 @@ using UnityEngine.Events;
 
 public abstract class ActiveAbility : Ability {
 
-    public bool is_using_ability { get; protected set; }
+    public bool is_using_ability {
+        get {
+            foreach (ActiveAbilityEffect e in effects) {
+                if (e.is_using_ability)
+                    return true;
+            }
+            return false;
+        }
+    }
     public override bool is_available {
         get {
             return can_use == null || can_use.Invoke(); 
@@ -21,7 +29,8 @@ public abstract class ActiveAbility : Ability {
 
     [SerializeField] int _cost;
 
-    [SerializeField] UnityEvent _on_ability_used;
+    [SerializeField] ActiveAbilityEffect[] effects;
+    [SerializeField][HideInInspector] UnityEvent _on_ability_used;
 
     public void SetCanUse(CanUse can_use) {
         this.can_use = can_use;
@@ -30,7 +39,9 @@ public abstract class ActiveAbility : Ability {
     public bool TryUse(float input = 0) {
         if (is_available && TryPayCost(cost)) {
             NoteAbilityUsed();
-            UseAbility(input);
+            foreach (ActiveAbilityEffect e in effects) {
+                e.TriggerEffect(character, input);
+            }
             return true;
         } else {
             return false;
@@ -41,10 +52,8 @@ public abstract class ActiveAbility : Ability {
 
     protected abstract void OnAbilityUsed();
 
-    protected abstract void UseAbility(float input);
-
     void NoteAbilityUsed() {
         OnAbilityUsed();
-        _on_ability_used.Invoke();
+        on_ability_used.Invoke();
     }
 }

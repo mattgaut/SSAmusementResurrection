@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RainDebrisAbility : ActiveCooldownAbility {
+public class RainDebrisAAEffect : ActiveAbilityEffect {
     [SerializeField] Transform leftmost_spawn, rightmost_spawn;
     [SerializeField] float damage_multiplier;
     [SerializeField] float rain_duration, rain_delay, throw_length, time_between_drops;
@@ -59,11 +59,12 @@ public class RainDebrisAbility : ActiveCooldownAbility {
         Projectile new_projectile = Instantiate(to_drop.GetRandom(rng));
         new_projectile.transform.position = leftmost_spawn.position;
         new_projectile.transform.position += (rightmost_spawn.position - leftmost_spawn.position) * rng.GetFloat();
+        new_projectile.SetSource(character);
 
         new_projectile.SetOnHit(OnHit);
     }
 
     void OnHit(IDamageable hit, Attack hit_by) {
-        character.DealDamage(character.power * damage_multiplier, hit, false);
+        hit_by.source.DealDamage(hit_by.source.power * damage_multiplier, hit, false);
     }
 }

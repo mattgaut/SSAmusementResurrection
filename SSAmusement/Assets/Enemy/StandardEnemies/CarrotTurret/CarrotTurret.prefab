@@ -104,7 +104,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283fd950cddd5ff499590f3e3a4571b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shoot: {fileID: 1024881582007325149}
+  _shoot:
+    _ability_name: Carrot Dart
+    _icon: {fileID: 0}
+    _cost: 0
+    effects:
+    - {fileID: 1024881582007325149}
+    _cooldown: 5
 --- !u!114 &1024881582007325149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,16 +123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 984754e1e843e3841ab35c0502125b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ability_name: Fire
-  _icon: {fileID: 0}
-  _energy_cost: 0
-  _cooldown: 5
-  events:
-    _on_begin_cooldown:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
   projectile_spawn_point: {fileID: 516630728}
   projectile_prefab: {fileID: 114079419140536270, guid: 5a67fd61b90a69440a2a66b1aa088855,
     type: 3}

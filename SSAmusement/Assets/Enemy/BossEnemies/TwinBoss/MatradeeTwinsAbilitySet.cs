@@ -4,21 +4,27 @@ using UnityEngine;
 
 public class MatradeeTwinsAbilitySet : AbilitySet {
 
-    public CycloneAbility cyclone {
+    public ActiveCooldownAbility cyclone {
         get { return _cyclone; }
     }
 
-    public ActiveAbility throw_knives {
+    public bool is_cyclone_winding_up {
+        get { return cyclone_ability_effect.is_winding_up; }
+    }
+
+    public ActiveCooldownAbility throw_knives {
         get { return _throw_knives; }
     }
 
-    public ActiveAbility throw_plates {
+    public ActiveCooldownAbility throw_plates {
         get { return _throw_plates; }
     }
 
-    [SerializeField] CycloneAbility _cyclone;
-    [SerializeField] ActiveAbility _throw_plates;
-    [SerializeField] ActiveAbility _throw_knives;
+    [SerializeField] ActiveCooldownAbility _cyclone;
+    [SerializeField] ActiveCooldownAbility _throw_plates;
+    [SerializeField] ActiveCooldownAbility _throw_knives;
+
+    [SerializeField] CycloneAAEffect cyclone_ability_effect;
 
     protected override void LoadSkills() {
         abilities.Add(_throw_knives);

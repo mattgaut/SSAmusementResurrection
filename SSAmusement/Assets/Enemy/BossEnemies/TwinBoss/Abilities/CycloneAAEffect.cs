@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CycloneAbility : ActiveCooldownAbility {
-    public bool winding_up {
+public class CycloneAAEffect : ActiveAbilityEffect {
+    public bool is_winding_up {
         get; private set;
     }
 
@@ -16,7 +16,7 @@ public class CycloneAbility : ActiveCooldownAbility {
     [SerializeField] string anim_trigger_windup, anim_trigger_end_spin;
 
     public void FinishWindUp() {
-        winding_up = false;
+        is_winding_up = false;
     }
 
     protected override void UseAbility(float input) {
@@ -37,9 +37,9 @@ public class CycloneAbility : ActiveCooldownAbility {
         }
         
         is_using_ability = true;
-        winding_up = true;
+        is_winding_up = true;
         // Wait for anim to finish windup
-        while (winding_up) {
+        while (is_winding_up) {
             yield return null;
         }
 

@@ -49,7 +49,7 @@ public class MatradeeTwinsHandler : GroundedEnemyHandler {
         yield return MoveTo(target.transform, spin_target_range);
 
         if (abilities.cyclone.TryUse()) { 
-            while (abilities.cyclone.winding_up) {
+            while (abilities.is_cyclone_winding_up) {
                 yield return null;
             }
 

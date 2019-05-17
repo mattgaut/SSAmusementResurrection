@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SwordsmanAbilitySet : AbilitySet {
 
-    [SerializeField] MeleeAttackAbility basic_attack;
-    [SerializeField] SwordsmanCounterAbility counter;
-    [SerializeField] DashAbility dash;
+    [SerializeField] ActiveCooldownAbility basic_attack;
+    [SerializeField] ActiveCooldownAbility counter;
+    [SerializeField] ActiveCooldownAbility dash;
 
     bool can_use_basic_attack {
         get {

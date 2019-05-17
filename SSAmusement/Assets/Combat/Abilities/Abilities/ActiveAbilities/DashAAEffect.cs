@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DashAbility : ActiveCooldownAbility {
+public class DashAAEffect : ActiveAbilityEffect {
 
     [SerializeField] Vector2 base_dash;
     [SerializeField] bool modified_by_input;

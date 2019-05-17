@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SweepAbility : ActiveCooldownAbility {
+public class SweepAAEffect : ActiveAbilityEffect {
 
     [SerializeField] SingleHitAttack attack;
     [SerializeField] float damage_multiplier;

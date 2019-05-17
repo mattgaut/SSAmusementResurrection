@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CarrotTurretAbilitySet : AbilitySet {
 
-    public ActiveAbility shoot {
+    public ActiveCooldownAbility shoot {
         get { return _shoot; }
     }
 
-    [SerializeField] ActiveAbility _shoot;
+    [SerializeField] ActiveCooldownAbility _shoot;
 
     protected override void LoadSkills() {
         abilities.Add(_shoot);

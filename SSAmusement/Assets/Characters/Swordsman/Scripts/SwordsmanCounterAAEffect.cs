@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordsmanCounterAbility : ActiveCooldownAbility {
+public class SwordsmanCounterAAEffect : ActiveAbilityEffect {
 
     [SerializeField] Attack counter_attack;
     [SerializeField] Collider2D swordsman_hitbox;
@@ -14,6 +14,7 @@ public class SwordsmanCounterAbility : ActiveCooldownAbility {
 
     public override void SetCharacter(Character character) {
         base.SetCharacter(character);
+
         counter_attack.SetSource(character);
         counter_attack.SetOnHit(AttackOnHit);
     }

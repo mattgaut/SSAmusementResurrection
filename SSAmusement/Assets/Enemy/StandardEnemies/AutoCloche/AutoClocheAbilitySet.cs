@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class AutoClocheAbilitySet : AbilitySet {
 
-    public ActiveAbility dive_bomb {
+    public ActiveCooldownAbility dive_bomb {
         get { return _dive_bomb; }
     }
-    public ActiveAbility sweep {
+    public ActiveCooldownAbility sweep {
         get { return _sweep; }
     }
 
-    [SerializeField] ActiveAbility _dive_bomb;
-    [SerializeField] ActiveAbility _sweep;
+    [SerializeField] ActiveCooldownAbility _dive_bomb;
+    [SerializeField] ActiveCooldownAbility _sweep;
 
     bool can_use_ability {
         get {

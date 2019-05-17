@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RainArcProjectileAbility : ActiveCooldownAbility {
+public class RainArcProjectileAAEffect : ActiveAbilityEffect {
 
     [SerializeField] Transform spawn_point;
 

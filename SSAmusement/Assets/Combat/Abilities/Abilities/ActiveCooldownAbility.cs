@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class ActiveCooldownAbility : ActiveAbility {
+[Serializable]
+public sealed class ActiveCooldownAbility : ActiveAbility {
 
     public override Type ability_type {
         get { return Type.ActiveCooldown; }
