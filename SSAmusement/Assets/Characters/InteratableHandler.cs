@@ -8,14 +8,18 @@ public class InteratableHandler : MonoBehaviour {
 
     IInteractable over;
 
+    float last_input, input;
+
     private void Awake() {
         player = GetComponentInParent<Player>();
     }
 
     private void Update() {
-        if (Input.GetButtonDown("Interact") && over != null) {
+        input = Input.GetAxisRaw("Interact");
+        if (input != 0 && last_input != input && over != null) {
             over.Interact(player);
-        }   
+        }
+        last_input = input;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {

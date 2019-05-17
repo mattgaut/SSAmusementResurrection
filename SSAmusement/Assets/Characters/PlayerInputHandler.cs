@@ -80,6 +80,11 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
             if (Input.GetButtonDown("Skill2")) {
                 ProcessSkillButton(Input.GetAxis("Skill2"), 2);
             }
+            if (Input.GetButtonDown("ActiveSkill")) {                
+                if (player.inventory.active_item != null) {
+                    player.inventory.active_item.active_ability.TryUse();
+                }
+            }
         }
 
         input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));

@@ -36,6 +36,7 @@ public class Item : MonoBehaviour {
     public virtual void OnPickup(Player p) {
         GetComponent<SpriteRenderer>().enabled = false;
         SetOwner(p);
+        transform.SetParent(p.transform);
         foreach (ItemEffect e in effects) {
             e.OnPickup(this);
         }
@@ -46,9 +47,8 @@ public class Item : MonoBehaviour {
             foreach (ItemEffect e in effects) {
                 e.OnDrop(this);
             }
-            transform.parent.SetParent(null);
+            transform.SetParent(null);
             SetOwner(null);
         }
     }
-
 }

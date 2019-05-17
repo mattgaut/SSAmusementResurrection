@@ -76,14 +76,14 @@ public class Inventory : MonoBehaviour {
         if (i.item_type == Item.Type.active) {
             replaced_item = active_item;
             active_item = i as ActiveItem;
+            if (replaced_item) replaced_item.OnDrop(player);
         } else {
             items_in_inventory.Add(i);
         }
-        i.transform.SetParent(transform);
         i.OnPickup(player);
         UIHandler.DisplayItem(i);
 
-        return null;
+        return replaced_item;
     }
 
     public void AddKeycard(int i = 1) {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SmokeBombItemEffect : OnTakeDamageItemEffect {
+public class SmokeBombAAEffect : ActiveAbilityEffect {
 
     [SerializeField] Attack smoke_bomb_attack;
     [SerializeField] ParticleSystem blind_particle_effects;
@@ -12,26 +12,26 @@ public class SmokeBombItemEffect : OnTakeDamageItemEffect {
 
     RNG rng;
 
+    protected override void UseAbilityEffect(float input) {
+        DropSmokeBomb();
+    }
+
     private void Awake() {
         rng = new RNG();
     }
 
-    protected override void OnTakeDamage(Character hit, float pre_damage, float post_damage, ICombatant source) {
-        if (rng.GetFloat() < drop_probability) DropSmokeBomb();
-    }
-
     void DropSmokeBomb() {
         Attack new_smoke_bomb = Instantiate(smoke_bomb_attack);
-        new_smoke_bomb.transform.position = item.owner.transform.position;
+        new_smoke_bomb.transform.position = character.transform.position;
 
-        new_smoke_bomb.SetSource(item.owner);
+        new_smoke_bomb.SetSource(character);
         new_smoke_bomb.SetOnHit(OnHit);
         new_smoke_bomb.GetComponent<CircleCollider2D>().radius = radius;
         new_smoke_bomb.Enable();
     }
 
     void OnHit(IDamageable d, Attack a) {
-        d.character.crowd_control_effects.ApplyCC(CrowdControl.Type.blinded, blind_length, item.owner);
+        d.character.crowd_control_effects.ApplyCC(CrowdControl.Type.blinded, blind_length, character);
 
         ParticleSystem ps = Instantiate(blind_particle_effects, d.character.char_definition.head);
         ps.transform.localPosition = Vector3.zero;
@@ -41,6 +41,6 @@ public class SmokeBombItemEffect : OnTakeDamageItemEffect {
 
     IEnumerator StopParticlesAfterTime(ParticleSystem ps, float length) {
         yield return new WaitForSeconds(length);
-        ps.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        if (ps) ps.Stop(true, ParticleSystemStopBehavior.StopEmitting);
     }
 }

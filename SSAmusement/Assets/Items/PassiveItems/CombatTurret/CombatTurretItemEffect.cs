@@ -111,4 +111,8 @@ public class CombatTurretItemEffect : OnHitItemEffect {
             stored_energy = 0;
         }
     }
+
+    private void OnDestroy() {
+        Destroy(pet.gameObject);
+    }
 }

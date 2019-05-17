@@ -22,7 +22,10 @@ public sealed class ActiveChargeAbility : ActiveAbility {
     }
 
     public override void SetCharacter(Character character) {
-        if (character != this.character) {
+        if (this.character != null) {
+            this.character.on_kill -= (a, b) => { if (charges < cost) charges += 1; };
+        }
+        if (character != null) {
             character.on_kill += (a, b) => { if (charges < cost) charges += 1; };
         }
         base.SetCharacter(character);

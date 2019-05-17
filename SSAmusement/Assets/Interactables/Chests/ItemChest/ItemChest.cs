@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ItemChest : MonoBehaviour, IInteractable {
 
     [SerializeField] Item to_spawn;
+    Item replaced_item;
     bool opened;
     [SerializeField] Sprite open_sprite;
 
@@ -33,14 +34,26 @@ public class ItemChest : MonoBehaviour, IInteractable {
             opened = true;
         }
         else if (to_spawn != null) {
-            player.inventory.AddItem(Instantiate(to_spawn));
+            replaced_item = player.inventory.AddItem(Instantiate(to_spawn));
             to_spawn = null;
+             
+            if (replaced_item) {
+                replaced_item.transform.SetParent(transform);
+                item_image.sprite = replaced_item.icon;
+            } else {
+                item_image.sprite = null;
+                canvas.enabled = false;
 
-            item_image.sprite = null;
-            canvas.enabled = false;
+                shine_renderer.enabled = false;
+            }
+        } else if (replaced_item != null) {
+            replaced_item = player.inventory.AddItem(replaced_item);
 
-            shine_renderer.enabled = false;
-        }        
+            if (replaced_item) {
+                replaced_item.transform.SetParent(transform);
+                item_image.sprite = replaced_item.icon;
+            }
+        }     
     }
 
     public void SetHighlight(bool is_highlighted) {

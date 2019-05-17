@@ -8,10 +8,20 @@ public class ActiveItem : Item {
         get { return Type.active; }
     }
 
+    public ActiveChargeAbility active_ability {
+        get { return ability; }
+    }
+
+    [SerializeField] ActiveChargeAbility ability;
+
     public override void OnPickup(Player p) {
-        base.OnDrop(p);
+        base.OnPickup(p);
+
+        ability.SetCharacter(p);
     }
     public override void OnDrop(Player p) {
         base.OnDrop(p);
+
+        ability.SetCharacter(null);
     }
 }
