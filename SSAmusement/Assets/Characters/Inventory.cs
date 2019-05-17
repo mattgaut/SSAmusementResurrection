@@ -8,7 +8,7 @@ public class Inventory : MonoBehaviour {
 
     Player player;
     List<Item> items_in_inventory;
-    public int curreny {
+    public int currency {
         get; private set;
     }
     public int boss_keycards {
@@ -27,12 +27,12 @@ public class Inventory : MonoBehaviour {
     }
 
     public bool TrySpendCurrency(int to_spend) {
-        if (to_spend > curreny) {
+        if (to_spend > currency) {
             return false;
         }
-        curreny -= to_spend;
+        currency -= to_spend;
 
-        player.player_display.UpdateCurrencyText(curreny);
+        player.player_display.UpdateCurrencyText(currency);
         return true;
     }
 
@@ -45,9 +45,9 @@ public class Inventory : MonoBehaviour {
     }
 
     public void AddCurrency(int to_add) {
-        curreny += to_add;
+        currency += to_add;
 
-        player.player_display.UpdateCurrencyText(curreny);
+        player.player_display.UpdateCurrencyText(currency);
     }
 
     public int ItemCount(string name) {

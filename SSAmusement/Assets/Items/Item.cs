@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class Item : MonoBehaviour {
 
+    public enum Type { passive, active }
+
     [SerializeField] string _item_name;
     [SerializeField][TextArea(1, 3)] string _item_description;
     [SerializeField] Sprite sprite;
     [SerializeField] List<ItemEffect> effects;
+
+    public virtual Type item_type {
+        get { return Type.passive; }
+    }
 
     public string item_name {
         get { return _item_name; }
@@ -27,7 +33,7 @@ public class Item : MonoBehaviour {
         owner = p;
     }
 
-    public void OnPickup(Player p) {
+    public virtual void OnPickup(Player p) {
         GetComponent<SpriteRenderer>().enabled = false;
         SetOwner(p);
         foreach (ItemEffect e in effects) {
@@ -35,7 +41,7 @@ public class Item : MonoBehaviour {
         }
     }
 
-    public void OnDrop(Player p) {
+    public virtual void OnDrop(Player p) {
         if (p == owner) {
             foreach (ItemEffect e in effects) {
                 e.OnDrop(this);
