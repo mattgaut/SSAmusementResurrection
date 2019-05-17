@@ -7,9 +7,9 @@ public class AutoClocheHandler : AerialEnemyHandler {
     [SerializeField] AutoClocheAbilitySet abilities;
     [SerializeField] float chase_time_out;
 
-    public bool can_dive_bomb { get { return abilities.dive_bomb.available && IsNextAbility(abilities.dive_bomb); } }
+    public bool can_dive_bomb { get { return abilities.dive_bomb.is_available && IsNextAbility(abilities.dive_bomb); } }
 
-    public bool can_sweep { get { return abilities.sweep.available && IsNextAbility(abilities.sweep); } }
+    public bool can_sweep { get { return abilities.sweep.is_available && IsNextAbility(abilities.sweep); } }
 
     Ability next_ability = null;
 
@@ -52,7 +52,7 @@ public class AutoClocheHandler : AerialEnemyHandler {
             SetUnclampedTilt(180);
 
             if (abilities.dive_bomb.TryUse()) {
-                while (abilities.dive_bomb.using_ability) {
+                while (abilities.dive_bomb.is_using_ability) {
                     yield return null;
                 }
                 next_ability = null;
@@ -86,7 +86,7 @@ public class AutoClocheHandler : AerialEnemyHandler {
         }
 
         if (!timed_out && abilities.sweep.TryUse(target.transform.position.x - transform.position.x)) {
-            while (abilities.sweep.using_ability) {
+            while (abilities.sweep.is_using_ability) {
                 yield return null;
             }
             next_ability = null;

@@ -16,7 +16,7 @@ public class AutoClocheAbilitySet : AbilitySet {
 
     bool can_use_ability {
         get {
-            return !(dive_bomb.using_ability || sweep.using_ability || character.is_knocked_back);
+            return !(dive_bomb.is_using_ability || sweep.is_using_ability || character.is_knocked_back);
         }
     }
 

@@ -7,16 +7,16 @@ public class AbilityDisplay : MonoBehaviour {
 
     [SerializeField] MySlider slider;
     [SerializeField] Image ability_image;
-    [SerializeField] ActiveAbility _ability;
+    [SerializeField] ActiveCooldownAbility _ability;
 
     Coroutine cooldown_routine;
 
-    public ActiveAbility ability {
+    public ActiveCooldownAbility ability {
         get { return _ability;  }
         private set { _ability = value; }
     }
 
-    public void SetAbility(ActiveAbility ability) {
+    public void SetAbility(ActiveCooldownAbility ability) {
         if (ability != null) {
             ability_image.sprite = ability.icon;
         } else {
@@ -24,6 +24,7 @@ public class AbilityDisplay : MonoBehaviour {
         }
 
         this.ability = ability;
+        ability.on_ability_used.AddListener(StartCooldown);
         slider.SetFill(0, "");
     }
 
@@ -35,7 +36,7 @@ public class AbilityDisplay : MonoBehaviour {
     }
 
     IEnumerator Cooldown() {
-        while (ability.on_cooldown) {
+        while (ability.is_on_cooldown) {
             float time_left = ability.time_until_cooldown_ends;
             if (time_left > 1) {
                 slider.SetFill(time_left, ability.cooldown, time_left.ToString("0"));

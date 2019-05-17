@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DashAbility : ActiveAbility {
+public class DashAbility : ActiveCooldownAbility {
 
     [SerializeField] Vector2 base_dash;
     [SerializeField] bool modified_by_input;
@@ -29,12 +29,12 @@ public class DashAbility : ActiveAbility {
     }
 
     protected IEnumerator Dash() {
-        using_ability = true;
+        is_using_ability = true;
 
         while (character.is_dashing) {
             yield return null;
         }
 
-        using_ability = false;
+        is_using_ability = false;
     }
 }

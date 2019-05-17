@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeAttackAbility : ActiveAbility {
+public class MeleeAttackAbility : ActiveCooldownAbility {
 
     [SerializeField] float wind_up_time;
     [SerializeField] float active_hitbox_time;
@@ -26,7 +26,7 @@ public class MeleeAttackAbility : ActiveAbility {
     IEnumerator AbilityCoroutine() {
         character.animator.SetTrigger(anim_trigger_name);
         float time = 0;
-        using_ability = true;
+        is_using_ability = true;
 
         while (time < wind_up_time) { // wait before hitbox active
             time += Time.fixedDeltaTime;
@@ -39,7 +39,7 @@ public class MeleeAttackAbility : ActiveAbility {
             yield return new WaitForFixedUpdate();
         }
         attack.Disable();
-        using_ability = false;
+        is_using_ability = false;
     }
 
     void AttackOnHit(IDamageable d, Attack hit_by) {

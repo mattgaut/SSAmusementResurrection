@@ -54,7 +54,7 @@ public class MatradeeTwinsHandler : GroundedEnemyHandler {
             }
 
             float difference = target.transform.position.x - transform.position.x;
-            while (abilities.cyclone.using_ability) {
+            while (abilities.cyclone.is_using_ability) {
                 last_ability = abilities.cyclone;
                 if (Mathf.Abs(difference) > 0.2f) {
                     _input.x = Mathf.Sign(difference)/2f;
@@ -76,7 +76,7 @@ public class MatradeeTwinsHandler : GroundedEnemyHandler {
         if (abilities.throw_knives.TryUse()) {
             last_ability = abilities.throw_knives;
             Face(-1);
-            while (abilities.throw_knives.using_ability) {
+            while (abilities.throw_knives.is_using_ability) {
                 yield return new WaitForFixedUpdate();
             }
         }
@@ -93,7 +93,7 @@ public class MatradeeTwinsHandler : GroundedEnemyHandler {
         if (abilities.throw_plates.TryUse()) {            
             last_ability = abilities.throw_plates;
             Face(1);
-            while (abilities.throw_plates.using_ability) {
+            while (abilities.throw_plates.is_using_ability) {
                 yield return new WaitForFixedUpdate();
             }
         }
@@ -105,7 +105,7 @@ public class MatradeeTwinsHandler : GroundedEnemyHandler {
         List<Ability> to_try = new List<Ability>();
         for (int i = 0; i < abilities.count; i++) {
             Ability a = abilities.GetAbility(i);
-            if (a.available) to_try.Add(a);
+            if (a.is_available) to_try.Add(a);
         }
         if (to_try.Count > 0) {
             next_ability = to_try.GetRandom();

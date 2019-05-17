@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SweepAbility : ActiveAbility {
+public class SweepAbility : ActiveCooldownAbility {
 
     [SerializeField] SingleHitAttack attack;
     [SerializeField] float damage_multiplier;
@@ -29,7 +29,7 @@ public class SweepAbility : ActiveAbility {
     }
 
     protected IEnumerator Sweep() {
-        using_ability = true;
+        is_using_ability = true;
 
         attack.Enable();
         while (character.is_dashing) {
@@ -37,7 +37,7 @@ public class SweepAbility : ActiveAbility {
         }
         attack.Disable();
 
-        using_ability = false;
+        is_using_ability = false;
     }
 
     protected Vector2 GetNextDashForce(float time_at_last_step, float time) {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RainArcProjectileAbility : ActiveAbility {
+public class RainArcProjectileAbility : ActiveCooldownAbility {
 
     [SerializeField] Transform spawn_point;
 
@@ -28,7 +28,7 @@ public class RainArcProjectileAbility : ActiveAbility {
     }
 
     IEnumerator Rain() {
-        using_ability = true;        
+        is_using_ability = true;        
 
         character.animator.SetBool(anim_bool_throw, true);
 
@@ -43,7 +43,7 @@ public class RainArcProjectileAbility : ActiveAbility {
 
         character.animator.SetBool(anim_bool_throw, false);
 
-        using_ability = false;
+        is_using_ability = false;
     }
 
     void SpawnProjectile() {

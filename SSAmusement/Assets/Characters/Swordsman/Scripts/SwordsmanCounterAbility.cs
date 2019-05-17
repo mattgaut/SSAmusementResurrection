@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordsmanCounterAbility : ActiveAbility {
+public class SwordsmanCounterAbility : ActiveCooldownAbility {
 
     [SerializeField] Attack counter_attack;
     [SerializeField] Collider2D swordsman_hitbox;
@@ -23,7 +23,7 @@ public class SwordsmanCounterAbility : ActiveAbility {
     }
 
     IEnumerator Counter() {
-        using_ability = true;
+        is_using_ability = true;
         int move_lock = character.LockMovement();
         int grav_lock = character.LockGravity();
         character.RaiseCancelVelocityFlag();
@@ -68,7 +68,7 @@ public class SwordsmanCounterAbility : ActiveAbility {
             character.animator.SetBool(fail_anim_bool_name, false);
         }
 
-        using_ability = false;
+        is_using_ability = false;
         character.UnlockMovement(move_lock);
     }
 

@@ -44,8 +44,8 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
     protected void ProcessSkillButton(float input, int skill_index) {
         if (abilities.HasAbility(skill_index)) {
             Ability ability = abilities.GetAbility(skill_index);
-            if (ability.ability_type == Ability.Type.Active) {
-                ability.active.TryUse(input);
+            if (ability.ability_type == Ability.Type.ActiveCooldown) {
+                ability.active_cooldown.TryUse(input);
             }
         }
     }
@@ -63,7 +63,7 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
         abilities.SetCharacter(player);
 
         for (int i = 0; i < abilities.count; i++) {
-            player.player_display.SetAbilityDisplay(abilities.GetAbility(i).active, i);
+            player.player_display.SetAbilityDisplay(abilities.GetAbility(i).active_cooldown, i);
         }
 
         player.on_take_knockback += (a, b, c) => gravity_force.y = 0;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CycloneAbility : ActiveAbility {
+public class CycloneAbility : ActiveCooldownAbility {
     public bool winding_up {
         get; private set;
     }
@@ -36,7 +36,7 @@ public class CycloneAbility : ActiveAbility {
             buff = speed_buff.GetBuffInstance();
         }
         
-        using_ability = true;
+        is_using_ability = true;
         winding_up = true;
         // Wait for anim to finish windup
         while (winding_up) {
@@ -56,7 +56,7 @@ public class CycloneAbility : ActiveAbility {
         buff?.Remove(character);
 
         character.animator.SetTrigger(anim_trigger_end_spin);
-        using_ability = false;
+        is_using_ability = false;
     }
 
     void OnHit(IDamageable hit, Attack hit_by) {

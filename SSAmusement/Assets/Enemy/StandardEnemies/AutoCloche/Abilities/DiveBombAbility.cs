@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DiveBombAbility : ActiveAbility {
+public class DiveBombAbility : ActiveCooldownAbility {
 
     [SerializeField] SingleHitAttack attack;
     [SerializeField] float damage_multiplier;
@@ -23,7 +23,7 @@ public class DiveBombAbility : ActiveAbility {
     }
 
     protected IEnumerator DiveBomb() {
-        using_ability = true;
+        is_using_ability = true;
 
         attack.Enable();
         while (character.is_dashing) {
@@ -31,7 +31,7 @@ public class DiveBombAbility : ActiveAbility {
         }
         attack.Disable();
 
-        using_ability = false;
+        is_using_ability = false;
     }
 
     

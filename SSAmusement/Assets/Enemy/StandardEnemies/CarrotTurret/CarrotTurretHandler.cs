@@ -5,7 +5,7 @@ using UnityEngine;
 public class CarrotTurretHandler : GroundedEnemyHandler {
 
     public bool can_shoot {
-        get { return abilities.shoot.available; }
+        get { return abilities.shoot.is_available; }
     }
 
     public bool can_face_target {

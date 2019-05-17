@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RainDebrisAbility : ActiveAbility {
+public class RainDebrisAbility : ActiveCooldownAbility {
     [SerializeField] Transform leftmost_spawn, rightmost_spawn;
     [SerializeField] float damage_multiplier;
     [SerializeField] float rain_duration, rain_delay, throw_length, time_between_drops;
@@ -24,7 +24,7 @@ public class RainDebrisAbility : ActiveAbility {
     }
 
     IEnumerator Throw() {
-        using_ability = true;
+        is_using_ability = true;
         StartCoroutine(Rain());
 
         character.animator.SetBool(anim_bool_throw, true);
@@ -33,7 +33,7 @@ public class RainDebrisAbility : ActiveAbility {
 
         character.animator.SetBool(anim_bool_throw, false);
 
-        using_ability = false;
+        is_using_ability = false;
     }
 
     IEnumerator Rain() {

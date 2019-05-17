@@ -10,12 +10,12 @@ public class SwordsmanAbilitySet : AbilitySet {
 
     bool can_use_basic_attack {
         get {
-            return !(basic_attack.using_ability || counter.using_ability);
+            return !(basic_attack.is_using_ability || counter.is_using_ability);
         }
     }
     bool can_use_counter {
         get {
-            return !(basic_attack.using_ability || counter.using_ability);
+            return !(basic_attack.is_using_ability || counter.is_using_ability);
         }
     }
 

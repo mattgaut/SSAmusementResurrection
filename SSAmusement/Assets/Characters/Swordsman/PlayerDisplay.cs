@@ -46,7 +46,7 @@ public class PlayerDisplay : MonoBehaviour {
         canvas.SetActive(false);
     }
 
-    public void SetAbilityDisplay(ActiveAbility ability, int i) {
+    public void SetAbilityDisplay(ActiveCooldownAbility ability, int i) {
         if (i >= 0 && i < ability_displays.Length) {
             ability_displays[i].SetAbility(ability);
         }
