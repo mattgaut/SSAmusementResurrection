@@ -5,6 +5,7 @@ TextureImporter:
     21300000: LobsterDinner
     21300002: Chef'sCleaver
     21300004: Items_0
+    21300006: SmokeBomb
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -146,13 +147,33 @@ TextureImporter:
         width: 40
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 204c6e1541dcc5f469af314435977893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SmokeBomb
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 251
+        width: 50
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d63250b0900f3147b5874bd1b4f2f4a
       vertices: []
       indices: 
       edges: []

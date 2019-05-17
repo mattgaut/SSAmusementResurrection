@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300002, guid: dd98c0ceebaa20541af94c6d7e0eae1c, type: 3}
+  m_Sprite: {fileID: 21300006, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _item_name: Smoke Bomb
   _item_description: Chance when hit to drop a smoke bomb.
-  sprite: {fileID: 21300002, guid: dd98c0ceebaa20541af94c6d7e0eae1c, type: 3}
+  sprite: {fileID: 21300006, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
   effects:
   - {fileID: 2188102424731854694}
 --- !u!114 &2188102424731854694
