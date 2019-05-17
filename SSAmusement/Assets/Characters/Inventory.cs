@@ -8,6 +8,7 @@ public class Inventory : MonoBehaviour {
 
     Player player;
     List<Item> items_in_inventory;
+    
     public int currency {
         get; private set;
     }
@@ -17,6 +18,7 @@ public class Inventory : MonoBehaviour {
     public ReadOnlyCollection<Item> items {
         get { return new ReadOnlyCollection<Item>(items_in_inventory); }
     }
+    public ActiveItem active_item { get; private set; }
 
     int pet_count;
 
@@ -69,11 +71,19 @@ public class Inventory : MonoBehaviour {
         pet_count--;
     }
 
-    public void AddItem(Item i) {
-        items_in_inventory.Add(i);
+    public Item AddItem(Item i) {
+        Item replaced_item = null;
+        if (i.item_type == Item.Type.active) {
+            replaced_item = active_item;
+            active_item = i as ActiveItem;
+        } else {
+            items_in_inventory.Add(i);
+        }
         i.transform.SetParent(transform);
         i.OnPickup(player);
         UIHandler.DisplayItem(i);
+
+        return null;
     }
 
     public void AddKeycard(int i = 1) {
