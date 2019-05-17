@@ -771,6 +771,11 @@ MonoBehaviour:
     _cost: 0
     effects:
     - {fileID: 4144601498022036350}
+    _on_ability_used:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
     _cooldown: 10
   _throw_plates:
     _ability_name: Opa!
@@ -778,6 +783,11 @@ MonoBehaviour:
     _cost: 0
     effects:
     - {fileID: 8408417810004641673}
+    _on_ability_used:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
     _cooldown: 0
   _throw_knives:
     _ability_name: Utensil Rain
@@ -785,6 +795,11 @@ MonoBehaviour:
     _cost: 0
     effects:
     - {fileID: 1954065613707750438}
+    _on_ability_used:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
     _cooldown: 10
   cyclone_ability_effect: {fileID: 4144601498022036350}
 --- !u!114 &4144601498022036350

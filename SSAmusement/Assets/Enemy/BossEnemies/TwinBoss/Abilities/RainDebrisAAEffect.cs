@@ -19,7 +19,7 @@ public class RainDebrisAAEffect : ActiveAbilityEffect {
         rng = new RNG();
     }
 
-    protected override void UseAbility(float input) {
+    protected override void UseAbilityEffect(float input) {
         StartCoroutine(Throw());
     }
 

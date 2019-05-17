@@ -34,7 +34,6 @@ public sealed class ActiveCooldownAbility : ActiveAbility {
 
     protected override void OnAbilityUsed() {
         time_cooldown_ends = Time.time + _cooldown;
-        on_ability_used.Invoke();
     }
 
     protected override bool TryPayCost(int cost) {

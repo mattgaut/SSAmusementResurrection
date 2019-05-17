@@ -16,7 +16,7 @@ public class DiveBombAAEffect : ActiveAbilityEffect {
         attack.SetOnHit(AttackOnHit);
     }
 
-    protected override void UseAbility(float input) {
+    protected override void UseAbilityEffect(float input) {
         character.Dash(Vector2.down * distance, distance / speed);
         StartCoroutine(DiveBomb());
     }

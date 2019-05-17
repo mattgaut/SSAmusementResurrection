@@ -19,7 +19,7 @@ public class CycloneAAEffect : ActiveAbilityEffect {
         is_winding_up = false;
     }
 
-    protected override void UseAbility(float input) {
+    protected override void UseAbilityEffect(float input) {
         StartCoroutine(Cyclone());
     }
 

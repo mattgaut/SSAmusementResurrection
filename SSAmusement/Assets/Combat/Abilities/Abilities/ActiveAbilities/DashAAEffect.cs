@@ -15,7 +15,7 @@ public class DashAAEffect : ActiveAbilityEffect {
         character_input_handler = character.GetComponent<IInputHandler>();    
     }
 
-    protected override void UseAbility(float input) {
+    protected override void UseAbilityEffect(float input) {
         Vector2 dash = base_dash;
 
         if (input != 0) {

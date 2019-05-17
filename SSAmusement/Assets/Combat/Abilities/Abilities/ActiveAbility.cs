@@ -40,7 +40,7 @@ public abstract class ActiveAbility : Ability {
         if (is_available && TryPayCost(cost)) {
             NoteAbilityUsed();
             foreach (ActiveAbilityEffect e in effects) {
-                e.TriggerEffect(character, input);
+                e.UseAbilityEffect(character, input);
             }
             return true;
         } else {
@@ -50,7 +50,7 @@ public abstract class ActiveAbility : Ability {
 
     protected abstract bool TryPayCost(int cost);
 
-    protected abstract void OnAbilityUsed();
+    protected virtual void OnAbilityUsed() { }
 
     void NoteAbilityUsed() {
         OnAbilityUsed();

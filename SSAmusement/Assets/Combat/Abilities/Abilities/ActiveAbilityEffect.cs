@@ -8,14 +8,14 @@ public abstract class ActiveAbilityEffect : MonoBehaviour {
 
     protected Character character { get; private set; }
 
-    public void TriggerEffect(Character character, float input) {
+    public void UseAbilityEffect(Character character, float input) {
         SetCharacter(character);
-        UseAbility(input);
+        UseAbilityEffect(input);
     }
 
     public virtual void SetCharacter(Character character) {
         this.character = character;
     }
 
-    protected abstract void UseAbility(float input); 
+    protected abstract void UseAbilityEffect(float input); 
 }

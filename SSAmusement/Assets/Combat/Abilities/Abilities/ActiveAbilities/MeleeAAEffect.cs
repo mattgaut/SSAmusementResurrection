@@ -19,7 +19,7 @@ public class MeleeAAEffect : ActiveAbilityEffect {
         attack.SetOnHit(AttackOnHit);
     }
 
-    protected override void UseAbility(float input) {
+    protected override void UseAbilityEffect(float input) {
         StartCoroutine(AbilityCoroutine());
     }
 

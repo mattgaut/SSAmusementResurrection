@@ -21,7 +21,7 @@ public class SweepAAEffect : ActiveAbilityEffect {
         attack.SetOnHit(AttackOnHit);
     }
 
-    protected override void UseAbility(float input) {
+    protected override void UseAbilityEffect(float input) {
         bool go_left = input < 0;
         Character.CustomDash dash = new Character.CustomDash(GetNextDashForce, dash_length, new Vector2(go_left ? -1 : 1, 1));
         character.Dash(dash);

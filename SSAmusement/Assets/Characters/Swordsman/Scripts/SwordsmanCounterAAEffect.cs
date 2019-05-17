@@ -19,7 +19,7 @@ public class SwordsmanCounterAAEffect : ActiveAbilityEffect {
         counter_attack.SetOnHit(AttackOnHit);
     }
 
-    protected override void UseAbility(float input) {
+    protected override void UseAbilityEffect(float input) {
         StartCoroutine(Counter());
     }
 

@@ -6,18 +6,37 @@ using UnityEngine;
 [Serializable]
 public sealed class ActiveChargeAbility : ActiveAbility {
     public override Type ability_type {
-        get { return Type.ActiveCooldown; }
+        get { return Type.ActiveCharge; }
     }
 
     public override ActiveChargeAbility active_charge {
         get { return this; }
     }
 
+    public override bool is_available {
+        get { return charges >= cost; }
+    }
+
+    public int charges {
+        get; private set;
+    }
+
+    public override void SetCharacter(Character character) {
+        if (character != this.character) {
+            character.on_kill += (a, b) => { if (charges < cost) charges += 1; };
+        }
+        base.SetCharacter(character);
+    }
+
     protected override void OnAbilityUsed() {
-        throw new System.NotImplementedException();
+
     }
 
     protected override bool TryPayCost(int cost) {
-        throw new System.NotImplementedException();
+        if (cost <= charges) {
+            charges -= cost;
+            return true;
+        }
+        return false;
     }
 }
