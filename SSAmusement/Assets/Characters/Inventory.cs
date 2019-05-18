@@ -76,6 +76,7 @@ public class Inventory : MonoBehaviour {
         if (i.item_type == Item.Type.active) {
             replaced_item = active_item;
             active_item = i as ActiveItem;
+            player.player_display.SetActiveItemDisplay(active_item.active_ability);
             if (replaced_item) replaced_item.OnDrop(player);
         } else {
             items_in_inventory.Add(i);

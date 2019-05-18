@@ -14,6 +14,7 @@ public class PlayerDisplay : MonoBehaviour {
     [SerializeField] Image boss_key_image;
 
     [SerializeField] AbilityDisplay[] ability_displays;
+    [SerializeField] ChargeAbilityDisplay charge_display;
 
     public void UpdateCurrencyText(int count) {
         currency_text.text = "$" + count;
@@ -50,5 +51,9 @@ public class PlayerDisplay : MonoBehaviour {
         if (i >= 0 && i < ability_displays.Length) {
             ability_displays[i].SetAbility(ability);
         }
+    }
+
+    public void SetActiveItemDisplay(ActiveChargeAbility ability) {
+        charge_display.SetAbility(ability);
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BuffType { stat, attack, healing, on_hit, tick }
+public enum BuffType { stat, attack, healing, on_hit, tick, invincibility }
 
 public abstract class BuffDefinition : MonoBehaviour {
     public abstract BuffType type { get; }    
@@ -13,6 +13,14 @@ public abstract class BuffDefinition : MonoBehaviour {
 
     public Instance GetBuffInstance(float length = 0, bool is_benificial = true, Sprite icon = null) {
         return new Instance(this, length, is_benificial, icon);
+    }
+
+    protected void Awake() {
+        Init();
+    }
+
+    protected virtual void Init() {
+
     }
 
     public class Instance : IBuff {

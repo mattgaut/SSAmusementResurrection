@@ -113,6 +113,6 @@ public class CombatTurretItemEffect : OnHitItemEffect {
     }
 
     private void OnDestroy() {
-        Destroy(pet.gameObject);
+        if (pet.gameObject) Destroy(pet.gameObject);
     }
 }

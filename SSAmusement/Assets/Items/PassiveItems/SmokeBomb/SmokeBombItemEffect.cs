@@ -41,6 +41,6 @@ public class SmokeBombItemEffect : OnTakeDamageItemEffect {
 
     IEnumerator StopParticlesAfterTime(ParticleSystem ps, float length) {
         yield return new WaitForSeconds(length);
-        ps.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        if (ps) ps.Stop(true, ParticleSystemStopBehavior.StopEmitting);
     }
 }

@@ -50,6 +50,7 @@ MonoBehaviour:
   fade_in: {fileID: 2053336215}
   sfx: {fileID: 58973488}
   _sound_bank: {fileID: 11400000, guid: c332695e21102f94ca2f0d8387189585, type: 2}
+  volume: 0.1
 --- !u!82 &2053336214
 AudioSource:
   m_ObjectHideFlags: 0
@@ -516,6 +517,10 @@ MonoBehaviour:
   - {fileID: 5519710990051740026, guid: 462747af98731484098153a0f090f0f7, type: 3}
   - {fileID: 9175813155693695719, guid: 670fa4783404be4449d9e84b5a2c0120, type: 3}
   - {fileID: 389317574634455630, guid: 9bddca9630615a44abc3a6d92849992a, type: 3}
+  - {fileID: 8861322812654731131, guid: c927ce39d29322a428be70c2eac2248b, type: 3}
+  - {fileID: 8861322812654731131, guid: a552dbc364ed5484ca719242153c1ea1, type: 3}
+  - {fileID: 8861322812654731131, guid: d07e118fdb664a04fa5c81d856d2ecc1, type: 3}
+  - {fileID: 8861322812654731131, guid: 4fcdf2450ba8c66429140b2d514b4624, type: 3}
 --- !u!114 &4727880421587381437
 MonoBehaviour:
   m_ObjectHideFlags: 0

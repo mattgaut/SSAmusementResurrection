@@ -15,6 +15,9 @@ public interface IDamageable {
 
     bool is_knocked_back { get; }
     bool invincible { get; }
+
+    int LockInvincibility();
+    bool UnlockInvincibility(int value);
 }
 
 public interface IStats : IDamageable {

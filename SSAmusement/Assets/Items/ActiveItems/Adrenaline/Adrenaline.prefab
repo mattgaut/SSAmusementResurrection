@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 4007105509411708}
   - component: {fileID: 212321812963162766}
   - component: {fileID: 8861322812654731131}
-  - component: {fileID: 3467654292346734724}
+  - component: {fileID: 5742900328349805906}
+  - component: {fileID: 4497345587630413276}
+  - component: {fileID: 5803012618405397470}
   m_Layer: 23
-  m_Name: ActiveSmokeBomb
+  m_Name: Adrenaline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300006, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
+  m_Sprite: {fileID: 21300008, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,22 +95,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 780506dd52e49ca4c80b41bfe6651687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item_name: Active Smoke Bomb
-  _item_description: Drop a smoke bomb.
-  sprite: {fileID: 21300006, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
+  _item_name: Adrenaline
+  _item_description: Temporarily increases Power and Armor and Speed.
+  sprite: {fileID: 21300008, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
   effects: []
   ability:
-    _ability_name: Active Smoke Bomb
-    _icon: {fileID: 21300006, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
+    _ability_name: Adrenaline
+    _icon: {fileID: 21300008, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
     _cost: 7
     effects:
-    - {fileID: 3467654292346734724}
+    - {fileID: 5742900328349805906}
     _on_ability_used:
       m_PersistentCalls:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
---- !u!114 &3467654292346734724
+--- !u!114 &5742900328349805906
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,13 +119,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 1628352789450134}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff74c61d52f272e4aac2b24fecc88870, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e9f51b9f69e2fa4ebd4719c3accb49a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoke_bomb_attack: {fileID: 2391057274975869339, guid: 6e0d51723ed30d44abbf7f13e4d1571f,
-    type: 3}
-  blind_particle_effects: {fileID: 7585500042617327749, guid: d26cdfb494610f74cbc2f7dd34fde195,
-    type: 3}
-  blind_length: 5
-  radius: 5
-  drop_probability: 1
+  buff: {fileID: 4497345587630413276}
+--- !u!114 &4497345587630413276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628352789450134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f163ffc0b7d845342a058e341ed7478d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffs:
+  - {fileID: 5803012618405397470}
+  timed_buff: 1
+  remove_after: 10
+  _is_benificial: 1
+  _icon: {fileID: 21300008, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
+--- !u!114 &5803012618405397470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628352789450134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4577e845efeb2e247b6f90fffa5ff65d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  energy: 0
+  power: 1
+  armor: 1
+  speed: 1
+  _flat: 1
+  _multi: 0

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4007105509411708}
   - component: {fileID: 212321812963162766}
   - component: {fileID: 8861322812654731131}
-  - component: {fileID: 3467654292346734724}
+  - component: {fileID: 7424364164531844703}
   m_Layer: 23
-  m_Name: ActiveSmokeBomb
+  m_Name: MedKit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300006, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
+  m_Sprite: {fileID: 21300010, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,22 +93,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 780506dd52e49ca4c80b41bfe6651687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item_name: Active Smoke Bomb
-  _item_description: Drop a smoke bomb.
-  sprite: {fileID: 21300006, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
+  _item_name: Medkit
+  _item_description: Temporary Invincibility.
+  sprite: {fileID: 21300010, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
   effects: []
   ability:
-    _ability_name: Active Smoke Bomb
-    _icon: {fileID: 21300006, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
+    _ability_name: Medkit
+    _icon: {fileID: 21300010, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
     _cost: 7
     effects:
-    - {fileID: 3467654292346734724}
+    - {fileID: 7424364164531844703}
     _on_ability_used:
       m_PersistentCalls:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
---- !u!114 &3467654292346734724
+--- !u!114 &7424364164531844703
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,13 +117,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1628352789450134}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff74c61d52f272e4aac2b24fecc88870, type: 3}
+  m_Script: {fileID: 11500000, guid: c717ff709fb6a714f91f551bbf92bff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoke_bomb_attack: {fileID: 2391057274975869339, guid: 6e0d51723ed30d44abbf7f13e4d1571f,
-    type: 3}
-  blind_particle_effects: {fileID: 7585500042617327749, guid: d26cdfb494610f74cbc2f7dd34fde195,
-    type: 3}
-  blind_length: 5
-  radius: 5
-  drop_probability: 1
+  health_restore_amount: 40
+  energy_restore_amount: 20

@@ -50,8 +50,6 @@ public class ShopTerminal : MonoBehaviour, IInteractable {
             SoundManager.instance?.LocalPlaySfx(sfxs.on_successful_purchase);
 
             on_purchase.Invoke();
-
-            CloseTerminal();
         } else {
             SoundManager.instance?.LocalPlaySfx(sfxs.on_failed_purchase);
         }
