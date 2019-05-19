@@ -74,6 +74,9 @@ public class Character : MonoBehaviour {
     public bool can_input {
         get { return alive && !is_knocked_back && !crowd_control_effects.IsCCed(CrowdControl.Type.stunned); }
     }
+    public bool can_use_skills {
+        get { return alive && !is_knocked_back && !crowd_control_effects.IsCCed(CrowdControl.Type.stunned); }
+    }
     public bool can_move {
         get { return movement_lock.unlocked && !crowd_control_effects.IsCCed(CrowdControl.Type.snared, CrowdControl.Type.stunned); }
     }
@@ -89,6 +92,8 @@ public class Character : MonoBehaviour {
     protected Lock invincibility_lock;
 
     protected Character last_hit_by;
+
+    protected bool can_continue_dash { get { return !crowd_control_effects.IsCCed(CrowdControl.Type.stunned); } }
 
     float knockback_dissipation_time;
     Coroutine knockback_routine;
@@ -454,7 +459,7 @@ public class Character : MonoBehaviour {
         is_dashing = true;
 
         float timer = length;
-        while (is_dashing && timer > 0) {
+        while (is_dashing && timer > 0 && !crowd_control_effects.IsCCed(CrowdControl.Type.stunned)) {
             float time_step = Mathf.Min(Time.deltaTime, timer);
             timer -= time_step;
             dash_force += dash * (time_step / length);
@@ -469,7 +474,7 @@ public class Character : MonoBehaviour {
 
         float timer = dash.length;
         Vector2 dash_start = transform.position;
-        while (is_dashing && timer > 0) {
+        while (is_dashing && timer > 0 && !crowd_control_effects.IsCCed(CrowdControl.Type.stunned)) {
             float time_step = Mathf.Min(Time.fixedDeltaTime, timer);
             timer -= time_step;
             dash_force += dash.GetNext(dash.length - timer);
@@ -489,6 +494,7 @@ public class Character : MonoBehaviour {
     private void OnDisable() {
         is_dashing = false;
         is_knocked_back = false;
+        invincibility_lock.Clear();
     }
 
     public class CustomDash {

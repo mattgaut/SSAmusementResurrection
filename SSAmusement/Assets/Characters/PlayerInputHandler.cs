@@ -173,9 +173,9 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
             if (cont.OverPlatform()) {
                 drop_routine = StartCoroutine(DropRoutine());
             }
-        } else if (Input.GetButtonDown("Drop") && drop_routine == null && player.can_input) {
+        } else if (Input.GetButtonDown("Drop") && drop_routine == null && player.can_move) {
             drop_routine = StartCoroutine(DropRoutine());
-        } else if (Input.GetButtonDown("Jump") && player.can_move && player.can_input) {
+        } else if (Input.GetButtonDown("Jump") && player.can_move) {
             if (cont.collisions.below) {
                 Jump(true);
             } else if (jumps_used < (player.jump_count - (grounded_jump_used ? 0 : 1))) {

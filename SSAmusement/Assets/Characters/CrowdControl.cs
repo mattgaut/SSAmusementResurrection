@@ -33,6 +33,10 @@ public class CrowdControl {
         applied_crowd_control[type].Clear();
     }
 
+    public bool IsCCed(Type type) {
+        return applied_crowd_control[type].Count > 0;
+    }
+
     public bool IsCCed(params Type[] types) {
         foreach (Type t in types) {
             if (applied_crowd_control[t].Count > 0) {
