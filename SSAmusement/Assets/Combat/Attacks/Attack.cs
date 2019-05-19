@@ -5,10 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public abstract class Attack : MonoBehaviour {
 
-    public delegate void OnHit(IDamageable hit, Attack hit_by);
+    public delegate void OnHit(Character hit, Attack hit_by);
 
     protected Collider2D hitbox;
-    protected Dictionary<IDamageable, float> hit_objects;
+    protected Dictionary<Character, float> hit_objects;
     protected float timer {
         get; private set;
     }
@@ -18,12 +18,12 @@ public abstract class Attack : MonoBehaviour {
 
     [SerializeField] protected LayerMask targets;
     [SerializeField] protected bool is_blindable;
-    public ICombatant source { get; private set; }
+    public Character source { get; private set; }
 
     protected virtual void Awake() {
         hitbox = GetComponent<Collider2D>();
-        hit_objects = new Dictionary<IDamageable, float>();
-        if (source == null) source = GetComponentInParent<ICombatant>();
+        hit_objects = new Dictionary<Character, float>();
+        if (source == null) source = GetComponentInParent<Character>();
         timer = 0;
     }
 
@@ -34,7 +34,7 @@ public abstract class Attack : MonoBehaviour {
     public void SetOnHit(OnHit on_hit) {
         this.on_hit = on_hit;
     }
-    public void SetSource(ICombatant _source) {
+    public void SetSource(Character _source) {
         source = _source;
     }
     public virtual void Enable() {
@@ -56,15 +56,15 @@ public abstract class Attack : MonoBehaviour {
 
     protected virtual void CheckHitboxCollisions(Collider2D collision) {
         if ((1 << collision.gameObject.layer & targets) != 0) {
-            ConfirmHit(collision.gameObject.GetComponentInParent<IDamageable>());
+            ConfirmHit(collision.gameObject.GetComponentInParent<Character>());
         }
     }
 
-    protected abstract bool HitCondition(IDamageable d);
+    protected abstract bool HitCondition(Character d);
 
     protected virtual void OnCollisionWithTarget() { }
 
-    protected bool ConfirmHit(IDamageable d) {
+    protected bool ConfirmHit(Character d) {
         if (!d.invincible && (!is_blindable || !source.crowd_control_effects.IsCCed(CrowdControl.Type.blinded)) && HitCondition(d)) {
             LogHit(d);
             on_hit?.Invoke(d, this);
@@ -73,7 +73,7 @@ public abstract class Attack : MonoBehaviour {
         }
         return false;
     }
-    void LogHit(IDamageable d) {
+    void LogHit(Character d) {
         if (hit_objects.ContainsKey(d)) {
             hit_objects[d] = timer;
         } else {

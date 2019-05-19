@@ -11,5 +11,5 @@ public abstract class OnTakeDamageItemEffect : ItemEffect {
         item.owner.on_take_damage += OnTakeDamage;
     }
 
-    protected abstract void OnTakeDamage(Character hit, float pre_damage, float post_damage, ICombatant source);
+    protected abstract void OnTakeDamage(Character hit, float pre_damage, float post_damage, Character source);
 }

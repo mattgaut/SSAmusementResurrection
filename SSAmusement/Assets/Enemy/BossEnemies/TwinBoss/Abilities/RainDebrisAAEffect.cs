@@ -64,7 +64,7 @@ public class RainDebrisAAEffect : ActiveAbilityEffect {
         new_projectile.SetOnHit(OnHit);
     }
 
-    void OnHit(IDamageable hit, Attack hit_by) {
+    void OnHit(Character hit, Attack hit_by) {
         hit_by.source.DealDamage(hit_by.source.power * damage_multiplier, hit, false);
     }
 }

@@ -60,7 +60,7 @@ public class SweepAAEffect : ActiveAbilityEffect {
         }
     }
 
-    void AttackOnHit(IDamageable d, Attack hit_by) {
+    void AttackOnHit(Character d, Attack hit_by) {
         character.DealDamage(character.char_definition.power * damage_multiplier, d);
         Vector2 knockback = this.knockback;
         if (hit_by.transform.position.x > d.gameObject.transform.position.x) {

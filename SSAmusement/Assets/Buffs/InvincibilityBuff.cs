@@ -7,16 +7,16 @@ public class InvincibilityBuff : BuffDefinition {
         get { return BuffType.invincibility; }
     }
 
-    Dictionary<ICombatant, List<int>> lock_values;
+    Dictionary<Character, List<int>> lock_values;
 
-    public override void Apply(ICombatant stat_entity) {
+    public override void Apply(Character stat_entity) {
         if (!lock_values.ContainsKey(stat_entity)) {
             lock_values.Add(stat_entity, new List<int>());
         }
         lock_values[stat_entity].Add(stat_entity.LockInvincibility());
     }
 
-    public override void Remove(ICombatant stat_entity) {
+    public override void Remove(Character stat_entity) {
         if (lock_values[stat_entity].Count > 0) {
             stat_entity.UnlockInvincibility(lock_values[stat_entity][0]);
             lock_values[stat_entity].RemoveAt(0);
@@ -24,6 +24,6 @@ public class InvincibilityBuff : BuffDefinition {
     }
 
     protected override void Init() {
-        lock_values = new Dictionary<ICombatant, List<int>>();
+        lock_values = new Dictionary<Character, List<int>>();
     }
 }

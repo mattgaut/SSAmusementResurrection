@@ -473,25 +473,25 @@ public class ByrdmanHandler : EnemyHandler {
         lasers[1].Close();
     }
 
-    void RocketOnHit(IDamageable hit, Attack hit_by) {
+    void RocketOnHit(Character hit, Attack hit_by) {
         enemy.DealDamage(enemy.power, hit);
         Vector3 knockback = missile_knockback;
         knockback.x *= Mathf.Sign(hit.gameObject.transform.position.x - hit_by.gameObject.transform.position.x);
         enemy.GiveKnockback(hit, knockback);
     }
 
-    void ZapOnHit(IDamageable hit, Attack hit_by) {
+    void ZapOnHit(Character hit, Attack hit_by) {
         enemy.DealDamage(enemy.power, hit);
         Vector3 knockback = missile_knockback;
         knockback.x *= Mathf.Sign(UnityEngine.Random.Range(0f, 1f) - 0.5f);
         enemy.GiveKnockback(hit, knockback);
     }
-    void SpikeOnHit(IDamageable hit, Attack hit_by) {
+    void SpikeOnHit(Character hit, Attack hit_by) {
         enemy.DealDamage(enemy.power, hit);
         enemy.GiveKnockback(hit, spike_knockback);
     }
 
-    void LaserOnHit(IDamageable hit, Attack hit_by) {
+    void LaserOnHit(Character hit, Attack hit_by) {
         enemy.DealDamage(enemy.power, hit);
         Vector3 knockback = laser_knockback;
         knockback.x *= Mathf.Sign(hit.gameObject.transform.position.x - hit_by.gameObject.transform.position.x);

@@ -25,7 +25,7 @@ public class CrowdControl {
         }
     }
 
-    public void ApplyCC(Type type, float length, ICombatant source) {
+    public void ApplyCC(Type type, float length, Character source) {
         applied_crowd_control[type].Add(new CrowdControlInstance(type, length, source));
     }
 
@@ -45,10 +45,10 @@ public class CrowdControl {
     class CrowdControlInstance {
         public float length { get; private set; }
         public float time_left;
-        public ICombatant source { get; private set; }
+        public Character source { get; private set; }
         public Type type { get; private set; }
 
-        public CrowdControlInstance(Type type, float length, ICombatant source) {
+        public CrowdControlInstance(Type type, float length, Character source) {
             this.type = type;
             this.length = time_left = length;
             this.source = source;

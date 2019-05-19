@@ -56,7 +56,7 @@ public sealed class ActiveChargeAbility : ActiveAbility {
         }
     }
 
-    void OnKill(Character a, ICombatant b) {
+    void OnKill(Character a, Character b) {
         AddCharge(1);
     }
 }

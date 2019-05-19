@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Inventory))]
-public class Player : Character, ICombatant {
+public class Player : Character {
 
     public Inventory inventory { get; private set; }
     public PlayerDisplay player_display {
@@ -41,7 +41,7 @@ public class Player : Character, ICombatant {
         player_display.DisplayTimedBuff(b);
     }
 
-    protected override void Die(ICombatant killed_by) {
+    protected override void Die(Character killed_by) {
         last_hit_by.GiveKillCredit(this);
         InvokeOnDeath(this, killed_by);
 

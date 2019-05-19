@@ -11,5 +11,5 @@ public abstract class OnHitItemEffect : ItemEffect {
         item.owner.on_hit += OnOwnerHitEnemy;
     }
 
-    protected abstract void OnOwnerHitEnemy(Character character, float pre_damage, float post_damage, IDamageable hit);
+    protected abstract void OnOwnerHitEnemy(Character character, float pre_damage, float post_damage, Character hit);
 }

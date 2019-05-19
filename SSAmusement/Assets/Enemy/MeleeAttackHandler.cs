@@ -101,7 +101,7 @@ public class MeleeAttackHandler : GroundedEnemyHandler {
         return base.ShouldStopMoving(direction);
     }
 
-    protected virtual void AttackOnHit(IDamageable c) {
+    protected virtual void AttackOnHit(Character c) {
         enemy.DealDamage(enemy.power, c);
         if (attack_knockback != Vector3.zero) {
             Vector3 real_knockback = attack_knockback;

@@ -59,7 +59,7 @@ public class CycloneAAEffect : ActiveAbilityEffect {
         is_using_ability = false;
     }
 
-    void OnHit(IDamageable hit, Attack hit_by) {
+    void OnHit(Character hit, Attack hit_by) {
         character.DealDamage(character.power * damage_multiplier, hit, true);
         character.GiveKnockback(hit, new Vector2(knockback.x * Mathf.Sign(hit.gameObject.transform.position.x - hit_by.transform.position.x), knockback.y));
     }

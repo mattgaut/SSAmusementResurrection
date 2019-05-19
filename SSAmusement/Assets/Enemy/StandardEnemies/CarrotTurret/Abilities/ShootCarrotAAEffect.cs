@@ -14,7 +14,7 @@ public class ShootCarrotAAEffect : ActiveAbilityEffect {
         new_projectile.SetOnHit(OnHit);
     }
 
-    void OnHit(IDamageable hit, Attack hit_by) {
+    void OnHit(Character hit, Attack hit_by) {
         character.DealDamage(character.power, hit);
     }
 }

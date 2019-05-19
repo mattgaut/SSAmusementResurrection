@@ -20,7 +20,7 @@ public class StatBuff : BuffDefinition, IStatBuff {
         }
     }
 
-    public override void Apply(ICombatant stat_entity) {
+    public override void Apply(Character stat_entity) {
         if (health) {
             stat_entity.health.AddBuff(this);
         }
@@ -38,7 +38,7 @@ public class StatBuff : BuffDefinition, IStatBuff {
         }
     }
 
-    public override void Remove(ICombatant stat_entity) {
+    public override void Remove(Character stat_entity) {
         if (health) {
             stat_entity.health.RemoveBuff(this);
         }

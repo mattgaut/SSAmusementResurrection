@@ -47,7 +47,7 @@ public class CombatTurretItemEffect : OnHitItemEffect {
     }
 
 
-    protected override void OnOwnerHitEnemy(Character character, float pre_damage, float post_damage, IDamageable hit) {
+    protected override void OnOwnerHitEnemy(Character character, float pre_damage, float post_damage, Character hit) {
         stored_energy += post_damage;
         if (stored_energy >= energy_per_shot) {
             Shoot();

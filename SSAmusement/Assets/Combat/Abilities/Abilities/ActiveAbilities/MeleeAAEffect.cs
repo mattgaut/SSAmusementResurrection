@@ -42,7 +42,7 @@ public class MeleeAAEffect : ActiveAbilityEffect {
         is_using_ability = false;
     }
 
-    void AttackOnHit(IDamageable d, Attack hit_by) {
+    void AttackOnHit(Character d, Attack hit_by) {
         character.DealDamage(character.power, d);
         character.GiveKnockback(d, new Vector2(knockback.x * Mathf.Sign(d.gameObject.transform.position.x - transform.position.x), knockback.y));
     }

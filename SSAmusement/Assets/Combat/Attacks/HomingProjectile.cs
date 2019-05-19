@@ -8,11 +8,11 @@ public class HomingProjectile : Projectile {
     [SerializeField] bool can_only_hit_target, can_break_when_chasing;
     [SerializeField] float turn_speed;
 
-    IDamageable target_damageable;
+    Character target_damageable;
 
     public void SetTarget(Transform trans) {
         target = trans;
-        target_damageable = target.GetComponentInParent<IDamageable>();
+        target_damageable = target.GetComponentInParent<Character>();
     }
 
     protected override void Turn() {
@@ -27,7 +27,7 @@ public class HomingProjectile : Projectile {
         }
     }
 
-    protected override bool HitCondition(IDamageable d) {
+    protected override bool HitCondition(Character d) {
         return target == null || target_damageable == d;
     }
 
@@ -42,7 +42,7 @@ public class HomingProjectile : Projectile {
             }
         } else if (!can_break_when_chasing) {
             if ((1 << collision.gameObject.layer & targets) != 0) {
-                ConfirmHit(collision.gameObject.GetComponentInParent<IDamageable>());
+                ConfirmHit(collision.gameObject.GetComponentInParent<Character>());
             }
         } else {
             base.CheckHitboxCollisions(collision);

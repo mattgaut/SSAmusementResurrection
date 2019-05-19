@@ -7,7 +7,7 @@ using Utilities;
 /// Base class for Characters in the game.
 /// Inherits ICombatant
 /// </summary>
-public class Character : MonoBehaviour, ICombatant {
+public class Character : MonoBehaviour {
     [SerializeField] CharacterDefinition _char_definition;
 
     [SerializeField] float invincibility_length = 0f;
@@ -38,11 +38,11 @@ public class Character : MonoBehaviour, ICombatant {
     public int jump_count { get { return base_jump_count + bonus_jump_count; } }
     public int bonus_jump_count { get; private set; }
 
-    public delegate void OnHitCallback(Character hitter, float pre_mitigation_damage, float post_mitigation_damage, IDamageable hit);
-    public delegate void OnKillCallback(Character killer, ICombatant killed);
-    public delegate void OnTakeDamage(Character hit_character, float pre_mitigation_damage, float post_mitigation_damage, ICombatant hit_by);
-    public delegate void OnDeathCallback(Character killed, ICombatant killer);
-    public delegate void OnTakeKnockback(ICombatant source, Vector2 force, float length);
+    public delegate void OnHitCallback(Character hitter, float pre_mitigation_damage, float post_mitigation_damage, Character hit);
+    public delegate void OnKillCallback(Character killer, Character killed);
+    public delegate void OnTakeDamage(Character hit_character, float pre_mitigation_damage, float post_mitigation_damage, Character hit_by);
+    public delegate void OnDeathCallback(Character killed, Character killer);
+    public delegate void OnTakeKnockback(Character source, Vector2 force, float length);
 
     public event OnHitCallback on_hit;
     public event OnKillCallback on_kill;
@@ -88,7 +88,7 @@ public class Character : MonoBehaviour, ICombatant {
     protected Lock anti_gravity_lock;
     protected Lock invincibility_lock;
 
-    protected ICombatant last_hit_by;
+    protected Character last_hit_by;
 
     float knockback_dissipation_time;
     Coroutine knockback_routine;
@@ -137,7 +137,7 @@ public class Character : MonoBehaviour, ICombatant {
     /// <param name="target"></param>
     /// <param name="trigger_on_hit">"Should this damage instance trigger on hit effects?"</param>
     /// <returns>Damage target took</returns>
-    public float DealDamage(float damage, IDamageable target, bool trigger_on_hit = true) {
+    public float DealDamage(float damage, Character target, bool trigger_on_hit = true) {
         float damage_dealt = target.TakeDamage(damage, this);
         if (damage_dealt > 0 && trigger_on_hit) {
             InvokeOnHit(this, damage, damage_dealt, target);
@@ -154,7 +154,7 @@ public class Character : MonoBehaviour, ICombatant {
     /// <param name="damage"></param>
     /// <param name="source"></param>
     /// <returns>Damage Taken</returns>
-    public float TakeDamage(float damage, ICombatant source) {
+    public float TakeDamage(float damage, Character source) {
         float old = health.current;
         float post_mitigation_damage = Mathf.Max(damage - armor, 0);
         if (post_mitigation_damage > 0) {
@@ -179,7 +179,7 @@ public class Character : MonoBehaviour, ICombatant {
     /// <param name="source">ICombatant that initiated knockback if any</param>
     /// <param name="force">The force of the knockback</param>
     /// <param name="length">Knockback Duration</param>
-    public void TakeKnockback(ICombatant source, Vector2 force, float length = 0.5f) {
+    public void TakeKnockback(Character source, Vector2 force, float length = 0.5f) {
         if (knockback_resistant) {
             return;
         }
@@ -206,7 +206,7 @@ public class Character : MonoBehaviour, ICombatant {
     /// <param name="target">IDamageable that is getting knockedback</param>
     /// <param name="force">The force of the knockback</param>
     /// <param name="length">Knockback Duration</param>
-    public void GiveKnockback(IDamageable target, Vector2 force, float length = 0.5f) {
+    public void GiveKnockback(Character target, Vector2 force, float length = 0.5f) {
         target.TakeKnockback(this, force * knockback_multiplier, length);
     }
 
@@ -234,7 +234,7 @@ public class Character : MonoBehaviour, ICombatant {
     /// Invokes OnKillCallbacks
     /// </summary>
     /// <param name="killed"></param>
-    public virtual void GiveKillCredit(ICombatant killed) {
+    public virtual void GiveKillCredit(Character killed) {
         InvokeOnKill(this, killed);
     }
 
@@ -337,16 +337,16 @@ public class Character : MonoBehaviour, ICombatant {
         bonus_jump_count = Mathf.Max(bonus_jump_count, 0);
     }
 
-    protected void InvokeOnHit(Character hitter, float pre_mitigation_damage, float post_mitigation_damage, IDamageable hit) {
+    protected void InvokeOnHit(Character hitter, float pre_mitigation_damage, float post_mitigation_damage, Character hit) {
         on_hit?.Invoke(hitter, pre_mitigation_damage, post_mitigation_damage, hit);
     }
-    protected void InvokeOnTakeDamage(Character hit_character, float pre_mitigation_damage, float post_mitigation_damage, ICombatant hit_by) {
+    protected void InvokeOnTakeDamage(Character hit_character, float pre_mitigation_damage, float post_mitigation_damage, Character hit_by) {
         on_take_damage?.Invoke(hit_character, pre_mitigation_damage, post_mitigation_damage, hit_by);
     }
-    protected void InvokeOnKill(Character killer, ICombatant killed) {
+    protected void InvokeOnKill(Character killer, Character killed) {
         on_kill?.Invoke(killer, killed);
     }
-    protected void InvokeOnDeath(Character killed, ICombatant killed_by) {
+    protected void InvokeOnDeath(Character killed, Character killed_by) {
         on_death?.Invoke(killed, killed_by);
     }
 
@@ -392,7 +392,7 @@ public class Character : MonoBehaviour, ICombatant {
     }
 
 
-    protected virtual void Die(ICombatant killed_by) {
+    protected virtual void Die(Character killed_by) {
         last_hit_by.GiveKillCredit(this);
         InvokeOnDeath(this, killed_by);
         Destroy(gameObject);

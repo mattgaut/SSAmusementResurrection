@@ -34,7 +34,7 @@ public class DiveBombAAEffect : ActiveAbilityEffect {
     }
 
     
-    void AttackOnHit(IDamageable d, Attack hit_by) {
+    void AttackOnHit(Character d, Attack hit_by) {
         character.DealDamage(character.char_definition.power * damage_multiplier, d);
         character.GiveKnockback(d, knockback);
     }

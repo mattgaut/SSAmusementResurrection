@@ -16,7 +16,7 @@ public class SmokeBombItemEffect : OnTakeDamageItemEffect {
         rng = new RNG();
     }
 
-    protected override void OnTakeDamage(Character hit, float pre_damage, float post_damage, ICombatant source) {
+    protected override void OnTakeDamage(Character hit, float pre_damage, float post_damage, Character source) {
         if (rng.GetFloat() < drop_probability) DropSmokeBomb();
     }
 
@@ -30,7 +30,7 @@ public class SmokeBombItemEffect : OnTakeDamageItemEffect {
         new_smoke_bomb.Enable();
     }
 
-    void OnHit(IDamageable d, Attack a) {
+    void OnHit(Character d, Attack a) {
         d.character.crowd_control_effects.ApplyCC(CrowdControl.Type.blinded, blind_length, item.owner);
 
         ParticleSystem ps = Instantiate(blind_particle_effects, d.character.char_definition.head);

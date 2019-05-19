@@ -3,43 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamageable {
-    GameObject gameObject { get; }
-    Character character { get; }
-
-    CapStat health {
-        get;
-    }
-    float TakeDamage(float damage, ICombatant source);
-    void TakeKnockback(ICombatant source, Vector2 force, float length = 0.5f);
-
-    bool is_knocked_back { get; }
-    bool invincible { get; }
-
-    int LockInvincibility();
-    bool UnlockInvincibility(int value);
-}
-
-public interface IStats : IDamageable {
-    Stat power { get; }
-    Stat armor { get; }
-    Stat speed { get; }
-    CapStat energy { get; }
-    Stat knockback_multiplier { get; }
-}
-
-public interface ICombatant : IDamageable, IStats {
-    float DealDamage(float damage, IDamageable target, bool trigger_on_hit);
-    void GiveKnockback(IDamageable target, Vector2 knockback, float duration);
-    bool alive { get; }
-    CrowdControl crowd_control_effects { get; }
-    void GiveKillCredit(ICombatant killed);
-    void LogBuff(IBuff b);
-    Coroutine StartCoroutine(IEnumerator start);
-    void DropObject(GameObject obj, bool should_handle_instantiation = false);
-
-}
-
 /// <summary>
 /// Interface for interactables that allows interaction with Player
 /// </summary>
@@ -66,8 +29,8 @@ public interface IBuff {
     bool is_benificial { get; }
     float length { get; }
 
-    void Apply(ICombatant stat_entity);
-    void Remove(ICombatant stat_entity);
+    void Apply(Character stat_entity);
+    void Remove(Character stat_entity);
 }
 
 public interface IStatBuff {

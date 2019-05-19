@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : Character, ICombatant {
+public class Enemy : Character {
 
     public Sprite icon {
         get { return _icon; }
@@ -52,7 +52,7 @@ public class Enemy : Character, ICombatant {
         die_function = die_event;
     }
 
-    protected override void Die(ICombatant killed_by) {
+    protected override void Die(Character killed_by) {
         last_hit_by.GiveKillCredit(this);
         InvokeOnDeath(this, killed_by);
         if (die_function != null) {

@@ -21,7 +21,7 @@ public class BuffGroup : MonoBehaviour, IBuff {
     [SerializeField] bool _is_benificial;
     [SerializeField] Sprite _icon;
 
-    public void Apply(ICombatant stat_entity) {
+    public void Apply(Character stat_entity) {
         foreach (BuffDefinition buff in buffs) {
             buff.Apply(stat_entity);
         }
@@ -31,13 +31,13 @@ public class BuffGroup : MonoBehaviour, IBuff {
         }
     }
 
-    public void Remove(ICombatant stat_entity) {
+    public void Remove(Character stat_entity) {
         foreach (BuffDefinition buff in buffs) {
             buff.Remove(stat_entity);
         }
     }
 
-    IEnumerator RemoveAfter(ICombatant remove_from, float time) {
+    IEnumerator RemoveAfter(Character remove_from, float time) {
         float time_left = time;
         while (time_left > 0) {
             time_left -= Time.fixedDeltaTime;

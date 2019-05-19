@@ -18,11 +18,11 @@ public class KnockbackBuff : BuffDefinition, IStatBuff {
         }
     }
 
-    public override void Apply(ICombatant stat_entity) {        
+    public override void Apply(Character stat_entity) {        
         stat_entity.knockback_multiplier.AddBuff(this);
     }
 
-    public override void Remove(ICombatant stat_entity) {
+    public override void Remove(Character stat_entity) {
         stat_entity.knockback_multiplier.RemoveBuff(this);
     }
 }

@@ -96,9 +96,9 @@ public class ChefBossHandler : EnemyHandler {
         }
         Attacked();
     }
-    void SoupOnHit(IDamageable hit, Attack hit_by) {
+    void SoupOnHit(Character hit, Attack hit_by) {
         enemy.DealDamage(enemy.power, hit);
-        ICombatant comb = hit as ICombatant;
+        Character comb = hit as Character;
         if (comb != null) soup_debuff.Apply(comb);
     }
 
@@ -111,7 +111,7 @@ public class ChefBossHandler : EnemyHandler {
         Attacked();
     }
 
-    void CleaverOnHit(IDamageable hit, Attack hit_by) {
+    void CleaverOnHit(Character hit, Attack hit_by) {
         enemy.DealDamage(enemy.power * 2, hit);
         enemy.GiveKnockback(hit, cleaver_knockback);
         force_attack = Random.Range(0, 1f) > 0.5;

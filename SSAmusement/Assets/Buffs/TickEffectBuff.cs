@@ -10,25 +10,25 @@ public abstract class TickEffectBuff : BuffDefinition {
     }
 
     [SerializeField] float tick_rate;
-    Dictionary<ICombatant, List<Coroutine>> tick_routines;
+    Dictionary<Character, List<Coroutine>> tick_routines;
 
     public void Awake() {
-        tick_routines = new Dictionary<ICombatant, List<Coroutine>>();
+        tick_routines = new Dictionary<Character, List<Coroutine>>();
     }
 
-    public override void Apply(ICombatant stat_entity) {
+    public override void Apply(Character stat_entity) {
         if (!tick_routines.ContainsKey(stat_entity)) {
             tick_routines.Add(stat_entity, new List<Coroutine>());
         }
         tick_routines[stat_entity].Add(StartCoroutine(Tick(stat_entity)));
     }
 
-    public override void Remove(ICombatant stat_entity) {
+    public override void Remove(Character stat_entity) {
         StopCoroutine(tick_routines[stat_entity][0]);
         tick_routines[stat_entity].RemoveAt(0);
     }
 
-    IEnumerator Tick(ICombatant stat_entity) {
+    IEnumerator Tick(Character stat_entity) {
         float timer = 0;
         while (true) {
             timer += Time.fixedDeltaTime;
@@ -41,5 +41,5 @@ public abstract class TickEffectBuff : BuffDefinition {
         }
     }
 
-    protected abstract void TickEffect(ICombatant stat_entity);
+    protected abstract void TickEffect(Character stat_entity);
 }
