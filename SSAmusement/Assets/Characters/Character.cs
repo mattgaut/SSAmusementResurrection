@@ -486,6 +486,11 @@ public class Character : MonoBehaviour {
         is_dashing = false;
     }
 
+    private void OnDisable() {
+        is_dashing = false;
+        is_knocked_back = false;
+    }
+
     public class CustomDash {
         public System.Func<float, float, Vector2> dash_callback { get; private set; }
         public float length { get; private set; }

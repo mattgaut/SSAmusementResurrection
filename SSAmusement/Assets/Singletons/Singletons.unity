@@ -209,5 +209,15 @@ PrefabInstance:
       propertyPath: m_Pitch
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4727880421587381437, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: seed
+      value: 98
+      objectReference: {fileID: 0}
+    - target: {fileID: 4727880421587381437, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: use_seed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}

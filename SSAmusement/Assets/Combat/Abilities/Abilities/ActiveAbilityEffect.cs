@@ -17,5 +17,9 @@ public abstract class ActiveAbilityEffect : MonoBehaviour {
         this.character = character;
     }
 
-    protected abstract void UseAbilityEffect(float input); 
+    protected abstract void UseAbilityEffect(float input);
+
+    protected void OnDisable() {
+        is_using_ability = false;
+    }
 }

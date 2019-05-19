@@ -117,8 +117,8 @@ public abstract class EnemyHandler : StateMachineController {
 
     protected override void Deactivate() {
         base.Deactivate();
-        _input = Vector2.zero;
         enemy.animator.Rebind();
+        _input = Vector2.zero;
         enemy.health.current = enemy.health;
     }
 

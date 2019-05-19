@@ -85,4 +85,8 @@ public abstract class Attack : MonoBehaviour {
         yield return null;
         transform.position -= Vector3.one * .001f;
     }
+
+    private void OnDisable() {
+        Disable();
+    }
 }

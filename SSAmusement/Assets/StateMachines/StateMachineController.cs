@@ -29,13 +29,10 @@ public class StateMachineController : MonoBehaviour {
     /// </summary>
     /// <param name="active"></param>
     public void SetActive(bool active) {
-        if (this.active != active) {
-            this.active = active;
-            if (active) {
-                Activate();
-            } else {
-                Deactivate();
-            }
+        if (active && !this.active) {
+            Activate();
+        } else if (!active) {
+            Deactivate();
         }
     }
 
@@ -76,13 +73,17 @@ public class StateMachineController : MonoBehaviour {
     }
 
     protected virtual void Activate() {
+        active = true;
+        gameObject.SetActive(true);
         state_machine_instance = state_machine.GetStateMachineInstance();
         state_machine_instance.SetCallbacks(parameter_callbacks);
 
         state_machine_routine = StartCoroutine(StateMachineCoroutine());
     }
     protected virtual void Deactivate() {
+        active = false;        
         StopAllCoroutines();
+        gameObject.SetActive(false);
     }
 
     /// <summary>

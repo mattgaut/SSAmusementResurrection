@@ -96,4 +96,9 @@ public class AutoClocheHandler : AerialEnemyHandler {
     bool IsNextAbility(Ability ability) {
         return next_ability == null || next_ability.ability_name == ability.ability_name;
     }
+
+    protected override void Deactivate() {
+        base.Deactivate();
+        auto_tilt = true;
+    }
 }
