@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class ShopTerminal : MonoBehaviour, IInteractable {
 
+    public UnityEvent on_purchase { get; private set; }
+
+    public bool is_available { get { return on_sale != null && !used; } }
+
     [SerializeField] int price;
     [SerializeField] Item on_sale;
     [SerializeField] Text sale_price_text;
@@ -14,8 +18,6 @@ public class ShopTerminal : MonoBehaviour, IInteractable {
     int text_size;
 
     bool used;
-
-    public UnityEvent on_purchase { get; private set; }
 
     public void CloseTerminal() {
         used = true;
@@ -45,7 +47,7 @@ public class ShopTerminal : MonoBehaviour, IInteractable {
     private void SellItem(Player player) {
         if (on_sale != null && !used && player.inventory.TrySpendCurrency(price)) {
             Item new_item = Instantiate(on_sale);
-            player.inventory.AddItem(new_item);
+            player.inventory.AddItem(new_item, false);
 
             SoundManager.instance?.LocalPlaySfx(sfxs.on_successful_purchase);
 

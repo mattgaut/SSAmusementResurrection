@@ -10,6 +10,8 @@ public class EnemySpawnPoint : MonoBehaviour {
     public Enemy SpawnEnemy(Enemy prefab) {
         Enemy new_enemy = Instantiate(prefab);
 
+        new_enemy.GetComponent<EnemyHandler>().should_disable_go_on_deactivate = false;
+
         new_enemy.transform.position = spawn_point.position;
 
         StartCoroutine(SpawnRoutine(new_enemy));

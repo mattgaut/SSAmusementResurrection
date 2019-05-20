@@ -12,6 +12,8 @@ public class Teleporter : MonoBehaviour, IInteractable {
         get { return on_departure; }
     }
 
+    public bool is_available { get { return !teleporting && open; } }
+
     [SerializeField] RoomController home;
     [SerializeField] Teleporter linked_teleporter;
     [SerializeField] Transform teleportation_point;

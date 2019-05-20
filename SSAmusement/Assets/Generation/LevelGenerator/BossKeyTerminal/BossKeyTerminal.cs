@@ -10,6 +10,8 @@ public class BossKeyTerminal : MonoBehaviour, IInteractable {
 
     bool used;
 
+    public bool is_available { get { return !used; } }
+
     public void Interact(Player player) {
         if (!used) {
             if (player.inventory.TrySpendKeycard()) Use();

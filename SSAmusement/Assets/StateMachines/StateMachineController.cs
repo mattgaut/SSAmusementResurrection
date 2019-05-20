@@ -23,6 +23,7 @@ public class StateMachineController : MonoBehaviour {
     protected Coroutine state_machine_routine;
 
     public bool active { get; private set; }
+    [NonSerialized] public bool should_disable_go_on_deactivate = true;
 
     /// <summary>
     /// Sets whether the behaviour should be running or not
@@ -83,7 +84,7 @@ public class StateMachineController : MonoBehaviour {
     protected virtual void Deactivate() {
         active = false;        
         StopAllCoroutines();
-        gameObject.SetActive(false);
+        if (should_disable_go_on_deactivate) gameObject.SetActive(false);
     }
 
     /// <summary>

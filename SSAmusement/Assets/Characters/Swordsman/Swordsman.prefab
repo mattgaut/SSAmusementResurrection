@@ -1984,6 +1984,8 @@ MonoBehaviour:
   max_jump_height: 4.3
   min_jump_height: 1.6
   time_to_jump_apex: 0.24
+  jump_buffer: 0.1
+  skill_buffer: 0.1
 --- !u!114 &5770375887674969164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2053,6 +2055,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e47c5931c4e084c9da4f1ad9c98c98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  replaced_item_pedastal: {fileID: 5735586709599568239, guid: 01ed312dd725a4742a28645f45c68123,
+    type: 3}
 --- !u!114 &114387341800255582
 MonoBehaviour:
   m_ObjectHideFlags: 0

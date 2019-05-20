@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemySwarmInteractable : MonoBehaviour, IInteractable {
 
+    public bool is_available { get { return !used; } }
+
     [SerializeField] EnemySwarmInstructions instruction;
     [SerializeField] PickupChest reward_chest; 
 

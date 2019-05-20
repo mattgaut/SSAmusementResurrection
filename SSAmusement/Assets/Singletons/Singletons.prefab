@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1362026122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1362026123}
+  - component: {fileID: 1362026124}
+  m_Layer: 0
+  m_Name: InputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1362026123
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362026122}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4727880421587381435}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1362026124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362026122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90fe1ef9cff4fbb4fb95ea59ca3cb17b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - name: Jump
+  - name: Drop
+  - name: Attack
+  - name: Skill1
+  - name: Skill2
+  - name: ActiveSkill
+  - name: Pause
+  - name: Select
+  axes:
+  - name: Horizontal
+  - name: Vertical
+  - name: Attack
+  - name: Skill1
+  - name: Skill2
+  axis_buttons:
+  - name: Interact
+    axis_name: Interact
+    is_positive: 1
 --- !u!1 &2053336211
 GameObject:
   m_ObjectHideFlags: 0
@@ -50,7 +112,7 @@ MonoBehaviour:
   fade_in: {fileID: 2053336215}
   sfx: {fileID: 58973488}
   _sound_bank: {fileID: 11400000, guid: c332695e21102f94ca2f0d8387189585, type: 2}
-  volume: 0.1
+  volume: 0.144
 --- !u!82 &2053336214
 AudioSource:
   m_ObjectHideFlags: 0
@@ -63,7 +125,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -159,7 +221,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -255,7 +317,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -486,6 +548,7 @@ Transform:
   m_Children:
   - {fileID: 3936146724087247994}
   - {fileID: 2053336212}
+  - {fileID: 1362026123}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -533,8 +596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb5aa15562247534eb0a08faf77d6fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  use_seed: 0
-  seed: 650
+  use_seed: 1
+  seed: 98
 --- !u!114 &4727880421587381432
 MonoBehaviour:
   m_ObjectHideFlags: 0

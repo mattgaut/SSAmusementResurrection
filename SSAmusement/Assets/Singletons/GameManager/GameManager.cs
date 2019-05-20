@@ -178,10 +178,10 @@ public class GameManager : Singleton<GameManager> {
     }
 
     void Update() {
-        if (Input.GetButtonDown("Pause")) {
+        if (MyInput.GetButtonDown("Pause")) {
             TogglePause();
         }
-        if (Input.GetButtonDown("Select") && !is_paused) {
+        if (MyInput.GetButtonDown("Select") && !is_paused) {
             ToggleShowInfoScreen();
         }
         if (!is_paused && !is_select_screen_up) {

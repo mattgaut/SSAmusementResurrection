@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Player))]
 public class Inventory : MonoBehaviour {
 
+    [SerializeField] ItemPedastal replaced_item_pedastal;
+
     Player player;
     List<Item> items_in_inventory;
     
@@ -71,13 +73,20 @@ public class Inventory : MonoBehaviour {
         pet_count--;
     }
 
-    public Item AddItem(Item i) {
+    public Item AddItem(Item i, bool will_handle_old_item) {
         Item replaced_item = null;
         if (i.item_type == Item.Type.active) {
             replaced_item = active_item;
             active_item = i as ActiveItem;
             player.player_display.SetActiveItemDisplay(active_item.active_ability);
-            if (replaced_item) replaced_item.OnDrop(player);
+            if (replaced_item) {
+                replaced_item.OnDrop(player);
+                if (!will_handle_old_item) {
+                    ItemPedastal new_pedastal = Instantiate(replaced_item_pedastal);
+                    new_pedastal.transform.position = player.transform.position;
+                    new_pedastal.SetItem(replaced_item, false);
+                }
+            }
         } else {
             items_in_inventory.Add(i);
         }

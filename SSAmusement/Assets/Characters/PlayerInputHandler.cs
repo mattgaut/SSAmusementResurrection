@@ -20,6 +20,9 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
     [SerializeField] [Range(0, 20)] float min_jump_height;
     [SerializeField] [Range(0, 5)] float time_to_jump_apex;
 
+    [SerializeField] float jump_buffer;
+    [SerializeField] float skill_buffer;
+
     float acceleration_grounded = 0f;
     float acceleration_airborne = 0f;
 
@@ -71,23 +74,23 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
 
     private void Update() {
         if (GameManager.instance.input_active && player.can_input) {
-            if (Input.GetButton("Attack")) {
-                ProcessSkillButton(Input.GetAxis("Attack"), 0);
+            if (MyInput.GetButton("Attack")) {
+                ProcessSkillButton(MyInput.GetAxis("Attack"), 0);
             }
-            if (Input.GetButtonDown("Skill1")) {
-                ProcessSkillButton(Input.GetAxis("Skill1"), 1);
+            if (MyInput.GetButtonDown("Skill1", skill_buffer)) {
+                ProcessSkillButton(MyInput.GetAxis("Skill1"), 1);
             }
-            if (Input.GetButtonDown("Skill2")) {
-                ProcessSkillButton(Input.GetAxis("Skill2"), 2);
+            if (MyInput.GetButtonDown("Skill2", skill_buffer)) {
+                ProcessSkillButton(MyInput.GetAxis("Skill2"), 2);
             }
-            if (Input.GetButtonDown("ActiveSkill")) {                
+            if (MyInput.GetButtonDown("ActiveSkill", skill_buffer)) {                
                 if (player.inventory.active_item != null) {
                     player.inventory.active_item.active_ability.TryUse();
                 }
             }
         }
 
-        input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        input = new Vector2(MyInput.GetAxis("Horizontal"), MyInput.GetAxis("Vertical"));
 
         Move();
     }
@@ -169,13 +172,13 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
     }
 
     void HandleYInput(float y_input) {
-        if (y_input <= -.99f && Input.GetButtonDown("Jump") && drop_routine == null && cont.OverPlatform()) {
+        if (y_input <= -.99f  && drop_routine == null && cont.OverPlatform() && MyInput.GetButtonDown("Jump", jump_buffer)) {
             if (cont.OverPlatform()) {
                 drop_routine = StartCoroutine(DropRoutine());
             }
-        } else if (Input.GetButtonDown("Drop") && drop_routine == null && player.can_move) {
+        } else if (drop_routine == null && player.can_move && MyInput.GetButtonDown("Drop")) {
             drop_routine = StartCoroutine(DropRoutine());
-        } else if (Input.GetButtonDown("Jump") && player.can_move) {
+        } else if (player.can_move && MyInput.GetButtonDown("Jump", jump_buffer)) {
             if (cont.collisions.below) {
                 Jump(true);
             } else if (jumps_used < (player.jump_count - (grounded_jump_used ? 0 : 1))) {
@@ -217,7 +220,7 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
             yield return new WaitForFixedUpdate();
             delay -= Time.deltaTime;
         }
-        while (Input.GetButton("Drop")) {
+        while (MyInput.GetButton("Drop")) {
             yield return new WaitForFixedUpdate();
         }
         cont.AddPlatformToMask();
@@ -243,7 +246,7 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
         bool held = true;
         while (time_left > 0 && held && !cont.collisions.above) {
             time_left -= Time.fixedDeltaTime;
-            held = held && Input.GetButton("Jump");
+            held = held && MyInput.GetButton("Jump");
             yield return new WaitForFixedUpdate();
         }
         jumping = false;

@@ -157,7 +157,7 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
             yield return new WaitForFixedUpdate();
             delay -= Time.fixedDeltaTime;
         }
-        while (Input.GetKey(KeyCode.S)) {
+        while (input.y < 0) {
             yield return new WaitForFixedUpdate();
         }
         cont.AddPlatformToMask();

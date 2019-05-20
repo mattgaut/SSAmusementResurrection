@@ -7,6 +7,8 @@ using UnityEngine;
 /// Interface for interactables that allows interaction with Player
 /// </summary>
 public interface IInteractable {
+    bool is_available { get; }
+
     void Interact(Player player);
 
     void SetHighlight(bool is_highlighted);

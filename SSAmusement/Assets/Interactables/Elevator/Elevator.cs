@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Collider2D))]
 public class Elevator : MonoBehaviour, IInteractable {
 
+    public bool is_available { get { return !loading; } }
+
     bool loading = false;
 
     public void Interact(Player player) {

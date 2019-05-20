@@ -18,6 +18,8 @@ public class ItemChest : MonoBehaviour, IInteractable {
 
     [SerializeField] SFXInfo open_sfx = new SFXInfo("sfx_chest_open");
 
+    public bool is_available { get { return to_spawn != null || !opened || replaced_item != null; } }
+
     public void SetSpawnItem(Item i) {
         to_spawn = i;
     }
@@ -34,7 +36,7 @@ public class ItemChest : MonoBehaviour, IInteractable {
             opened = true;
         }
         else if (to_spawn != null) {
-            replaced_item = player.inventory.AddItem(Instantiate(to_spawn));
+            replaced_item = player.inventory.AddItem(Instantiate(to_spawn), true);
             to_spawn = null;
              
             if (replaced_item) {
@@ -47,7 +49,7 @@ public class ItemChest : MonoBehaviour, IInteractable {
                 shine_renderer.enabled = false;
             }
         } else if (replaced_item != null) {
-            replaced_item = player.inventory.AddItem(replaced_item);
+            replaced_item = player.inventory.AddItem(replaced_item, true);
 
             if (replaced_item) {
                 replaced_item.transform.SetParent(transform);
