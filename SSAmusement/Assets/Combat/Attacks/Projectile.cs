@@ -104,5 +104,7 @@ public class Projectile : SingleHitAttack {
 
     protected virtual void OnChangeTimeScale(float time_scale) {
         if (anim != null) anim.speed = time_scale;
+        ParticleSystem.MainModule main = particles.main;
+        main.simulationSpeed = time_scale;
     }
 }

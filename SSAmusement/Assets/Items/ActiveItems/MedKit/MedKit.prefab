@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item_name: Medkit
-  _item_description: Temporary Invincibility.
+  _item_description: Restores Energy and Health.
   sprite: {fileID: 21300010, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
   effects: []
   ability:

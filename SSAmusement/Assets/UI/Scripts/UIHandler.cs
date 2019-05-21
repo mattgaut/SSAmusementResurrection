@@ -60,6 +60,11 @@ public class UIHandler : MonoBehaviour {
         if (display_on_screen)instance.info_display.Display(i.item_name, i.item_description, i.icon, 2f, Color.white);
     }
 
+    public static void RemoveItem(Item i) {
+        if (instance == null) return;
+        instance.inventory_display.RemoveItem(i);
+    }
+
     public static IEnumerator FadeToBlack(float fade_in_timer) {
         yield return instance.FadeOut(fade_in_timer);
     }

@@ -86,6 +86,7 @@ public class Inventory : MonoBehaviour {
                     new_pedastal.transform.position = player.transform.position;
                     new_pedastal.SetItem(replaced_item, false);
                 }
+                UIHandler.RemoveItem(replaced_item);
             }
         } else {
             items_in_inventory.Add(i);

@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item_name: Time Crystal
-  _item_description: Stops time momentarily.
+  _item_description: Briefly stops time.
   sprite: {fileID: 21300014, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
   effects: []
   ability:
