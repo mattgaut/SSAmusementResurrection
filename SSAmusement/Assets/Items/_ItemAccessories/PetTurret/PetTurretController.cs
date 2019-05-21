@@ -21,12 +21,18 @@ public class PetTurretController : MonoBehaviour {
     [SerializeField] Vector2 orbit_offset;
     [SerializeField] float min_orbit_angle, max_orbit_angle;
 
+    Character owner;
+
     float timer;
     int orbit_direction = 1;
     Vector2 orbit_target;
 
     private void Awake() {
         queue = new List<TargetCallback>();
+    }
+
+    public void SetOwner(Character character) {
+        owner = character;
     }
 
     public void SetLaser(HomingProjectile laser) {
@@ -77,6 +83,7 @@ public class PetTurretController : MonoBehaviour {
 
     void SpawnLaser(TargetCallback target_callback) {
         HomingProjectile new_laser = Instantiate(laser, transform.position, Quaternion.identity);
+        new_laser.SetSource(owner);
         new_laser.transform.position = transform.position;
 
         SoundManager.instance?.LocalPlaySfx(laser_sfx);

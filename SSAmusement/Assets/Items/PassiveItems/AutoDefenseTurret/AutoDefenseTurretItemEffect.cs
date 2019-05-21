@@ -10,6 +10,7 @@ public class AutoDefenseTurretItemEffect : OnTakeDamageItemEffect {
 
     protected override void OnPickup() {
         base.OnPickup();
+        pet.SetOwner(item.owner);
         pet.transform.SetParent(null, true);
         pet.transform.localPosition = item.owner.transform.position;
         pet.gameObject.SetActive(true);
@@ -32,6 +33,6 @@ public class AutoDefenseTurretItemEffect : OnTakeDamageItemEffect {
     }
 
     private void OnDestroy() {
-        Destroy(pet.gameObject);
+        if (pet != null) Destroy(pet.gameObject);
     }
 }

@@ -21,6 +21,8 @@ public class CombatTurretItemEffect : OnHitItemEffect {
 
     protected override void OnPickup() {
         base.OnPickup();
+
+        pet.SetOwner(item.owner);
         pet.transform.SetParent(null, true);
         pet.transform.localPosition = item.owner.transform.position;
         pet.gameObject.SetActive(true);

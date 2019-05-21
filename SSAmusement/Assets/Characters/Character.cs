@@ -516,7 +516,7 @@ public class Character : MonoBehaviour {
     }
 
     private void OnDestroy() {
-        GameManager.instance?.RemoveOnTimeScaleChangedEvent(team, OnTimeScaleChanged);
+        if (GameManager.has_instance) GameManager.instance.RemoveOnTimeScaleChangedEvent(team, OnTimeScaleChanged);
     }
 
     public class CustomDash {
