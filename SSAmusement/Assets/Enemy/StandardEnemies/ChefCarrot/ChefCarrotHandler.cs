@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChefCarrotHandler : GroundedEnemyHandler {
 
-    [SerializeField] GameObject carrot;
+    [SerializeField] Projectile carrot;
     [SerializeField] Transform carrot_spawn_transform;
 
     float time_between_throws = 1.8f;
@@ -24,7 +24,7 @@ public class ChefCarrotHandler : GroundedEnemyHandler {
 
     protected override void Update() {
         base.Update();
-        last_throw += Time.deltaTime;
+        last_throw += GameManager.GetDeltaTime(enemy.team);
     }
 
     protected override void Activate() {
@@ -48,7 +48,7 @@ public class ChefCarrotHandler : GroundedEnemyHandler {
         }
         float wander_length = Random.Range(0.5f, 2f);
         while (!ShouldStopMoving(direction) && wander_length > 0) {
-            wander_length -= Time.fixedDeltaTime;
+            wander_length -= GameManager.GetFixedDeltaTime(enemy.team);
             _input.x = direction;
             if (CanHunt()) {
                 break;
@@ -106,7 +106,7 @@ public class ChefCarrotHandler : GroundedEnemyHandler {
     public void AnimReleaseThrow() {
         throw_released = true;
 
-        GameObject new_carrot = Instantiate(carrot);
+        Projectile new_carrot = Instantiate(carrot);
         new_carrot.transform.position = carrot_spawn_transform.position;
         float angle = 0;
         Vector3 to_target = target.transform.position - transform.position;
@@ -127,6 +127,7 @@ public class ChefCarrotHandler : GroundedEnemyHandler {
         }
         new_carrot.transform.rotation = Quaternion.Euler(0, 0, angle);
 
-        new_carrot.GetComponent<Attack>().SetOnHit((hit, attack) => enemy.DealDamage(enemy.power, hit));
+        new_carrot.SetOnHit((hit, attack) => enemy.DealDamage(enemy.power, hit));
+        new_carrot.SetSource(enemy);
     }
 }

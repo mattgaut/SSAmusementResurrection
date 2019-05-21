@@ -12,7 +12,7 @@ public abstract class TickEffectBuff : BuffDefinition {
     [SerializeField] float tick_rate;
     Dictionary<Character, List<Coroutine>> tick_routines;
 
-    public void Awake() {
+    protected override void Init() {
         tick_routines = new Dictionary<Character, List<Coroutine>>();
     }
 
@@ -31,7 +31,7 @@ public abstract class TickEffectBuff : BuffDefinition {
     IEnumerator Tick(Character stat_entity) {
         float timer = 0;
         while (true) {
-            timer += Time.fixedDeltaTime;
+            timer += Time.fixedDeltaTime /** GameManager.GetTimeScale(source.team)*/;
             if (timer > tick_rate) {
                 timer -= tick_rate;
                 if (stat_entity == null || !stat_entity.alive) break;

@@ -56,7 +56,7 @@ public abstract class BuffDefinition : MonoBehaviour {
         IEnumerator RemoveAfter(Character remove_from, float time) {
             float time_left = time;
             while (time_left > 0) {
-                time_left -= Time.fixedDeltaTime;
+                time_left -= GameManager.GetFixedDeltaTime(remove_from.team);
                 yield return new WaitForFixedUpdate();
             }
             Remove(remove_from);

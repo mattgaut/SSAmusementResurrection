@@ -58,7 +58,7 @@ public class ChefCartHandler : GroundedEnemyHandler {
         }
         float wander_length = Random.Range(0.5f, 2f);
         while (!ShouldStopMoving(direction) && wander_length > 0) {
-            wander_length -= Time.fixedDeltaTime;
+            wander_length -= GameManager.GetFixedDeltaTime(enemy.team);
             _input.x = direction;
             if (CanHunt()) {
                 break;
@@ -79,7 +79,7 @@ public class ChefCartHandler : GroundedEnemyHandler {
         float accel_factor = 1.5f;
         while (!ShouldStopMoving(direction) && time < max_charge_length) {
             yield return new WaitForFixedUpdate();
-            time += Time.fixedDeltaTime;
+            time += GameManager.GetFixedDeltaTime(enemy.team);
             if (speed < max_speed) {
 
                 speed = Mathf.Pow(time * Mathf.Pow(3, 1/accel_factor)/ 1.2f, accel_factor) + 1;
@@ -97,7 +97,7 @@ public class ChefCartHandler : GroundedEnemyHandler {
         bump_damage = false;
         float rest_time = time_to_rest;
         while (rest_time > 0) {
-            rest_time -= Time.fixedDeltaTime;
+            rest_time -= GameManager.GetFixedDeltaTime(enemy.team);
             yield return new WaitForFixedUpdate();
         }
         enemy.animator.SetTrigger("EndRest");

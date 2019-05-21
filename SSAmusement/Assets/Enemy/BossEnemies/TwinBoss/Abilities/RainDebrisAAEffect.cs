@@ -29,7 +29,7 @@ public class RainDebrisAAEffect : ActiveAbilityEffect {
 
         character.animator.SetBool(anim_bool_throw, true);
 
-        yield return new WaitForSeconds(rain_duration);
+        yield return GameManager.instance.TeamWaitForSeconds(character.team, rain_duration);
 
         character.animator.SetBool(anim_bool_throw, false);
 
@@ -40,7 +40,7 @@ public class RainDebrisAAEffect : ActiveAbilityEffect {
         float timer = rain_delay;
         while (timer > 0) {
             yield return new WaitForFixedUpdate();
-            timer -= Time.fixedDeltaTime;
+            timer -= GameManager.GetFixedDeltaTime(character.team);
         }
 
         timer = rain_duration;
@@ -48,8 +48,8 @@ public class RainDebrisAAEffect : ActiveAbilityEffect {
         while (timer > 0) {
             if (time_since_last_drop > time_between_drops) SpawnDebris();
             yield return new WaitForFixedUpdate();
-            timer -= Time.fixedDeltaTime;
-            time_since_last_drop += Time.fixedDeltaTime;
+            timer -= GameManager.GetFixedDeltaTime(character.team);
+            time_since_last_drop += GameManager.GetFixedDeltaTime(character.team);
         }
     }
 

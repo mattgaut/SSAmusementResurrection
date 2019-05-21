@@ -27,7 +27,14 @@ public class Projectile : SingleHitAttack {
         base_direction = force.normalized;
     }
 
+    public override void SetSource(Character source) {
+        base.SetSource(source);
+
+        GameManager.instance.AddOnTimeScaleChangedEvent(source.team, OnChangeTimeScale);
+    }
+
     public void EndLife() {
+        if (source != null) GameManager.instance.RemoveOnTimeScaleChangedEvent(source.team, OnChangeTimeScale);
         Destroy(gameObject);
     }
 
@@ -45,7 +52,7 @@ public class Projectile : SingleHitAttack {
         base.Update();
 
         if (ignore_wall_timer >= 0) {
-            ignore_wall_timer -= Time.deltaTime;
+            ignore_wall_timer -= GameManager.GetDeltaTime(source.team);
             if (ignore_wall_timer < 0) {
                 break_mask = break_after_timer_mask | break_mask;
             }
@@ -56,10 +63,10 @@ public class Projectile : SingleHitAttack {
         Turn();
 
 
-        transform.position += transform.localRotation * base_direction * speed * Time.deltaTime;
-        transform.position += gravity_vector * Time.deltaTime;
+        transform.position += transform.localRotation * base_direction * speed * GameManager.GetDeltaTime(source.team);
+        transform.position += gravity_vector * GameManager.GetDeltaTime(source.team);
 
-        gravity_vector += Vector3.down * gravity_force * Time.deltaTime;
+        gravity_vector += Vector3.down * gravity_force * GameManager.GetDeltaTime(source.team);
     }
 
     protected virtual void Turn() {
@@ -93,5 +100,9 @@ public class Projectile : SingleHitAttack {
         is_exploded = true;
 
         hitbox.enabled = false;
+    }
+
+    protected virtual void OnChangeTimeScale(float time_scale) {
+        if (anim != null) anim.speed = time_scale;
     }
 }

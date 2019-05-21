@@ -40,6 +40,47 @@ public class GameManager : Singleton<GameManager> {
     [SerializeField] RoomSpawner room_spawner;
     [SerializeField] RoomManager room_manager;
 
+    Dictionary<Character.Team, TimeScale> time_scales;
+    Dictionary<Character.Team, System.Action<float>> on_time_scale_changed;
+
+    public static float GetDeltaTime(Character.Team team) {
+        if (instance == null) {
+            return Time.deltaTime;
+        }
+        return instance.time_scales[team] * Time.deltaTime;
+    }
+    public static float GetFixedDeltaTime(Character.Team team) {
+        if (instance == null) {
+            return Time.fixedDeltaTime;
+        }
+        return instance.time_scales[team] * Time.fixedDeltaTime;
+    }
+
+    public float GetTeamTimeScale(Character.Team team) {
+        return time_scales[team];
+    }
+    public bool IsTimeFrozen(Character.Team team) {
+        return time_scales[team] == 0f;
+    }
+    public void SetTeamTimeScale(Character.Team team, float new_timescale) {
+        if (new_timescale != time_scales[team]) {
+            time_scales[team].SetBaseValue(new_timescale);
+            on_time_scale_changed[team]?.Invoke(new_timescale);
+        }
+    }
+    public void AddTeamTimeScaleModifier(Character.Team team, float factor) {
+        if (factor != 1) {
+            time_scales[team].AddModifier(factor);
+            on_time_scale_changed[team]?.Invoke(time_scales[team]);
+        }
+    }
+    public void RemoveTeamTimeScaleModifier(Character.Team team, float factor) {
+        if (factor != 1) {
+            time_scales[team].RemoveModifier(factor);
+            on_time_scale_changed[team]?.Invoke(time_scales[team]);
+        }
+    }
+
     public void AddOnPauseEvent(UnityAction<bool> action) {
         on_pause.AddListener(action);
     }
@@ -62,6 +103,13 @@ public class GameManager : Singleton<GameManager> {
 
     public void RemoveOnGameOverEvent(UnityAction action) {
         on_game_over.RemoveListener(action);
+    }
+
+    public void AddOnTimeScaleChangedEvent(Character.Team team, System.Action<float> callback) {
+        on_time_scale_changed[team] += callback;
+    }
+    public void RemoveOnTimeScaleChangedEvent(Character.Team team, System.Action<float> callback) {
+        on_time_scale_changed[team] -= callback;
     }
 
     /// <summary>
@@ -154,7 +202,21 @@ public class GameManager : Singleton<GameManager> {
         }
     }
 
+    public IEnumerator TeamWaitForSeconds(Character.Team team, float length) {
+        float timer = length;
+        while (timer > 0) {
+            yield return new WaitForFixedUpdate();
+            timer -= GetFixedDeltaTime(team);
+        }
+    }
+
     private void Start() {
+        time_scales = new Dictionary<Character.Team, TimeScale>();
+        on_time_scale_changed = new Dictionary<Character.Team, System.Action<float>>();
+        foreach (Character.Team team in System.Enum.GetValues(typeof(Character.Team))) {
+            time_scales.Add(team, new TimeScale(1f));
+            on_time_scale_changed.Add(team, null);
+        }
         //SceneManager.UnloadSceneAsync("Singletons");
         ResetMemory();
         if (start_game_on_start) StartGame(_player);
@@ -185,7 +247,7 @@ public class GameManager : Singleton<GameManager> {
             ToggleShowInfoScreen();
         }
         if (!is_paused && !is_select_screen_up) {
-            game_time += Time.deltaTime;
+            game_time += GetDeltaTime(Character.Team.enemy);
         }
     }
 
@@ -195,6 +257,9 @@ public class GameManager : Singleton<GameManager> {
 
     void ResetMemory() {
         Time.timeScale = 1f;
+        foreach (Character.Team team in System.Enum.GetValues(typeof(Character.Team))) {
+            SetTeamTimeScale(team, 1f);
+        }
         level_count = 0;
         input_locks = 0;
         game_time = 0;
@@ -229,5 +294,57 @@ public class GameManager : Singleton<GameManager> {
     void OnUnSelect() {
         input_locks -= 1;
         Time.timeScale = is_paused ? 0 : 1;
+    }
+
+    class TimeScale {
+        float base_value;
+        List<float> modifiers;
+
+        float last_calculated;
+        bool changed = true;
+        protected float value {
+            get {
+                if (changed) {
+                    last_calculated = GetModifiedValue();
+                    changed = false;
+                    return last_calculated;
+                } else {
+                    return last_calculated;
+                }
+            }
+        }
+
+        public TimeScale(float base_value) {
+            this.base_value = base_value;
+            modifiers = new List<float>();
+        }
+
+        float GetModifiedValue() {
+            float to_ret = base_value;
+            foreach (float modifier in modifiers) {
+                to_ret *= modifier;
+            }
+            return to_ret;
+        }
+
+        public void AddModifier(float modifier) {
+            modifiers.Add(modifier);
+            changed = true;
+        }
+
+        public void RemoveModifier(float modifier) {
+            modifiers.Remove(modifier);
+            changed = true;
+        }
+
+        public void SetBaseValue(float f) {
+            base_value = f;
+            changed = true;
+        }
+
+        public static implicit operator float(TimeScale s) {
+            return s.value;
+        }
+        
     }
 }

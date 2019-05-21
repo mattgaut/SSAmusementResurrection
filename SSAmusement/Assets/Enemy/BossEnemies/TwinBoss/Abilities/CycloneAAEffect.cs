@@ -49,7 +49,7 @@ public class CycloneAAEffect : ActiveAbilityEffect {
         float timer = duration;
         while (timer > 0) {
             yield return new WaitForFixedUpdate();
-            timer -= Time.deltaTime;
+            timer -= GameManager.GetDeltaTime(character.team);
         }
 
         attack.Disable();

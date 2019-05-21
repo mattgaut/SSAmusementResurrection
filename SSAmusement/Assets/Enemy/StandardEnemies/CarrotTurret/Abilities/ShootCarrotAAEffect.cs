@@ -12,6 +12,7 @@ public class ShootCarrotAAEffect : ActiveAbilityEffect {
         new_projectile.transform.rotation = Quaternion.Euler(0, 0, input < 0 ? 0 : 180);
 
         new_projectile.SetOnHit(OnHit);
+        new_projectile.SetSource(character);
     }
 
     void OnHit(Character hit, Attack hit_by) {

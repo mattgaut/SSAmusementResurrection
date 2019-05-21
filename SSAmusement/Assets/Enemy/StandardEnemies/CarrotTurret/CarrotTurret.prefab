@@ -110,6 +110,11 @@ MonoBehaviour:
     _cost: 0
     effects:
     - {fileID: 1024881582007325149}
+    _on_ability_used:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
     _cooldown: 5
 --- !u!114 &1024881582007325149
 MonoBehaviour:
@@ -447,6 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _team: 1
   _char_definition:
     _name: Enemy
     _health:

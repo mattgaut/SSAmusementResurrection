@@ -46,7 +46,7 @@ public class AutoClocheHandler : AerialEnemyHandler {
             if (start_tilt < 0) start_tilt += 360;
             while (tilt_time > 0) {
                 yield return new WaitForFixedUpdate();
-                tilt_time -= Time.deltaTime;
+                tilt_time -= GameManager.GetDeltaTime(enemy.team);
                 LerpToUnclampedTilt(start_tilt, 180, (start_tilt_time - tilt_time) / start_tilt_time);
             }
             SetUnclampedTilt(180);
@@ -78,7 +78,7 @@ public class AutoClocheHandler : AerialEnemyHandler {
             _input = (target_position - transform.position).normalized;
             yield return new WaitForFixedUpdate();
             target_position = target.char_definition.head.position + offset;
-            timer += Time.fixedDeltaTime;
+            timer += GameManager.GetFixedDeltaTime(enemy.team);
             if (timer > chase_time_out) {
                 timed_out = true;
                 break;

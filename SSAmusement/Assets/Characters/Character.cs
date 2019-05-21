@@ -8,6 +8,10 @@ using Utilities;
 /// Inherits ICombatant
 /// </summary>
 public class Character : MonoBehaviour {
+    public enum Team { player, enemy }
+
+    [SerializeField] Team _team;
+
     [SerializeField] CharacterDefinition _char_definition;
 
     [SerializeField] float invincibility_length = 0f;
@@ -19,6 +23,10 @@ public class Character : MonoBehaviour {
     [SerializeField] protected bool is_aerial_unit;
 
     [SerializeField] int base_jump_count = 1;
+
+    public Team team {
+        get { return _team; }
+    }
 
     public Animator animator {
         get { return anim; }
@@ -376,6 +384,9 @@ public class Character : MonoBehaviour {
     protected virtual void OnAwake() { }
 
     protected void Start() {
+        GameManager.instance.AddOnTimeScaleChangedEvent(team, OnTimeScaleChanged);
+        OnTimeScaleChanged(GameManager.instance.GetTeamTimeScale(team));
+
         OnStart();
     }
 
@@ -384,6 +395,10 @@ public class Character : MonoBehaviour {
     /// </summary>
     protected virtual void OnStart() {
 
+    }
+
+    protected virtual void OnTimeScaleChanged(float new_time_scale) {
+        anim.speed = new_time_scale;
     }
 
     void Update() {
@@ -398,6 +413,7 @@ public class Character : MonoBehaviour {
 
 
     protected virtual void Die(Character killed_by) {
+        GameManager.instance.RemoveOnTimeScaleChangedEvent(team, OnTimeScaleChanged);
         last_hit_by.GiveKillCredit(this);
         InvokeOnDeath(this, killed_by);
         Destroy(gameObject);
@@ -411,7 +427,7 @@ public class Character : MonoBehaviour {
         float time = 0;
         int lock_value = invincibility_lock.AddLock();
         while (time < invincibility_length) {
-            time += Time.fixedDeltaTime;
+            time += GameManager.GetFixedDeltaTime(team);
             yield return new WaitForFixedUpdate();
         }
         invincibility_lock.RemoveLock(lock_value);
@@ -428,7 +444,7 @@ public class Character : MonoBehaviour {
         knockback_dissipation_time = length;
 
         while (knockback_dissipation_time > 0 && is_knocked_back) {
-            float time_step = Mathf.Min(Time.deltaTime, knockback_dissipation_time);
+            float time_step = Mathf.Min(GameManager.GetDeltaTime(team), knockback_dissipation_time);
 
             Vector2 old_force = force * Mathf.Pow(knockback_dissipation_time / length, 3f);
             knockback_dissipation_time -= time_step;
@@ -460,7 +476,8 @@ public class Character : MonoBehaviour {
 
         float timer = length;
         while (is_dashing && timer > 0 && !crowd_control_effects.IsCCed(CrowdControl.Type.stunned)) {
-            float time_step = Mathf.Min(Time.deltaTime, timer);
+            float time_step = Mathf.Min(GameManager.GetDeltaTime(team), timer);
+
             timer -= time_step;
             dash_force += dash * (time_step / length);
             yield return null;
@@ -475,7 +492,8 @@ public class Character : MonoBehaviour {
         float timer = dash.length;
         Vector2 dash_start = transform.position;
         while (is_dashing && timer > 0 && !crowd_control_effects.IsCCed(CrowdControl.Type.stunned)) {
-            float time_step = Mathf.Min(Time.fixedDeltaTime, timer);
+            float time_step = Mathf.Min(GameManager.GetFixedDeltaTime(team), timer);
+
             timer -= time_step;
             dash_force += dash.GetNext(dash.length - timer);
             yield return new WaitForFixedUpdate();
@@ -495,6 +513,10 @@ public class Character : MonoBehaviour {
         is_dashing = false;
         is_knocked_back = false;
         invincibility_lock.Clear();
+    }
+
+    private void OnDestroy() {
+        GameManager.instance?.RemoveOnTimeScaleChangedEvent(team, OnTimeScaleChanged);
     }
 
     public class CustomDash {

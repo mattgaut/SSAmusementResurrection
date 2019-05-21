@@ -34,7 +34,7 @@ public class ChefBossHandler : EnemyHandler {
 
     protected override void Update() {
         base.Update();
-        last_attack += Time.deltaTime;
+        last_attack += GameManager.GetDeltaTime(enemy.team);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -132,8 +132,8 @@ public class ChefBossHandler : EnemyHandler {
         float time = length;
         float frequency = 0;
         while (time > 0) {
-            time -= Time.fixedDeltaTime;
-            frequency -= Time.fixedDeltaTime;
+            time -= GameManager.GetFixedDeltaTime(enemy.team);
+            frequency -= GameManager.GetFixedDeltaTime(enemy.team);
             if (frequency <= 0) {
                 frequency += pound_rain_drop_frequency;
                 DropObject();
@@ -143,12 +143,12 @@ public class ChefBossHandler : EnemyHandler {
     }
 
     void DropObject() {
-        GameObject new_projectile = Instantiate(rain_object);
+        Projectile new_projectile = Instantiate(rain_object).GetComponent<Projectile>();
         new_projectile.transform.position = far_left_rain.transform.position;
         new_projectile.transform.position += new Vector3(Random.Range(0, far_right_rain.transform.position.x - far_left_rain.transform.position.x), 0f, 0f);
-
-        Attack proj = new_projectile.GetComponent<Attack>();
-        proj.SetOnHit((hit, attack) => enemy.DealDamage(enemy.power, hit));
+        
+        new_projectile.SetOnHit((hit, attack) => enemy.DealDamage(enemy.power, hit));
+        new_projectile.SetSource(enemy);
     }
 
     void Attacked() {

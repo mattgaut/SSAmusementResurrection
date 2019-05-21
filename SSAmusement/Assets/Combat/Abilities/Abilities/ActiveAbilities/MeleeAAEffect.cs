@@ -29,13 +29,13 @@ public class MeleeAAEffect : ActiveAbilityEffect {
         is_using_ability = true;
 
         while (time < wind_up_time) { // wait before hitbox active
-            time += Time.fixedDeltaTime;
+            time += GameManager.GetFixedDeltaTime(character.team);
             yield return new WaitForFixedUpdate();
         }
         attack.Enable();
         time = 0;
         while (time < active_hitbox_time) { // length of basic attack
-            time += Time.fixedDeltaTime;
+            time += GameManager.GetFixedDeltaTime(character.team);
             yield return new WaitForFixedUpdate();
         }
         attack.Disable();

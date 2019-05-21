@@ -58,7 +58,7 @@ public class AerialEnemyHandler : EnemyHandler {
 
         float wander_length = Random.Range(0.5f, 2f);
         while (wander_length > 0) {
-            wander_length -= Time.fixedDeltaTime;
+            wander_length -= GameManager.GetFixedDeltaTime(enemy.team);
             _input = direction;
             if (CanHunt()) {
                 break;
@@ -84,7 +84,7 @@ public class AerialEnemyHandler : EnemyHandler {
 
         _input = (target_position - transform.position).normalized;
 
-        circle_angle += circle_speed * 360 * Time.fixedDeltaTime;
+        circle_angle += circle_speed * 360 * GameManager.GetFixedDeltaTime(enemy.team);
         circle_angle = circle_angle % 360;
         yield return new WaitForFixedUpdate();
     }
@@ -97,21 +97,23 @@ public class AerialEnemyHandler : EnemyHandler {
     protected virtual void Move() {
         Vector3 movement = Vector3.zero;
 
+        bool is_frozen = GameManager.instance.IsTimeFrozen(enemy.team);
+
         if (!enemy.is_knocked_back) {
             if (enemy.is_dashing) {
                 movement = enemy.dash_force;
-                if (movement != Vector3.zero && auto_tilt) {
-                    Tilt((movement.x / Time.deltaTime) / enemy.speed);
+                if (movement != Vector3.zero && auto_tilt && !is_frozen) {                   
+                    Tilt((movement.x / (GameManager.GetDeltaTime(enemy.team))) / enemy.speed);
                 }
                 enemy.dash_force = Vector2.zero;
             } else {
                 velocity = Vector2.SmoothDamp(velocity, input * enemy.speed, ref smooth_damp_velocity, 0.5f);
-                if (auto_tilt) Tilt(velocity.x / enemy.speed);
-                movement = velocity * Time.deltaTime;
+                if (auto_tilt && !is_frozen) Tilt(velocity.x / enemy.speed);
+                movement = velocity * GameManager.GetDeltaTime(enemy.team);
             }
             
         } else {
-            if (auto_tilt) Tilt(enemy.knockback_force.magnitude / Time.deltaTime);
+            if (auto_tilt && !is_frozen) Tilt(enemy.knockback_force.magnitude / (GameManager.GetDeltaTime(enemy.team)));
             movement = enemy.knockback_force;
             enemy.knockback_force = Vector2.zero;
             velocity = movement;

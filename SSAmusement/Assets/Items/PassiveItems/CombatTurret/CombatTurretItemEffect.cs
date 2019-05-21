@@ -88,7 +88,7 @@ public class CombatTurretItemEffect : OnHitItemEffect {
 
     private void FixedUpdate() {
         if (stored_energy < energy_per_shot) {
-            stored_energy += (percent_charge_per_second * energy_per_shot) * Time.fixedDeltaTime;
+            stored_energy += (percent_charge_per_second * energy_per_shot) * GameManager.GetFixedDeltaTime(owner.team);
             if (stored_energy > energy_per_shot) {
                 stored_energy = energy_per_shot;
             }

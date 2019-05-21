@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _team: 1
   _char_definition:
     _name: Chef Cleaver
     _health:

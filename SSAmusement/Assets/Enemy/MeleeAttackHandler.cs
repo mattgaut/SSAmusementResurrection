@@ -28,7 +28,7 @@ public class MeleeAttackHandler : GroundedEnemyHandler {
 
     protected override void Update() {
         base.Update();
-        last_attack += Time.deltaTime;
+        last_attack += GameManager.GetDeltaTime(enemy.team);
     }
 
     protected override void Deactivate() {
@@ -49,7 +49,7 @@ public class MeleeAttackHandler : GroundedEnemyHandler {
         }
         float wander_length = Random.Range(0.5f, 2f);
         while (!ShouldStopMoving(direction) && wander_length > 0) {
-            wander_length -= Time.fixedDeltaTime;
+            wander_length -= GameManager.GetFixedDeltaTime(enemy.team);
             _input.x = direction;
             if (CanHunt()) {
                 break;

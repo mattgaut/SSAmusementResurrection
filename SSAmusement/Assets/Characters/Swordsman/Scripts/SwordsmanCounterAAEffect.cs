@@ -35,7 +35,7 @@ public class SwordsmanCounterAAEffect : ActiveAbilityEffect {
         counter_hitbox.enabled = true;
         while (time < counter_length) {
             yield return new WaitForFixedUpdate();
-            time += Time.fixedDeltaTime;         
+            time += GameManager.GetFixedDeltaTime(character.team);         
             if (counter_hitbox.was_hit && time > min_counter_length) {
                 break;
             }
@@ -50,7 +50,7 @@ public class SwordsmanCounterAAEffect : ActiveAbilityEffect {
 
             while (time < active_hitbox_time) {
                 yield return new WaitForFixedUpdate();
-                time += Time.fixedDeltaTime;
+                time += GameManager.GetFixedDeltaTime(character.team);
             }
 
             counter_attack.Disable();
@@ -64,7 +64,7 @@ public class SwordsmanCounterAAEffect : ActiveAbilityEffect {
             swordsman_hitbox.enabled = true;
             while (time < counter_fail_length) {
                 yield return new WaitForFixedUpdate();
-                time += Time.fixedDeltaTime;
+                time += GameManager.GetFixedDeltaTime(character.team);
             }
             character.animator.SetBool(fail_anim_bool_name, false);
         }

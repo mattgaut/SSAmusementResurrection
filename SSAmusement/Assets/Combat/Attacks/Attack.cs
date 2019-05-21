@@ -28,13 +28,13 @@ public abstract class Attack : MonoBehaviour {
     }
 
     protected virtual void Update() {
-        timer += Time.deltaTime;
+        timer += GameManager.GetDeltaTime(source.team);
     }
 
     public void SetOnHit(OnHit on_hit) {
         this.on_hit = on_hit;
     }
-    public void SetSource(Character _source) {
+    public virtual void SetSource(Character _source) {
         source = _source;
     }
     public virtual void Enable() {

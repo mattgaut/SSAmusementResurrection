@@ -448,6 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _team: 1
   _char_definition:
     _name: Chef Carrot
     _health:
@@ -606,7 +607,7 @@ MonoBehaviour:
   flip_object: {fileID: 1580720217285320}
   base_facing: -1
   no_gravity: 0
-  carrot: {fileID: 1343526335092370, guid: 5a67fd61b90a69440a2a66b1aa088855, type: 3}
+  carrot: {fileID: 114079419140536270, guid: 5a67fd61b90a69440a2a66b1aa088855, type: 3}
   carrot_spawn_transform: {fileID: 4798419426721974}
 --- !u!114 &5084619128344172082
 MonoBehaviour:

@@ -39,6 +39,7 @@ public abstract class EnemyHandler : StateMachineController {
     protected Vector2 _input;
 
     public Vector2 input { get { return _input; } set { _input = value; } }
+    public override bool can_transition { get { return !GameManager.instance.IsTimeFrozen(enemy.team); } }
 
     public bool CanHunt() {
         return target != null && CustomCanHunt() && Vector2.Distance(target.transform.position, transform.position) <= aggro_range && (!need_line_of_sight || HasLineOfSight());
@@ -61,13 +62,13 @@ public abstract class EnemyHandler : StateMachineController {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (bump_damage && collision.gameObject.layer == LayerMask.NameToLayer("Player") && last_bump > bump_cooldown) {
-            last_bump = Time.deltaTime;
+            last_bump = Time.time;
             ConfirmBump(collision.gameObject.GetComponentInParent<Player>());
         }
     }
     private void OnTriggerStay2D(Collider2D collision) {
         if (bump_damage && collision.gameObject.layer == LayerMask.NameToLayer("Player") && last_bump > bump_cooldown) {
-            last_bump = Time.deltaTime;
+            last_bump = GameManager.GetDeltaTime(enemy.team);
             ConfirmBump(collision.gameObject.GetComponentInParent<Player>());
         }
     }
@@ -123,6 +124,6 @@ public abstract class EnemyHandler : StateMachineController {
     }
 
     protected virtual void Update() {
-        last_bump += Time.deltaTime;
+        last_bump += GameManager.GetDeltaTime(enemy.team);
     }
 }

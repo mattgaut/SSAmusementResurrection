@@ -97,7 +97,7 @@ public class PetTurretController : MonoBehaviour {
     }
 
     private void LateUpdate() {
-        timer += Time.deltaTime;
+        timer += GameManager.GetDeltaTime(Character.Team.player);
         if (timer > orbit_period) {
             timer -= orbit_period;
             orbit_direction *= -1;
@@ -115,7 +115,7 @@ public class PetTurretController : MonoBehaviour {
 
         orbit_speed = base_orbit_speed * (1 + (Vector2.Distance(orbit_target, transform.position) / base_orbit_speed));
 
-        transform.position += ((Vector3)orbit_target - transform.position) * orbit_speed * Time.deltaTime;
+        transform.position += ((Vector3)orbit_target - transform.position) * orbit_speed * GameManager.GetDeltaTime(Character.Team.player);
     }
 
     class TargetCallback {

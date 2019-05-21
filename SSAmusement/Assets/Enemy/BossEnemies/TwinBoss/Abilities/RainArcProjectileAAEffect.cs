@@ -37,8 +37,8 @@ public class RainArcProjectileAAEffect : ActiveAbilityEffect {
         while (timer > 0) {
             if (time_since_last_projectile > time_between_projectiles) SpawnProjectile();
             yield return new WaitForFixedUpdate();
-            timer -= Time.fixedDeltaTime;
-            time_since_last_projectile += Time.fixedDeltaTime;
+            timer -= GameManager.GetFixedDeltaTime(character.team);
+            time_since_last_projectile += GameManager.GetFixedDeltaTime(character.team);
         }
 
         character.animator.SetBool(anim_bool_throw, false);
@@ -55,6 +55,7 @@ public class RainArcProjectileAAEffect : ActiveAbilityEffect {
         new_projectile.SetSpeedAndDirection(Quaternion.Euler(0,0, rng.GetFloat(min_angle, max_angle)) * Vector2.up * rng.GetFloat(min_force, max_force));
 
         new_projectile.SetOnHit(OnHit);
+        new_projectile.SetSource(character);
     }
 
     void OnHit(Character hit, Attack hit_by) {

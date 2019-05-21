@@ -66,6 +66,7 @@ public class Enemy : Character {
     void OnDie() {
         DropPickups();
         if (home) home.RemoveEnemy(this);
+        GameManager.instance.RemoveOnTimeScaleChangedEvent(team, OnTimeScaleChanged);
         Destroy(gameObject);
     }
 

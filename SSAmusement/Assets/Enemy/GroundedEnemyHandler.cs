@@ -17,7 +17,7 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
     public int facing { get; private set; }
 
     protected float max_x_movement_per_tick {
-        get { return enemy.speed * Time.fixedDeltaTime; }
+        get { return enemy.speed * GameManager.GetFixedDeltaTime(enemy.team); }
     }
 
     float gravity;
@@ -32,7 +32,7 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
     public event Action on_land;
 
     protected void Face(float i) {
-        if (!can_flip) return;
+        if (!can_flip || GameManager.instance.IsTimeFrozen(enemy.team)) return;
         if (i * base_facing < 0) {
             flip_object.transform.localRotation = Quaternion.Euler(0, 180f, 0);
             facing = 1;
@@ -115,11 +115,11 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
             velocity.y = 0;
             gravity_force.y = 0;
         }
-        gravity_force.y += gravity * Time.deltaTime;
+        gravity_force.y += gravity * GameManager.GetDeltaTime(enemy.team);
 
         if (enemy.is_knocked_back) {
             velocity.y = 0;
-            movement = enemy.knockback_force + (gravity_force * Time.deltaTime);
+            movement = enemy.knockback_force + (gravity_force * GameManager.GetDeltaTime(enemy.team));
             enemy.knockback_force = Vector2.zero;
         } else {
             if (enemy.can_move) {
@@ -132,7 +132,7 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
                 }
 
                 velocity.x = _input.x;
-                movement = ((velocity * enemy.speed) + gravity_force) * Time.deltaTime;
+                movement = ((velocity * enemy.speed) + gravity_force) * GameManager.GetDeltaTime(enemy.team);
                 Face(movement.x);
             }
         }

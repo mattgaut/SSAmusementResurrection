@@ -20,11 +20,11 @@ public class CrowdControlAttackAAEffect : ActiveAbilityEffect {
 
     IEnumerator CCFieldRoutine(float delay, float active_hitbox_length) {
         is_using_ability = true;
-        yield return new WaitForSeconds(delay);
+        yield return GameManager.instance.TeamWaitForSeconds(character.team, delay);
         is_using_ability = false;
 
         attack.Enable();
-        yield return new WaitForSeconds(active_hitbox_length);
+        yield return GameManager.instance.TeamWaitForSeconds(character.team, active_hitbox_length);
         attack.Disable();
     }
 

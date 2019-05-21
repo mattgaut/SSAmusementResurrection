@@ -48,7 +48,7 @@ public class Spike : MonoBehaviour {
         big_spike.Enable();
         float distance = 0;
         while (distance_to_shoot > distance) {
-            float to_move = shoot_speed * Time.fixedDeltaTime;
+            float to_move = shoot_speed * GameManager.GetFixedDeltaTime(Character.Team.enemy);
             if (distance_to_shoot < distance + to_move) {
                 to_move = distance_to_shoot - distance;
             }
@@ -58,10 +58,10 @@ public class Spike : MonoBehaviour {
         }
         big_spike.Disable();
 
-        yield return new WaitForSeconds(length);
+        yield return GameManager.instance.TeamWaitForSeconds(Character.Team.enemy, length);
 
         while (distance > 0) {
-            float to_move = retract_speed * Time.fixedDeltaTime;
+            float to_move = retract_speed * GameManager.GetFixedDeltaTime(Character.Team.enemy);
             if (0 > distance - to_move) {
                 to_move = distance;
             }

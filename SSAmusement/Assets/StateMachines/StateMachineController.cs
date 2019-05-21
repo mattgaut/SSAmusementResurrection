@@ -23,6 +23,7 @@ public class StateMachineController : MonoBehaviour {
     protected Coroutine state_machine_routine;
 
     public bool active { get; private set; }
+    public virtual bool can_transition { get { return true; } }
     [NonSerialized] public bool should_disable_go_on_deactivate = true;
 
     /// <summary>
@@ -64,6 +65,9 @@ public class StateMachineController : MonoBehaviour {
         while (active) {
             if (state_coroutines.ContainsKey(state_machine_instance.current_state)) {
                 yield return state_coroutines[state_machine_instance.current_state].Invoke();
+                while (!can_transition) {
+                    yield return new WaitForFixedUpdate();
+                }
                 state_machine_instance.TransitionUsingCallbacks();
                 //Debug.Log("Transition to " + state_machine_instance.current_state.name);
             } else {

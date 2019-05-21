@@ -115,7 +115,7 @@ public class ByrdmanHandler : EnemyHandler {
             float original_height = transform.position.y;
             float fallen_distance = 0;
             while (fall_distance > fallen_distance) {
-                float to_fall = fall_speed * Time.fixedDeltaTime;
+                float to_fall = fall_speed * GameManager.GetFixedDeltaTime(enemy.team);
                 if (fall_distance < fallen_distance + to_fall) {
                     to_fall = fall_distance - fallen_distance;
                 }
@@ -145,7 +145,7 @@ public class ByrdmanHandler : EnemyHandler {
             }
 
             while (fallen_distance > 0) {
-                float to_raise = raise_speed * Time.fixedDeltaTime;
+                float to_raise = raise_speed * GameManager.GetFixedDeltaTime(enemy.team);
                 if (0 > fallen_distance - to_raise) {
                     to_raise = fallen_distance;
                 }

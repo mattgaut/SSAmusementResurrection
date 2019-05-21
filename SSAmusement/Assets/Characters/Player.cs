@@ -43,6 +43,8 @@ public class Player : Character {
 
     protected override void Die(Character killed_by) {
         last_hit_by.GiveKillCredit(this);
+        GameManager.instance.RemoveOnTimeScaleChangedEvent(team, OnTimeScaleChanged);
+        OnTimeScaleChanged(1f);
         InvokeOnDeath(this, killed_by);
 
         alive = false;

@@ -110,7 +110,7 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
             adjusted_input = Vector2.zero;
         }
 
-        if (!jumping) gravity_force.y += gravity * Time.deltaTime;
+        if (!jumping) gravity_force.y += gravity * GameManager.GetDeltaTime(player.team);
 
         if (player.anti_gravity) { gravity_force.y = 0; }
 
@@ -118,7 +118,7 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
             velocity = Vector3.zero;
             jumping = false;
             gravity_force.y = 0;
-            cont.Move((velocity + gravity_force) * Time.deltaTime);
+            cont.Move((velocity + gravity_force) * GameManager.GetDeltaTime(player.team));
         } else if (!player.is_knocked_back) {
             if (player.is_dashing) {
                 HandleDashingInput();
@@ -131,7 +131,7 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
 
                 HandleXInput(adjusted_input.x);
 
-                cont.Move((velocity + gravity_force) * Time.deltaTime);
+                cont.Move((velocity + gravity_force) * GameManager.GetDeltaTime(player.team));
             }
         } else {
             HandleKnockedBackInput();
@@ -157,7 +157,7 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
 
     void HandleKnockedBackInput() {
         velocity.y = 0;
-        cont.Move(player.knockback_force + (gravity_force * Time.deltaTime));
+        cont.Move(player.knockback_force + (gravity_force * GameManager.GetDeltaTime(player.team)));
         player.knockback_force = Vector2.zero;
     }
 
@@ -245,7 +245,7 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
         float time_left = max_jump_hold;
         bool held = true;
         while (time_left > 0 && held && !cont.collisions.above) {
-            time_left -= Time.fixedDeltaTime;
+            time_left -= GameManager.GetFixedDeltaTime(player.team);
             held = held && MyInput.GetButton("Jump");
             yield return new WaitForFixedUpdate();
         }
@@ -256,7 +256,7 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
         jumping = true;
         float time_left = force;
         while (time_left > 0 && !cont.collisions.above) {
-            time_left -= Time.fixedDeltaTime;
+            time_left -= GameManager.GetFixedDeltaTime(player.team);
             yield return new WaitForFixedUpdate();
         }
         jumping = false;
