@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SoundBank", menuName = "SFX/SoundBank")]
@@ -34,6 +35,14 @@ public class SoundBank : ScriptableObject {
                 Debug.Log(sfx);
             }
         }
+    }
+
+    public List<string> GetAllSFXClipCodenames() {
+        return new List<string>(sound_effects_dictionary.Values.Select((a) => a.codename));
+    }
+
+    public List<string> GetAllSFXClipNames() {
+        return new List<string>(sound_effects_dictionary.Values.Select((a) => a.name));
     }
 
     private void OnEnable() {

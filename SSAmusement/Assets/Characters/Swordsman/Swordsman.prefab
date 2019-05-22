@@ -2092,11 +2092,11 @@ MonoBehaviour:
     default_clip: {fileID: 0}
   jump_sfx:
     _override_clip: {fileID: 0}
-    _default_codename: sfx_character_jump
+    _default_codename: 
     default_clip: {fileID: 0}
   land_sfx:
     _override_clip: {fileID: 0}
-    _default_codename: sfx_character_land
+    _default_codename: 
     default_clip: {fileID: 0}
 --- !u!1 &1859088898386940
 GameObject:
@@ -2240,6 +2240,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06a06e2e31a8bdb42ac57aa239ae7c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 95105598546924122}
+  anim_clip_events: []
 --- !u!1 &1970791191586340
 GameObject:
   m_ObjectHideFlags: 0

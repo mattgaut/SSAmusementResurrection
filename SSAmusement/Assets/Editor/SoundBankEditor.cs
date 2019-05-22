@@ -13,6 +13,8 @@ public class SoundBankEditor : Editor {
     string new_clip_name = "", new_clip_codename;
     SFXClip add_clip;
 
+    string search_string = "";
+
     public override void OnInspectorGUI() {
         SoundBank bank = target as SoundBank;
 
@@ -20,8 +22,15 @@ public class SoundBankEditor : Editor {
         EditorGUILayout.ObjectField("Script", MonoScript.FromScriptableObject(bank), typeof(MonoScript), false);
         EditorGUI.EndDisabledGroup();
 
+        search_string = EditorGUILayout.TextField(search_string);
+
         SerializedProperty array = serializedObject.FindProperty("_sound_effect_list");
         for (int i = 0; i < array.arraySize; i++) {
+            SFXClip current_clip = array.GetArrayElementAtIndex(i).objectReferenceValue as SFXClip;
+            if (current_clip == null || (search_string != "" && !current_clip.codename.Contains(search_string) && !current_clip.name.Contains(search_string))) {
+                continue;
+            }
+
             EditorGUILayout.BeginHorizontal();
 
             if (GUILayout.Button("X", GUILayout.MaxWidth(20f))) {

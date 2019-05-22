@@ -46,13 +46,10 @@ public class AnimatorWrapper : MonoBehaviour, ISerializationCallbackReceiver {
 
     public void TriggerAnimEvent(int event_index) {
         string anim_clip_name = anim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
-        Debug.Log("TriggerEvent" + " : " + anim_clip_name);
         ClipEventList list = GetClipEventList(anim_clip_name);
         if (GetClipEventList(anim_clip_name) == null
             || list.events.Count <= event_index)
             return;
-
-        Debug.Log("TriggerEvent" + " : " + list.events[event_index]);
 
         list.events[event_index].Invoke();
     }
