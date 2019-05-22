@@ -9,7 +9,7 @@ public class MeleeAAEffect : ActiveAbilityEffect {
 
     [SerializeField] Attack attack;
 
-    [SerializeField] string anim_trigger_name;
+    [SerializeField] AnimParameterEvent begin_anim;
 
     [SerializeField] Vector2 knockback;
 
@@ -24,7 +24,7 @@ public class MeleeAAEffect : ActiveAbilityEffect {
     }
 
     IEnumerator AbilityCoroutine() {
-        character.animator.SetTrigger(anim_trigger_name);
+        character.animator.ProccessAnimParameterEvent(begin_anim);
         float time = 0;
         is_using_ability = true;
 

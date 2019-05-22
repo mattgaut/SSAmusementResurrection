@@ -8,7 +8,7 @@ public class SwordsmanCounterAAEffect : ActiveAbilityEffect {
     [SerializeField] Collider2D swordsman_hitbox;
     [SerializeField] CounterHitbox counter_hitbox;
     [SerializeField] float counter_length, min_counter_length, counter_fail_length, active_hitbox_time;
-    [SerializeField] string counter_anim_trigger_name, success_anim_trigger_name, fail_anim_bool_name;
+    [SerializeField] AnimParameterEvent counter_anim, success_anim, fail_anim;
     [SerializeField] Vector2 knockback;
 
 
@@ -28,7 +28,7 @@ public class SwordsmanCounterAAEffect : ActiveAbilityEffect {
         int move_lock = character.LockMovement();
         int grav_lock = character.LockGravity();
         character.RaiseCancelVelocityFlag();
-        character.animator.SetTrigger(counter_anim_trigger_name);
+        character.animator.ProccessAnimParameterEvent(counter_anim);
         float time = 0;
 
         swordsman_hitbox.enabled = false;
@@ -46,7 +46,7 @@ public class SwordsmanCounterAAEffect : ActiveAbilityEffect {
         if (counter_hitbox.was_hit) {
             counter_hitbox.enabled = false;
             counter_attack.Enable();
-            character.animator.SetTrigger(success_anim_trigger_name);
+            character.animator.ProccessAnimParameterEvent(success_anim);
 
             while (time < active_hitbox_time) {
                 yield return new WaitForFixedUpdate();
@@ -60,13 +60,13 @@ public class SwordsmanCounterAAEffect : ActiveAbilityEffect {
             character.UnlockGravity(grav_lock);
             counter_hitbox.enabled = false;
 
-            character.animator.SetBool(fail_anim_bool_name, true);
+            character.animator.ProccessAnimParameterEvent(fail_anim);
             swordsman_hitbox.enabled = true;
             while (time < counter_fail_length) {
                 yield return new WaitForFixedUpdate();
                 time += GameManager.GetFixedDeltaTime(character.team);
             }
-            character.animator.SetBool(fail_anim_bool_name, false);
+            character.animator.ProccessAnimParameterEvent(fail_anim.Reverse());
         }
 
         is_using_ability = false;

@@ -152,4 +152,13 @@ public class AnimParameterEvent {
     public Type type;
     public bool bool_value;
     public float float_value;
+
+    public AnimParameterEvent Reverse() {
+        AnimParameterEvent e = new AnimParameterEvent();
+        e.parameter_name = parameter_name;
+        e.type = type;
+        e.float_value = -float_value;
+        e.bool_value = !bool_value;
+        return e;
+    }
 }

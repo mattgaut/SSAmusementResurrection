@@ -2989,7 +2989,11 @@ MonoBehaviour:
   wind_up_time: 0.1
   active_hitbox_time: 0.12
   attack: {fileID: 114215308427159830}
-  anim_trigger_name: Attack
+  begin_anim:
+    parameter_name: Attack
+    type: 1
+    bool_value: 0
+    float_value: 0
   knockback: {x: 1.5, y: 1.25}
 --- !u!114 &2317315680420115343
 MonoBehaviour:
@@ -3010,9 +3014,21 @@ MonoBehaviour:
   min_counter_length: 0.1
   counter_fail_length: 1
   active_hitbox_time: 0.22
-  counter_anim_trigger_name: Counter
-  success_anim_trigger_name: CounterSuccess
-  fail_anim_bool_name: CounterFail
+  counter_anim:
+    parameter_name: Counter
+    type: 1
+    bool_value: 0
+    float_value: 0
+  success_anim:
+    parameter_name: CounterSuccess
+    type: 1
+    bool_value: 0
+    float_value: 0
+  fail_anim:
+    parameter_name: CounterFail
+    type: 0
+    bool_value: 1
+    float_value: 0
   knockback: {x: 2.25, y: 1.8}
 --- !u!114 &7012055679326885063
 MonoBehaviour:
