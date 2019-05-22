@@ -18,7 +18,7 @@ public class Character : MonoBehaviour {
 
     [SerializeField] protected bool knockback_resistant;
 
-    [SerializeField] protected Animator anim;
+    [SerializeField] protected AnimatorWrapper anim;
 
     [SerializeField] protected bool is_aerial_unit;
 
@@ -28,7 +28,7 @@ public class Character : MonoBehaviour {
         get { return _team; }
     }
 
-    public Animator animator {
+    public AnimatorWrapper animator {
         get { return anim; }
     }
 

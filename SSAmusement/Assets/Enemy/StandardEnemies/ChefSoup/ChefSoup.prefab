@@ -92,7 +92,7 @@ MonoBehaviour:
     _head: {fileID: 4222802027142606}
   invincibility_length: 0
   knockback_resistant: 0
-  anim: {fileID: 95571586174542020}
+  anim: {fileID: 7388346604591281186}
   is_aerial_unit: 0
   base_jump_count: 1
   _icon: {fileID: 21300018, guid: ed72b35046af6c94a9686e7d99a20798, type: 3}
@@ -157,7 +157,7 @@ MonoBehaviour:
       _name: CanHunt
     callback_name: CanHunt
     callback_is_field: 0
-    callback_index: 2
+    callback_index: 3
   - parameter:
       _name: IsAttackOffCooldown
     callback_name: AttackReady
@@ -764,7 +764,7 @@ GameObject:
   - component: {fileID: 4090401177434348}
   - component: {fileID: 95571586174542020}
   - component: {fileID: 212172832687273668}
-  - component: {fileID: 114128918105272334}
+  - component: {fileID: 7388346604591281186}
   m_Layer: 16
   m_Name: Sprite
   m_TagString: Untagged
@@ -853,7 +853,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &114128918105272334
+--- !u!114 &7388346604591281186
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -862,55 +862,58 @@ MonoBehaviour:
   m_GameObject: {fileID: 1851327908117654}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966aae78d37ee3140b293e10bfae5915, type: 3}
+  m_Script: {fileID: 11500000, guid: 06a06e2e31a8bdb42ac57aa239ae7c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ue:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114169939856335424}
-        m_MethodName: AnimEnableHitbox
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114169939856335424}
-        m_MethodName: AnimDisableHitbox
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114169939856335424}
-        m_MethodName: AnimAttackOver
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  anim: {fileID: 95571586174542020}
+  anim_clip_events:
+  - clip_name: ChefSoupAttack
+    events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114169939856335424}
+          m_MethodName: AnimEnableHitbox
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114169939856335424}
+          m_MethodName: AnimDisableHitbox
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114169939856335424}
+          m_MethodName: AnimAttackOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
 --- !u!1 &1909705947543688
 GameObject:
   m_ObjectHideFlags: 0

@@ -121,7 +121,7 @@ MonoBehaviour:
     _head: {fileID: 4441290769745768}
   invincibility_length: 0
   knockback_resistant: 1
-  anim: {fileID: 95571586174542020}
+  anim: {fileID: 6345477125358841126}
   is_aerial_unit: 0
   base_jump_count: 1
   _icon: {fileID: 21300000, guid: ed22a6a83ec84b3499d566b3057320d8, type: 3}
@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 4090401177434348}
   - component: {fileID: 95571586174542020}
   - component: {fileID: 212172832687273668}
-  - component: {fileID: 1694605930}
+  - component: {fileID: 6345477125358841126}
   m_Layer: 16
   m_Name: Sprite
   m_TagString: Untagged
@@ -484,7 +484,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1694605930
+--- !u!114 &6345477125358841126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -493,25 +493,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1851327908117654}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966aae78d37ee3140b293e10bfae5915, type: 3}
+  m_Script: {fileID: 11500000, guid: 06a06e2e31a8bdb42ac57aa239ae7c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ue:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4144601498022036350}
-        m_MethodName: FinishWindUp
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  anim: {fileID: 95571586174542020}
+  anim_clip_events:
+  - clip_name: Windup
+    events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4144601498022036350}
+          m_MethodName: FinishWindUp
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
 --- !u!1 &1909705947543688
 GameObject:
   m_ObjectHideFlags: 0

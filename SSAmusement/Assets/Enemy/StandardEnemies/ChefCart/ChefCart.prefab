@@ -591,6 +591,7 @@ GameObject:
   - component: {fileID: 4474835095881310}
   - component: {fileID: 95148018003385476}
   - component: {fileID: 212323778898310686}
+  - component: {fileID: 3055739977265021741}
   m_Layer: 16
   m_Name: Sprite
   m_TagString: Untagged
@@ -679,6 +680,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3055739977265021741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798779902160102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a06e2e31a8bdb42ac57aa239ae7c3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1840292262480714
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,7 +782,7 @@ MonoBehaviour:
     _head: {fileID: 4788624235181360}
   invincibility_length: 0
   knockback_resistant: 0
-  anim: {fileID: 95148018003385476}
+  anim: {fileID: 3055739977265021741}
   is_aerial_unit: 0
   base_jump_count: 1
   _icon: {fileID: 21300000, guid: e513d137984e0ff48a26bd3e44d6c91e, type: 3}
@@ -829,7 +842,7 @@ MonoBehaviour:
       _name: CanHunt
     callback_name: CanHunt
     callback_is_field: 0
-    callback_index: 0
+    callback_index: 1
   state_coroutine_list:
   - state:
       _name: Wander

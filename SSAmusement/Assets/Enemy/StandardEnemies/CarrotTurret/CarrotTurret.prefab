@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 8898629033204391987}
   - component: {fileID: 8807939972094253361}
   - component: {fileID: 8763378958583309977}
-  - component: {fileID: 8861242201755317255}
+  - component: {fileID: 2010271263722798225}
   m_Layer: 16
   m_Name: Sprite
   m_TagString: Untagged
@@ -231,7 +231,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8861242201755317255
+--- !u!114 &2010271263722798225
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -240,25 +240,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8892699010648507215}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966aae78d37ee3140b293e10bfae5915, type: 3}
+  m_Script: {fileID: 11500000, guid: 06a06e2e31a8bdb42ac57aa239ae7c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ue:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: AnimReleaseThrow
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &8892986818558378481
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,7 +456,7 @@ MonoBehaviour:
     _head: {fileID: 8890520838633770433}
   invincibility_length: 0
   knockback_resistant: 1
-  anim: {fileID: 8807939972094253361}
+  anim: {fileID: 2010271263722798225}
   is_aerial_unit: 0
   base_jump_count: 1
   _icon: {fileID: 21300000, guid: 0557551fc7c8f1f49b7414bbbe0cb130, type: 3}

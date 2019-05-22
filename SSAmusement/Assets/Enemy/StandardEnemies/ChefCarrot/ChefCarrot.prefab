@@ -468,7 +468,7 @@ MonoBehaviour:
     _head: {fileID: 4304777908820072}
   invincibility_length: 0
   knockback_resistant: 0
-  anim: {fileID: 95178165471317144}
+  anim: {fileID: 1042660647230418803}
   is_aerial_unit: 0
   base_jump_count: 1
   _icon: {fileID: 21300004, guid: 347819ce6a5113041b373cc0acf44101, type: 3}
@@ -538,7 +538,7 @@ MonoBehaviour:
       _name: CanHunt
     callback_name: CanHunt
     callback_is_field: 0
-    callback_index: 3
+    callback_index: 4
   - parameter:
       _name: IsAttackOffCooldown
     callback_name: get_is_attack_ready
@@ -822,7 +822,7 @@ GameObject:
   - component: {fileID: 4632517379290522}
   - component: {fileID: 95178165471317144}
   - component: {fileID: 212781952453014320}
-  - component: {fileID: 114637694067122606}
+  - component: {fileID: 1042660647230418803}
   m_Layer: 16
   m_Name: Sprite
   m_TagString: Untagged
@@ -912,7 +912,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &114637694067122606
+--- !u!114 &1042660647230418803
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -921,25 +921,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1974821814720230}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966aae78d37ee3140b293e10bfae5915, type: 3}
+  m_Script: {fileID: 11500000, guid: 06a06e2e31a8bdb42ac57aa239ae7c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ue:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114335495822685826}
-        m_MethodName: AnimReleaseThrow
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  anim: {fileID: 95178165471317144}
+  anim_clip_events:
+  - clip_name: ChefCarrotAttack
+    events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114335495822685826}
+          m_MethodName: AnimReleaseThrow
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
 --- !u!1 &7262664556309001122
 GameObject:
   m_ObjectHideFlags: 0

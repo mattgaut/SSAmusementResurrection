@@ -22,6 +22,10 @@ public class ChefCarrotHandler : GroundedEnemyHandler {
         get { return Vector2.Distance(target.transform.position, transform.position) > 6; }
     }
 
+    protected override void Ini() {
+        base.Ini();
+    }
+
     protected override void Update() {
         base.Update();
         last_throw += GameManager.GetDeltaTime(enemy.team);

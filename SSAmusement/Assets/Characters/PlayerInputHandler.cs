@@ -192,7 +192,7 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
 
         if (x_input != 0 && (cont.collisions.below || cont.collisions.below_last_frame)) {
             player.animator.SetBool("Running", true);
-            if (player.animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerRun")) {
+            if (player.animator.IsAnimInState("PlayerRun")) {
                 player.animator.speed = Mathf.Abs(velocity.x / 5f);
             } else {
                 player.animator.speed = 1f;
