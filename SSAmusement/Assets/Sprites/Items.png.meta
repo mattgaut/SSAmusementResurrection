@@ -10,6 +10,7 @@ TextureImporter:
     21300010: MedKit
     21300012: DefenseMatrix
     21300014: TimeCrystal
+    21300016: PercussiveCapacitor
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -258,6 +259,26 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: e572dadfd52db7f4491681c305bddb5d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PercussiveCapacitor
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 207
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d18e4187c1e31a49a4b397ba6620cb5
       vertices: []
       indices: 
       edges: []
