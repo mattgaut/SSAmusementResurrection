@@ -20,6 +20,22 @@ public class StatBuff : BuffDefinition, IStatBuff {
         }
     }
 
+    public void SetFlat(float flat) {
+        _flat = flat;
+    }
+
+    public void SetMulti(float multi) {
+        _multi = multi;
+    }
+
+    public void SetAffectedStats(bool health = false, bool energy = false, bool power = false, bool armor = false, bool speed = false) {
+        this.health = health;
+        this.energy = energy;
+        this.power = power;
+        this.armor = armor;
+        this.speed = speed;
+    }
+
     public override void Apply(Character stat_entity) {
         if (health) {
             stat_entity.health.AddBuff(this);

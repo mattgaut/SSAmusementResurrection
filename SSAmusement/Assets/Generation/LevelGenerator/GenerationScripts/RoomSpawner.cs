@@ -15,6 +15,8 @@ public class RoomSpawner : MonoBehaviour {
     BossRoomController boss_room_controller;
     TeleporterRoomController teleporter_room_controller;
 
+    [SerializeField] StatBuff health_buff, speed_buff, power_buff, armor_buff;
+
     public void Generate(Dictionary<Vector2Int, RoomController> room_dict, TileSet ts) {
         Clear();
 
@@ -85,6 +87,23 @@ public class RoomSpawner : MonoBehaviour {
             } else {
                 rooms.Add(new_room);
             }
+        }
+
+        int count = GameManager.instance.level_count - 1;
+        health_buff.SetFlat(3 *  count);
+        health_buff.SetMulti(1 + (.4f * count));
+        speed_buff.SetMulti(1 + (.25f * count));
+        armor_buff.SetFlat(1f * count);
+        power_buff.SetFlat(2 * count);
+        power_buff.SetMulti(1 + (.2f * count));
+
+        Debug.Log(count);
+
+        foreach (Enemy e in enemies) {
+            power_buff.Apply(e);
+            armor_buff.Apply(e);
+            speed_buff.Apply(e);
+            health_buff.Apply(e);
         }
 
         if (boss_room_controller != null) {

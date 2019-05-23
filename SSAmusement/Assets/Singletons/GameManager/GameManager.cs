@@ -234,6 +234,7 @@ public class GameManager : Singleton<GameManager> {
         room_manager.LoadBackgrounds(level.level_set.background);
         room_manager.SetRooms(room_spawner.GetNeighbors());
         room_manager.SetActiveRoom(room_spawner.GetOrigin().GetComponent<RoomController>());
+        ResetTimeScales();
 
         if (player != null) player.transform.position = new Vector3(2, 1, 0);
         game_time = last_game_time;
@@ -256,14 +257,18 @@ public class GameManager : Singleton<GameManager> {
     }
 
     void ResetMemory() {
-        Time.timeScale = 1f;
-        foreach (Character.Team team in System.Enum.GetValues(typeof(Character.Team))) {
-            SetTeamTimeScale(team, 1f);
-        }
+        ResetTimeScales();
         level_count = 0;
         input_locks = 0;
         game_time = 0;
         is_paused = is_select_screen_up = is_cutscene_running = false;
+    }
+
+    void ResetTimeScales() {
+        Time.timeScale = 1f;
+        foreach (Character.Team team in System.Enum.GetValues(typeof(Character.Team))) {
+            SetTeamTimeScale(team, 1f);
+        }
     }
 
     void Pause() {
