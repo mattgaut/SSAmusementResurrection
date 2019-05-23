@@ -49,7 +49,6 @@ public class FPSCounter : MonoBehaviour {
         }
     }
 
-    //
     public static void SetPosition(Position pos) {
         if (instance) {
             position = pos;

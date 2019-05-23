@@ -149,20 +149,20 @@ MonoBehaviour:
   state_machine: {fileID: 11400000, guid: 97f3af63908ecc64da987c840ddca144, type: 2}
   parameter_callback_list:
   - parameter:
-      _name: IsInRange
-    callback_name: IsInAttackRange
+      _name: IsTooClose
+    callback_name: IsTooClose
     callback_is_field: 0
-    callback_index: 0
+    callback_index: 1
   - parameter:
       _name: CanHunt
     callback_name: CanHunt
     callback_is_field: 0
-    callback_index: 3
+    callback_index: 5
   - parameter:
-      _name: IsAttackOffCooldown
-    callback_name: AttackReady
+      _name: CanAttack
+    callback_name: CanMeleeAttack
     callback_is_field: 0
-    callback_index: 1
+    callback_index: 3
   state_coroutine_list:
   - state:
       _name: Wander

@@ -9,6 +9,7 @@ TextureImporter:
     21300008: RoomIcons_1
     21300010: RoomIcons_2
     21300012: RoomIcons_3
+    21300014: RoomIcons_4
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -70,7 +71,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -81,7 +82,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -92,7 +93,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -116,7 +117,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5038b3e5806cbf4ea42c5caac8444ff
+      spriteID: a4bec811451a34b4380e2b3cb4ccaddd
       vertices: []
       indices: 
       edges: []
@@ -136,7 +137,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 911e992b76c34754f8384ce5c6b4fd27
+      spriteID: 525a423a442ee2c438bf62c33e6b5b3d
       vertices: []
       indices: 
       edges: []
@@ -156,7 +157,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ef14974556eb1945857545b8087b475
+      spriteID: b7cf213b03a04f041a1a6cd6ed7f9aa3
       vertices: []
       indices: 
       edges: []
@@ -176,7 +177,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1907d420d7e22ca4ba588ade98dc0b18
+      spriteID: 853d01bdc32ee0145bab2e7da0e21540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomIcons_4
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 80
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92d523270f98c52499d0d6c3e9dc7fb1
       vertices: []
       indices: 
       edges: []

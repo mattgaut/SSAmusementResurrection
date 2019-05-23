@@ -33,6 +33,10 @@ public class Projectile : SingleHitAttack {
         GameManager.instance.AddOnTimeScaleChangedEvent(source.team, OnChangeTimeScale);
     }
 
+    public void Flip() {
+        base_direction.x = -base_direction.x;
+    }
+
     public void EndLife() {
         if (source != null) GameManager.instance.RemoveOnTimeScaleChangedEvent(source.team, OnChangeTimeScale);
         Destroy(gameObject);
@@ -51,8 +55,10 @@ public class Projectile : SingleHitAttack {
         }
         base.Update();
 
+        float time_step = GameManager.GetDeltaTime(source?.team);
+
         if (ignore_wall_timer >= 0) {
-            ignore_wall_timer -= GameManager.GetDeltaTime(source.team);
+            ignore_wall_timer -= time_step;
             if (ignore_wall_timer < 0) {
                 break_mask = break_after_timer_mask | break_mask;
             }
@@ -60,13 +66,13 @@ public class Projectile : SingleHitAttack {
         if (timer > max_lifetime && max_lifetime != 0) {
             Explode();
         }
+
         Turn();
 
+        transform.position += transform.localRotation * base_direction * speed * time_step;
+        transform.position += gravity_vector * time_step;
 
-        transform.position += transform.localRotation * base_direction * speed * GameManager.GetDeltaTime(source.team);
-        transform.position += gravity_vector * GameManager.GetDeltaTime(source.team);
-
-        gravity_vector += Vector3.down * gravity_force * GameManager.GetDeltaTime(source.team);
+        gravity_vector += Vector3.down * gravity_force * time_step;
     }
 
     protected virtual void Turn() {

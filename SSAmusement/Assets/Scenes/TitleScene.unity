@@ -5813,6 +5813,7 @@ GameObject:
   - component: {fileID: 116818884}
   - component: {fileID: 116818886}
   - component: {fileID: 116818885}
+  - component: {fileID: 116818888}
   m_Layer: 16
   m_Name: Sprite
   m_TagString: Untagged
@@ -6023,6 +6024,54 @@ Transform:
   m_Father: {fileID: 940688096}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &116818888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116818883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a06e2e31a8bdb42ac57aa239ae7c3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 116818884}
+  anim_clip_events:
+  - clip_name: ChefBossCleaver
+    events:
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - clip_name: ChefBossPound
+    events:
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - clip_name: ChefBossSoup
+    events:
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
 --- !u!1 &117489176
 GameObject:
   m_ObjectHideFlags: 0
@@ -20253,6 +20302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _team: 0
   _char_definition:
     _name: 
     _health:
@@ -20272,12 +20322,11 @@ MonoBehaviour:
     _head: {fileID: 0}
   invincibility_length: 0
   knockback_resistant: 1
-  anim: {fileID: 116818884}
+  anim: {fileID: 116818888}
   is_aerial_unit: 0
   base_jump_count: 1
   _icon: {fileID: 0}
   drop_on_death: []
-  on_death_sfx: {fileID: 0}
 --- !u!114 &438775508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23390,6 +23439,14 @@ MonoBehaviour:
   hard_locked: 0
   initially_open: 0
   force_open: 0
+  open_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_door_open
+    default_clip: {fileID: 0}
+  close_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_door_close
+    default_clip: {fileID: 0}
 --- !u!61 &518534945
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28965,6 +29022,7 @@ MonoBehaviour:
   targets:
     serializedVersion: 2
     m_Bits: 2048
+  is_blindable: 0
 --- !u!1 &630407242
 GameObject:
   m_ObjectHideFlags: 0
@@ -36755,6 +36813,14 @@ MonoBehaviour:
   hard_locked: 0
   initially_open: 0
   force_open: 0
+  open_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_door_open
+    default_clip: {fileID: 0}
+  close_sfx:
+    _override_clip: {fileID: 0}
+    _default_codename: sfx_door_close
+    default_clip: {fileID: 0}
 --- !u!61 &788658888
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -39608,6 +39674,7 @@ MonoBehaviour:
   targets:
     serializedVersion: 2
     m_Bits: 2048
+  is_blindable: 0
 --- !u!60 &841399887
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -73509,9 +73576,6 @@ GameObject:
   - component: {fileID: 1566816464}
   - component: {fileID: 1566816463}
   - component: {fileID: 1566816462}
-  - component: {fileID: 1566816468}
-  - component: {fileID: 1566816467}
-  - component: {fileID: 1566816466}
   m_Layer: 5
   m_Name: PermanentObject
   m_TagString: Untagged
@@ -73600,212 +73664,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!82 &1566816466
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1566816461}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
---- !u!82 &1566816467
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1566816461}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
---- !u!114 &1566816468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1566816461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1c60d84ec4cfd54fb4b77d8074b1932, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  main: {fileID: 1566816467}
-  fade_in: {fileID: 1566816466}
 --- !u!1 &1566895546
 GameObject:
   m_ObjectHideFlags: 0
@@ -101980,6 +101838,7 @@ GameObject:
   - component: {fileID: 4474836050712428}
   - component: {fileID: 95148017082305974}
   - component: {fileID: 212323779860277036}
+  - component: {fileID: 1798781099212245}
   m_Layer: 16
   m_Name: Sprite
   m_TagString: Untagged
@@ -101987,6 +101846,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1798781099212245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798781099212244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a06e2e31a8bdb42ac57aa239ae7c3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 95148017082305974}
+  anim_clip_events: []
 --- !u!1 &1798781578087940
 GameObject:
   m_ObjectHideFlags: 0
@@ -101998,6 +101871,7 @@ GameObject:
   - component: {fileID: 4474835454715068}
   - component: {fileID: 95148017560714854}
   - component: {fileID: 212323780456830204}
+  - component: {fileID: 1798781578087941}
   m_Layer: 16
   m_Name: Sprite
   m_TagString: Untagged
@@ -102005,6 +101879,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1798781578087941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798781578087940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a06e2e31a8bdb42ac57aa239ae7c3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 95148017560714854}
+  anim_clip_events: []
 --- !u!1 &1840290465049000
 GameObject:
   m_ObjectHideFlags: 0
@@ -102059,6 +101947,7 @@ GameObject:
   - component: {fileID: 95571586496153525}
   - component: {fileID: 212172832369840565}
   - component: {fileID: 114128917823428479}
+  - component: {fileID: 1851327624240104}
   m_Layer: 16
   m_Name: Sprite
   m_TagString: Untagged
@@ -102066,6 +101955,40 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1851327624240104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851327624240103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a06e2e31a8bdb42ac57aa239ae7c3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 95571586496153525}
+  anim_clip_events:
+  - clip_name: ChefCleaverAttack
+    events:
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - clip_name: ChefCleaverThrow
+    events:
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
 --- !u!1 &1851327793894831
 GameObject:
   m_ObjectHideFlags: 0
@@ -102078,6 +102001,7 @@ GameObject:
   - component: {fileID: 95571586053704189}
   - component: {fileID: 212172832808361981}
   - component: {fileID: 114128918261553463}
+  - component: {fileID: 1851327793894832}
   m_Layer: 16
   m_Name: Sprite
   m_TagString: Untagged
@@ -102085,6 +102009,40 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1851327793894832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851327793894831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a06e2e31a8bdb42ac57aa239ae7c3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 95571586053704189}
+  anim_clip_events:
+  - clip_name: ChefCleaverAttack
+    events:
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - clip_name: ChefCleaverThrow
+    events:
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
 --- !u!1 &1851327816741091
 GameObject:
   m_ObjectHideFlags: 0
@@ -102097,6 +102055,7 @@ GameObject:
   - component: {fileID: 95571586135862449}
   - component: {fileID: 212172832730413745}
   - component: {fileID: 114128918016031867}
+  - component: {fileID: 1851327816741092}
   m_Layer: 16
   m_Name: Sprite
   m_TagString: Untagged
@@ -102104,6 +102063,40 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1851327816741092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851327816741091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a06e2e31a8bdb42ac57aa239ae7c3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 95571586135862449}
+  anim_clip_events:
+  - clip_name: ChefCleaverAttack
+    events:
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - clip_name: ChefCleaverThrow
+    events:
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
 --- !u!1 &1851327835414353
 GameObject:
   m_ObjectHideFlags: 0
@@ -102116,6 +102109,7 @@ GameObject:
   - component: {fileID: 95571586150597379}
   - component: {fileID: 212172832715396355}
   - component: {fileID: 114128918032602057}
+  - component: {fileID: 1851327835414354}
   m_Layer: 16
   m_Name: Sprite
   m_TagString: Untagged
@@ -102123,6 +102117,40 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1851327835414354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851327835414353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a06e2e31a8bdb42ac57aa239ae7c3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 95571586150597379}
+  anim_clip_events:
+  - clip_name: ChefCleaverAttack
+    events:
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - clip_name: ChefCleaverThrow
+    events:
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
 --- !u!1 &1897830882021831
 GameObject:
   m_ObjectHideFlags: 0
@@ -102251,6 +102279,7 @@ GameObject:
   - component: {fileID: 95178166124647828}
   - component: {fileID: 212781952072313404}
   - component: {fileID: 114637694487541922}
+  - component: {fileID: 1974822233165803}
   m_Layer: 16
   m_Name: Sprite
   m_TagString: Untagged
@@ -102258,6 +102287,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1974822233165803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974822233165802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a06e2e31a8bdb42ac57aa239ae7c3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 95178166124647828}
+  anim_clip_events:
+  - clip_name: ChefCarrotAttack
+    events:
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
 --- !u!1 &1974822507919047
 GameObject:
   m_ObjectHideFlags: 0
@@ -102270,6 +102319,7 @@ GameObject:
   - component: {fileID: 95178166382652601}
   - component: {fileID: 212781951743267601}
   - component: {fileID: 114637694229496207}
+  - component: {fileID: 1974822507919048}
   m_Layer: 16
   m_Name: Sprite
   m_TagString: Untagged
@@ -102277,6 +102327,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1974822507919048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974822507919047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a06e2e31a8bdb42ac57aa239ae7c3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 95178166382652601}
+  anim_clip_events:
+  - clip_name: ChefCarrotAttack
+    events:
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
 --- !u!1 &1974822940202906
 GameObject:
   m_ObjectHideFlags: 0
@@ -102289,6 +102359,7 @@ GameObject:
   - component: {fileID: 95178166495088100}
   - component: {fileID: 212781951361872460}
   - component: {fileID: 114637695189721298}
+  - component: {fileID: 1974822940202907}
   m_Layer: 16
   m_Name: Sprite
   m_TagString: Untagged
@@ -102296,6 +102367,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1974822940202907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974822940202906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a06e2e31a8bdb42ac57aa239ae7c3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 95178166495088100}
+  anim_clip_events:
+  - clip_name: ChefCarrotAttack
+    events:
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
 --- !u!1 &1983887374908549
 GameObject:
   m_ObjectHideFlags: 0
@@ -104099,6 +104190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _team: 0
   _char_definition:
     _name: Chef Cleaver
     _health:
@@ -104118,12 +104210,11 @@ MonoBehaviour:
     _head: {fileID: 4090400925015965}
   invincibility_length: 0
   knockback_resistant: 0
-  anim: {fileID: 95571586496153525}
+  anim: {fileID: 1851327624240104}
   is_aerial_unit: 0
   base_jump_count: 1
   _icon: {fileID: 21300000, guid: 63ddf26841bb40a4a8ecb4e84528873a, type: 3}
   drop_on_death: []
-  on_death_sfx: {fileID: 0}
 --- !u!114 &114055846164110559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104136,6 +104227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _team: 0
   _char_definition:
     _name: Chef Cleaver
     _health:
@@ -104155,12 +104247,11 @@ MonoBehaviour:
     _head: {fileID: 4090401040142805}
   invincibility_length: 0
   knockback_resistant: 0
-  anim: {fileID: 95571586053704189}
+  anim: {fileID: 1851327793894832}
   is_aerial_unit: 0
   base_jump_count: 1
   _icon: {fileID: 21300000, guid: 63ddf26841bb40a4a8ecb4e84528873a, type: 3}
   drop_on_death: []
-  on_death_sfx: {fileID: 0}
 --- !u!114 &114055846317439379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104173,6 +104264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _team: 0
   _char_definition:
     _name: Chef Cleaver
     _health:
@@ -104192,12 +104284,11 @@ MonoBehaviour:
     _head: {fileID: 4090401151071385}
   invincibility_length: 0
   knockback_resistant: 0
-  anim: {fileID: 95571586135862449}
+  anim: {fileID: 1851327816741092}
   is_aerial_unit: 0
   base_jump_count: 1
   _icon: {fileID: 21300000, guid: 63ddf26841bb40a4a8ecb4e84528873a, type: 3}
   drop_on_death: []
-  on_death_sfx: {fileID: 0}
 --- !u!114 &114055846334404129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104210,6 +104301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _team: 0
   _char_definition:
     _name: Chef Cleaver
     _health:
@@ -104229,12 +104321,11 @@ MonoBehaviour:
     _head: {fileID: 4090401133042475}
   invincibility_length: 0
   knockback_resistant: 0
-  anim: {fileID: 95571586150597379}
+  anim: {fileID: 1851327793894832}
   is_aerial_unit: 0
   base_jump_count: 1
   _icon: {fileID: 21300000, guid: 63ddf26841bb40a4a8ecb4e84528873a, type: 3}
   drop_on_death: []
-  on_death_sfx: {fileID: 0}
 --- !u!114 &114059993754769520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104672,6 +104763,7 @@ MonoBehaviour:
   targets:
     serializedVersion: 2
     m_Bits: 2048
+  is_blindable: 0
 --- !u!114 &114144826947582487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104687,6 +104779,7 @@ MonoBehaviour:
   targets:
     serializedVersion: 2
     m_Bits: 2048
+  is_blindable: 0
 --- !u!114 &114144826966744923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104702,6 +104795,7 @@ MonoBehaviour:
   targets:
     serializedVersion: 2
     m_Bits: 2048
+  is_blindable: 0
 --- !u!114 &114144827140886803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104717,6 +104811,7 @@ MonoBehaviour:
   targets:
     serializedVersion: 2
     m_Bits: 2048
+  is_blindable: 0
 --- !u!114 &114177606045042795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105642,6 +105737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _team: 0
   _char_definition:
     _name: Chef Cart
     _health:
@@ -105661,12 +105757,11 @@ MonoBehaviour:
     _head: {fileID: 4474835454715068}
   invincibility_length: 0
   knockback_resistant: 0
-  anim: {fileID: 95148017560714854}
+  anim: {fileID: 1798781578087941}
   is_aerial_unit: 0
   base_jump_count: 1
   _icon: {fileID: 21300000, guid: 9f74f644843bcf342b35fd264d844838, type: 3}
   drop_on_death: []
-  on_death_sfx: {fileID: 0}
 --- !u!114 &114661331753482218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105679,6 +105774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _team: 0
   _char_definition:
     _name: Chef Cart
     _health:
@@ -105698,12 +105794,11 @@ MonoBehaviour:
     _head: {fileID: 4474836050712428}
   invincibility_length: 0
   knockback_resistant: 0
-  anim: {fileID: 95148017082305974}
+  anim: {fileID: 1798781099212245}
   is_aerial_unit: 0
   base_jump_count: 1
   _icon: {fileID: 21300000, guid: 9f74f644843bcf342b35fd264d844838, type: 3}
   drop_on_death: []
-  on_death_sfx: {fileID: 0}
 --- !u!114 &114675294377199188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105716,6 +105811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _team: 0
   _char_definition:
     _name: Chef Carrot
     _health:
@@ -105735,12 +105831,11 @@ MonoBehaviour:
     _head: {fileID: 4632518503724262}
   invincibility_length: 0
   knockback_resistant: 0
-  anim: {fileID: 95178166495088100}
+  anim: {fileID: 1974822940202907}
   is_aerial_unit: 0
   base_jump_count: 1
   _icon: {fileID: 21300000, guid: d3ca833b52499d84ba0fb73897b882df, type: 3}
   drop_on_death: []
-  on_death_sfx: {fileID: 0}
 --- !u!114 &114675295555004169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105753,6 +105848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _team: 0
   _char_definition:
     _name: Chef Carrot
     _health:
@@ -105772,12 +105868,11 @@ MonoBehaviour:
     _head: {fileID: 4632518340384187}
   invincibility_length: 0
   knockback_resistant: 0
-  anim: {fileID: 95178166382652601}
+  anim: {fileID: 1974822507919048}
   is_aerial_unit: 0
   base_jump_count: 1
   _icon: {fileID: 21300000, guid: d3ca833b52499d84ba0fb73897b882df, type: 3}
   drop_on_death: []
-  on_death_sfx: {fileID: 0}
 --- !u!114 &114675295884566052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105790,6 +105885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _team: 0
   _char_definition:
     _name: Chef Carrot
     _health:
@@ -105809,12 +105905,11 @@ MonoBehaviour:
     _head: {fileID: 4632518066171030}
   invincibility_length: 0
   knockback_resistant: 0
-  anim: {fileID: 95178166124647828}
+  anim: {fileID: 1974822233165803}
   is_aerial_unit: 0
   base_jump_count: 1
   _icon: {fileID: 21300000, guid: d3ca833b52499d84ba0fb73897b882df, type: 3}
   drop_on_death: []
-  on_death_sfx: {fileID: 0}
 --- !u!114 &114685991601640288
 MonoBehaviour:
   m_ObjectHideFlags: 0

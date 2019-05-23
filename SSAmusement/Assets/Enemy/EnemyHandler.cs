@@ -62,13 +62,11 @@ public abstract class EnemyHandler : StateMachineController {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (bump_damage && collision.gameObject.layer == LayerMask.NameToLayer("Player") && last_bump > bump_cooldown) {
-            last_bump = Time.time;
             ConfirmBump(collision.gameObject.GetComponentInParent<Player>());
         }
     }
     private void OnTriggerStay2D(Collider2D collision) {
         if (bump_damage && collision.gameObject.layer == LayerMask.NameToLayer("Player") && last_bump > bump_cooldown) {
-            last_bump = GameManager.GetDeltaTime(enemy.team);
             ConfirmBump(collision.gameObject.GetComponentInParent<Player>());
         }
     }
@@ -100,6 +98,7 @@ public abstract class EnemyHandler : StateMachineController {
     }
 
     protected virtual void Start() {
+        last_bump = bump_cooldown;
         Ini();
         if (active_on_start) {
             target = FindObjectOfType<Player>();

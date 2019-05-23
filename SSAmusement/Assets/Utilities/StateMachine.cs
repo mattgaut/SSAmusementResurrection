@@ -284,7 +284,6 @@ public class StateMachine : ScriptableObject {
         foreach (KeyValuePair<State, List<Transition>> kvp in transition_dictionary) {
             foreach (Transition t in kvp.Value) {
                 transitions.Add(t);
-                Debug.Log(t.from + " : " + t.to);
             }
         }
     }
@@ -384,8 +383,10 @@ public class StateMachine : ScriptableObject {
         /// </summary>
         public void TransitionUsingCallbacks() {
             foreach (Transition t in machine.GetTransitions(current_state)) {
+                //Debug.Log("Checking transition " + t.from.name + " : " + t.to.name);
                 bool should_transition = true;
                 foreach (Condition c in t.conditions) {
+                    //Debug.Log("Checking if Condition " + c.parameter.name + " is " + c.should_parameter_be_true + " : parameter returned " + parameter_callbacks[c.parameter].Invoke());
                     if (!c.IsConditionMet(parameter_callbacks[c.parameter].Invoke())) {
                         should_transition = false;
                     }

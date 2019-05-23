@@ -43,11 +43,11 @@ public class GameManager : Singleton<GameManager> {
     Dictionary<Character.Team, TimeScale> time_scales;
     Dictionary<Character.Team, System.Action<float>> on_time_scale_changed;
 
-    public static float GetDeltaTime(Character.Team team) {
-        if (instance == null) {
+    public static float GetDeltaTime(Character.Team? team) {
+        if (instance == null || team == null) {
             return Time.deltaTime;
         }
-        return instance.time_scales[team] * Time.deltaTime;
+        return instance.time_scales[team.GetValueOrDefault()] * Time.deltaTime;
     }
     public static float GetFixedDeltaTime(Character.Team team) {
         if (instance == null) {

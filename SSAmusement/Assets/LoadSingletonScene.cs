@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LoadSingletonScene : MonoBehaviour {
-    void Start() {
+    void Awake() {
         SceneManager.LoadScene("Singletons", LoadSceneMode.Additive);    
     }
 }

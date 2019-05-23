@@ -111,7 +111,7 @@ public class StateMachineController : MonoBehaviour {
         /// in supplied object class or child that has the name stored in callback_name
         /// </summary>
         /// <param name="grab_from"></param>
-        public void Init(System.Object grab_from) {
+        public void Init(object grab_from) {
             if (callback_is_field) {
                 callback = () => (bool)grab_from.GetType().GetField(callback_name).GetValue(grab_from);
             } else {

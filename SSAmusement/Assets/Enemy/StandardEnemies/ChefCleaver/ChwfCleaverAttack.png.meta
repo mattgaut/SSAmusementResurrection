@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: 79edf340ecf4a7d4a9642ef46c0129b7
-timeCreated: 1510110953
-licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: ChwfCleaverAttack_0
@@ -15,8 +13,19 @@ TextureImporter:
     21300016: ChwfCleaverAttack_8
     21300018: ChwfCleaverAttack_9
     21300020: ChwfCleaverAttack_10
+    21300022: ChwfCleaverAttack_11
+    21300024: ChwfCleaverAttack_12
+    21300026: ChwfCleaverAttack_13
+    21300028: ChwfCleaverAttack_14
+    21300030: ChwfCleaverAttack_15
+    21300032: ChwfCleaverAttack_16
+    21300034: ChwfCleaverAttack_17
+    21300036: ChwfCleaverAttack_18
+    21300038: ChwfCleaverAttack_19
+    21300040: ChwfCleaverAttack_20
+    21300042: ChwfCleaverAttack_21
   externalObjects: {}
-  serializedVersion: 4
+  serializedVersion: 9
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -34,6 +43,8 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -44,7 +55,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: 0
     aniso: -1
-    mipBias: -1
+    mipBias: -100
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -56,18 +67,21 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 10
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
+  singleChannelComponent: 0
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
   platformSettings:
-  - buildTarget: DefaultTexturePlatform
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -76,7 +90,9 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: Standalone
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -85,6 +101,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -102,6 +119,12 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 9b234e8e2fb56b44fbab9564af4f5ec9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ChwfCleaverAttack_1
       rect:
@@ -116,6 +139,12 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: eda556ce6cf135e41adf47a8812f90b5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ChwfCleaverAttack_2
       rect:
@@ -130,6 +159,12 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 633cc8db5d8bfe242b3fd474fb787fcc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ChwfCleaverAttack_3
       rect:
@@ -144,6 +179,12 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 65a4276d7f7beed429ebf51f6da942a6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ChwfCleaverAttack_4
       rect:
@@ -158,6 +199,12 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 93524805fdfe4a44ca177c8b7ee041fd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ChwfCleaverAttack_5
       rect:
@@ -172,6 +219,12 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 8e3e5b5d683225542b38754bdc8c57d2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ChwfCleaverAttack_6
       rect:
@@ -186,6 +239,12 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: c4c958b664dde534385d81c40559b397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ChwfCleaverAttack_7
       rect:
@@ -200,6 +259,12 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: aa3a293d99d96c84198e616ced530b5e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ChwfCleaverAttack_8
       rect:
@@ -214,6 +279,12 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 7c54f64732e83bf429bb875ae0533ae2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ChwfCleaverAttack_9
       rect:
@@ -228,6 +299,12 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 8cffcad061456d14a87e952aeacfd50b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ChwfCleaverAttack_10
       rect:
@@ -242,9 +319,243 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 27e9085ff92c1c246910a5194377ef5b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChwfCleaverAttack_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 76
+        width: 45
+        height: 45
+      alignment: 9
+      pivot: {x: 0.635, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 318919b13a2cc2c43b9bbbb5d328f2df
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChwfCleaverAttack_12
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 76
+        width: 45
+        height: 45
+      alignment: 9
+      pivot: {x: 0.635, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f6c9b5ca79fb8345a538b3e3f2a0e9d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChwfCleaverAttack_13
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 76
+        width: 45
+        height: 45
+      alignment: 9
+      pivot: {x: 0.635, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd7ed344d21efd14a8fa13730ebea656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChwfCleaverAttack_14
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 76
+        width: 45
+        height: 45
+      alignment: 9
+      pivot: {x: 0.635, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40025c1691c224d45b73087e4b3595fa
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChwfCleaverAttack_15
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 76
+        width: 45
+        height: 45
+      alignment: 9
+      pivot: {x: 0.635, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be694842afa509d4fbcaba56cc8ccd1d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChwfCleaverAttack_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 31
+        width: 45
+        height: 45
+      alignment: 9
+      pivot: {x: 0.635, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b0653e4584f79b44b619883ca1b9f70
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChwfCleaverAttack_17
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 31
+        width: 45
+        height: 45
+      alignment: 9
+      pivot: {x: 0.635, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4138251c59134154e90351ae6fc3c5de
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChwfCleaverAttack_18
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 31
+        width: 45
+        height: 45
+      alignment: 9
+      pivot: {x: 0.635, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0935528ba1c4f3f489f974415723e455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChwfCleaverAttack_19
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 31
+        width: 45
+        height: 45
+      alignment: 9
+      pivot: {x: 0.635, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 904b4a131bde4ba48bc0aae01c498f35
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChwfCleaverAttack_20
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 31
+        width: 45
+        height: 45
+      alignment: 9
+      pivot: {x: 0.635, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 696a2d132e5892240ab1891f2043f0af
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChwfCleaverAttack_21
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 18
+        width: 3
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 638bb4af32858934f8a19820f9996a0a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
+    bones: []
+    spriteID: 6b420ecb39c41844a9ec9133ebc69e57
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
   spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -17,8 +17,16 @@ public class MeleeAttackHandler : GroundedEnemyHandler {
         return Vector2.Distance(target.transform.position, transform.position) < attack_range;
     }
 
-    public bool AttackReady() {
+    public bool IsTooClose() {
+        return Vector2.Distance(target.transform.position, transform.position) < close_distance;
+    }
+
+    public bool IsAttackReady() {
         return time_between_attacks < last_attack;
+    }
+
+    public bool CanMeleeAttack() {
+        return IsAttackReady() && IsInAttackRange();
     }
 
     protected override void Ini() {

@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 114055846295303654}
   - component: {fileID: 114741983880177120}
   - component: {fileID: 50974002180666026}
-  - component: {fileID: 114450924396465520}
+  - component: {fileID: 3917567753747088973}
   - component: {fileID: 9174945307805304377}
   m_Layer: 16
   m_Name: ChefCleaver
@@ -65,6 +65,7 @@ Transform:
   m_Children:
   - {fileID: 4655082701210342}
   - {fileID: 4448121893652876}
+  - {fileID: 9197180060760409889}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -162,7 +163,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &114450924396465520
+--- !u!114 &3917567753747088973
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -171,26 +172,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 1068494373224362}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2565552dcab8cc748854974ece24cd75, type: 3}
+  m_Script: {fileID: 11500000, guid: 7bb12b08437ecbf49a893eb095c93661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state_machine: {fileID: 11400000, guid: 97f3af63908ecc64da987c840ddca144, type: 2}
+  state_machine: {fileID: 11400000, guid: 76863ea6543cf0b4297866a4ed25a030, type: 2}
   parameter_callback_list:
   - parameter:
-      _name: IsInRange
-    callback_name: IsInAttackRange
+      _name: IsTooClose
+    callback_name: IsTooClose
     callback_is_field: 0
-    callback_index: 0
+    callback_index: 4
   - parameter:
       _name: CanHunt
     callback_name: CanHunt
     callback_is_field: 0
-    callback_index: 3
+    callback_index: 8
   - parameter:
-      _name: IsAttackOffCooldown
-    callback_name: AttackReady
+      _name: CanMeleeAttack
+    callback_name: CanMeleeAttack
     callback_is_field: 0
-    callback_index: 1
+    callback_index: 6
+  - parameter:
+      _name: CanRangedAttack
+    callback_name: CanRangedAttack
+    callback_is_field: 0
+    callback_index: 2
   state_coroutine_list:
   - state:
       _name: Wander
@@ -201,7 +207,7 @@ MonoBehaviour:
         width: 0
         height: 0
     coroutine_name: Wander
-    coroutine_index: 0
+    coroutine_index: 1
   - state:
       _name: Hunt
       rect:
@@ -211,7 +217,7 @@ MonoBehaviour:
         width: 0
         height: 0
     coroutine_name: Hunt
-    coroutine_index: 1
+    coroutine_index: 2
   - state:
       _name: Attack
       rect:
@@ -221,7 +227,7 @@ MonoBehaviour:
         width: 0
         height: 0
     coroutine_name: Attack
-    coroutine_index: 2
+    coroutine_index: 3
   - state:
       _name: ApproachTarget
       rect:
@@ -231,14 +237,24 @@ MonoBehaviour:
         width: 0
         height: 0
     coroutine_name: WalkTowardsTarget
-    coroutine_index: 3
+    coroutine_index: 4
+  - state:
+      _name: RangedAttack
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    coroutine_name: RangedAttack
+    coroutine_index: 0
   active_on_start: 0
   line_of_sight_origin: {fileID: 4441290769745768}
   line_of_sight_blocking_mask:
     serializedVersion: 2
-    m_Bits: 4456448
+    m_Bits: 262144
   need_line_of_sight: 1
-  _aggro_range: 5
+  _aggro_range: 10
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
   flip_object: {fileID: 1531273540077442}
@@ -249,6 +265,13 @@ MonoBehaviour:
   attack_range: 1
   attack_knockback: {x: 2.5, y: 2, z: 0}
   close_distance: 0.3
+  time_between_ranged_attacks: 7
+  projectile: {fileID: 2372014432685883070, guid: 8f1ddbcb23ebd9c4e928cbc37e0a5a1d,
+    type: 3}
+  min_projectile_attack_range: 1
+  max_projectile_attack_range: 7
+  projectile_attack_knockback: {x: 3, y: 2, z: 0}
+  projectile_spawn_transform: {fileID: 2554467325333120124}
 --- !u!114 &9174945307805304377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -772,7 +795,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.07, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2554467325333120124}
   m_Father: {fileID: 4655082701210342}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -829,8 +853,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 323702485
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 286ca90e821b6e447ac28032a1585499, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -861,7 +885,7 @@ MonoBehaviour:
     events:
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 114450924396465520}
+        - m_Target: {fileID: 3917567753747088973}
           m_MethodName: AnimEnableHitbox
           m_Mode: 1
           m_Arguments:
@@ -876,7 +900,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 114450924396465520}
+        - m_Target: {fileID: 3917567753747088973}
           m_MethodName: AnimDisableHitbox
           m_Mode: 1
           m_Arguments:
@@ -891,8 +915,40 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 114450924396465520}
+        - m_Target: {fileID: 3917567753747088973}
           m_MethodName: AnimAttackOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - clip_name: ChefCleaverThrow
+    events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3917567753747088973}
+          m_MethodName: AnimRangedAttackRelease
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3917567753747088973}
+          m_MethodName: AnimRangedAttackOver
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1041,3 +1097,63 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   is_blindable: 1
+--- !u!1 &467310896083535502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9197180060760409889}
+  m_Layer: 0
+  m_Name: CleverProjectile
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9197180060760409889
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467310896083535502}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.049693868, y: 1.6252211, z: 0.015685037}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4711881128115276}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4993334304746789751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2554467325333120124}
+  m_Layer: 16
+  m_Name: CleaverSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2554467325333120124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4993334304746789751}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4090401177434348}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

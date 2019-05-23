@@ -28,7 +28,7 @@ public abstract class Attack : MonoBehaviour {
     }
 
     protected virtual void Update() {
-        timer += GameManager.GetDeltaTime(source.team);
+        timer += GameManager.GetDeltaTime(source?.team);
     }
 
     public void SetOnHit(OnHit on_hit) {

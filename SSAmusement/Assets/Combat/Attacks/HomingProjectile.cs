@@ -20,10 +20,10 @@ public class HomingProjectile : Projectile {
 
         Vector3 current_trajectory = transform.rotation * base_direction;
         float angle = Vector2.SignedAngle(current_trajectory, target.transform.position - transform.position);
-        if (turn_speed * GameManager.GetDeltaTime(source.team) > Mathf.Abs(angle)) {
+        if (turn_speed * GameManager.GetDeltaTime(source?.team) > Mathf.Abs(angle)) {
             transform.rotation *= Quaternion.Euler(0, 0, (angle));
         } else {
-            transform.rotation *= Quaternion.Euler(0, 0, (Mathf.Sign(angle) * turn_speed * GameManager.GetDeltaTime(source.team)));
+            transform.rotation *= Quaternion.Euler(0, 0, (Mathf.Sign(angle) * turn_speed * GameManager.GetDeltaTime(source?.team)));
         }
     }
 
