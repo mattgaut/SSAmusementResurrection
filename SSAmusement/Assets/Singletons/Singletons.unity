@@ -112,6 +112,88 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1687454627 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 723861456101383129, guid: 06f08f6c2bb72f3478d34895e46a967b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4727880422662913534}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1687454633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687454627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4577e845efeb2e247b6f90fffa5ff65d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  energy: 0
+  power: 0
+  armor: 0
+  speed: 1
+  _flat: 0
+  _multi: 0
+--- !u!114 &1687454634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687454627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4577e845efeb2e247b6f90fffa5ff65d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  energy: 0
+  power: 0
+  armor: 1
+  speed: 0
+  _flat: 0
+  _multi: 0
+--- !u!114 &1687454635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687454627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4577e845efeb2e247b6f90fffa5ff65d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  energy: 0
+  power: 1
+  armor: 0
+  speed: 0
+  _flat: 0
+  _multi: 0
+--- !u!114 &1687454636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687454627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4577e845efeb2e247b6f90fffa5ff65d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  energy: 0
+  power: 0
+  armor: 0
+  speed: 0
+  _flat: 0
+  _multi: 0
 --- !u!1001 &4727880422662913534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -184,5 +266,25 @@ PrefabInstance:
       propertyPath: use_seed
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1430125888089228363, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: health_buff
+      value: 
+      objectReference: {fileID: 1687454636}
+    - target: {fileID: 1430125888089228363, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: power_buff
+      value: 
+      objectReference: {fileID: 1687454635}
+    - target: {fileID: 1430125888089228363, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: armor_buff
+      value: 
+      objectReference: {fileID: 1687454634}
+    - target: {fileID: 1430125888089228363, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: speed_buff
+      value: 
+      objectReference: {fileID: 1687454633}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}

@@ -265,7 +265,7 @@ public class Character : MonoBehaviour {
         obj.transform.position = transform.position + Vector3.up * 0.5f;
         float angle = Random.Range(0f, 90f) - 45f;
         Rigidbody2D body = obj.GetComponent<Rigidbody2D>();
-        body.AddForce(Quaternion.Euler(0, 0, angle) * Vector2.up * 8f, ForceMode2D.Impulse);
+        body.AddForce(Quaternion.Euler(0, 0, angle) * Vector2.up * Random.Range(8f, 20f), ForceMode2D.Impulse);
     }
 
     /// <summary>

@@ -95,6 +95,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6913a3a4dff65149a8ab4530f8a67d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  on_pickup_audio_clip:
+    _override_clip: {fileID: 0}
+    _default_codename: 
+    default_clip: {fileID: 0}
   health_restored: 20
 --- !u!58 &58552095792043540
 CircleCollider2D:
@@ -128,7 +132,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 0651fdd218574d74dafd67211cb2a1c3, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
