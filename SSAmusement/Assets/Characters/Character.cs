@@ -5,7 +5,7 @@ using Utilities;
 
 /// <summary>
 /// Base class for Characters in the game.
-/// Inherits ICombatant
+/// Inherits Character
 /// </summary>
 public class Character : MonoBehaviour {
     public enum Team { player, enemy }
@@ -160,16 +160,16 @@ public class Character : MonoBehaviour {
     }
 
     /// <summary>
-    /// If damage source is a Character or ICombatant use ICombatant.DealDamage instead 
+    /// If damage source is a Character use Character.DealDamage instead 
     /// 
     /// Takes damage and calls OnTakeDamage effects.
     /// </summary>
     /// <param name="damage"></param>
     /// <param name="source"></param>
     /// <returns>Damage Taken</returns>
-    public float TakeDamage(float damage, Character source) {
+    public float TakeDamage(float damage, Character source, bool is_true_damage = false) {
         float old = health.current;
-        float post_mitigation_damage = Mathf.Max(damage - armor, 0);
+        float post_mitigation_damage = is_true_damage ? damage : damage - armor;
         if (post_mitigation_damage > 0) {
             last_hit_by = source;
             if (invincibility_length > 0) {
@@ -189,7 +189,7 @@ public class Character : MonoBehaviour {
     /// <summary>
     ///  Invokes KnockBack routine and cancels dashes.
     /// </summary>
-    /// <param name="source">ICombatant that initiated knockback if any</param>
+    /// <param name="source">Character that initiated knockback if any</param>
     /// <param name="force">The force of the knockback</param>
     /// <param name="length">Knockback Duration</param>
     public void TakeKnockback(Character source, Vector2 force, float length = 0.5f) {
