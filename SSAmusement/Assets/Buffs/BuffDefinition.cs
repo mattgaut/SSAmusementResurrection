@@ -46,7 +46,7 @@ public abstract class BuffDefinition : MonoBehaviour {
             buff_definition.Apply(stat_entity);
             if (is_timed) {
                 stat_entity.LogBuff(this);
-                stat_entity.StartCoroutine(RemoveAfter(stat_entity, length));
+                buff_definition.StartCoroutine(RemoveAfter(stat_entity, length));
             }
         }
         public void Remove(Character stat_entity) {
