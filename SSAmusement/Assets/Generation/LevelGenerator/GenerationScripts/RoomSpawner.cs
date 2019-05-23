@@ -97,8 +97,6 @@ public class RoomSpawner : MonoBehaviour {
         power_buff.SetFlat(2 * count);
         power_buff.SetMulti(1 + (.2f * count));
 
-        Debug.Log(count);
-
         foreach (Enemy e in enemies) {
             power_buff.Apply(e);
             armor_buff.Apply(e);

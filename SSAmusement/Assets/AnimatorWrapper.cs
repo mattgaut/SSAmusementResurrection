@@ -82,7 +82,11 @@ public class AnimatorWrapper : MonoBehaviour, ISerializationCallbackReceiver {
                     events[i].functionName = "TriggerAnimEvent";
                     events[i].intParameter = i;
                 }
-                UnityEditor.AnimationUtility.SetAnimationEvents(clip, events);
+
+                #if UNITY_EDITOR
+                    UnityEditor.AnimationUtility.SetAnimationEvents(clip, events);
+                #endif
+
                 if (clip.events.Length != 0)
                     EnsureAnimEventListExists(clip.name, clip.events.Length);
             }
