@@ -14,9 +14,22 @@ public class MeleeWithRangedAttackHandler : MeleeAttackHandler {
     float last_projectile_attack;
     bool ranged_attack_over;
 
+    Vector2 last_good_target;
+
     public bool IsInProjectileAttackInRange() {
-        float distance = Mathf.Abs(target.transform.position.x - transform.position.x);
-        return distance < max_projectile_attack_range && distance > min_projectile_attack_range;
+        Vector2 distance = target.char_definition.center_mass.position - projectile_spawn_transform.position;
+        distance.x = Mathf.Abs(distance.x);
+        if (distance.x > max_projectile_attack_range || distance.x < min_projectile_attack_range) {
+            return false;
+        }
+
+        if (projectile.CanLaunchTowardsTarget(distance)) {
+            last_good_target = distance;
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     public bool IsProjectileAttackReady() {
@@ -29,7 +42,7 @@ public class MeleeWithRangedAttackHandler : MeleeAttackHandler {
 
     protected override void Ini() {
         base.Ini();
-        last_projectile_attack = time_between_ranged_attacks;
+        last_projectile_attack = time_between_ranged_attacks/2f;
     }
 
     protected IEnumerator RangedAttack() {
@@ -53,8 +66,18 @@ public class MeleeWithRangedAttackHandler : MeleeAttackHandler {
     }
     public void AnimRangedAttackRelease() {
         Projectile new_projectile = Instantiate(projectile);
+
+        Vector2 distance = target.char_definition.center_mass.position - projectile_spawn_transform.position;
+        distance.x = Mathf.Abs(distance.x);
+
+        if (!new_projectile.LaunchTowardsTarget(distance)) {
+            new_projectile.LaunchTowardsTarget(last_good_target);
+        }
+
         new_projectile.transform.position = projectile_spawn_transform.position;
         new_projectile.transform.rotation = projectile_spawn_transform.rotation;
+
+        new_projectile.Flip();
 
         new_projectile.SetOnHit(RangedAttackOnHit);
         new_projectile.SetSource(enemy);

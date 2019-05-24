@@ -268,8 +268,8 @@ MonoBehaviour:
   time_between_ranged_attacks: 7
   projectile: {fileID: 2372014432685883070, guid: 8f1ddbcb23ebd9c4e928cbc37e0a5a1d,
     type: 3}
-  min_projectile_attack_range: 1
-  max_projectile_attack_range: 7
+  min_projectile_attack_range: 0
+  max_projectile_attack_range: 10000
   projectile_attack_knockback: {x: 3, y: 2, z: 0}
   projectile_spawn_transform: {fileID: 2554467325333120124}
 --- !u!114 &9174945307805304377

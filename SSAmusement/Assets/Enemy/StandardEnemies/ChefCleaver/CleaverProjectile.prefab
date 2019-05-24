@@ -76,10 +76,10 @@ MonoBehaviour:
     m_Bits: 2048
   break_after_timer_mask:
     serializedVersion: 2
-    m_Bits: 4194304
-  speed: 6
+    m_Bits: 0
+  speed: 10
   ignore_wall_timer: 0
-  max_lifetime: 0
+  max_lifetime: 10
   gravity_force: 15
   base_direction: {x: -1, y: 1, z: 0}
   particles: {fileID: 0}

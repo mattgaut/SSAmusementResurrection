@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -42,11 +43,52 @@ public class Projectile : SingleHitAttack {
         Destroy(gameObject);
     }
 
+    public bool CanLaunchTowardsTarget(Vector2 distance) {
+        if (gravity_force == 0) {
+            return true;
+        } else {
+            double x_distance = distance.x;
+            double y_distance = distance.y;
+
+            double under_root = Math.Pow(speed, 4) - gravity_force * ((gravity_force * Math.Pow(x_distance, 2)) + (2 * y_distance * Math.Pow(speed, 2)));
+            double angle = Math.Atan((Math.Pow(speed, 2) + Math.Pow(under_root, 0.5)) / (gravity_force * x_distance));
+
+            return !double.IsNaN(angle);
+        }
+    }
+
+    public bool LaunchTowardsTarget(Vector2 distance) {
+        if (gravity_force == 0) {
+            base_direction = Quaternion.FromToRotation(base_direction, distance) * base_direction;
+            return true;
+        } else {
+            double x_distance = distance.x;
+            double y_distance = distance.y;
+
+            double under_root = Math.Pow(speed, 4) - gravity_force * ((gravity_force * Math.Pow(x_distance, 2)) + (2 * y_distance * Math.Pow(speed, 2)));
+
+            double angle = Math.Atan((Math.Pow(speed, 2) + Math.Pow(under_root, 0.5)) / (gravity_force * x_distance));
+            if (double.IsNaN(angle)) {
+                return false;
+            }
+
+            double angle2 = Math.Atan((Math.Pow(speed, 2) - Math.Pow(under_root, 0.5)) / (gravity_force * x_distance));
+
+            angle = Math.Max(angle, angle2);
+            angle *= (180 / Math.PI);
+        
+            base_direction = Quaternion.Euler(0,0, (float)angle) * Vector2.right;
+
+            return true;
+        }
+    }
+
     protected override void Awake() {
         base.Awake();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         is_exploded = false;
+        base_direction = base_direction.normalized;
     }
 
     protected override void Update() {
