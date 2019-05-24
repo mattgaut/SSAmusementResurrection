@@ -23,29 +23,36 @@ MonoBehaviour:
   - _name: Hunt
     rect:
       serializedVersion: 2
-      x: 289
-      y: 312
+      x: 293
+      y: 296
       width: 200
       height: 40.95508
   - _name: Attack
     rect:
       serializedVersion: 2
-      x: 36
+      x: 35
       y: 415
       width: 200
       height: 40.95508
   - _name: ApproachTarget
     rect:
       serializedVersion: 2
-      x: 486
-      y: 408
+      x: 490
+      y: 429
       width: 200
       height: 40.95508
   - _name: RangedAttack
     rect:
       serializedVersion: 2
-      x: 292
-      y: 468
+      x: 271
+      y: 459
+      width: 200
+      height: 40.95508
+  - _name: ApproachForRangedAttack
+    rect:
+      serializedVersion: 2
+      x: 703
+      y: 381
       width: 200
       height: 40.95508
   transitions:
@@ -61,8 +68,8 @@ MonoBehaviour:
       _name: Hunt
       rect:
         serializedVersion: 2
-        x: 289
-        y: 312
+        x: 293
+        y: 296
         width: 200
         height: 40.95508
     _conditions:
@@ -73,7 +80,7 @@ MonoBehaviour:
       _name: Attack
       rect:
         serializedVersion: 2
-        x: 36
+        x: 35
         y: 415
         width: 200
         height: 40.95508
@@ -81,8 +88,8 @@ MonoBehaviour:
       _name: Hunt
       rect:
         serializedVersion: 2
-        x: 289
-        y: 312
+        x: 293
+        y: 296
         width: 200
         height: 40.95508
     _conditions:
@@ -93,16 +100,16 @@ MonoBehaviour:
       _name: RangedAttack
       rect:
         serializedVersion: 2
-        x: 292
-        y: 468
+        x: 271
+        y: 459
         width: 200
         height: 40.95508
     _from:
       _name: Hunt
       rect:
         serializedVersion: 2
-        x: 289
-        y: 312
+        x: 293
+        y: 296
         width: 200
         height: 40.95508
     _conditions:
@@ -113,36 +120,62 @@ MonoBehaviour:
       _name: ApproachTarget
       rect:
         serializedVersion: 2
-        x: 486
-        y: 408
+        x: 490
+        y: 429
         width: 200
         height: 40.95508
     _from:
       _name: Hunt
       rect:
         serializedVersion: 2
-        x: 289
-        y: 312
+        x: 293
+        y: 296
         width: 200
         height: 40.95508
     _conditions:
     - _parameter:
         _name: IsTooClose
       _should_parameter_be_true: 0
+    - _parameter:
+        _name: IsTooCloseRanged
+      _should_parameter_be_true: 1
   - _to:
-      _name: Hunt
+      _name: ApproachForRangedAttack
       rect:
         serializedVersion: 2
-        x: 289
-        y: 312
+        x: 703
+        y: 381
         width: 200
         height: 40.95508
     _from:
       _name: Hunt
       rect:
         serializedVersion: 2
-        x: 289
-        y: 312
+        x: 293
+        y: 296
+        width: 200
+        height: 40.95508
+    _conditions:
+    - _parameter:
+        _name: IsTooCloseRanged
+      _should_parameter_be_true: 0
+    - _parameter:
+        _name: HasLineOfSight
+      _should_parameter_be_true: 1
+  - _to:
+      _name: Hunt
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 296
+        width: 200
+        height: 40.95508
+    _from:
+      _name: Hunt
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 296
         width: 200
         height: 40.95508
     _conditions: []
@@ -150,8 +183,8 @@ MonoBehaviour:
       _name: Hunt
       rect:
         serializedVersion: 2
-        x: 289
-        y: 312
+        x: 293
+        y: 296
         width: 200
         height: 40.95508
     _from:
@@ -190,15 +223,15 @@ MonoBehaviour:
       _name: Hunt
       rect:
         serializedVersion: 2
-        x: 289
-        y: 312
+        x: 293
+        y: 296
         width: 200
         height: 40.95508
     _from:
       _name: Attack
       rect:
         serializedVersion: 2
-        x: 36
+        x: 35
         y: 415
         width: 200
         height: 40.95508
@@ -207,16 +240,16 @@ MonoBehaviour:
       _name: ApproachTarget
       rect:
         serializedVersion: 2
-        x: 486
-        y: 408
+        x: 490
+        y: 429
         width: 200
         height: 40.95508
     _from:
       _name: ApproachTarget
       rect:
         serializedVersion: 2
-        x: 486
-        y: 408
+        x: 490
+        y: 429
         width: 200
         height: 40.95508
     _conditions:
@@ -236,16 +269,16 @@ MonoBehaviour:
       _name: Hunt
       rect:
         serializedVersion: 2
-        x: 289
-        y: 312
+        x: 293
+        y: 296
         width: 200
         height: 40.95508
     _from:
       _name: ApproachTarget
       rect:
         serializedVersion: 2
-        x: 486
-        y: 408
+        x: 490
+        y: 429
         width: 200
         height: 40.95508
     _conditions: []
@@ -253,16 +286,62 @@ MonoBehaviour:
       _name: Hunt
       rect:
         serializedVersion: 2
-        x: 289
-        y: 312
+        x: 293
+        y: 296
         width: 200
         height: 40.95508
     _from:
       _name: RangedAttack
       rect:
         serializedVersion: 2
-        x: 292
-        y: 468
+        x: 271
+        y: 459
+        width: 200
+        height: 40.95508
+    _conditions: []
+  - _to:
+      _name: ApproachForRangedAttack
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 381
+        width: 200
+        height: 40.95508
+    _from:
+      _name: ApproachForRangedAttack
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 381
+        width: 200
+        height: 40.95508
+    _conditions:
+    - _parameter:
+        _name: IsTooCloseRanged
+      _should_parameter_be_true: 0
+    - _parameter:
+        _name: CanRangedAttack
+      _should_parameter_be_true: 0
+    - _parameter:
+        _name: CanHunt
+      _should_parameter_be_true: 1
+    - _parameter:
+        _name: HasLineOfSight
+      _should_parameter_be_true: 1
+  - _to:
+      _name: Hunt
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 296
+        width: 200
+        height: 40.95508
+    _from:
+      _name: ApproachForRangedAttack
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 381
         width: 200
         height: 40.95508
     _conditions: []
@@ -271,6 +350,8 @@ MonoBehaviour:
   - _name: CanHunt
   - _name: CanMeleeAttack
   - _name: CanRangedAttack
+  - _name: HasLineOfSight
+  - _name: IsTooCloseRanged
   entry_state:
     _name: Wander
     rect:

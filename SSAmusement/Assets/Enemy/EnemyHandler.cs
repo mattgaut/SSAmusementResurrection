@@ -44,11 +44,8 @@ public abstract class EnemyHandler : StateMachineController {
     public bool CanHunt() {
         return target != null && CustomCanHunt() && Vector2.Distance(target.transform.position, transform.position) <= aggro_range && (!need_line_of_sight || HasLineOfSight());
     }
-    protected virtual bool CustomCanHunt() {
-        return true;
-    }
 
-    protected virtual bool HasLineOfSight() {
+    public virtual bool HasLineOfSight() {
         CharacterDefinition target_definition = target.char_definition;
         RaycastHit2D hit = Physics2D.Linecast(line_of_sight_origin.position, target_definition.center_mass.position, line_of_sight_blocking_mask);
         if (hit) {
@@ -58,6 +55,10 @@ public abstract class EnemyHandler : StateMachineController {
             }
         }
         return !hit;
+    }
+
+    protected virtual bool CustomCanHunt() {
+        return true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {

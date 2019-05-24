@@ -8,6 +8,7 @@ public class MeleeWithRangedAttackHandler : MeleeAttackHandler {
     [SerializeField] Projectile projectile;
     [SerializeField] float min_projectile_attack_range, max_projectile_attack_range;
     [SerializeField] Vector3 projectile_attack_knockback;
+    [SerializeField] float ranged_follow_distance;
 
     [SerializeField] Transform projectile_spawn_transform;
 
@@ -30,6 +31,11 @@ public class MeleeWithRangedAttackHandler : MeleeAttackHandler {
             return false;
         }
 
+    }
+
+    public bool IsTooCloseRanged() {
+        float distance =  Mathf.Abs(target.char_definition.center_mass.position.x - transform.position.x);
+        return distance < ranged_follow_distance;
     }
 
     public bool IsProjectileAttackReady() {

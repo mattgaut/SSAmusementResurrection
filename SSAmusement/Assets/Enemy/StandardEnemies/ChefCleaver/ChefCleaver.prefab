@@ -181,22 +181,32 @@ MonoBehaviour:
       _name: IsTooClose
     callback_name: IsTooClose
     callback_is_field: 0
-    callback_index: 4
+    callback_index: 5
   - parameter:
       _name: CanHunt
     callback_name: CanHunt
     callback_is_field: 0
-    callback_index: 8
+    callback_index: 9
   - parameter:
       _name: CanMeleeAttack
     callback_name: CanMeleeAttack
     callback_is_field: 0
-    callback_index: 6
+    callback_index: 7
   - parameter:
       _name: CanRangedAttack
     callback_name: CanRangedAttack
     callback_is_field: 0
-    callback_index: 2
+    callback_index: 3
+  - parameter:
+      _name: HasLineOfSight
+    callback_name: HasLineOfSight
+    callback_is_field: 0
+    callback_index: 10
+  - parameter:
+      _name: IsTooCloseRanged
+    callback_name: IsTooCloseRanged
+    callback_is_field: 0
+    callback_index: 1
   state_coroutine_list:
   - state:
       _name: Wander
@@ -248,13 +258,23 @@ MonoBehaviour:
         height: 0
     coroutine_name: RangedAttack
     coroutine_index: 0
+  - state:
+      _name: ApproachForRangedAttack
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    coroutine_name: WalkTowardsTarget
+    coroutine_index: 4
   active_on_start: 0
   line_of_sight_origin: {fileID: 4441290769745768}
   line_of_sight_blocking_mask:
     serializedVersion: 2
     m_Bits: 262144
-  need_line_of_sight: 1
-  _aggro_range: 10
+  need_line_of_sight: 0
+  _aggro_range: 12
   bump_damage: 0
   bump_knockback: {x: 0, y: 0, z: 0}
   flip_object: {fileID: 1531273540077442}
@@ -265,12 +285,13 @@ MonoBehaviour:
   attack_range: 1
   attack_knockback: {x: 2.5, y: 2, z: 0}
   close_distance: 0.3
-  time_between_ranged_attacks: 7
+  time_between_ranged_attacks: 5
   projectile: {fileID: 2372014432685883070, guid: 8f1ddbcb23ebd9c4e928cbc37e0a5a1d,
     type: 3}
   min_projectile_attack_range: 0
   max_projectile_attack_range: 10000
   projectile_attack_knockback: {x: 3, y: 2, z: 0}
+  ranged_follow_distance: 3
   projectile_spawn_transform: {fileID: 2554467325333120124}
 --- !u!114 &9174945307805304377
 MonoBehaviour:
