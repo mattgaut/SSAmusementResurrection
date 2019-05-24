@@ -90,7 +90,7 @@ public abstract class RoomController : MonoBehaviour {
         foreach (Enemy e in loaded_room_set.GetEnemies()) {
             enemies.Add(e, e.transform.position);
             e.SetHome(this);
-            e.AddDropOnDeath(LootTablesSingleton.instance.monster_loot.GetPilePickupes(RNGSingleton.instance.loot_rng));
+            e.AddDropOnDeath(LootTablesSingleton.instance.monster_loot.GetPilePickupsFromSameCategory(RNGSingleton.instance.loot_rng));
         }
     }
 

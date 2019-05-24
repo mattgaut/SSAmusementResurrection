@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 58552095792043540}
   - component: {fileID: 4178100385919731118}
   m_Layer: 23
-  m_Name: HeartPickup
+  m_Name: HalfHeartPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 361038899eed17348ad4648b63a1ed94, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 18fe63368a2dce045afe764b343cbcd2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
     _override_clip: {fileID: 0}
     _default_codename: sfx_heart
     default_clip: {fileID: 0}
-  health_restored: 30
+  health_restored: 15
 --- !u!58 &58552095792043540
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class LootTablesSingleton : Singleton<LootTablesSingleton> {
 
-    [SerializeField] LootTable _monster_loot, _regular_chest_loot;
+    [SerializeField] LootTable _monster_loot, _regular_chest_loot, _slot_machine_loot;
 
     public LootTable monster_loot {
         get { return _monster_loot; }
     }
     public LootTable regular_chest_loot {
         get { return _regular_chest_loot; }
+    }
+    public LootTable slot_machine_loot {
+        get { return _slot_machine_loot; }
     }
 }
