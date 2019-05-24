@@ -139,6 +139,10 @@ public static class Extension {
         yield return new Pair<Vector2Int, Direction>(vector + Vector2Int.left, Direction.LEFT);
     }
 
+    public static Direction Opposite(this Direction direction) {
+        return (Direction)(-(int)direction);
+    }
+
     public static T GetRandomChanceObject<T>(this RNG rng, List<IChanceObject<T>> list) {
         float total_chance = 0;
         foreach (IChanceObject<T> chance_object in list) {

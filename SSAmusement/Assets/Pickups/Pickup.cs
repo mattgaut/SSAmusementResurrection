@@ -29,4 +29,16 @@ public abstract class Pickup : MonoBehaviour {
 
         Destroy(gameObject);
     }
+
+    private void Awake() {
+        Collider2D coll = GetComponent<Collider2D>();
+        coll.enabled = false;
+
+        StartCoroutine(EnablePickupAfterTime(coll, .5f));
+    }
+    
+    IEnumerator EnablePickupAfterTime(Collider2D coll, float time) {
+        yield return GameManager.instance.TeamWaitForSeconds(null, time);
+        coll.enabled = true;
+    }
 }

@@ -485,6 +485,10 @@ MonoBehaviour:
   mobility: 1
   boss_key: {fileID: 7804376939123278443, guid: 05d5dc4aee9e3ed4f8e779fc3e68bf73,
     type: 3}
+  health_buff: {fileID: 0}
+  speed_buff: {fileID: 0}
+  power_buff: {fileID: 0}
+  armor_buff: {fileID: 0}
 --- !u!114 &7420271915128496320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,3 +618,4 @@ MonoBehaviour:
   _monster_loot: {fileID: 11400000, guid: 4292676bb99def9499720875c1a56503, type: 2}
   _regular_chest_loot: {fileID: 11400000, guid: 0c6b08fbf2c2164438825a8da13d7c88,
     type: 2}
+  _slot_machine_loot: {fileID: 11400000, guid: 3ef0d5a3dcb110c4c930a79e25700bdf, type: 2}

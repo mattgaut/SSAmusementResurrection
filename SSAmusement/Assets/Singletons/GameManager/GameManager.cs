@@ -49,11 +49,11 @@ public class GameManager : Singleton<GameManager> {
         }
         return instance.time_scales[team.GetValueOrDefault()] * Time.deltaTime;
     }
-    public static float GetFixedDeltaTime(Character.Team team) {
-        if (instance == null) {
+    public static float GetFixedDeltaTime(Character.Team? team) {
+        if (instance == null || team == null) {
             return Time.fixedDeltaTime;
         }
-        return instance.time_scales[team] * Time.fixedDeltaTime;
+        return instance.time_scales[team.GetValueOrDefault()] * Time.fixedDeltaTime;
     }
 
     public float GetTeamTimeScale(Character.Team team) {
@@ -202,7 +202,7 @@ public class GameManager : Singleton<GameManager> {
         }
     }
 
-    public IEnumerator TeamWaitForSeconds(Character.Team team, float length) {
+    public IEnumerator TeamWaitForSeconds(Character.Team? team, float length) {
         float timer = length;
         while (timer > 0) {
             yield return new WaitForFixedUpdate();

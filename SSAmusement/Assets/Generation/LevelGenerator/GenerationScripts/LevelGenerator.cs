@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 
 public abstract class LevelGenerator : MonoBehaviour {
 
@@ -160,36 +161,17 @@ public abstract class LevelGenerator : MonoBehaviour {
     }
 
     void UpdateAdjacentSpaces(Room.Section section, Vector2Int position) {
-        Vector2Int pos = position + Vector2Int.down;
-        if (section.HasOpenableDoorway(Direction.BOTTOM) && !tiles.ContainsKey(pos)) {
-            if (islands.ContainsKey(pos)) {
-                ConvertIsland(islands[pos].origin);
-            } else {
-                adjacent_spaces.Add(pos);
-            }
-        }
-        pos = position + Vector2Int.up;
-        if (section.HasOpenableDoorway(Direction.TOP) && !tiles.ContainsKey(pos)) {
-            if (islands.ContainsKey(pos)) {
-                ConvertIsland(islands[pos].origin);
-            } else {
-                adjacent_spaces.Add(pos);
-            }
-        }
-        pos = position + Vector2Int.left;
-        if (section.HasOpenableDoorway(Direction.LEFT) && !tiles.ContainsKey(pos)) {
-            if (islands.ContainsKey(pos)) {
-                ConvertIsland(islands[pos].origin);
-            } else {
-                adjacent_spaces.Add(pos);
-            }
-        }
-        pos = position + Vector2Int.right;
-        if (section.HasOpenableDoorway(Direction.RIGHT) && !tiles.ContainsKey(pos)) {
-            if (islands.ContainsKey(pos)) {
-                ConvertIsland(islands[pos].origin);
-            } else {
-                adjacent_spaces.Add(pos);
+        foreach (Pair<Vector2Int, Direction> pair in position.GetNeighborsWithDirection()) {
+            Vector2Int pos = pair.first;
+            if (section.HasOpenableDoorway(pair.second) && !tiles.ContainsKey(pos)) {
+                if (islands.ContainsKey(pos)) {
+                    Island island = islands[pos];
+                    if (island.room.HasOpenableDoorway(pos - island.origin, pair.second.Opposite())) {
+                        ConvertIsland(islands[pos].origin);
+                    }
+                } else {
+                    adjacent_spaces.Add(pos);
+                }
             }
         }
     }
