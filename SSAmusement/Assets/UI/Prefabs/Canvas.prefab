@@ -435,6 +435,7 @@ MonoBehaviour:
     teleporter: {fileID: 21300008, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
     treasure: {fileID: 21300012, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
     swarm: {fileID: 21300014, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
+    gamble: {fileID: 21300016, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
 --- !u!114 &114959947019608378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,6 +459,7 @@ MonoBehaviour:
     teleporter: {fileID: 21300008, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
     treasure: {fileID: 21300012, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
     swarm: {fileID: 21300014, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
+    gamble: {fileID: 21300016, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
 --- !u!114 &114763530045927504
 MonoBehaviour:
   m_ObjectHideFlags: 0

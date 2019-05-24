@@ -10,6 +10,7 @@ TextureImporter:
     21300010: RoomIcons_2
     21300012: RoomIcons_3
     21300014: RoomIcons_4
+    21300016: RoomIcons_5
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -117,7 +118,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4bec811451a34b4380e2b3cb4ccaddd
+      spriteID: dc98dfe9d2e62c74a912af516c0ccff3
       vertices: []
       indices: 
       edges: []
@@ -137,7 +138,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 525a423a442ee2c438bf62c33e6b5b3d
+      spriteID: 9e37d237cc817484e8054a710c7bdc7c
       vertices: []
       indices: 
       edges: []
@@ -157,7 +158,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7cf213b03a04f041a1a6cd6ed7f9aa3
+      spriteID: 6ba69416d0d1f0f43850569a42027e6a
       vertices: []
       indices: 
       edges: []
@@ -177,7 +178,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 853d01bdc32ee0145bab2e7da0e21540
+      spriteID: 74b1189e0763415438b5600ad137b139
       vertices: []
       indices: 
       edges: []
@@ -197,7 +198,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92d523270f98c52499d0d6c3e9dc7fb1
+      spriteID: d793a88fbe2fbc94c95a7a9cf6c6384f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomIcons_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 60
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7c23054ee8bf744f81e67274372c37b
       vertices: []
       indices: 
       edges: []

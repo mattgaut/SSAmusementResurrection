@@ -51,4 +51,8 @@ public class Item : MonoBehaviour {
             SetOwner(null);
         }
     }
+
+    private void Awake() {
+        GetComponent<SpriteRenderer>().enabled = false;
+    }
 }

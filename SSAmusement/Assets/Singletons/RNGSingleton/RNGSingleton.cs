@@ -8,6 +8,7 @@ public class RNGSingleton : Singleton<RNGSingleton> {
     [SerializeField] int seed;
 
     public RNG item_rng { get; private set; }
+    public RNG random_item_rng { get; private set; }
     public RNG room_gen_rng { get; private set; }
     public RNG loot_rng { get; private set; }
     public RNG swarm_rng { get; private set; }
@@ -21,6 +22,7 @@ public class RNGSingleton : Singleton<RNGSingleton> {
 
     public void SetSeed(int seed) {
         item_rng = new RNG(seed);
+        random_item_rng = new RNG(seed - 1);
         room_gen_rng = new RNG(seed + 1);
         loot_rng = new RNG(seed + 2);
         swarm_rng = new RNG(seed + 3);

@@ -71,7 +71,7 @@ public class Map : MonoBehaviour {
 
     [System.Serializable]
     class RoomIconMap {
-        [SerializeField] Sprite boss, shop, teleporter, treasure, swarm;
+        [SerializeField] Sprite boss, shop, teleporter, treasure, swarm, gamble;
 
         Dictionary<RoomType, Sprite> room_icons;
 
@@ -86,6 +86,7 @@ public class Map : MonoBehaviour {
             room_icons[RoomType.teleporter] = teleporter;
             room_icons[RoomType.treasure] = treasure;
             room_icons[RoomType.swarm] = swarm;
+            room_icons[RoomType.gamble] = gamble;
         }
 
         public Sprite GetSprite(RoomType room_type) {
