@@ -11,7 +11,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
     public static T instance {
         get {
             if (_instance == null)
-                Debug.LogError("Singleton of type " + typeof(T) + "not loaded.");
+                Debug.LogError("Singleton of type " + typeof(T) + " not loaded.");
             return _instance;
         }
         set { _instance = value; }
@@ -24,6 +24,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
             DontDestroyOnLoad(instance.transform.root);
             OnAwake();
         } else {
+            Debug.Log("Destroy " + name + " : " + typeof(T));
             Destroy(gameObject);
         }
     }

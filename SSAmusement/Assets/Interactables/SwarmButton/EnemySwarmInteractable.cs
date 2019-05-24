@@ -27,7 +27,7 @@ public class EnemySwarmInteractable : MonoBehaviour, IInteractable {
         instruction.Randomize(RNGSingleton.instance.swarm_rng);
         if (reward_chest != null) {
             RNG rng = RNGSingleton.instance.loot_rng;
-            reward_chest.SetSpawnPickups(LootTablesSingleton.instance.regular_chest_loot.GetPilePickupsFromSameCategory(rng));
+            reward_chest.SetSpawnPickups(LootTablesSingleton.instance.regular_chest_loot.GetPilePickups(rng));
         }
         home = room;
     }

@@ -210,15 +210,19 @@ public class GameManager : Singleton<GameManager> {
         }
     }
 
-    private void Start() {
+    protected override void OnAwake() {
+        base.OnAwake();
         time_scales = new Dictionary<Character.Team, TimeScale>();
         on_time_scale_changed = new Dictionary<Character.Team, System.Action<float>>();
         foreach (Character.Team team in System.Enum.GetValues(typeof(Character.Team))) {
             time_scales.Add(team, new TimeScale(1f));
             on_time_scale_changed.Add(team, null);
         }
-        //SceneManager.UnloadSceneAsync("Singletons");
         ResetMemory();
+    }
+
+    private void Start() {
+        //SceneManager.UnloadSceneAsync("Singletons");
         if (start_game_on_start) StartGame(_player);
     }
 

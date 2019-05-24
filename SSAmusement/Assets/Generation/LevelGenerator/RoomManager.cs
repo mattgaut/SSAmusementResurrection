@@ -33,7 +33,7 @@ public class RoomManager : Singleton<RoomManager> {
             active = room_controller;
             active.Activate();
             if (set_focus) UIHandler.FocusRoom(room_controller);
-            if (active != null) {
+            if (active != null && loaded_backgrounds != null) {
                 foreach (GameObject go in loaded_backgrounds) {
                     go.transform.position = active.transform.position + new Vector3(active.room.size.x * Room.Section.width, active.room.size.y * Room.Section.height, 0)/2f;
                 }

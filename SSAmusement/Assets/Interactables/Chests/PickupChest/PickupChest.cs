@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickupChest : MonoBehaviour {
+public class PickupChest : MonoBehaviour, IInteractable {
+
+    public bool is_available {
+        get { return !opened; }
+    }
 
     [SerializeField] List<Pickup> pickups_to_spawn;
     [SerializeField] Sprite open_sprite;
@@ -12,6 +16,10 @@ public class PickupChest : MonoBehaviour {
     [SerializeField] SFXInfo open_sfx = new SFXInfo("sfx_chest_open");
 
     bool opened;
+
+    public void SetOpenToPlayer(bool is_open) {
+        locked_to_player = !is_open;
+    }
 
     public void Open() {
         foreach (Pickup p in pickups_to_spawn) {

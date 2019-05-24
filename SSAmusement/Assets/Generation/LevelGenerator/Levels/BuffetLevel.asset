@@ -54,3 +54,4 @@ MonoBehaviour:
     avg: 0
     _rooms:
     - {fileID: 7313883643920262137, guid: 87f15eb0a8362d946a339f0288cfc139, type: 3}
+    - {fileID: 8585702846571392969, guid: 347b07451e045fe4eaddeb2e61b0f9d1, type: 3}

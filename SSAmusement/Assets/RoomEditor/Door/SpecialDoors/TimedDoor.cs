@@ -8,7 +8,9 @@ using UnityEngine.UI;
 public class TimedDoor : MonoBehaviour {
     [SerializeField] LayerMask check_if_entered;
     [SerializeField] Door door;
-    [SerializeField] Text timer_display;
+    [SerializeField] TimerDisplay timer_display;
+
+    TimeSpan time_left;
 
     Func<float> timer;
     bool locked;
@@ -16,8 +18,8 @@ public class TimedDoor : MonoBehaviour {
     int enter_triggers;
     int seconds_until_closed;
 
-    public void SetTimer() {
-        timer = () => Time.realtimeSinceStartup;        
+    public void SetTimerDisplay(int time) {
+        timer_display.SetTimerDisplay(time);
     }
 
     public void SetTimer(Func<float> timer_function, int closing_time) {
@@ -31,11 +33,14 @@ public class TimedDoor : MonoBehaviour {
     }
 
     private void Update() {
-        TimeSpan time_left = TimeSpan.FromSeconds(seconds_until_closed - timer());
+        if (timer == null) {
+            return;
+        }
+        time_left = TimeSpan.FromSeconds(seconds_until_closed - timer());
         if (time_left.TotalSeconds >= 0) {
-            timer_display.text = $"{(int)time_left.TotalMinutes:00}:{time_left.Seconds:00}";
+            timer_display.SetTimerDisplay(time_left);
         } else {
-            timer_display.text = "XX:XX";
+            timer_display.SetTimerDisplay(time_left);
         }
         if (!locked && time_left.TotalSeconds <= 0) {
             Lock();

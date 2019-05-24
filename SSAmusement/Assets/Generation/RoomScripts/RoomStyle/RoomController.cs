@@ -15,6 +15,7 @@ public abstract class RoomController : MonoBehaviour {
 
     protected RoomSet loaded_room_set;
 
+    [SerializeField] bool init_on_start;
     [SerializeField] Room _room;
 
     Dictionary<Enemy, Vector3> enemies;
@@ -100,7 +101,13 @@ public abstract class RoomController : MonoBehaviour {
 
     private void Awake() {
         enemies = new Dictionary<Enemy, Vector3>();
-        _room = GetComponent<Room>();
+        _room = GetComponent<Room>();        
+    }
+
+    private void Start() {
+        if (init_on_start) {
+            Init();
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision) {
