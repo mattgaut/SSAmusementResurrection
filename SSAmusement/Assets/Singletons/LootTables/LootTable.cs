@@ -27,7 +27,7 @@ public class LootTable : ScriptableObject {
             total += numbers[i] * i;
             Debug.Log(i + " : " + numbers[i] + " : " + numbers[i]/(test_count / 100f) + "%");
         }
-        Debug.Log("Total: " + total);
+        Debug.Log("Total: " + total + "/" + test_count + " : " + (total/(float)test_count));
     }
 
     public void TestPickupDistribution() {
@@ -35,7 +35,10 @@ public class LootTable : ScriptableObject {
         int test_count = 1000000;
         RNG rng = new RNG(System.DateTime.Now.Millisecond);
         for (int i = 0; i < test_count; i++) {
-            Pickup p = GetRandomPickup(rng, GetRandomCategory(rng));
+            List<PickupChance> category = GetRandomCategory(rng);
+            if (category.Count == 0) continue;
+
+            Pickup p = GetRandomPickup(rng, category);
             if (pickups.ContainsKey(p)) {
                 pickups[p]++;
             } else {
@@ -54,9 +57,8 @@ public class LootTable : ScriptableObject {
     /// divided by the total chance of all pickups
     /// </summary>
     /// <param name="rng"></param>
-    /// <param name="number_to_roll"></param>
     /// <returns></returns>
-    public List<Pickup> GetPilePickupes(RNG rng) {
+    public List<Pickup> GetPilePickups(RNG rng) {
         List<Pickup> pickups = new List<Pickup>();
 
         int number_to_roll = rng.GetInt(min_to_drop, max_to_drop, avg_to_drop);
@@ -65,6 +67,29 @@ public class LootTable : ScriptableObject {
             pickups.Add(GetRandomPickup(rng, GetRandomCategory(rng)));
         }
 
+        return pickups;
+    }
+
+    /// <summary>
+    /// Gets List of pickups of size number_to_roll where the chance of 
+    /// a certain pickup being selected for a slot is equal to its chance 
+    /// divided by the total chance of all pickups
+    /// </summary>
+    /// <param name="rng"></param>
+    /// <returns></returns>
+    public List<Pickup> GetPilePickupsFromSameCategory(RNG rng) {
+        List<Pickup> pickups = new List<Pickup>();
+
+        int number_to_roll = rng.GetInt(min_to_drop, max_to_drop, avg_to_drop);
+
+        List<PickupChance> category = GetRandomCategory(rng);
+        if (category.Count == 0) {
+            return pickups;
+        }
+
+        for (int i = 0; i < number_to_roll; i++) {
+            pickups.Add(GetRandomPickup(rng, category));
+        }
         return pickups;
     }
 
