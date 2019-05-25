@@ -6,7 +6,7 @@ public class ShapeGenerator : LevelGenerator {
 
     List<Vector2Int> shape_blocks;
     [SerializeField] [Range(0, 1)] float fill;
-    [SerializeField] [Range(3, 20)] int blocks_x, blocks_y;
+    [SerializeField] [Range(3, 20)] int total_length, total_height;
 
     protected override void Generate(Level level, RNG rng) {
         GenerateShapes();
@@ -61,7 +61,7 @@ public class ShapeGenerator : LevelGenerator {
             }
 
             RoomController boss_room_controller = level.boss_rooms.GetRandom(rng);
-            InsertRoom(boss_room_controller, boss_room_controller.room.size * -1);
+            InsertRoom(boss_room_controller, new Vector2Int(-total_length/2, -total_height/2) - boss_room_controller.room.size);
         }
 
         while ((float)available_spaces.Count / shape_blocks.Count > (1 - fill)) {
@@ -120,8 +120,10 @@ public class ShapeGenerator : LevelGenerator {
     void GenerateShapes() {
         shape_blocks = new List<Vector2Int>();
 
-        for (int i = blocks_x; i >= 0; i--) {
-            for (int j = blocks_y; j >= 0; j--) {
+        int half_length = total_length / 2;
+        int half_height = total_height / 2;
+        for (int i = -half_length; i < total_length - half_length; i++) {
+            for (int j = -half_height; j < total_height - half_height; j++) {
                 shape_blocks.Add(new Vector2Int(i, j));
             }
         }
