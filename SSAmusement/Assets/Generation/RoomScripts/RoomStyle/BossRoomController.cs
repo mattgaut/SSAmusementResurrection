@@ -31,6 +31,8 @@ public class BossRoomController : RoomController {
     /// Triggers the beginning of the boss fight
     /// </summary>
     public void OnEnterArena() {
+        if (boss_dead) return;
+
         FindObjectOfType<CameraFollow>().LerpToFollow(0.25f);
 
         teleporter.SetOpen(false);
