@@ -76,9 +76,9 @@ MonoBehaviour:
     m_Bits: 2048
   break_after_timer_mask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4194304
   speed: 10
-  ignore_wall_timer: 0
+  ignore_wall_timer: 1.5
   max_lifetime: 10
   gravity_force: 15
   base_direction: {x: -1, y: 1, z: 0}
@@ -195,4 +195,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 181c10f090afcd84bbbfcf49fdb0ce15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team: 1
   speed: 540

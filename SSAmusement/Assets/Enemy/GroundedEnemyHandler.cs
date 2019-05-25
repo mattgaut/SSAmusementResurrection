@@ -20,6 +20,8 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
         get { return enemy.speed * GameManager.GetFixedDeltaTime(enemy.team); }
     }
 
+    bool frozen_last_frame, frozen_last_last_frame;
+
     float gravity;
     float jump_velocity;
 
@@ -110,6 +112,10 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
     }
 
     void Move() {
+        // TODO find better solution to enemies not being knockbacked when unfrozen
+        frozen_last_last_frame = frozen_last_frame;
+        frozen_last_frame = GameManager.instance.IsTimeFrozen(enemy.team);
+
         Vector2 movement = Vector2.zero;
         if (cont.collisions.above || cont.collisions.below) {
             velocity.y = 0;
@@ -145,7 +151,8 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
         if (enemy.is_knocked_back && cont.collisions.above) {
             enemy.CancelYKnockBack();
         }
-        if (enemy.is_knocked_back && cont.collisions.below) {
+
+        if (enemy.is_knocked_back && cont.collisions.below && !frozen_last_last_frame) {
             enemy.CancelKnockBack();
         }
     }

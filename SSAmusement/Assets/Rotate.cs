@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Rotate : MonoBehaviour {
 
-    [SerializeField]float speed;
+    [SerializeField] Character.Team team;
+    [SerializeField] float speed;
 
 	// Update is called once per frame
 	void Update () {
-        transform.localRotation *= Quaternion.Euler(0, 0, speed * Time.deltaTime);
+        transform.localRotation *= Quaternion.Euler(0, 0, speed * GameManager.GetDeltaTime(team));
 	}
 }

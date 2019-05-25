@@ -17,3 +17,15 @@
 	-spinning maybe?
 	-cutlery breaking/hitting floor
 -Smoke Bomb
+-SlotMachine
+	-Rolling
+	-Payout
+	-No Payout
+	-Lever Locked
+-Raffle
+	-Dispense
+-TimeTrialRoom
+	-TimerCountDown
+	-Start
+	-Fail
+	-Succeed

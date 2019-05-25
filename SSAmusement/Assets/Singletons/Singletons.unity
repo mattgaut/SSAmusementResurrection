@@ -296,5 +296,15 @@ PrefabInstance:
       propertyPath: speed_buff
       value: 
       objectReference: {fileID: 1687454633}
+    - target: {fileID: 7420271915128496320, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: total_length
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7420271915128496320, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: total_height
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}

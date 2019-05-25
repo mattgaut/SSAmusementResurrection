@@ -34,7 +34,9 @@ MonoBehaviour:
     _chance: 0.2
   - possible_pickups:
     - loot: {fileID: 114473138798414562, guid: 9c659322bea69c3449316dda6c15b99c, type: 3}
-      _chance: 1
+      _chance: 0.5
+    - loot: {fileID: 114473138798414562, guid: 75813b4431a94a44fbf7b9a50e5449c7, type: 3}
+      _chance: 0.5
     _chance: 0.3
   min_to_drop: 0
   max_to_drop: 5
