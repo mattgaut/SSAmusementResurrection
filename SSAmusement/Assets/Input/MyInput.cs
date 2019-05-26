@@ -50,7 +50,7 @@ public class MyInput : Singleton<MyInput> {
         }
         foreach (MyInputAxisAsButton button in axis_buttons) {
             button.Update(!GameManager.instance.input_active);
-        }        
+        }
     }
 
     interface IMyInputButton {
@@ -90,7 +90,6 @@ public class MyInput : Singleton<MyInput> {
         }
         public bool IsDownBuffered(float buffer_length) {
             bool to_ret = last_down + buffer_length >= Time.unscaledTime;
-            last_down = float.MinValue;
             return to_ret;
         }
     }

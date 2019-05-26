@@ -91,7 +91,6 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
         }
 
         input = new Vector2(MyInput.GetAxis("Horizontal"), MyInput.GetAxis("Vertical"));
-
         Move();
     }
 
@@ -172,7 +171,7 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
     }
 
     void HandleYInput(float y_input) {
-        if (y_input <= -.99f  && drop_routine == null && cont.OverPlatform() && MyInput.GetButtonDown("Jump", jump_buffer)) {
+        if (y_input <= -.5f  && drop_routine == null && cont.OverPlatform() && MyInput.GetButtonDown("Jump", jump_buffer)) {
             if (cont.OverPlatform()) {
                 drop_routine = StartCoroutine(DropRoutine());
             }

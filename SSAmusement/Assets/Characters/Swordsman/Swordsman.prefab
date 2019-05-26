@@ -1985,7 +1985,7 @@ MonoBehaviour:
   min_jump_height: 1.6
   time_to_jump_apex: 0.24
   jump_buffer: 0.1
-  skill_buffer: 0.1
+  skill_buffer: 0.2
 --- !u!114 &5770375887674969164
 MonoBehaviour:
   m_ObjectHideFlags: 0
