@@ -62,6 +62,9 @@ MonoBehaviour:
   - name: Interact
     axis_name: Interact
     is_positive: 1
+  - name: AdjustMiniMap
+    axis_name: Interact
+    is_positive: 0
 --- !u!1 &2053336211
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,8 +505,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fill: 0.7
-  blocks_x: 5
-  blocks_y: 5
+  total_length: 0
+  total_height: 0
 --- !u!114 &5863379306266666781
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class UIHandler : MonoBehaviour {
     [SerializeField] Button unpause_button;
     [SerializeField] GameObject info_screen;
     [SerializeField] GameObject mini_map_object;
-    [SerializeField] Map mini_map;
+    [SerializeField] Map big_mini_map, small_mini_map;
     [SerializeField] Map info_map;
     [SerializeField] InventoryDisplay inventory_display;
     [SerializeField] InfoDisplay info_display;
@@ -50,7 +50,8 @@ public class UIHandler : MonoBehaviour {
     
     public static void FocusRoom(RoomController room_controller) {
         if (instance == null) return;
-        instance.mini_map.FocusRoom(room_controller);
+        instance.big_mini_map.FocusRoom(room_controller);
+        instance.small_mini_map.FocusRoom(room_controller);
         instance.info_map.FocusRoom(room_controller);
     }
 
@@ -82,10 +83,19 @@ public class UIHandler : MonoBehaviour {
         instance = this;
     }
 
+    private void Update() {
+        if (MyInput.GetButtonDown("AdjustMiniMap")) {
+            small_mini_map.gameObject.SetActive(!small_mini_map.gameObject.activeSelf);
+            big_mini_map.gameObject.SetActive(!big_mini_map.gameObject.activeSelf);
+        }
+    }
+
     private void Start() {
         GameManager.instance.AddOnGameOverEvent(StartGameOverCutscene);
         GameManager.instance.AddOnPauseEvent(TogglePauseScreen);
         GameManager.instance.AddOnSelectEvent(ToggleShowInfoScreen);
+
+        small_mini_map.gameObject.SetActive(false);
 
         unpause_button.onClick.AddListener(GameManager.instance.TogglePause);
     }

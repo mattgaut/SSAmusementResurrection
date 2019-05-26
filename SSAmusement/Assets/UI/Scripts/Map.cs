@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Map : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class Map : MonoBehaviour {
     [SerializeField] GameObject door_icon;
     [SerializeField] GameObject container;
     [SerializeField] float scale;
+    [SerializeField] float map_opacity = 1f;
 
     [SerializeField] RoomIconMap icon_map;
 
@@ -28,6 +30,8 @@ public class Map : MonoBehaviour {
         new_map_object.transform.SetParent(container.transform, false);
         new_map_object.SetToRoom(r, scale);
         new_map_object.SetRoomIcon(icon_map.GetSprite(room_controller.room_type));
+        new_map_object.GetComponent<Image>().color *= new Color(1, 1, 1, map_opacity);
+        new_map_object.GetComponentInChildren<Image>().color *= new Color(1, 1, 1, map_opacity);
         map.Add(r, new_map_object);
 
         foreach (Room.Section section in r.GetSections()) {
@@ -35,21 +39,25 @@ public class Map : MonoBehaviour {
                 GameObject new_door_object = Instantiate(door_icon);
                 new_door_object.transform.SetParent(container.transform, false);
                 new_door_object.transform.localPosition = ((Vector2)section.grid_position * scale) + new Vector2(-scale/2, 0);
+                new_door_object.GetComponent<Image>().color *= new Color(1,1,1, map_opacity);
             }
             if (section.HasOpenDoorway(Direction.RIGHT)) {
                 GameObject new_door_object = Instantiate(door_icon);
                 new_door_object.transform.SetParent(container.transform, false);
                 new_door_object.transform.localPosition = ((Vector2)section.grid_position * scale) + new Vector2(scale / 2, 0);
+                new_door_object.GetComponent<Image>().color *= new Color(1, 1, 1, map_opacity);
             }
             if (section.HasOpenDoorway(Direction.BOTTOM)) {
                 GameObject new_door_object = Instantiate(door_icon);
                 new_door_object.transform.SetParent(container.transform, false);
                 new_door_object.transform.localPosition = ((Vector2)section.grid_position * scale) + new Vector2(0, -scale / 2);
+                new_door_object.GetComponent<Image>().color *= new Color(1, 1, 1, map_opacity);
             }
             if (section.HasOpenDoorway(Direction.TOP)) {
                 GameObject new_door_object = Instantiate(door_icon);
                 new_door_object.transform.SetParent(container.transform, false);
                 new_door_object.transform.localPosition = ((Vector2)section.grid_position * scale) + new Vector2(0, scale / 2);
+                new_door_object.GetComponent<Image>().color *= new Color(1, 1, 1, map_opacity);
             }
         }
     }
