@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 938e02996235ef346bdee5619872c56e, type: 3}
+  m_Sprite: {fileID: 21300018, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,8 +95,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item_name: Pocket Rocket
-  _item_description: After killing an enemy launch a rocket at another nearby enemy
-  sprite: {fileID: 21300000, guid: 938e02996235ef346bdee5619872c56e, type: 3}
+  _item_description: Is that a rocket in your pocket, or are you just happy to see
+    me?
+  sprite: {fileID: 21300018, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
   effects:
   - {fileID: 5268588540451347852}
 --- !u!114 &5268588540451347852

@@ -11,6 +11,7 @@ TextureImporter:
     21300012: DefenseMatrix
     21300014: TimeCrystal
     21300016: PercussiveCapacitor
+    21300018: Pocket Rocket
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -272,13 +273,33 @@ TextureImporter:
         width: 35
         height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 0d18e4187c1e31a49a4b397ba6620cb5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pocket Rocket
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 205
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbfdbd9d79bb92043acfafffdcc4276f
       vertices: []
       indices: 
       edges: []

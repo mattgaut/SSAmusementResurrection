@@ -306,5 +306,16 @@ PrefabInstance:
       propertyPath: total_height
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4727880421587381434, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: available_items.Array.size
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4727880421587381434, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: available_items.Array.data[20]
+      value: 
+      objectReference: {fileID: 9206136929133298297, guid: f4115c97705816349849226c39f4ff41,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}
