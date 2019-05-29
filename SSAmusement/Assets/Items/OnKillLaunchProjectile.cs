@@ -11,14 +11,13 @@ public class OnKillLaunchProjectile : OnKillItemEffect {
 
     protected override void OnKill(Character killer, Character killed) {
         HomingProjectile new_projectile = Instantiate(projectile);
-        Debug.Log(killer.name + " : " + killed.name);
-        projectile.transform.position = killer.char_definition.center_mass.position;
+        new_projectile.transform.position = killer.char_definition.center_mass.position;
 
-        projectile.LaunchTowardsTarget(Vector2.up);
+        new_projectile.LaunchTowardsTarget(Vector2.up);
 
-        projectile.SetSource(killer);
-        projectile.SetOnHit(OnHit);
-        projectile.SetTarget(target_collector.GetRandomTarget());
+        new_projectile.SetSource(killer);
+        new_projectile.SetOnHit(OnHit);
+        new_projectile.SetTarget(target_collector.GetRandomTarget());
     }
 
     void OnHit(Character hit, Attack hit_by) {
