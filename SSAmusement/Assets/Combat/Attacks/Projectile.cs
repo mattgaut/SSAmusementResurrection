@@ -59,7 +59,7 @@ public class Projectile : SingleHitAttack {
 
     public bool LaunchTowardsTarget(Vector2 distance) {
         if (gravity_force == 0) {
-            base_direction = Quaternion.FromToRotation(base_direction, distance) * base_direction;
+            transform.rotation = Quaternion.FromToRotation(base_direction, distance);
             return true;
         } else {
             double x_distance = distance.x;

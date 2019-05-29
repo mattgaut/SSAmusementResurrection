@@ -12,5 +12,5 @@ public abstract class OnKillItemEffect : ItemEffect {
         item.owner.on_kill += OnKill;
     }
 
-    protected abstract void OnKill(Character c, Character killed);
+    protected abstract void OnKill(Character killer, Character killed);
 }

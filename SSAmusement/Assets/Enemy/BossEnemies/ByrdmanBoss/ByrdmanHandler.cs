@@ -52,7 +52,7 @@ public class ByrdmanHandler : EnemyHandler {
         if (target == null) { target = FindObjectOfType<Player>(); }
 
         foreach (RocketSpawner rs in rocket_spawners) {
-            rs.Ini(homing_projectile, RocketOnHit, target.char_definition.center_mass);
+            rs.Ini(homing_projectile, RocketOnHit, target);
         }
         foreach (Electricity en in electricity_nodes) {
             en.SetOnHit(ZapOnHit);

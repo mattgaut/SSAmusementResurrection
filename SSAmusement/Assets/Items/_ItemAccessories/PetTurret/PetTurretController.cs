@@ -89,11 +89,11 @@ public class PetTurretController : MonoBehaviour {
         SoundManager.instance?.LocalPlaySfx(laser_sfx);
 
         Transform target = target_callback.target.char_definition.center_mass;
-        new_laser.SetTarget(target);
+        new_laser.SetTarget(target_callback.target);
         new_laser.SetOnHit((a, b) => target_callback.success_callback(a.character));
 
         float angle = 0;
-        Vector3 to_target = target.transform.position - transform.position;
+        Vector3 to_target = target.position - transform.position;
         if (to_target.x < 0) {
             angle = Vector2.SignedAngle(Vector2.left, to_target) + 180;
         } else {

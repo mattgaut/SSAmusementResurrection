@@ -36,6 +36,7 @@ public class Item : MonoBehaviour {
     public virtual void OnPickup(Player p) {
         GetComponent<SpriteRenderer>().enabled = false;
         SetOwner(p);
+        transform.localPosition = Vector3.zero;
         transform.SetParent(p.transform);
         foreach (ItemEffect e in effects) {
             e.OnPickup(this);

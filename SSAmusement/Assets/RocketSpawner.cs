@@ -6,7 +6,7 @@ using UnityEngine;
 public class RocketSpawner : MonoBehaviour {
 
     [SerializeField] HomingProjectile rocket;
-    Transform homing_target;
+    Character homing_target;
 
     [SerializeField] Transform spawn_point;
     Attack.OnHit on_hit;
@@ -24,7 +24,7 @@ public class RocketSpawner : MonoBehaviour {
         can_spawn = anim.GetCurrentAnimatorStateInfo(0).IsName("RocketReadyIdle");
     }
 
-    public void Ini(HomingProjectile rocket_prefab, Attack.OnHit on_hit, Transform target) {
+    public void Ini(HomingProjectile rocket_prefab, Attack.OnHit on_hit, Character target) {
         rocket = rocket_prefab;
         this.on_hit = on_hit;
         homing_target = target;
