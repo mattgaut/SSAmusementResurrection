@@ -139,10 +139,9 @@ public static class Extension {
         yield return new Pair<Vector2Int, Direction>(vector + Vector2Int.left, Direction.LEFT);
     }
 
-    public static Vector2 ApplyDirectionalKnockback(this Vector2 vector, Vector2 source_point, Vector2 hit_point) {
-        float sign = Mathf.Sign(hit_point.x - source_point.x);
-        vector.x *= sign;
-        return vector;
+    public static Vector2 MatchDirection(this Vector2 vector, Vector2 source_point, Vector2 hit_point) {
+        float sign = Mathf.Sign(hit_point.x - source_point.x);        
+        return new Vector2(vector.x * sign, vector.y);
     }
 
     public static Direction Opposite(this Direction direction) {

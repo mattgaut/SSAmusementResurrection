@@ -49,6 +49,7 @@ MonoBehaviour:
   - name: Attack
   - name: Skill1
   - name: Skill2
+  - name: Skill3
   - name: ActiveSkill
   - name: Pause
   - name: Select
@@ -58,6 +59,7 @@ MonoBehaviour:
   - name: Attack
   - name: Skill1
   - name: Skill2
+  - name: Skill3
   axis_buttons:
   - name: Interact
     axis_name: Interact

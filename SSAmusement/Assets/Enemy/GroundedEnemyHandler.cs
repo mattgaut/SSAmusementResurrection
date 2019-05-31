@@ -140,7 +140,7 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
                 velocity.x = _input.x;
                 movement = ((velocity * enemy.speed) + gravity_force) * GameManager.GetDeltaTime(enemy.team);
                 Face(movement.x);
-            }
+            } 
         }
 
         cont.Move(movement);

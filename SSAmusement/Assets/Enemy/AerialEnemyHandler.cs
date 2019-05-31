@@ -100,7 +100,9 @@ public class AerialEnemyHandler : EnemyHandler {
         bool is_frozen = GameManager.instance.IsTimeFrozen(enemy.team);
 
         if (!enemy.is_knocked_back) {
-            if (enemy.is_dashing) {
+            if (!enemy.can_move) {
+                movement = Vector2.zero;
+            } else if (enemy.is_dashing) {
                 movement = enemy.dash_force;
                 if (movement != Vector3.zero && auto_tilt && !is_frozen) {                   
                     Tilt((movement.x / (GameManager.GetDeltaTime(enemy.team))) / enemy.speed);
@@ -111,7 +113,6 @@ public class AerialEnemyHandler : EnemyHandler {
                 if (auto_tilt && !is_frozen) Tilt(velocity.x / enemy.speed);
                 movement = velocity * GameManager.GetDeltaTime(enemy.team);
             }
-            
         } else {
             if (auto_tilt && !is_frozen) Tilt(enemy.knockback_force.magnitude / (GameManager.GetDeltaTime(enemy.team)));
             movement = enemy.knockback_force;

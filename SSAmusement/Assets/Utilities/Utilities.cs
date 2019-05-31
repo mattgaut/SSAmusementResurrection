@@ -4,16 +4,6 @@ using UnityEngine;
 
 namespace Utilities {
 
-    [System.Serializable]
-    public class Formula {
-        [SerializeField] float flat_damage;
-        [SerializeField] float power_ratio;
-
-        public float GetValue(Character character) {
-            return flat_damage + (power_ratio * character.power);
-        }
-    }
-
     public class Pair<T, U> {
         public Pair() {
         }

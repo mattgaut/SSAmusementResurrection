@@ -77,7 +77,7 @@ public class ChefCartHandler : GroundedEnemyHandler {
         float speed = 1;
         float max_speed = 4f;
         float accel_factor = 1.5f;
-        while (!ShouldStopMoving(direction) && time < max_charge_length) {
+        while (!ShouldStopMoving(direction) && time < max_charge_length && !enemy.crowd_control_effects.IsCCed(CrowdControl.Type.stunned)) {
             yield return new WaitForFixedUpdate();
             time += GameManager.GetFixedDeltaTime(enemy.team);
             if (speed < max_speed) {

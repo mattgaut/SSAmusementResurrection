@@ -61,6 +61,10 @@ public class MeleeWithRangedAttackHandler : MeleeAttackHandler {
 
         ranged_attack_over = false;
         while (!ranged_attack_over) {
+            if (enemy.crowd_control_effects.IsCCed(CrowdControl.Type.stunned)) {
+                AnimRangedAttackOver();
+                enemy.animator.Rebind();
+            }
             yield return new WaitForFixedUpdate();
         }
         yield return null;
@@ -71,6 +75,10 @@ public class MeleeWithRangedAttackHandler : MeleeAttackHandler {
         ranged_attack_over = true;
     }
     public void AnimRangedAttackRelease() {
+        if (enemy.crowd_control_effects.IsCCed(CrowdControl.Type.stunned)) {
+            return;
+        }
+
         Projectile new_projectile = Instantiate(projectile);
 
         Vector2 distance = target.char_definition.center_mass.position - projectile_spawn_transform.position;

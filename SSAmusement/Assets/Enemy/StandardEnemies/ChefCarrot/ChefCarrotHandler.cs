@@ -75,6 +75,10 @@ public class ChefCarrotHandler : GroundedEnemyHandler {
         enemy.animator.SetTrigger("Attack");
 
         while (!throw_released) {
+            if (enemy.crowd_control_effects.IsCCed(CrowdControl.Type.stunned)) {
+                enemy.animator.Rebind();
+                break;
+            }
             Face(target.transform.position.x - transform.position.x);
             yield return new WaitForFixedUpdate();
         }
@@ -108,6 +112,8 @@ public class ChefCarrotHandler : GroundedEnemyHandler {
     }
 
     public void AnimReleaseThrow() {
+        if (enemy.crowd_control_effects.IsCCed(CrowdControl.Type.stunned)) return;
+
         throw_released = true;
 
         Projectile new_carrot = Instantiate(carrot);

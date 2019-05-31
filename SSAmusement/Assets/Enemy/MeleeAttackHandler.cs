@@ -84,6 +84,11 @@ public class MeleeAttackHandler : GroundedEnemyHandler {
 
         attack_over = false;
         while (!attack_over) {
+            if (enemy.crowd_control_effects.IsCCed(CrowdControl.Type.stunned)) {
+                attack_over = true;
+                AnimDisableHitbox();
+                enemy.animator.Rebind(); // Replace with moving to stunned effect
+            }
             yield return new WaitForFixedUpdate();
         }
         yield return null;
@@ -127,6 +132,6 @@ public class MeleeAttackHandler : GroundedEnemyHandler {
         attack_over = true;
     }
     public void AnimEnableHitbox() {
-        attack.Enable();
+        if (!attack_over) attack.Enable();
     }
 }
