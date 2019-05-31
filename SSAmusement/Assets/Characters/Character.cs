@@ -105,7 +105,7 @@ public class Character : MonoBehaviour {
 
     float knockback_dissipation_time;
     Coroutine knockback_routine;
-    Vector3 original_knockback_force;
+    Vector2 current_total_knockback;
 
     Coroutine dash_routine;
 
@@ -282,14 +282,14 @@ public class Character : MonoBehaviour {
     /// Cancels knockback in vertical axis
     /// </summary>
     public void CancelYKnockBack() {
-        knockback_force = new Vector2(knockback_force.x, 0);
+        current_total_knockback = new Vector2(current_total_knockback.x, 0);
     }
 
     /// <summary>
     /// Cancels knockback in horizontal axis
     /// </summary>
     public void CancelXKnockBack() {
-        knockback_force = new Vector2(0, knockback_force.y);
+        current_total_knockback = new Vector2(0, current_total_knockback.y);
     }
 
 
@@ -440,29 +440,23 @@ public class Character : MonoBehaviour {
     /// <param name="length">Maximum Length of force application</param>
     /// <returns>Ienumerator</returns>
     IEnumerator KnockbackRoutine(Vector2 force, float length) {
+        current_total_knockback = force;
         is_knocked_back = true;
         knockback_dissipation_time = length;
 
         while (knockback_dissipation_time > 0 && is_knocked_back) {
             float time_step = Mathf.Min(GameManager.GetDeltaTime(team), knockback_dissipation_time);
 
-            Vector2 old_force = force * Mathf.Pow(knockback_dissipation_time / length, 3f);
+            Vector2 old_force = current_total_knockback * Mathf.Pow(knockback_dissipation_time / length, 3f);
             knockback_dissipation_time -= time_step;
-            Vector2 current_force = force * Mathf.Pow(knockback_dissipation_time / length, 3f);
+            Vector2 current_force = current_total_knockback * Mathf.Pow(knockback_dissipation_time / length, 3f);
 
             knockback_force += old_force - current_force;
             yield return null;
         }
         knockback_force = Vector2.zero;
 
-        if (!is_aerial_unit) {
-            //while (is_knocked_back) {
-            //    yield return null;
-            //}
-            is_knocked_back = false;
-        } else {
-            is_knocked_back = false;
-        }
+        is_knocked_back = false;
     }
 
     /// <summary>

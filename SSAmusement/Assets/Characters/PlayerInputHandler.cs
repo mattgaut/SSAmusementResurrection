@@ -83,7 +83,7 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
             if (MyInput.GetButtonDown("Skill2", skill_buffer)) {
                 ProcessSkillButton(MyInput.GetAxis("Skill2"), 2);
             }
-            if (MyInput.GetButtonDown("ActiveSkill", skill_buffer)) {                
+            if (MyInput.GetButtonDown("ActiveSkill")) {                
                 if (player.inventory.active_item != null) {
                     player.inventory.active_item.active_ability.TryUse();
                 }

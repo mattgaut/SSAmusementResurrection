@@ -148,12 +148,8 @@ public class GroundedEnemyHandler : EnemyHandler, IInputHandler {
         if (enemy.is_knocked_back && (cont.collisions.left || cont.collisions.right)) {
             enemy.CancelXKnockBack();
         }
-        if (enemy.is_knocked_back && cont.collisions.above) {
+        if (enemy.is_knocked_back && (cont.collisions.above || cont.collisions.below)) {
             enemy.CancelYKnockBack();
-        }
-
-        if (enemy.is_knocked_back && cont.collisions.below && !frozen_last_last_frame) {
-            enemy.CancelKnockBack();
         }
     }
 

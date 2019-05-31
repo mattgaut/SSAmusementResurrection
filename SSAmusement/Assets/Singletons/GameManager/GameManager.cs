@@ -222,7 +222,6 @@ public class GameManager : Singleton<GameManager> {
     }
 
     private void Start() {
-        //SceneManager.UnloadSceneAsync("Singletons");
         if (start_game_on_start) StartGame(_player);
     }
 
