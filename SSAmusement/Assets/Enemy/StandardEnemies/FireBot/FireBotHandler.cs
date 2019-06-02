@@ -32,6 +32,7 @@ public class FireBotHandler : AerialEnemyHandler {
     }
 
     IEnumerator Approach() {
+        enemy.animator.SetBool("Mad", true);
         Vector3 target_position = target.char_definition.head.position;
         target_position.y += hover_height;
         input = (target_position - transform.position).normalized;
