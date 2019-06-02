@@ -6,6 +6,7 @@ TextureImporter:
     21300002: FireBot_3
     21300004: FireBot_0
     21300006: FireBot_1
+    21300008: FireBot_4
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -174,6 +175,26 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: ac7538aaaae111948aa74a4d2d9d02e4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireBot_4
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 583
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98715e819fd535f4eae3ee9293b986b1
       vertices: []
       indices: 
       edges: []

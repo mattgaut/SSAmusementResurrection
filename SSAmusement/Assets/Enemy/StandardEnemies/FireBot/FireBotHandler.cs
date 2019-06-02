@@ -18,7 +18,7 @@ public class FireBotHandler : AerialEnemyHandler {
     public bool can_use_projectile {
         get {
             if (!abilities.projectile.is_available) return false;
-            float distance = Mathf.Abs(target.transform.position.x - transform.position.x);
+            float distance = Vector2.Distance(target.char_definition.center_mass.position, projectile_targeting_transform.position);
             return distance > projectile_min_range && distance < projectile_max_range;
         }
     }
@@ -34,13 +34,11 @@ public class FireBotHandler : AerialEnemyHandler {
     IEnumerator Approach() {
         Vector3 target_position = target.char_definition.head.position;
         target_position.y += hover_height;
-        Debug.Log(target_position);
         input = (target_position - transform.position).normalized;
         yield return new WaitForFixedUpdate();
     }
 
     IEnumerator FireProjectile() {
-        projectile_targeting_transform.rotation = Quaternion.FromToRotation(Vector2.up, target.char_definition.center_mass.position - projectile_targeting_transform.position);
         abilities.projectile.TryUse();
         while (abilities.projectile.is_using_ability) {
             yield return new WaitForFixedUpdate();
@@ -70,5 +68,9 @@ public class FireBotHandler : AerialEnemyHandler {
         } else if (hover_height < min_hover) {
             hover_direction = 1;
         }
+    }
+
+    protected void FixedUpdate() {
+        projectile_targeting_transform.rotation = Quaternion.FromToRotation(Vector2.up, target.char_definition.center_mass.position - projectile_targeting_transform.position);
     }
 }
