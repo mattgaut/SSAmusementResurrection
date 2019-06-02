@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BuffType { stat, attack, healing, on_hit, tick, invincibility }
+public enum BuffType { stat, attack, healing, on_hit, tick, invincibility, crowd_control }
 
 public abstract class BuffDefinition : MonoBehaviour {
     public abstract BuffType type { get; }    

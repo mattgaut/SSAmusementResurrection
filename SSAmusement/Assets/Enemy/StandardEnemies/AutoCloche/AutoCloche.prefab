@@ -203,6 +203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06a06e2e31a8bdb42ac57aa239ae7c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 182148984190305365}
+  anim_clip_events: []
 --- !u!1 &276557548946447345
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,7 +788,7 @@ MonoBehaviour:
       _name: CanHunt
     callback_name: CanHunt
     callback_is_field: 0
-    callback_index: 2
+    callback_index: 3
   - parameter:
       _name: CanDiveBomb
     callback_name: get_can_dive_bomb

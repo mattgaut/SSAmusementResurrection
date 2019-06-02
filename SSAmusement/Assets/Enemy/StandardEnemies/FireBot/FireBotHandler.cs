@@ -10,6 +10,8 @@ public class FireBotHandler : AerialEnemyHandler {
     [SerializeField] float min_hover, max_hover, hover_speed;
     [SerializeField] float close_distance;
 
+    [SerializeField] Transform projectile_targeting_transform;
+
     float hover_direction;
     float hover_height;
 
@@ -32,11 +34,13 @@ public class FireBotHandler : AerialEnemyHandler {
     IEnumerator Approach() {
         Vector3 target_position = target.char_definition.head.position;
         target_position.y += hover_height;
+        Debug.Log(target_position);
         input = (target_position - transform.position).normalized;
         yield return new WaitForFixedUpdate();
     }
 
     IEnumerator FireProjectile() {
+        projectile_targeting_transform.rotation = Quaternion.FromToRotation(Vector2.up, target.char_definition.center_mass.position - projectile_targeting_transform.position);
         abilities.projectile.TryUse();
         while (abilities.projectile.is_using_ability) {
             yield return new WaitForFixedUpdate();
@@ -53,13 +57,14 @@ public class FireBotHandler : AerialEnemyHandler {
 
     protected override void Ini() {
         base.Ini();
+        abilities.SetCharacter(enemy.character);
         hover_height = Random.Range(min_hover, max_hover);
         hover_direction = Mathf.Sign(Random.Range(0, 2) - 0.5f);
     }
 
     protected override void Update() {
         base.Update();
-        hover_height += hover_direction * hover_speed * GameManager.instance.GetTeamTimeScale(enemy.team);
+        hover_height += hover_direction * hover_speed * GameManager.GetDeltaTime(enemy.team);
         if (hover_height > max_hover) {
             hover_direction = -1;
         } else if (hover_height < min_hover) {

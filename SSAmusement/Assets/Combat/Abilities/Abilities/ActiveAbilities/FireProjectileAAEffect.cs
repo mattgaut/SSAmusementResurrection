@@ -9,6 +9,7 @@ public class FireProjectileAAEffect : ActiveAbilityEffect {
     [SerializeField] Formula formula;
 
     [SerializeField] Transform projectile_spawn_transform;
+    [SerializeField] bool adjust_rotation;
 
     protected override void UseAbilityEffect(float input) {
         FireProjectile();
@@ -20,7 +21,8 @@ public class FireProjectileAAEffect : ActiveAbilityEffect {
         new_projectile.SetOnHit(OnProjectileHit);
 
         new_projectile.transform.position = projectile_spawn_transform.position;
-        new_projectile.transform.rotation = projectile_spawn_transform.rotation;
+
+        if (adjust_rotation) new_projectile.LaunchTowardsTarget(projectile_spawn_transform.rotation * Vector2.up);
     }
 
     protected virtual void OnProjectileHit(Character hit, Attack hit_by) {

@@ -1,9 +1,11 @@
 fileFormatVersion: 2
-guid: cbf5ef84caf9f7344a85f90c23381ec2
+guid: 636f7274e44993041b63a14ec89d7c50
 TextureImporter:
   fileIDToRecycleName:
-    21300000: AutoCloche_0
-    21300002: AutoCloche_1
+    21300000: FireBot_2
+    21300002: FireBot_3
+    21300004: FireBot_0
+    21300006: FireBot_1
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -47,7 +49,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 40
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,15 +99,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AutoCloche_0
+      name: FireBot_2
       rect:
         serializedVersion: 2
         x: 0
         y: 576
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.33}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -117,21 +119,61 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AutoCloche_1
+      name: FireBot_3
       rect:
         serializedVersion: 2
         x: 0
         y: 512
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.33}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 067494ce1e4f2f04f8e3ef34dced1ec2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireBot_0
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 611
+        width: 2
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be9209f24e414664bb565131229314e9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireBot_1
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 598
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac7538aaaae111948aa74a4d2d9d02e4
       vertices: []
       indices: 
       edges: []
