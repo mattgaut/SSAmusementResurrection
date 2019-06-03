@@ -19,20 +19,28 @@ public class AnimParameterEventPropertyDrawer : PropertyDrawer {
         if (folded_out) {
             EditorGUI.indentLevel++;
 
-            EditorGUI.PropertyField(rect, property.FindPropertyRelative("parameter_name"));
+            SerializedProperty has_animation = property.FindPropertyRelative("has_animation");
+            EditorGUI.PropertyField(rect, property.FindPropertyRelative("has_animation"));
             rect.position += shift_vector;
 
-            SerializedProperty type = property.FindPropertyRelative("type");
-            EditorGUI.PropertyField(rect, type);
-            rect.position += shift_vector;
+            if (has_animation.boolValue) {
+                EditorGUI.PropertyField(rect, property.FindPropertyRelative("parameter_name"));
+                rect.position += shift_vector;
 
-            if (type.enumValueIndex == (int)AnimParameterEvent.Type.Bool) {
-                EditorGUI.PropertyField(rect, property.FindPropertyRelative("bool_value"));
+                SerializedProperty type = property.FindPropertyRelative("type");
+                EditorGUI.PropertyField(rect, type);
                 rect.position += shift_vector;
-            } else if (type.enumValueIndex == (int)AnimParameterEvent.Type.Float) {
-                EditorGUI.PropertyField(rect, property.FindPropertyRelative("float_value"));
-                rect.position += shift_vector;
+
+                if (type.enumValueIndex == (int)AnimParameterEvent.Type.Bool) {
+                    EditorGUI.PropertyField(rect, property.FindPropertyRelative("bool_value"));
+                    rect.position += shift_vector;
+                } else if (type.enumValueIndex == (int)AnimParameterEvent.Type.Float) {
+                    EditorGUI.PropertyField(rect, property.FindPropertyRelative("float_value"));
+                    rect.position += shift_vector;
+                }
             }
+
+
 
             EditorGUI.indentLevel--;
         }

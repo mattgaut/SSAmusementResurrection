@@ -31,7 +31,14 @@ MonoBehaviour:
     rect:
       serializedVersion: 2
       x: 27
-      y: 330
+      y: 329
+      width: 200
+      height: 40.95508
+  - _name: Field
+    rect:
+      serializedVersion: 2
+      x: 313
+      y: 334
       width: 200
       height: 40.95508
   transitions:
@@ -56,11 +63,31 @@ MonoBehaviour:
         _name: CanHunt
       _should_parameter_be_true: 0
   - _to:
+      _name: Field
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 334
+        width: 200
+        height: 40.95508
+    _from:
+      _name: Hunt
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 237
+        width: 200
+        height: 40.95508
+    _conditions:
+    - _parameter:
+        _name: CanUseField
+      _should_parameter_be_true: 1
+  - _to:
       _name: FireProjectile
       rect:
         serializedVersion: 2
         x: 27
-        y: 330
+        y: 329
         width: 200
         height: 40.95508
     _from:
@@ -105,18 +132,36 @@ MonoBehaviour:
       rect:
         serializedVersion: 2
         x: 27
-        y: 330
+        y: 329
+        width: 200
+        height: 40.95508
+    _conditions: []
+  - _to:
+      _name: Hunt
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 237
+        width: 200
+        height: 40.95508
+    _from:
+      _name: Field
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 334
         width: 200
         height: 40.95508
     _conditions: []
   parameters:
   - _name: CanHunt
   - _name: CanUseProjectile
+  - _name: CanUseField
   entry_state:
-    _name: 
+    _name: Wander
     rect:
       serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
+      x: 169
+      y: 118
+      width: 200
+      height: 40.95508

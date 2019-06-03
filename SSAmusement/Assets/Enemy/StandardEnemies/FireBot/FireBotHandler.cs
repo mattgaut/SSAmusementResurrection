@@ -10,7 +10,8 @@ public class FireBotHandler : AerialEnemyHandler {
     [SerializeField] float min_hover, max_hover, hover_speed;
     [SerializeField] float close_distance;
 
-    [SerializeField] Transform projectile_targeting_transform;
+    [SerializeField] Transform targeting_transform;
+    [SerializeField] ParticleSystem field_particles;
 
     float hover_direction;
     float hover_height;
@@ -18,7 +19,7 @@ public class FireBotHandler : AerialEnemyHandler {
     public bool can_use_projectile {
         get {
             if (!abilities.projectile.is_available) return false;
-            float distance = Vector2.Distance(target.char_definition.center_mass.position, projectile_targeting_transform.position);
+            float distance = Vector2.Distance(target.char_definition.center_mass.position, targeting_transform.position);
             return distance > projectile_min_range && distance < projectile_max_range;
         }
     }
@@ -26,8 +27,8 @@ public class FireBotHandler : AerialEnemyHandler {
     public bool can_use_field {
         get {
             if (!abilities.field.is_available) return false;
-            float distance = Mathf.Abs(target.transform.position.x - transform.position.x);
-            return distance < projectile_max_range;
+            float distance = Vector2.Distance(target.char_definition.head.position, targeting_transform.position);
+            return distance < field_max_range;
         }
     }
 
@@ -47,9 +48,20 @@ public class FireBotHandler : AerialEnemyHandler {
     }
 
     IEnumerator ActivateField() {
+        input = Vector2.zero;
         abilities.field.TryUse();
-        while (abilities.field.is_using_ability) {
-            yield return new WaitForFixedUpdate();
+        if (abilities.field.is_using_ability) {
+            field_particles.Play();
+
+            yield return GameManager.instance.TeamWaitForSeconds(enemy.team, 0.25f);
+
+            enemy.Dash(targeting_transform.rotation * Vector2.down * 3, 1f);
+
+            while (abilities.field.is_using_ability) {
+                yield return new WaitForFixedUpdate();
+            }
+
+            field_particles.Stop();
         }
     }
 
@@ -63,6 +75,7 @@ public class FireBotHandler : AerialEnemyHandler {
 
     protected override void Update() {
         base.Update();
+        targeting_transform.rotation = Quaternion.FromToRotation(Vector2.up, target.char_definition.center_mass.position - targeting_transform.position);
         hover_height += hover_direction * hover_speed * GameManager.GetDeltaTime(enemy.team);
         if (hover_height > max_hover) {
             hover_direction = -1;
@@ -72,6 +85,6 @@ public class FireBotHandler : AerialEnemyHandler {
     }
 
     protected void FixedUpdate() {
-        projectile_targeting_transform.rotation = Quaternion.FromToRotation(Vector2.up, target.char_definition.center_mass.position - projectile_targeting_transform.position);
+        targeting_transform.rotation = Quaternion.FromToRotation(Vector2.up, target.char_definition.center_mass.position - targeting_transform.position);
     }
 }

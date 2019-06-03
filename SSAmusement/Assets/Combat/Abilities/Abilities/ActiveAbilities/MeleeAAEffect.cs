@@ -11,6 +11,7 @@ public class MeleeAAEffect : ActiveAbilityEffect {
 
     [SerializeField] AnimParameterEvent begin_anim;
 
+    [SerializeField] Formula damage;
     [SerializeField] Vector2 knockback;
 
     public override void SetCharacter(Character character) {

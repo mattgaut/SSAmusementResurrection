@@ -3261,6 +3261,7 @@ MonoBehaviour:
   active_hitbox_time: 0.12
   attack: {fileID: 114215308427159830}
   begin_anim:
+    has_animation: 1
     parameter_name: Attack
     type: 1
     bool_value: 0
@@ -3286,16 +3287,19 @@ MonoBehaviour:
   counter_fail_length: 1
   active_hitbox_time: 0.22
   counter_anim:
+    has_animation: 1
     parameter_name: Counter
     type: 1
     bool_value: 0
     float_value: 0
   success_anim:
+    has_animation: 1
     parameter_name: CounterSuccess
     type: 1
     bool_value: 0
     float_value: 0
   fail_anim:
+    has_animation: 1
     parameter_name: CounterFail
     type: 0
     bool_value: 1
@@ -3334,6 +3338,7 @@ MonoBehaviour:
     flat_damage: 1
     power_ratio: 0.5
   projectile_spawn_transform: {fileID: 2192307419471981511}
+  adjust_rotation: 0
   crowd_control_effect: 00000000
   duration: 2
 --- !u!1 &5952571705887788433

@@ -151,6 +151,8 @@ public class AnimatorWrapper : MonoBehaviour, ISerializationCallbackReceiver {
 public class AnimParameterEvent {
     public enum Type { Bool, Trigger, Float }
 
+    public bool has_animation;
+
     public string parameter_name;
 
     public Type type;

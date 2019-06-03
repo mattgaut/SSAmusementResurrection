@@ -105,7 +105,7 @@ public class AerialEnemyHandler : EnemyHandler {
             } else if (enemy.is_dashing) {
                 movement = enemy.dash_force;
                 if (movement != Vector3.zero && auto_tilt && !is_frozen) {                   
-                    Tilt((movement.x / (GameManager.GetDeltaTime(enemy.team))) / enemy.speed);
+                    Tilt((movement.x / (GameManager.GetDeltaTime(enemy.team))) / movement.magnitude);
                 }
                 enemy.dash_force = Vector2.zero;
             } else {
