@@ -4,6 +4,10 @@ using UnityEngine;
 
 public sealed class Consumeable : Pickup {
 
+    public ActiveAbility ability { get { return _ability; } }
+
+    [SerializeField] ActiveChargeAbility _ability;
+
     protected override void OnPickup(Player p) {
         PickupEffect(p);
 
