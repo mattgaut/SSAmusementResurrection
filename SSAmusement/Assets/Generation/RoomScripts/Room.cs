@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public enum Direction { TOP = 1, BOTTOM = -1, LEFT = -2, RIGHT = 2 }
 
-public enum RoomType { basic, boss, shop, teleporter, swarm, treasure, gamble }
+public enum RoomType { basic, boss, shop, teleporter, swarm, treasure, gamble, recovery }
 
 public class Room : MonoBehaviour {
 

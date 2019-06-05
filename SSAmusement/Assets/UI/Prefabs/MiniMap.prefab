@@ -217,6 +217,7 @@ MonoBehaviour:
   door_icon: {fileID: 1143506431853796, guid: ba00db4896036df4ca46359b5f6fbd71, type: 3}
   container: {fileID: 4773925252496014319}
   scale: 40
+  map_opacity: 1
   icon_map:
     boss: {fileID: 21300006, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
     shop: {fileID: 21300010, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
@@ -224,3 +225,4 @@ MonoBehaviour:
     treasure: {fileID: 21300012, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
     swarm: {fileID: 21300014, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
     gamble: {fileID: 21300016, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}
+    recovery: {fileID: 21300018, guid: 926e49bad4a33e744a95b63f99a2a422, type: 3}

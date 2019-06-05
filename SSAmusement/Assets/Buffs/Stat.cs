@@ -73,6 +73,14 @@ public class CapStat : Stat {
         get { return this; }
     }
 
+    public float percent {
+        get { return current / max; }
+    }
+
+    public bool is_max {
+        get { return current == max; }
+    }
+
     public override void AddBuff(IStatBuff buff) {
         float value_before = value;
         base.AddBuff(buff);

@@ -419,6 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 216908d33d29c6942b2a11ccd03b7ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  init_on_start: 0
   _room: {fileID: 8025569430263598288}
   swarm_button: {fileID: 7909625729710182371}
   room_set: {fileID: 1889317052128928052}
@@ -1160,22 +1161,22 @@ PrefabInstance:
     - target: {fileID: 7793315554498743253, guid: c626689618fb4084aba35957a929e42e,
         type: 3}
       propertyPath: instruction.possible_spawns.Array.data[0].possible_enemies.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7793315554498743253, guid: c626689618fb4084aba35957a929e42e,
         type: 3}
       propertyPath: instruction.possible_spawns.Array.data[1].possible_enemies.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7793315554498743253, guid: c626689618fb4084aba35957a929e42e,
         type: 3}
       propertyPath: instruction.possible_spawns.Array.data[2].possible_enemies.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7793315554498743253, guid: c626689618fb4084aba35957a929e42e,
         type: 3}
       propertyPath: instruction.possible_spawns.Array.data[3].possible_enemies.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7793315554498743253, guid: c626689618fb4084aba35957a929e42e,
         type: 3}
@@ -1203,7 +1204,7 @@ PrefabInstance:
         type: 3}
       propertyPath: instruction.possible_spawns.Array.data[1].possible_enemies.Array.data[2]
       value: 
-      objectReference: {fileID: 114055846295303654, guid: 72729a89b78e09748a65560e39946275,
+      objectReference: {fileID: 350398035534217102, guid: f92b32844c7af54448cac508c58234fc,
         type: 3}
     - target: {fileID: 7793315554498743253, guid: c626689618fb4084aba35957a929e42e,
         type: 3}
@@ -1268,6 +1269,24 @@ PrefabInstance:
       propertyPath: reward_chest
       value: 
       objectReference: {fileID: 4584351022278931857}
+    - target: {fileID: 7793315554498743253, guid: c626689618fb4084aba35957a929e42e,
+        type: 3}
+      propertyPath: instruction.possible_spawns.Array.data[3].possible_enemies.Array.data[5]
+      value: 
+      objectReference: {fileID: 350398035534217102, guid: f92b32844c7af54448cac508c58234fc,
+        type: 3}
+    - target: {fileID: 7793315554498743253, guid: c626689618fb4084aba35957a929e42e,
+        type: 3}
+      propertyPath: instruction.possible_spawns.Array.data[0].possible_enemies.Array.data[2]
+      value: 
+      objectReference: {fileID: 350398035534217102, guid: f92b32844c7af54448cac508c58234fc,
+        type: 3}
+    - target: {fileID: 7793315554498743253, guid: c626689618fb4084aba35957a929e42e,
+        type: 3}
+      propertyPath: instruction.possible_spawns.Array.data[2].possible_enemies.Array.data[5]
+      value: 
+      objectReference: {fileID: 350398035534217102, guid: f92b32844c7af54448cac508c58234fc,
+        type: 3}
     - target: {fileID: 7793315554498743256, guid: c626689618fb4084aba35957a929e42e,
         type: 3}
       propertyPath: m_LocalPosition.x
