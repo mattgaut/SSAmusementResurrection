@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4253043818426010}
   - component: {fileID: 212821449077802826}
-  - component: {fileID: 114473138798414562}
   - component: {fileID: 58552095792043540}
   - component: {fileID: 4178100385919731118}
+  - component: {fileID: 4263469363295386022}
   m_Layer: 23
-  m_Name: BasePickup
+  m_Name: BaseConsumeable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,23 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &114473138798414562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1170230529789578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6913a3a4dff65149a8ab4530f8a67d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  on_pickup_audio_clip:
-    _override_clip: {fileID: 0}
-    _default_codename: 
-    default_clip: {fileID: 0}
-  health_restored: 20
 --- !u!58 &58552095792043540
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -137,6 +120,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &4263469363295386022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170230529789578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b40e9fd2a92e01d409df8f24401d5bd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  on_pickup_audio_clip:
+    _override_clip: {fileID: 0}
+    _default_codename: 
+    default_clip: {fileID: 0}
 --- !u!1 &5687653134234394156
 GameObject:
   m_ObjectHideFlags: 0

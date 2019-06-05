@@ -21,6 +21,7 @@ public class Inventory : MonoBehaviour {
         get { return new ReadOnlyCollection<Item>(items_in_inventory); }
     }
     public ActiveItem active_item { get; private set; }
+    public Consumeable consumeable { get; private set; }
 
     int pet_count;
 
@@ -71,6 +72,21 @@ public class Inventory : MonoBehaviour {
     }
     public void RemovePet() {
         pet_count--;
+    }
+
+    public void AddConsumeable(Consumeable new_consumeable) {
+        if (new_consumeable != null) {
+            if (consumeable != null) {
+                consumeable.gameObject.SetActive(true);
+                player.DropObject(consumeable.gameObject, true);
+                Destroy(consumeable.gameObject);
+            }
+
+            consumeable = new_consumeable;
+            consumeable.transform.position = transform.position;
+            consumeable.transform.SetParent(transform);
+            consumeable.gameObject.SetActive(false);
+        }
     }
 
     public Item AddItem(Item i, bool will_handle_old_item) {

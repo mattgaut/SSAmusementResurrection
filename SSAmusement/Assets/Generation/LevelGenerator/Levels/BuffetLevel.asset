@@ -45,6 +45,8 @@ MonoBehaviour:
     avg: 1.4
     _rooms:
     - {fileID: 3746372910927917768, guid: 7a9711b539eead94583456b2074cdbe2, type: 3}
+    - {fileID: 7773948510798632762, guid: fd63aa972c485134a85ef4b0d7b7574e, type: 3}
+    - {fileID: 7963284868146210025, guid: 27bb4460d087a1b4182acaff12d513c1, type: 3}
   _treasure_rooms:
     use_range: 0
     fixed_number: 1
