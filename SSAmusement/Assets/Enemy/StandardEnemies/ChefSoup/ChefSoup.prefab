@@ -257,8 +257,9 @@ MonoBehaviour:
   power: 0
   armor: 0
   speed: 1
-  _flat: 0
-  _multi: 0.65
+  modifier:
+    multi: 0.75
+    flat: 0
 --- !u!114 &3949918887954232129
 MonoBehaviour:
   m_ObjectHideFlags: 0

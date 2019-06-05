@@ -44,8 +44,8 @@ public class ByrdmanHandler : EnemyHandler {
 
     protected override void Ini() {
         base.Ini();
-        has_energy_buff_instance = has_energy_buff.GetBuffInstance();
-        no_energy_buff_instance = no_energy_buff.GetBuffInstance();
+        has_energy_buff_instance = has_energy_buff.GetIBuffInstance();
+        no_energy_buff_instance = no_energy_buff.GetIBuffInstance();
 
         active_rockets = new List<GameObject>();
 
@@ -123,7 +123,7 @@ public class ByrdmanHandler : EnemyHandler {
                 enemy.transform.position += Vector3.down * to_fall;
                 yield return new WaitForFixedUpdate();
             }
-            has_energy_buff_instance.Remove(enemy);
+            has_energy_buff_instance.Remove();
             no_energy_buff_instance.Apply(enemy);
             enemy.animator.SetBool("Rest", true);
 
@@ -137,7 +137,7 @@ public class ByrdmanHandler : EnemyHandler {
             lever_pulled = false;
             enemy.animator.SetTrigger("Refill");
             enemy.animator.SetBool("Rest", false);
-            no_energy_buff_instance.Remove(enemy);
+            no_energy_buff_instance.Remove();
             has_energy_buff_instance.Apply(enemy);
 
             while (!lever_pulled) {

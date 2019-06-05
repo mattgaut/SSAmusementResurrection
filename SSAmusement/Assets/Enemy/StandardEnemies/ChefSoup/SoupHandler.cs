@@ -8,7 +8,7 @@ public class SoupHandler : MeleeAttackHandler {
     protected override void AttackOnHit(Character c) {
         base.AttackOnHit(c);
         Character comb = c as Character;
-        if (comb != null) soup_debuff.Apply(comb);
+        if (comb != null) soup_debuff.GetIBuffInstance().Apply(comb);
     }
 
 }

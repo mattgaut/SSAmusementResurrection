@@ -27,17 +27,13 @@ public interface IInputHandler {
 }
 
 public interface IBuff {
+    Character buffed { get; }
     Sprite icon { get; }
     bool is_benificial { get; }
     float length { get; }
 
     void Apply(Character stat_entity);
-    void Remove(Character stat_entity);
-}
-
-public interface IStatBuff {
-    float flat { get; }
-    float multi { get; }
+    void Remove();
 }
 
 /// <summary>

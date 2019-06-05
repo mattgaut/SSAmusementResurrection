@@ -51,6 +51,7 @@ MonoBehaviour:
   - name: Skill2
   - name: Skill3
   - name: ActiveSkill
+  - name: UseConsumable
   - name: Pause
   - name: Select
   axes:

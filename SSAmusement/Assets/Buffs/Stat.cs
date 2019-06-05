@@ -4,11 +4,35 @@ using UnityEngine;
 
 [System.Serializable]
 public class Stat {
+    [System.Serializable]
+    public class Modifier {
+        public float multi;
+        public float flat;
+
+        public Modifier(float flat = 0f, float multi = 0f) {
+            this.multi = multi;
+            this.flat = flat;
+        }
+    }
+
     [SerializeField] float base_value;
-    List<IStatBuff> buffs = new List<IStatBuff>();
+    List<Modifier> mods = new List<Modifier>();
 
     float last_calculated;
     bool changed = true;
+
+    public float flat_modded_value {
+        get {
+            return GetFlatBuffedValue();
+        }
+    }
+
+    public float unmodded_value {
+        get {
+            return GetBuffedValue();
+        }
+    }
+
     protected float value {
         get {
             if (changed) {
@@ -23,23 +47,31 @@ public class Stat {
 
     float GetBuffedValue() {
         float to_ret = base_value;
-        foreach (IStatBuff buff in buffs) {
-            to_ret += buff.flat;
+        foreach (Modifier mod in mods) {
+            to_ret += mod.flat;
         }
-        foreach (IStatBuff buff in buffs) {
-            if (buff.multi != 0)
-                to_ret *= buff.multi;
+        foreach (Modifier mod in mods) {
+            if (mod.multi != 0)
+                to_ret *= mod.multi;
         }
         return to_ret;
     }
 
-    public virtual void AddBuff(IStatBuff buff) {
-        buffs.Add(buff);
+    float GetFlatBuffedValue() {
+        float to_ret = base_value;
+        foreach (Modifier mod in mods) {
+            to_ret += mod.flat;
+        }
+        return to_ret;
+    }
+
+    public virtual void AddModifier(Modifier mod) {
+        mods.Add(mod);
         changed = true;
     }
 
-    public virtual void RemoveBuff(IStatBuff buff) {
-        buffs.Remove(buff);
+    public virtual void RemoveModifier(Modifier mod) {
+        mods.Remove(mod);
         changed = true;
     }
 
@@ -81,9 +113,9 @@ public class CapStat : Stat {
         get { return current == max; }
     }
 
-    public override void AddBuff(IStatBuff buff) {
+    public override void AddModifier(Modifier mod) {
         float value_before = value;
-        base.AddBuff(buff);
+        base.AddModifier(mod);
         float value_after = value;
         if (value_before < value_after) {
             current += value_after - value_before;
@@ -92,8 +124,8 @@ public class CapStat : Stat {
             current = value;
         }
     }
-    public override void RemoveBuff(IStatBuff buff) {
-        base.RemoveBuff(buff);
+    public override void RemoveModifier(Modifier mod) {
+        base.RemoveModifier(mod);
         if (current > value) {
             current = value;
         }

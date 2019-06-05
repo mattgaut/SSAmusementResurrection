@@ -33,7 +33,7 @@ public class CycloneAAEffect : ActiveAbilityEffect {
         IBuff buff = null;
 
         if (speed_buff) {
-            buff = speed_buff.GetBuffInstance();
+            buff = speed_buff.GetIBuffInstance();
         }
         
         is_using_ability = true;
@@ -53,7 +53,7 @@ public class CycloneAAEffect : ActiveAbilityEffect {
         }
 
         attack.Disable();
-        buff?.Remove(character);
+        buff?.Remove();
 
         character.animator.SetTrigger(anim_trigger_end_spin);
         is_using_ability = false;

@@ -99,7 +99,7 @@ public class ChefBossHandler : EnemyHandler {
     void SoupOnHit(Character hit, Attack hit_by) {
         enemy.DealDamage(enemy.power, hit);
         Character comb = hit as Character;
-        if (comb != null) soup_debuff.Apply(comb);
+        if (comb != null) soup_debuff.GetIBuffInstance().Apply(comb);
     }
 
     IEnumerator Cleaver() {

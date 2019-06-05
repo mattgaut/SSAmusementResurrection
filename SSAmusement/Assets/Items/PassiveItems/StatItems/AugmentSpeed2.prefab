@@ -148,5 +148,6 @@ MonoBehaviour:
   power: 0
   armor: 0
   speed: 1
-  _flat: 0
-  _multi: 1.25
+  modifier:
+    multi: 1.25
+    flat: 0

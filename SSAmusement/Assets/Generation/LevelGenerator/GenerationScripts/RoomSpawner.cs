@@ -98,10 +98,10 @@ public class RoomSpawner : MonoBehaviour {
         power_buff.SetMulti(1 + (.2f * count));
 
         foreach (Enemy e in enemies) {
-            power_buff.Apply(e);
-            armor_buff.Apply(e);
-            speed_buff.Apply(e);
-            health_buff.Apply(e);
+            power_buff.GetIBuffInstance().Apply(e);
+            armor_buff.GetIBuffInstance().Apply(e);
+            speed_buff.GetIBuffInstance().Apply(e);
+            health_buff.GetIBuffInstance().Apply(e);
         }
 
         if (boss_room_controller != null) {

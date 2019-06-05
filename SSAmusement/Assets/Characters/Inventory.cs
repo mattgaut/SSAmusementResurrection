@@ -55,6 +55,13 @@ public class Inventory : MonoBehaviour {
         player.player_display.UpdateCurrencyText(currency);
     }
 
+    public void TryUseConsumable() {
+        if (consumeable && consumeable.ability.TryUse()) {
+
+            consumeable = null;
+        }
+    }
+
     public int ItemCount(string name) {
         int count = 0;
         foreach (Item i in items_in_inventory) {
@@ -119,6 +126,13 @@ public class Inventory : MonoBehaviour {
 
             player.player_display.UpdateBossKey(boss_keycards);
         }
+    }
+
+    IEnumerator DestroyConsumableAfterAbilityOver(Consumeable consumeable) {
+        while (consumeable.ability.is_using_ability) {
+            yield return null;
+        }
+        Destroy(consumeable.gameObject);
     }
 
     void RemoveKeycard(int i = 1) {

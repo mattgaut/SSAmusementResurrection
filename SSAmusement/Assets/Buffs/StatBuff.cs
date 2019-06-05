@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatBuff : BuffDefinition, IStatBuff {
+public class StatBuff : BuffDefinition {
 
     [SerializeField] bool health, energy, power, armor, speed;
-    [SerializeField] float _flat, _multi;
-
-    public float flat {
-        get { return _flat; }
-    }
-    public float multi {
-        get { return _multi; }
-    }
+    [SerializeField] Stat.Modifier modifier;
 
     public override BuffType type {
         get {
@@ -21,11 +14,11 @@ public class StatBuff : BuffDefinition, IStatBuff {
     }
 
     public void SetFlat(float flat) {
-        _flat = flat;
+        modifier.flat = flat;
     }
 
     public void SetMulti(float multi) {
-        _multi = multi;
+        modifier.multi = multi;
     }
 
     public void SetAffectedStats(bool health = false, bool energy = false, bool power = false, bool armor = false, bool speed = false) {
@@ -36,39 +29,39 @@ public class StatBuff : BuffDefinition, IStatBuff {
         this.speed = speed;
     }
 
-    public override void Apply(Character stat_entity) {
+    protected override void Apply(Character stat_entity, int id) {
         if (health) {
-            stat_entity.health.AddBuff(this);
+            stat_entity.health.AddModifier(modifier);
         }
         if (energy) {
-            stat_entity.energy.AddBuff(this);
+            stat_entity.energy.AddModifier(modifier);
         }
         if (power) {
-            stat_entity.power.AddBuff(this);
+            stat_entity.power.AddModifier(modifier);
         }
         if (armor) {
-            stat_entity.armor.AddBuff(this);
+            stat_entity.armor.AddModifier(modifier);
         }
         if (speed) {
-            stat_entity.speed.AddBuff(this);
+            stat_entity.speed.AddModifier(modifier);
         }
     }
 
-    public override void Remove(Character stat_entity) {
+    protected override void Remove(Character stat_entity, int id) {
         if (health) {
-            stat_entity.health.RemoveBuff(this);
+            stat_entity.health.RemoveModifier(modifier);
         }
         if (energy) {
-            stat_entity.energy.RemoveBuff(this);
+            stat_entity.energy.RemoveModifier(modifier);
         }
         if (power) {
-            stat_entity.power.RemoveBuff(this);
+            stat_entity.power.RemoveModifier(modifier);
         }
         if (armor) {
-            stat_entity.armor.RemoveBuff(this);
+            stat_entity.armor.RemoveModifier(modifier);
         }
         if (speed) {
-            stat_entity.speed.RemoveBuff(this);
+            stat_entity.speed.RemoveModifier(modifier);
         }
     }
 }

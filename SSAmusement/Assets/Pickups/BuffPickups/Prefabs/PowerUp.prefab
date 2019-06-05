@@ -163,8 +163,9 @@ MonoBehaviour:
   power: 1
   armor: 0
   speed: 0
-  _flat: 5
-  _multi: 0
+  modifier:
+    multi: 0
+    flat: 2
 --- !u!50 &5141123249594501350
 Rigidbody2D:
   serializedVersion: 4

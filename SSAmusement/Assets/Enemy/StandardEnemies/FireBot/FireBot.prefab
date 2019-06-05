@@ -909,6 +909,7 @@ GameObject:
   - component: {fileID: 2588720779889285265}
   - component: {fileID: 1718290451543888880}
   - component: {fileID: 1413857437065554216}
+  - component: {fileID: 1715457328670897038}
   m_Layer: 16
   m_Name: Abilities
   m_TagString: Untagged
@@ -960,6 +961,7 @@ MonoBehaviour:
     _cost: 0
     effects:
     - {fileID: 1413857437065554216}
+    - {fileID: 1715457328670897038}
     _on_ability_used:
       m_PersistentCalls:
         m_Calls: []
@@ -1021,8 +1023,9 @@ MonoBehaviour:
   power: 0
   armor: 0
   speed: 1
-  _flat: 0
-  _multi: 0.5
+  modifier:
+    multi: 0.65
+    flat: 0
 --- !u!114 &1413857437065554216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1048,6 +1051,19 @@ MonoBehaviour:
     flat_damage: 0
     power_ratio: 1
   knockback: {x: 0, y: 0}
+--- !u!114 &1715457328670897038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405342673215646916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9f51b9f69e2fa4ebd4719c3accb49a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buff: {fileID: 2588720779889285265}
 --- !u!1 &405342673513087802
 GameObject:
   m_ObjectHideFlags: 0

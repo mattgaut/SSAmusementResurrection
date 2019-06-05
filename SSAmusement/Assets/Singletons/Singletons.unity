@@ -135,8 +135,9 @@ MonoBehaviour:
   power: 0
   armor: 0
   speed: 1
-  _flat: 0
-  _multi: 0
+  modifier:
+    multi: 0
+    flat: 0
 --- !u!114 &1687454634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,8 +155,9 @@ MonoBehaviour:
   power: 0
   armor: 1
   speed: 0
-  _flat: 0
-  _multi: 0
+  modifier:
+    multi: 0
+    flat: 0
 --- !u!114 &1687454635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,8 +175,9 @@ MonoBehaviour:
   power: 1
   armor: 0
   speed: 0
-  _flat: 0
-  _multi: 0
+  modifier:
+    multi: 0
+    flat: 0
 --- !u!114 &1687454636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,8 +195,9 @@ MonoBehaviour:
   power: 0
   armor: 0
   speed: 0
-  _flat: 0
-  _multi: 0
+  modifier:
+    multi: 0
+    flat: 0
 --- !u!1001 &4727880422662913534
 PrefabInstance:
   m_ObjectHideFlags: 0

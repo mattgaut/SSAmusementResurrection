@@ -7,6 +7,6 @@ public class BuffPickup : Pickup {
     [SerializeField] BuffGroup buff;
 
     protected override void PickupEffect(Player player) {
-        buff.Apply(player);
+        buff.GetIBuffInstance().Apply(player);
     }
 }

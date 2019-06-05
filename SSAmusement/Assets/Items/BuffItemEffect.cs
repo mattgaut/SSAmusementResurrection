@@ -7,10 +7,10 @@ public class BuffItemEffect : ItemEffect {
     [SerializeField] BuffGroup buff;
 
     protected override void OnDrop() {
-        buff.Remove(item.owner);
+        buff.GetIBuffInstance().Remove();
     }
 
     protected override void OnPickup() {
-        buff.Apply(item.owner);
+        buff.GetIBuffInstance().Apply(item.owner);
     }
 }

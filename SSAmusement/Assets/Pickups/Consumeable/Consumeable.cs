@@ -16,5 +16,6 @@ public sealed class Consumeable : Pickup {
 
     protected override void PickupEffect(Player player) {
         player.inventory.AddConsumeable(this);
+        ability.SetCharacter(player);
     }
 }

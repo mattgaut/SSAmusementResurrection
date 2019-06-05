@@ -91,6 +91,9 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
                     player.inventory.active_item.active_ability.TryUse();
                 }
             }
+            if (MyInput.GetButtonDown("UseConsumable")) {
+                player.inventory.TryUseConsumable();
+            }
         }
 
         input = new Vector2(MyInput.GetAxis("Horizontal"), MyInput.GetAxis("Vertical"));
