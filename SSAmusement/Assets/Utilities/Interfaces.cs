@@ -31,6 +31,7 @@ public interface IBuff {
     Sprite icon { get; }
     bool is_benificial { get; }
     float length { get; }
+    float remaining_time { get; }
 
     void Apply(Character stat_entity);
     void Remove();

@@ -7,15 +7,17 @@ public enum BuffType { stat, attack, healing, on_hit, tick, invincibility, crowd
 public abstract class BuffDefinition : MonoBehaviour {
     public abstract BuffType type { get; }
 
-    protected abstract void Apply(Character character, int id);
-    protected abstract void Remove(Character character, int id);
+    private int next_id = 0;
 
-    public Instance GetInstance() {
-        return new Instance(this);
+    protected abstract void ApplyEffects(Character character, int id);
+    protected abstract void RemoveEffects(Character character, int id);
+
+    public PartialInstance GetPartialInstance() {
+        return new PartialInstance(next_id++, this);
     }
 
-    public FullInstance GetIBuffInstance(float length = 0, bool is_benificial = true, Sprite icon = null) {
-        return new FullInstance(this, length, is_benificial, icon);
+    public IBuff GetInstance(float length = 0, bool is_benificial = true, Sprite icon = null) {
+        return new Instance(next_id++, this, length, is_benificial, icon);
     }
 
     protected void Awake() {
@@ -26,50 +28,46 @@ public abstract class BuffDefinition : MonoBehaviour {
 
     }
 
-    public class Instance {
-        protected static int next_id = 0;
-
+    public class PartialInstance {
         public Character buffed { get; protected set; }
+        public int id { get; private set; }
 
-        protected int id;
-        protected BuffDefinition buff_definition;
+        protected BuffDefinition buff_definition { get; private set; }
+        protected bool is_applied { get; private set; }
 
-        bool has_been_applied;
-
-        public Instance(BuffDefinition buff_definition) {
-            id = next_id++;
+        public PartialInstance(int id, BuffDefinition buff_definition) {
+            this.id = id;
             this.buff_definition = buff_definition;
         }
 
         public virtual void Apply(Character character) {
-            if (has_been_applied) return;
+            if (is_applied) return;
 
-            has_been_applied = true;
+            is_applied = true;
             buffed = character;
-            buff_definition.Apply(character, id);
+            buff_definition.ApplyEffects(buffed, id);
         }
 
         public void Remove() {
-            buff_definition.Remove(buffed, id);
-            has_been_applied = false;
+            buff_definition.RemoveEffects(buffed, id);
+            is_applied = false;
+            buffed = null;
         }
     }
 
-    public class FullInstance : Instance, IBuff {
+    protected class Instance : PartialInstance, IBuff {
         public Sprite icon { get; private set; }
         public bool is_benificial { get; private set; }
-        public float length { get; private set; }        
+        public float length { get; private set; }
+        public float remaining_time { get; private set; }
 
         bool is_timed;
 
-        public FullInstance(BuffDefinition buff_definition,  float length = 0, bool is_benificial = true, Sprite icon = null) 
-            : base(buff_definition) {
-            id = next_id++;
+        public Instance(int id, BuffDefinition buff_definition, float length = 0, bool is_benificial = true, Sprite icon = null)
+            : base(id, buff_definition) {
             this.icon = icon;
             this.is_benificial = is_benificial;
             this.length = length;
-
-            this.buff_definition = buff_definition;
 
             is_timed = length > 0;
         }
@@ -83,12 +81,12 @@ public abstract class BuffDefinition : MonoBehaviour {
         }
 
         IEnumerator RemoveAfter(float time) {
-            float time_left = time;
-            while (time_left > 0) {
-                time_left -= GameManager.GetFixedDeltaTime(buffed.team);
+            remaining_time = time;
+            while (remaining_time > 0) {
+                remaining_time -= GameManager.GetFixedDeltaTime(buffed.team);
                 yield return new WaitForFixedUpdate();
             }
             Remove();
-        }        
+        }
     }
 }

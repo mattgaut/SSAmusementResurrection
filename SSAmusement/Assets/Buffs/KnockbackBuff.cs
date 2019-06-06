@@ -11,11 +11,11 @@ public class KnockbackBuff : BuffDefinition {
         }
     }
 
-    protected override void Apply(Character stat_entity, int id) {        
+    protected override void ApplyEffects(Character stat_entity, int id) {        
         stat_entity.knockback_multiplier.AddModifier(modifier);
     }
 
-    protected override void Remove(Character stat_entity, int id) {
+    protected override void RemoveEffects(Character stat_entity, int id) {
         stat_entity.knockback_multiplier.RemoveModifier(modifier);
     }
 }

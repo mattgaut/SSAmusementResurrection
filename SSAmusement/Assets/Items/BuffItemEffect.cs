@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class BuffItemEffect : ItemEffect {
 
-    [SerializeField] BuffGroup buff;
+    [SerializeField] BuffController buff;
+
+    int buff_id;
 
     protected override void OnDrop() {
-        buff.GetIBuffInstance().Remove();
+        buff.RemoveBuff(buff_id);
     }
 
     protected override void OnPickup() {
-        buff.GetIBuffInstance().Apply(item.owner);
+        buff_id = buff.ApplyBuff(item.owner);
     }
 }

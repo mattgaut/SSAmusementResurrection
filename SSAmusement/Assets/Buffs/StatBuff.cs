@@ -29,7 +29,7 @@ public class StatBuff : BuffDefinition {
         this.speed = speed;
     }
 
-    protected override void Apply(Character stat_entity, int id) {
+    protected override void ApplyEffects(Character stat_entity, int id) {
         if (health) {
             stat_entity.health.AddModifier(modifier);
         }
@@ -47,7 +47,7 @@ public class StatBuff : BuffDefinition {
         }
     }
 
-    protected override void Remove(Character stat_entity, int id) {
+    protected override void RemoveEffects(Character stat_entity, int id) {
         if (health) {
             stat_entity.health.RemoveModifier(modifier);
         }

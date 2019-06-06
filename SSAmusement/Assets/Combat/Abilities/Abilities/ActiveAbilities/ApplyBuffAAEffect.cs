@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ApplyBuffAAEffect : ActiveAbilityEffect {
-    [SerializeField] BuffGroup buff;
+    [SerializeField] BuffController buff;
 
     protected override void UseAbilityEffect(float input) {
-        buff.GetIBuffInstance().Apply(character);
+        buff.ApplyBuff(character);
     }
 }

@@ -9,11 +9,11 @@ public abstract class OnHitBuff : BuffDefinition {
         }
     }
 
-    protected override void Apply(Character stat_entity, int id) {
+    protected override void ApplyEffects(Character stat_entity, int id) {
         stat_entity.character.on_hit += OnHitEffect;
     }
 
-    protected override void Remove(Character stat_entity, int id) {
+    protected override void RemoveEffects(Character stat_entity, int id) {
         stat_entity.character.on_hit -= OnHitEffect;
     }
 

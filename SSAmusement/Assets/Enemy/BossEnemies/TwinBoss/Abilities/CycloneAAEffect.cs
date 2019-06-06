@@ -33,7 +33,7 @@ public class CycloneAAEffect : ActiveAbilityEffect {
         IBuff buff = null;
 
         if (speed_buff) {
-            buff = speed_buff.GetIBuffInstance();
+            buff = speed_buff.GetInstance();
         }
         
         is_using_ability = true;

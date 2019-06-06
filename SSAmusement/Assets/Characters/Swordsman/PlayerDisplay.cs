@@ -38,9 +38,7 @@ public class PlayerDisplay : MonoBehaviour {
 
     public void DisplayTimedBuff(IBuff b) {
         DisplayBuff new_display_buff = Instantiate(buff_prefab, buff_holder.transform);
-        new_display_buff.SetIcon(b.icon);
-        new_display_buff.SetTime(b.length);
-        new_display_buff.SetBarColor(b.is_benificial ? Color.green : Color.red);
+        new_display_buff.SetBuff(b);
     }
 
     public void Disable() {

@@ -21,7 +21,7 @@ public class ChefBossHandler : EnemyHandler {
 
     bool soup_over;
     [SerializeField] Attack soup_attack;
-    [SerializeField] BuffGroup soup_debuff;
+    [SerializeField] BuffController soup_debuff;
 
     bool player_on_table;
 
@@ -98,8 +98,7 @@ public class ChefBossHandler : EnemyHandler {
     }
     void SoupOnHit(Character hit, Attack hit_by) {
         enemy.DealDamage(enemy.power, hit);
-        Character comb = hit as Character;
-        if (comb != null) soup_debuff.GetIBuffInstance().Apply(comb);
+        soup_debuff.ApplyBuff(hit);
     }
 
     IEnumerator Cleaver() {

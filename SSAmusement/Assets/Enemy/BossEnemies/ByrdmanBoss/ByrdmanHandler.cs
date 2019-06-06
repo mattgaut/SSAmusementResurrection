@@ -44,8 +44,8 @@ public class ByrdmanHandler : EnemyHandler {
 
     protected override void Ini() {
         base.Ini();
-        has_energy_buff_instance = has_energy_buff.GetIBuffInstance();
-        no_energy_buff_instance = no_energy_buff.GetIBuffInstance();
+        has_energy_buff_instance = has_energy_buff.GetInstance();
+        no_energy_buff_instance = no_energy_buff.GetInstance();
 
         active_rockets = new List<GameObject>();
 

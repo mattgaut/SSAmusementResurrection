@@ -16,7 +16,7 @@ public class ReduceMaxStat : BuffDefinition {
         id_to_buff_value_dict = new Dictionary<int, Stat.Modifier>();
     }
 
-    protected override void Apply(Character stat_entity, int id) {
+    protected override void ApplyEffects(Character stat_entity, int id) {
         float amount_to_remove = stat_entity.health.flat_modded_value * percent_reduction;
 
         Stat.Modifier new_mod = new Stat.Modifier(-amount_to_remove);
@@ -24,7 +24,7 @@ public class ReduceMaxStat : BuffDefinition {
         id_to_buff_value_dict.Add(id, new_mod);
     }
 
-    protected override void Remove(Character stat_entity, int id) {
+    protected override void RemoveEffects(Character stat_entity, int id) {
         if (id_to_buff_value_dict.ContainsKey(id)) {
             stat_entity.character.health.RemoveModifier(id_to_buff_value_dict[id]);
             id_to_buff_value_dict.Remove(id);

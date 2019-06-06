@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BuffPickup : Pickup {
 
-    [SerializeField] BuffGroup buff;
+    [SerializeField] BuffController buff;
 
     protected override void PickupEffect(Player player) {
-        buff.GetIBuffInstance().Apply(player);
+        buff.ApplyBuff(player);
     }
 }

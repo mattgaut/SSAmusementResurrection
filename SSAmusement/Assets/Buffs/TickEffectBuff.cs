@@ -16,14 +16,14 @@ public abstract class TickEffectBuff : BuffDefinition {
         tick_routines = new Dictionary<Character, List<Coroutine>>();
     }
 
-    protected override void Apply(Character stat_entity, int id) {
+    protected override void ApplyEffects(Character stat_entity, int id) {
         if (!tick_routines.ContainsKey(stat_entity)) {
             tick_routines.Add(stat_entity, new List<Coroutine>());
         }
         tick_routines[stat_entity].Add(StartCoroutine(Tick(stat_entity)));
     }
 
-    protected override void Remove(Character stat_entity, int id) {
+    protected override void RemoveEffects(Character stat_entity, int id) {
         StopCoroutine(tick_routines[stat_entity][0]);
         tick_routines[stat_entity].RemoveAt(0);
     }

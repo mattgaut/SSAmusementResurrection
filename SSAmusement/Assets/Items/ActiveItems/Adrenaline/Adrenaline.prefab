@@ -141,6 +141,8 @@ MonoBehaviour:
   remove_after: 10
   _is_benificial: 1
   _icon: {fileID: 21300008, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
+  is_unique: 1
+  max_stacks: 0
 --- !u!114 &5803012618405397470
 MonoBehaviour:
   m_ObjectHideFlags: 0

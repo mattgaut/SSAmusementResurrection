@@ -9,14 +9,14 @@ public class InvincibilityBuff : BuffDefinition {
 
     Dictionary<Character, List<int>> lock_values;
 
-    protected override void Apply(Character stat_entity, int id) {
+    protected override void ApplyEffects(Character stat_entity, int id) {
         if (!lock_values.ContainsKey(stat_entity)) {
             lock_values.Add(stat_entity, new List<int>());
         }
         lock_values[stat_entity].Add(stat_entity.LockInvincibility());
     }
 
-    protected override void Remove(Character stat_entity, int id) {
+    protected override void RemoveEffects(Character stat_entity, int id) {
         if (lock_values[stat_entity].Count > 0) {
             stat_entity.UnlockInvincibility(lock_values[stat_entity][0]);
             lock_values[stat_entity].RemoveAt(0);
