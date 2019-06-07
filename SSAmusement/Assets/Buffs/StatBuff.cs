@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class StatBuff : BuffDefinition {
 
-    [SerializeField] bool health, energy, power, armor, speed;
-    [SerializeField] Stat.Modifier modifier;
+    [SerializeField] protected bool health, energy, power, armor, speed;
+    [SerializeField] protected Stat.Modifier modifier;
 
     public override BuffType type {
         get {
@@ -14,11 +14,11 @@ public class StatBuff : BuffDefinition {
     }
 
     public void SetFlat(float flat) {
-        modifier.flat = flat;
+        modifier.SetFlat(flat);
     }
 
     public void SetMulti(float multi) {
-        modifier.multi = multi;
+        modifier.SetMulti(multi);
     }
 
     public void SetAffectedStats(bool health = false, bool energy = false, bool power = false, bool armor = false, bool speed = false) {
@@ -29,39 +29,47 @@ public class StatBuff : BuffDefinition {
         this.speed = speed;
     }
 
-    protected override void ApplyEffects(Character stat_entity, int id) {
+    protected override void ApplyEffects(Character character, int id, IBuff buff) {
+        AddModifier(character, modifier);
+    }
+
+    protected override void RemoveEffects(Character character, int id) {
+        RemoveModifier(character, modifier);
+    }
+
+    protected void AddModifier(Character character, Stat.Modifier modifier) {
         if (health) {
-            stat_entity.health.AddModifier(modifier);
+            character.health.AddModifier(modifier);
         }
         if (energy) {
-            stat_entity.energy.AddModifier(modifier);
+            character.energy.AddModifier(modifier);
         }
         if (power) {
-            stat_entity.power.AddModifier(modifier);
+            character.power.AddModifier(modifier);
         }
         if (armor) {
-            stat_entity.armor.AddModifier(modifier);
+            character.armor.AddModifier(modifier);
         }
         if (speed) {
-            stat_entity.speed.AddModifier(modifier);
+            character.speed.AddModifier(modifier);
         }
     }
 
-    protected override void RemoveEffects(Character stat_entity, int id) {
+    protected void RemoveModifier(Character character, Stat.Modifier modifier) {
         if (health) {
-            stat_entity.health.RemoveModifier(modifier);
+            character.health.RemoveModifier(modifier);
         }
         if (energy) {
-            stat_entity.energy.RemoveModifier(modifier);
+            character.energy.RemoveModifier(modifier);
         }
         if (power) {
-            stat_entity.power.RemoveModifier(modifier);
+            character.power.RemoveModifier(modifier);
         }
         if (armor) {
-            stat_entity.armor.RemoveModifier(modifier);
+            character.armor.RemoveModifier(modifier);
         }
         if (speed) {
-            stat_entity.speed.RemoveModifier(modifier);
+            character.speed.RemoveModifier(modifier);
         }
     }
 }

@@ -909,7 +909,6 @@ GameObject:
   - component: {fileID: 2588720779889285265}
   - component: {fileID: 1718290451543888880}
   - component: {fileID: 1413857437065554216}
-  - component: {fileID: 1715457328670897038}
   m_Layer: 16
   m_Name: Abilities
   m_TagString: Untagged
@@ -961,7 +960,6 @@ MonoBehaviour:
     _cost: 0
     effects:
     - {fileID: 1413857437065554216}
-    - {fileID: 1715457328670897038}
     _on_ability_used:
       m_PersistentCalls:
         m_Calls: []
@@ -986,6 +984,7 @@ MonoBehaviour:
     flat_damage: 0
     power_ratio: 0.5
   projectile_spawn_transform: {fileID: 2872882241181143504}
+  base_direction: {x: 0, y: 1}
   adjust_rotation: 1
   buff: {fileID: 2588720779889285265}
 --- !u!114 &2588720779889285265
@@ -1006,6 +1005,11 @@ MonoBehaviour:
   remove_after: 3
   _is_benificial: 1
   _icon: {fileID: 0}
+  is_unique: 0
+  can_stack: 0
+  refreshes_on_new_stack: 0
+  max_stacks: 0
+  has_incremental_falloff: 0
 --- !u!114 &1718290451543888880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1024,8 +1028,8 @@ MonoBehaviour:
   armor: 0
   speed: 1
   modifier:
-    multi: 0.65
-    flat: 0
+    _flat: 0
+    _multi: -0.35
 --- !u!114 &1413857437065554216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1051,19 +1055,6 @@ MonoBehaviour:
     flat_damage: 0
     power_ratio: 1
   knockback: {x: 0, y: 0}
---- !u!114 &1715457328670897038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 405342673215646916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e9f51b9f69e2fa4ebd4719c3accb49a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buff: {fileID: 2588720779889285265}
 --- !u!1 &405342673513087802
 GameObject:
   m_ObjectHideFlags: 0

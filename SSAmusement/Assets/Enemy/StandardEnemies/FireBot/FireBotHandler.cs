@@ -68,7 +68,7 @@ public class FireBotHandler : AerialEnemyHandler {
 
     protected override void Ini() {
         base.Ini();
-        abilities.SetCharacter(enemy.character);
+        abilities.SetCharacter(enemy);
         hover_height = Random.Range(min_hover, max_hover);
         hover_direction = Mathf.Sign(Random.Range(0, 2) - 0.5f);
     }

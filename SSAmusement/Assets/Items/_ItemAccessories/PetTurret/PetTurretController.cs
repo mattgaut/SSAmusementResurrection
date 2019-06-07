@@ -90,7 +90,7 @@ public class PetTurretController : MonoBehaviour {
 
         Transform target = target_callback.target.char_definition.center_mass;
         new_laser.SetTarget(target_callback.target);
-        new_laser.SetOnHit((a, b) => target_callback.success_callback(a.character));
+        new_laser.SetOnHit((character, b) => target_callback.success_callback(character));
 
         float angle = 0;
         Vector3 to_target = target.position - transform.position;

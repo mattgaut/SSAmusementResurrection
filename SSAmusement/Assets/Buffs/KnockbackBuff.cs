@@ -11,7 +11,7 @@ public class KnockbackBuff : BuffDefinition {
         }
     }
 
-    protected override void ApplyEffects(Character stat_entity, int id) {        
+    protected override void ApplyEffects(Character stat_entity, int id, IBuff buff) {        
         stat_entity.knockback_multiplier.AddModifier(modifier);
     }
 

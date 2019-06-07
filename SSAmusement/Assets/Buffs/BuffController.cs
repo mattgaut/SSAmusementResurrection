@@ -25,21 +25,26 @@ public class BuffController : MonoBehaviour {
     [SerializeField] bool can_stack;
     [SerializeField] bool refreshes_on_new_stack;
     [SerializeField] int max_stacks;
+    [SerializeField] bool has_incremental_falloff;
 
     SortedList<Character, Instance> unique_buffs;
     SortedList<int, Instance> applied_buffs;
 
     private int next_id = 0;
 
-    public virtual int ApplyBuff(Character character, float length = 0, bool is_benificial = true, Sprite icon = null) {
+    public virtual int ApplyBuff(Character character) {
         Instance new_buff;
         if (is_unique) {
             if (unique_buffs.ContainsKey(character)) {
                 Instance active_buff = unique_buffs[character];
-                //if (can_stack && max_stacks > ) {
-
-                //}
-                active_buff.Refresh();
+                if (can_stack && max_stacks > active_buff.stack_count) {
+                    active_buff.AddStack();
+                    if (refreshes_on_new_stack) {
+                        active_buff.Refresh();
+                    }
+                } else {
+                    active_buff.Refresh();
+                }
                 return active_buff.id;
             } else {
                 new_buff = new Instance(next_id++, this);
@@ -79,59 +84,94 @@ public class BuffController : MonoBehaviour {
         public bool is_benificial { get { return buff_group.is_benificial; } }
         public float length { get { return buff_group.length; } }
         public float remaining_time { get; private set; }
+        public bool is_active { get; private set; }
+        public int stack_count { get; private set; }
 
         public int id { get; private set; }
 
         BuffController buff_group;
-        List<BuffDefinition.PartialInstance> buffs;
-
-        protected bool is_applied;
-
-        public Instance(int id, BuffController buff_group) {
+        List<BuffDefinition.ChildInstance> buffs;
+        
+        public Instance(int id, BuffController buff_group, int initial_stack_count = 1) {
             this.id = id;
-            this.buff_group = buff_group;       
+            this.buff_group = buff_group;
 
-            buffs = new List<BuffDefinition.PartialInstance>();
+            stack_count = initial_stack_count;
+
+            buffs = new List<BuffDefinition.ChildInstance>();
             foreach (BuffDefinition buff in buff_group.buffs) {
-                buffs.Add(buff.GetPartialInstance());
+                buffs.Add(buff.GetChildInstance(this));
             }
         }
 
         public void Apply(Character character) {
-            if (is_applied) return;
+            if (is_active) return;
 
-            is_applied = true;
+            is_active = true;
             buffed = character;
-            foreach (BuffDefinition.PartialInstance instance in buffs) {
+            foreach (BuffDefinition.ChildInstance instance in buffs) {
                 instance.Apply(character);
             }
             if (length > 0) {
                 character.LogBuff(this);
-                character.StartCoroutine(RemoveAfter(length));
+                character.StartCoroutine(Timer(length));
             }
         }
 
         public void Remove() {
-            foreach (BuffDefinition.PartialInstance instance in buffs) {
+            foreach (BuffDefinition.ChildInstance instance in buffs) {
                 instance.Remove();
             }
             buff_group.RemoveFromAppliedBuffs(id);
-            is_applied = false;
+            is_active = false;
+        }
+
+        public void AddStack() {
+            stack_count++;
+            foreach (BuffDefinition.ChildInstance buff in buffs) {
+                buff.RecalculateStacks();
+            }
+        }
+        public void AddStack(int i) {
+            stack_count += i;
+            foreach (BuffDefinition.ChildInstance buff in buffs) {
+                buff.RecalculateStacks();
+            }
+        }
+        public void RemoveStack() {
+            stack_count--;
+            foreach (BuffDefinition.ChildInstance buff in buffs) {
+                buff.RecalculateStacks();
+            }
+        }
+        public void RemoveStack(int i) {
+            stack_count -= i;
+            foreach (BuffDefinition.ChildInstance buff in buffs) {
+                buff.RecalculateStacks();
+            }
         }
 
         public void Refresh() {
-            if (length > 0 && is_applied) {
+            if (length > 0 && is_active) {
                 remaining_time = length;
             }
         }
 
-        IEnumerator RemoveAfter(float time) {
+        IEnumerator Timer(float time) {
             remaining_time = time;
-            while (remaining_time > 0) {
-                remaining_time -= GameManager.GetFixedDeltaTime(buffed.team);
-                yield return new WaitForFixedUpdate();
-            }
-            Remove();
+
+            while (is_active) {
+                while (remaining_time > 0) {
+                    yield return new WaitForFixedUpdate();
+                    remaining_time -= GameManager.GetFixedDeltaTime(buffed.team);
+                }
+                if (stack_count > 1 && buff_group.can_stack && buff_group.has_incremental_falloff) {
+                    RemoveStack();
+                    remaining_time += length;
+                } else {
+                    Remove();
+                }
+            }    
         }
     }
 }

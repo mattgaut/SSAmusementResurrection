@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SwordsmanAbilitySet : AbilitySet {
 
+    [SerializeField] PassiveAbility passive;
+
     [SerializeField] ActiveCooldownAbility basic_attack;
     [SerializeField] ActiveCooldownAbility counter;
     [SerializeField] ActiveCooldownAbility dash;
@@ -30,6 +32,8 @@ public class SwordsmanAbilitySet : AbilitySet {
         abilities.Add(counter);
         abilities.Add(dash);
         abilities.Add(projectile);
+
+        abilities.Add(passive);
 
         basic_attack.SetCanUse(() => can_use_basic_attack);
         counter.SetCanUse(() => can_use_counter);

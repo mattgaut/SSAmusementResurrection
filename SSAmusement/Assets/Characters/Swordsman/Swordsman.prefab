@@ -3164,6 +3164,10 @@ GameObject:
   - component: {fileID: 2317315680420115343}
   - component: {fileID: 7012055679326885063}
   - component: {fileID: 4186498537478988518}
+  - component: {fileID: 7551778314896565725}
+  - component: {fileID: 1893833552795459779}
+  - component: {fileID: 4316724935974821967}
+  - component: {fileID: 3697412394003819023}
   m_Layer: 11
   m_Name: Abilities
   m_TagString: Untagged
@@ -3197,6 +3201,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfe15ddba6eaf6949a19d7dc03e58132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passive:
+    _ability_name: Swiftness
+    _icon: {fileID: 21300000, guid: 52edf0f1cc85b9c4daa0257ec02c8c05, type: 3}
+    passive_buff: {fileID: 7551778314896565725}
   basic_attack:
     _ability_name: Swing
     _icon: {fileID: 21300000, guid: 4f21c651e9e1196459cc4e50aa60a636, type: 3}
@@ -3266,6 +3274,9 @@ MonoBehaviour:
     type: 1
     bool_value: 0
     float_value: 0
+  damage:
+    flat_damage: 0
+    power_ratio: 0
   knockback: {x: 1.5, y: 1.25}
 --- !u!114 &2317315680420115343
 MonoBehaviour:
@@ -3338,9 +3349,88 @@ MonoBehaviour:
     flat_damage: 1
     power_ratio: 0.5
   projectile_spawn_transform: {fileID: 2192307419471981511}
-  adjust_rotation: 0
+  base_direction: {x: 1, y: 0}
+  adjust_rotation: 1
+  flip_with_transform: 1
   crowd_control_effect: 00000000
   duration: 2
+--- !u!114 &7551778314896565725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5807952747809402237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beea20c06aa79584eb7c603e0ac05484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buff_to_apply: {fileID: 1893833552795459779}
+--- !u!114 &1893833552795459779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5807952747809402237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f163ffc0b7d845342a058e341ed7478d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffs:
+  - {fileID: 4316724935974821967}
+  - {fileID: 3697412394003819023}
+  timed_buff: 1
+  remove_after: 4
+  _is_benificial: 0
+  _icon: {fileID: 21300000, guid: 52edf0f1cc85b9c4daa0257ec02c8c05, type: 3}
+  is_unique: 1
+  can_stack: 1
+  refreshes_on_new_stack: 1
+  max_stacks: 4
+  has_incremental_falloff: 1
+--- !u!114 &4316724935974821967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5807952747809402237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db9404a375d34b42a3c8c9cec7c35cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  energy: 0
+  power: 0
+  armor: 0
+  speed: 1
+  modifier:
+    _flat: 0.25
+    _multi: 0
+--- !u!114 &3697412394003819023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5807952747809402237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db9404a375d34b42a3c8c9cec7c35cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  energy: 0
+  power: 1
+  armor: 0
+  speed: 0
+  modifier:
+    _flat: 0.25
+    _multi: 0
 --- !u!1 &5952571705887788433
 GameObject:
   m_ObjectHideFlags: 0

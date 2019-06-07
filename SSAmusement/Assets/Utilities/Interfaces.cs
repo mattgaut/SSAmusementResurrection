@@ -30,11 +30,18 @@ public interface IBuff {
     Character buffed { get; }
     Sprite icon { get; }
     bool is_benificial { get; }
+    bool is_active { get; }
     float length { get; }
     float remaining_time { get; }
+    int stack_count { get; }
 
     void Apply(Character stat_entity);
     void Remove();
+
+    void AddStack();
+    void RemoveStack();
+    void AddStack(int i);
+    void RemoveStack(int i);
 }
 
 /// <summary>

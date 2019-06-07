@@ -91,11 +91,11 @@ public class RoomSpawner : MonoBehaviour {
 
         int count = GameManager.instance.level_count - 1;
         health_buff.SetFlat(3 *  count);
-        health_buff.SetMulti(1 + (.4f * count));
-        speed_buff.SetMulti(1 + (.25f * count));
+        health_buff.SetMulti((.4f * count));
+        speed_buff.SetMulti((.25f * count));
         armor_buff.SetFlat(1f * count);
         power_buff.SetFlat(2 * count);
-        power_buff.SetMulti(1 + (.2f * count));
+        power_buff.SetMulti((.2f * count));
 
         foreach (Enemy e in enemies) {
             power_buff.GetInstance().Apply(e);

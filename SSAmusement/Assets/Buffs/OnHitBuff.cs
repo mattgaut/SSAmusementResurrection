@@ -9,12 +9,12 @@ public abstract class OnHitBuff : BuffDefinition {
         }
     }
 
-    protected override void ApplyEffects(Character stat_entity, int id) {
-        stat_entity.character.on_hit += OnHitEffect;
+    protected override void ApplyEffects(Character character, int id, IBuff buff) {
+        character.on_hit += OnHitEffect;
     }
 
-    protected override void RemoveEffects(Character stat_entity, int id) {
-        stat_entity.character.on_hit -= OnHitEffect;
+    protected override void RemoveEffects(Character character, int id) {
+        character.on_hit -= OnHitEffect;
     }
 
     public abstract void OnHitEffect(Character hitter, float pre_mitigation_damage, float post_mitigation_damage, Character hit);

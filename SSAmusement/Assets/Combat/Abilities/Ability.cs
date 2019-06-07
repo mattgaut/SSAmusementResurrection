@@ -10,7 +10,7 @@ public abstract class Ability {
     public virtual ActiveCooldownAbility active_cooldown { get { return null; } }
     public virtual ActiveChargeAbility active_charge { get { return null; } }
     //public virtual ToggleAbility toggle { get { return null; } }
-    //public virtual PassiveAbility passive { get { return null; } }
+    public virtual PassiveAbility passive { get { return null; } }
 
     public Character character { get; private set; }
 

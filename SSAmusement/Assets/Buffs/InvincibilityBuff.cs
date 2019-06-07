@@ -9,7 +9,7 @@ public class InvincibilityBuff : BuffDefinition {
 
     Dictionary<Character, List<int>> lock_values;
 
-    protected override void ApplyEffects(Character stat_entity, int id) {
+    protected override void ApplyEffects(Character stat_entity, int id, IBuff buff) {
         if (!lock_values.ContainsKey(stat_entity)) {
             lock_values.Add(stat_entity, new List<int>());
         }

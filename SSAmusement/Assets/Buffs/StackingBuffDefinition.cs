@@ -5,7 +5,7 @@ using UnityEngine;
 public class StackingBuffDefinition : BuffDefinition {
     public override BuffType type => throw new System.NotImplementedException();
 
-    protected override void ApplyEffects(Character character, int id) {
+    protected override void ApplyEffects(Character character, int id, IBuff buff) {
         throw new System.NotImplementedException();
     }
 

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5242954812953028825}
   - component: {fileID: 7193466821776267160}
   - component: {fileID: 5096905098719448496}
-  - component: {fileID: 2772753830478363900}
+  - component: {fileID: 9190811988264553741}
   m_Layer: 23
   m_Name: BadMedicine
   m_TagString: Untagged
@@ -146,7 +146,7 @@ MonoBehaviour:
     _cost: 0
     effects:
     - {fileID: 5242954812953028825}
-    - {fileID: 2772753830478363900}
+    - {fileID: 9190811988264553741}
     _on_ability_used:
       m_PersistentCalls:
         m_Calls: []
@@ -179,10 +179,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffs:
   - {fileID: 5096905098719448496}
-  timed_buff: 1
-  remove_after: 5
+  timed_buff: 0
+  remove_after: 0
   _is_benificial: 0
   _icon: {fileID: 0}
+  is_unique: 0
+  can_stack: 0
+  refreshes_on_new_stack: 0
+  max_stacks: 0
+  has_incremental_falloff: 0
 --- !u!114 &5096905098719448496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   percent_reduction: 0.25
---- !u!114 &2772753830478363900
+--- !u!114 &9190811988264553741
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -205,11 +210,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1170230529789578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c717ff709fb6a714f91f551bbf92bff7, type: 3}
+  m_Script: {fileID: 11500000, guid: 40dc363909c12c0458c88e9e2c8f4da6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health_restore_amount: 10000000
-  energy_restore_amount: 0
+  energy: 1
+  health: 1
 --- !u!1 &5687653134234394156
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,17 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [System.Serializable]
 public class Stat {
     [System.Serializable]
     public class Modifier {
-        public float multi;
-        public float flat;
+        [SerializeField] float _flat;
+        [SerializeField] float _multi;
+
+        public float flat { get { return _flat; } private set { _flat = value; } }
+        public float multi { get { return _multi; } private set { _multi = value; } }
+
+        public event System.Action on_changed;
 
         public Modifier(float flat = 0f, float multi = 0f) {
             this.multi = multi;
             this.flat = flat;
+        }
+
+        public Modifier(Modifier other) {
+            multi = other.multi;
+            flat = other.flat;
+        }
+
+        public void Set(float flat, float multi) {
+            this.multi = multi;
+            this.flat = flat;
+            on_changed?.Invoke();
+        }
+        public void SetMulti(float multi) {
+            this.multi = multi;
+            on_changed?.Invoke();
+        }
+        public void SetFlat(float flat) {
+            this.flat = flat;
+            on_changed?.Invoke();
+        }
+
+        public static Modifier operator *(Modifier modifier, float multiplier) {
+            return new Modifier(modifier.flat * multiplier, modifier.multi * multiplier);
         }
     }
 
@@ -51,8 +80,7 @@ public class Stat {
             to_ret += mod.flat;
         }
         foreach (Modifier mod in mods) {
-            if (mod.multi != 0)
-                to_ret *= mod.multi;
+            to_ret *= 1 + mod.multi;
         }
         return to_ret;
     }
@@ -67,16 +95,22 @@ public class Stat {
 
     public virtual void AddModifier(Modifier mod) {
         mods.Add(mod);
-        changed = true;
+        NoteChange();
+        mod.on_changed += NoteChange;
     }
 
     public virtual void RemoveModifier(Modifier mod) {
         mods.Remove(mod);
-        changed = true;
+        NoteChange();
+        mod.on_changed -= NoteChange;
     }
 
     public virtual void SetBaseValue(float f) {
         base_value = f;
+        NoteChange();
+    }
+
+    protected virtual void NoteChange() {
         changed = true;
     }
 
@@ -120,16 +154,8 @@ public class CapStat : Stat {
         if (value_before < value_after) {
             current += value_after - value_before;
         }
-        if (current > value) {
-            current = value;
-        }
     }
-    public override void RemoveModifier(Modifier mod) {
-        base.RemoveModifier(mod);
-        if (current > value) {
-            current = value;
-        }
-    }
+    
     public override void SetBaseValue(float f) {
         float value_before = value;
         base.SetBaseValue(f);
@@ -137,6 +163,9 @@ public class CapStat : Stat {
         if (value_before < value_after) {
             current += value_after - value_before;
         }
+    }
+    protected override void NoteChange() {
+        base.NoteChange();
         if (current > value) {
             current = value;
         }

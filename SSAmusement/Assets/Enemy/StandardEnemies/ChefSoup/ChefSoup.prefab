@@ -240,6 +240,11 @@ MonoBehaviour:
   remove_after: 3
   _is_benificial: 0
   _icon: {fileID: 21300000, guid: 23449b90019e8444982d693f3415e10a, type: 3}
+  is_unique: 0
+  can_stack: 0
+  refreshes_on_new_stack: 0
+  max_stacks: 0
+  has_incremental_falloff: 0
 --- !u!114 &114220353006272790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,8 +263,8 @@ MonoBehaviour:
   armor: 0
   speed: 1
   modifier:
-    multi: 0.75
-    flat: 0
+    _flat: 0
+    _multi: -0.5
 --- !u!114 &3949918887954232129
 MonoBehaviour:
   m_ObjectHideFlags: 0

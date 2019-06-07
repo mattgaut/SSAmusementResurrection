@@ -16,7 +16,7 @@ public abstract class TickEffectBuff : BuffDefinition {
         tick_routines = new Dictionary<Character, List<Coroutine>>();
     }
 
-    protected override void ApplyEffects(Character stat_entity, int id) {
+    protected override void ApplyEffects(Character stat_entity, int id, IBuff buff) {
         if (!tick_routines.ContainsKey(stat_entity)) {
             tick_routines.Add(stat_entity, new List<Coroutine>());
         }

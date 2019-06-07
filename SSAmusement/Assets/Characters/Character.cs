@@ -31,8 +31,7 @@ public class Character : MonoBehaviour {
     public AnimatorWrapper animator {
         get { return anim; }
     }
-
-    public Character character { get { return this; } }
+    
     public CharacterDefinition char_definition { get { return _char_definition; } }
     public CrowdControl crowd_control_effects { get; private set; }
 
