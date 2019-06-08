@@ -30,6 +30,11 @@ public class Stat {
             this.flat = flat;
             on_changed?.Invoke();
         }
+        public void Set(Modifier other) {
+            multi = other.multi;
+            flat = other.flat;
+            on_changed?.Invoke();
+        }
         public void SetMulti(float multi) {
             this.multi = multi;
             on_changed?.Invoke();

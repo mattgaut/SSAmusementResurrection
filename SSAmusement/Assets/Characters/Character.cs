@@ -192,7 +192,7 @@ public class Character : MonoBehaviour {
     /// <param name="force">The force of the knockback</param>
     /// <param name="length">Knockback Duration</param>
     public void TakeKnockback(Character source, Vector2 force, float length = 0.5f) {
-        if (knockback_resistant) {
+        if (knockback_resistant || force == Vector2.zero) {
             return;
         }
         if (is_dashing) {
@@ -228,6 +228,7 @@ public class Character : MonoBehaviour {
     /// <param name="dash">Dash distance and direction</param>
     /// <param name="time">Dash Duration</param>
     public void Dash(Vector2 dash, float time) {
+        if (is_knocked_back) return;
         if (dash_routine != null) {
             EndDash();
         }

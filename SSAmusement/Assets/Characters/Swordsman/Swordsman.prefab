@@ -3276,7 +3276,7 @@ MonoBehaviour:
     float_value: 0
   damage:
     flat_damage: 0
-    power_ratio: 0
+    power_ratio: 1
   knockback: {x: 1.5, y: 1.25}
 --- !u!114 &2317315680420115343
 MonoBehaviour:
@@ -3351,7 +3351,6 @@ MonoBehaviour:
   projectile_spawn_transform: {fileID: 2192307419471981511}
   base_direction: {x: 1, y: 0}
   adjust_rotation: 1
-  flip_with_transform: 1
   crowd_control_effect: 00000000
   duration: 2
 --- !u!114 &7551778314896565725

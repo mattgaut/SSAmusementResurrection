@@ -41,6 +41,7 @@ public class FireBotHandler : AerialEnemyHandler {
     }
 
     IEnumerator FireProjectile() {
+        input = Vector2.zero;
         abilities.projectile.TryUse();
         while (abilities.projectile.is_using_ability) {
             yield return new WaitForFixedUpdate();

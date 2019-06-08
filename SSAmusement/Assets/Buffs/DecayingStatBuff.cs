@@ -4,29 +4,11 @@ using UnityEngine;
 
 public class DecayingStatBuff : StatBuff {
 
-    Dictionary<int, Stat.Modifier> modifiers;
-
-    protected override void Init() {
-        base.Init();
-        modifiers = new Dictionary<int, Stat.Modifier>();
-    }
-
     protected override void ApplyEffects(Character character, int id, IBuff buff) {
-        Stat.Modifier new_modifier = new Stat.Modifier(modifier);
-
-        AddModifier(character, new_modifier);
-
-        modifiers.Add(id, new_modifier);
+        base.ApplyEffects(character, id, buff);
 
         if (buff.length > 0) {
-            StartCoroutine(DecayModifier(new_modifier, buff));
-        }
-    }
-
-    protected override void RemoveEffects(Character character, int id) {
-        if (modifiers.ContainsKey(id)) {
-            RemoveModifier(character, modifiers[id]);
-            modifiers.Remove(id);
+            StartCoroutine(DecayModifier(modifiers[id], buff));
         }
     }
 
@@ -44,5 +26,8 @@ public class DecayingStatBuff : StatBuff {
         }
 
         to_decay.Set(0, 0);
+    }
+
+    protected override void RecalculateEffects(int id, IBuff info) {
     }
 }

@@ -24,6 +24,11 @@ public class MeleeAAEffect : ActiveAbilityEffect {
         StartCoroutine(AbilityCoroutine());
     }
 
+    protected virtual void AttackOnHit(Character d, Attack hit_by) {
+        character.DealDamage(damage.GetValue(character), d);
+        character.GiveKnockback(d, new Vector2(knockback.x * Mathf.Sign(d.gameObject.transform.position.x - transform.position.x), knockback.y));
+    }
+
     IEnumerator AbilityCoroutine() {
         character.animator.ProccessAnimParameterEvent(begin_anim);
         float time = 0;
@@ -41,10 +46,5 @@ public class MeleeAAEffect : ActiveAbilityEffect {
         }
         attack.Disable();
         is_using_ability = false;
-    }
-
-    void AttackOnHit(Character d, Attack hit_by) {
-        character.DealDamage(character.power, d);
-        character.GiveKnockback(d, new Vector2(knockback.x * Mathf.Sign(d.gameObject.transform.position.x - transform.position.x), knockback.y));
     }
 }
