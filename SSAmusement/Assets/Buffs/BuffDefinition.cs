@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BuffType { stat, attack, healing, on_hit, tick, invincibility, crowd_control }
+public enum BuffType { stat, attack, healing, on_hit, tick, invincibility, crowd_control, on_kill }
 
 public abstract class BuffDefinition : MonoBehaviour {
     public abstract BuffType type { get; }
@@ -110,19 +110,19 @@ public abstract class BuffDefinition : MonoBehaviour {
         }
 
         public void AddStack() {
-            stack_count++;
-            buff_definition.RecalculateEffects(id, this);
+            SetStacks(stack_count + 1);
         }
         public void AddStack(int i) {
-            stack_count += i;
-            buff_definition.RecalculateEffects(id, this);
+            SetStacks(stack_count + i);
         }
         public void RemoveStack() {
-            stack_count--;
-            buff_definition.RecalculateEffects(id, this);
+            SetStacks(stack_count - 1);
         }
         public void RemoveStack(int i) {
-            stack_count -= i;
+            SetStacks(stack_count - i);
+        }
+        public void SetStacks(int i) {
+            stack_count = i;
             buff_definition.RecalculateEffects(id, this);
         }
 
@@ -132,7 +132,7 @@ public abstract class BuffDefinition : MonoBehaviour {
                 remaining_time -= GameManager.GetFixedDeltaTime(buffed.team);
                 yield return new WaitForFixedUpdate();
             }
-            Remove();
+            if (is_active) Remove();
         }
     }
 }

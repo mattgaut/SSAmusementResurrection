@@ -32,17 +32,26 @@ public class BuffController : MonoBehaviour {
 
     private int next_id = 0;
 
+    public int ApplyBuff(Character character, int stacks) {
+        if (!is_unique || !can_stack) return ApplyBuff(character);
+        int last_id = -1;
+        for (int i = 0; i < stacks; i++) {
+            last_id = ApplyBuff(character);
+        }
+        return last_id;
+    }
+
     public virtual int ApplyBuff(Character character) {
         Instance new_buff;
         if (is_unique) {
             if (unique_buffs.ContainsKey(character)) {
                 Instance active_buff = unique_buffs[character];
-                if (can_stack && max_stacks > active_buff.stack_count) {
+                if (can_stack && (max_stacks > active_buff.stack_count || max_stacks <= 0)) {
                     active_buff.AddStack();
-                    if (refreshes_on_new_stack) {
+                    if (timed_buff && refreshes_on_new_stack) {
                         active_buff.Refresh();
                     }
-                } else {
+                } else if (timed_buff) {
                     active_buff.Refresh();
                 }
                 return active_buff.id;
@@ -150,6 +159,12 @@ public class BuffController : MonoBehaviour {
                 buff.RecalculateStacks();
             }
         }
+        public void SetStacks(int i) {
+            stack_count = i;
+            foreach (BuffDefinition.ChildInstance buff in buffs) {
+                buff.RecalculateStacks();
+            }
+        }
 
         public void Refresh() {
             if (length > 0 && is_active) {
@@ -165,12 +180,14 @@ public class BuffController : MonoBehaviour {
                     yield return new WaitForFixedUpdate();
                     remaining_time -= GameManager.GetFixedDeltaTime(buffed.team);
                 }
-                if (stack_count > 1 && buff_group.can_stack && buff_group.has_incremental_falloff) {
-                    RemoveStack();
-                    remaining_time += length;
-                } else {
-                    Remove();
-                }
+                if (is_active) {
+                    if (stack_count > 1 && buff_group.can_stack && buff_group.has_incremental_falloff) {
+                        RemoveStack();
+                        remaining_time += length;
+                    } else {
+                        Remove();
+                    }
+                }                
             }    
         }
     }

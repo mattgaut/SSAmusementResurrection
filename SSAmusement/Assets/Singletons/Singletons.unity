@@ -136,8 +136,8 @@ MonoBehaviour:
   armor: 0
   speed: 1
   modifier:
-    multi: 0
-    flat: 0
+    _flat: 0
+    _multi: 0
 --- !u!114 &1687454634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,8 +156,8 @@ MonoBehaviour:
   armor: 1
   speed: 0
   modifier:
-    multi: 0
-    flat: 0
+    _flat: 0
+    _multi: 0
 --- !u!114 &1687454635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,8 +176,8 @@ MonoBehaviour:
   armor: 0
   speed: 0
   modifier:
-    multi: 0
-    flat: 0
+    _flat: 0
+    _multi: 0
 --- !u!114 &1687454636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,8 +196,8 @@ MonoBehaviour:
   armor: 0
   speed: 0
   modifier:
-    multi: 0
-    flat: 0
+    _flat: 0
+    _multi: 0
 --- !u!1001 &4727880422662913534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -280,6 +280,12 @@ PrefabInstance:
       propertyPath: start_game_on_start
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4753337269797124211, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 8324535721233755534, guid: ba214d9371380ed438465f204bf0e935,
+        type: 3}
     - target: {fileID: 1430125888089228363, guid: 06f08f6c2bb72f3478d34895e46a967b,
         type: 3}
       propertyPath: health_buff

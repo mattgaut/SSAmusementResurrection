@@ -42,6 +42,7 @@ public interface IBuff {
     void RemoveStack();
     void AddStack(int i);
     void RemoveStack(int i);
+    void SetStacks(int i);
 }
 
 /// <summary>
