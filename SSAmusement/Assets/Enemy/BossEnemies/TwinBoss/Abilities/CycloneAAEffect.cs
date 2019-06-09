@@ -43,7 +43,7 @@ public class CycloneAAEffect : ActiveAbilityEffect {
             yield return null;
         }
 
-        buff?.Apply(character);
+        buff?.Apply(character, character);
         attack.Enable();
 
         float timer = duration;

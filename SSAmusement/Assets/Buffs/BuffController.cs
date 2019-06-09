@@ -32,20 +32,22 @@ public class BuffController : MonoBehaviour {
 
     private int next_id = 0;
 
-    public int ApplyBuff(Character character, int stacks) {
-        if (!is_unique || !can_stack) return ApplyBuff(character);
+
+
+    public int ApplyBuff(Character affected, Character source, int stacks) {
+        if (!is_unique || !can_stack) return ApplyBuff(affected, source);
         int last_id = -1;
         for (int i = 0; i < stacks; i++) {
-            last_id = ApplyBuff(character);
+            last_id = ApplyBuff(affected, source);
         }
         return last_id;
     }
 
-    public virtual int ApplyBuff(Character character) {
+    public int ApplyBuff(Character affected, Character source) {
         Instance new_buff;
         if (is_unique) {
-            if (unique_buffs.ContainsKey(character)) {
-                Instance active_buff = unique_buffs[character];
+            if (unique_buffs.ContainsKey(affected)) {
+                Instance active_buff = unique_buffs[affected];
                 if (can_stack && (max_stacks > active_buff.stack_count || max_stacks <= 0)) {
                     active_buff.AddStack();
                     if (timed_buff && refreshes_on_new_stack) {
@@ -57,17 +59,18 @@ public class BuffController : MonoBehaviour {
                 return active_buff.id;
             } else {
                 new_buff = new Instance(next_id++, this);
-                unique_buffs.Add(character, new_buff);
+                unique_buffs.Add(affected, new_buff);
             }
         } else {
             new_buff = new Instance(next_id++, this);
         }
-        new_buff.Apply(character);
+
+        new_buff.Apply(affected, source);
         applied_buffs.Add(new_buff.id, new_buff);
         return new_buff.id;
     }
 
-    public virtual bool RemoveBuff(int id) {
+    public bool RemoveBuff(int id) {
         if (applied_buffs.ContainsKey(id)) {
             applied_buffs[id].Remove();
             return true;
@@ -89,6 +92,7 @@ public class BuffController : MonoBehaviour {
 
     protected class Instance : IBuff {
         public Character buffed { get; private set; }
+        public Character source { get; private set; }
         public Sprite icon { get { return buff_group.icon; } }
         public bool is_benificial { get { return buff_group.is_benificial; } }
         public float length { get { return buff_group.length; } }
@@ -99,36 +103,39 @@ public class BuffController : MonoBehaviour {
         public int id { get; private set; }
 
         BuffController buff_group;
-        List<BuffDefinition.ChildInstance> buffs;
+        List<IChildBuff> buffs;
         
         public Instance(int id, BuffController buff_group, int initial_stack_count = 1) {
             this.id = id;
             this.buff_group = buff_group;
 
+            is_active = false;
+
             stack_count = initial_stack_count;
 
-            buffs = new List<BuffDefinition.ChildInstance>();
+            buffs = new List<IChildBuff>();
             foreach (BuffDefinition buff in buff_group.buffs) {
                 buffs.Add(buff.GetChildInstance(this));
             }
         }
 
-        public void Apply(Character character) {
+        public void Apply(Character affected, Character source) {
             if (is_active) return;
 
             is_active = true;
-            buffed = character;
-            foreach (BuffDefinition.ChildInstance instance in buffs) {
-                instance.Apply(character);
+            buffed = affected;
+            this.source = source;
+            foreach (IChildBuff instance in buffs) {
+                instance.Apply(affected);
             }
             if (length > 0) {
-                character.LogBuff(this);
-                character.StartCoroutine(Timer(length));
+                affected.LogBuff(this);
+                affected.StartCoroutine(Timer(length));
             }
         }
 
         public void Remove() {
-            foreach (BuffDefinition.ChildInstance instance in buffs) {
+            foreach (IChildBuff instance in buffs) {
                 instance.Remove();
             }
             buff_group.RemoveFromAppliedBuffs(id);
@@ -136,32 +143,20 @@ public class BuffController : MonoBehaviour {
         }
 
         public void AddStack() {
-            stack_count++;
-            foreach (BuffDefinition.ChildInstance buff in buffs) {
-                buff.RecalculateStacks();
-            }
+            SetStacks(stack_count + 1);
         }
         public void AddStack(int i) {
-            stack_count += i;
-            foreach (BuffDefinition.ChildInstance buff in buffs) {
-                buff.RecalculateStacks();
-            }
+            SetStacks(stack_count + i);
         }
         public void RemoveStack() {
-            stack_count--;
-            foreach (BuffDefinition.ChildInstance buff in buffs) {
-                buff.RecalculateStacks();
-            }
+            SetStacks(stack_count - 1);
         }
         public void RemoveStack(int i) {
-            stack_count -= i;
-            foreach (BuffDefinition.ChildInstance buff in buffs) {
-                buff.RecalculateStacks();
-            }
+            SetStacks(stack_count - i);
         }
         public void SetStacks(int i) {
             stack_count = i;
-            foreach (BuffDefinition.ChildInstance buff in buffs) {
+            foreach (IChildBuff buff in buffs) {
                 buff.RecalculateStacks();
             }
         }

@@ -13,6 +13,6 @@ public class BuffItemEffect : ItemEffect {
     }
 
     protected override void OnPickup() {
-        buff_id = buff.ApplyBuff(item.owner);
+        buff_id = buff.ApplyBuff(item.owner, item.owner);
     }
 }

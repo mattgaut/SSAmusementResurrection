@@ -6,6 +6,6 @@ public class ApplyBuffAAEffect : ActiveAbilityEffect {
     [SerializeField] BuffController buff;
 
     protected override void UseAbilityEffect(float input) {
-        buff.ApplyBuff(character);
+        buff.ApplyBuff(character, character);
     }
 }

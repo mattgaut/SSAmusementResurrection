@@ -64,10 +64,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1844856860675060, guid: c3f30190b5c8b554d8b7c336d53863e7, type: 3}
-      propertyPath: m_Name
-      value: Robot
-      objectReference: {fileID: 0}
     - target: {fileID: 5770375887674969164, guid: c3f30190b5c8b554d8b7c336d53863e7,
         type: 3}
       propertyPath: _char_definition._health.base_value
@@ -77,6 +73,10 @@ PrefabInstance:
         type: 3}
       propertyPath: _char_definition._energy.base_value
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844856860675060, guid: c3f30190b5c8b554d8b7c336d53863e7, type: 3}
+      propertyPath: m_Name
+      value: Robot
       objectReference: {fileID: 0}
     - target: {fileID: 4415544280187094, guid: c3f30190b5c8b554d8b7c336d53863e7, type: 3}
       propertyPath: m_LocalPosition.x

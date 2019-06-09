@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TickEffectBuffDot : TickEffectBuff {
+public class TickEffectBuffDot : TickEffectBuff<TickEffectBuffInfo> {
 
     [SerializeField] float damage;
-    protected override void TickEffect(Character stat_entity) {
-        stat_entity.TakeDamage(damage, stat_entity, true);
+
+    protected override TickEffectBuffInfo GetBuffInfo(IBuff buff) {
+        return new TickEffectBuffInfo(buff);
+    }
+
+    protected override void TickEffect(TickEffectBuffInfo info) {
+        info.buff.buffed.TakeDamage(damage, info.buff.source, true);
     }
 }

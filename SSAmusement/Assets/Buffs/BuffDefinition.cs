@@ -4,25 +4,38 @@ using UnityEngine;
 
 public enum BuffType { stat, attack, healing, on_hit, tick, invincibility, crowd_control, on_kill }
 
-public abstract class BuffDefinition : MonoBehaviour {
-    public abstract BuffType type { get; }
+public class BuffInfo {
+    public IBuff buff { get; private set; }
+    public BuffInfo(IBuff buff) {
+        this.buff = buff;
+    }
+}
 
-    private int next_id = 0;
+public interface IChildBuff {
+    IBuff buff { get; }
 
-    protected abstract void ApplyEffects(Character character, int id, IBuff info);
-    protected abstract void RemoveEffects(Character character, int id);
+    void Apply(Character character);
+    void Remove();
+    void RecalculateStacks();
+}
 
-    protected virtual void RecalculateEffects(int id, IBuff info) {
+public abstract class BuffDefinition<T> : BuffDefinition where T : BuffInfo {
+    public override IChildBuff GetChildInstance(IBuff parent) {
+        return new ChildInstance(this, parent);
+    }
+
+    public override IBuff GetInstance(float length = 0, bool is_benificial = true, Sprite icon = null) {
+        return new StandaloneInstance(this, length, is_benificial, icon);
+    }
+
+    protected abstract void ApplyEffects(Character character, T info, IBuff buff);
+    protected abstract void RemoveEffects(Character character, T info);
+
+    protected virtual void RecalculateEffects(T info, IBuff buff) {
 
     }
 
-    public ChildInstance GetChildInstance(IBuff parent) {
-        return new ChildInstance(next_id++, this, parent);
-    }
-
-    public IBuff GetInstance(float length = 0, bool is_benificial = true, Sprite icon = null) {
-        return new StandaloneInstance(next_id++, this, length, is_benificial, icon);
-    }
+    protected abstract T GetBuffInfo(IBuff buff);
 
     protected void Awake() {
         Init();
@@ -32,23 +45,30 @@ public abstract class BuffDefinition : MonoBehaviour {
 
     }
 
-    public abstract class PartialInstance {
-        public Character buffed { get; protected set; }
-        public int id { get; private set; }
+    protected abstract class PartialInstance {
         public bool is_active { get; protected set; }
+        public abstract IBuff buff { get; }
 
-        protected BuffDefinition buff_definition { get; private set; }
+        protected BuffDefinition<T> buff_definition { get; private set; }
+        protected T info { get; private set; }
 
-        public PartialInstance(int id, BuffDefinition buff_definition) {
-            this.id = id;
+        public PartialInstance(BuffDefinition<T> buff_definition) {
+            info = buff_definition.GetBuffInfo(buff);
+            this.buff_definition = buff_definition;
+        }
+
+        protected PartialInstance(BuffDefinition<T> buff_definition, IBuff buff) {
+            info = buff_definition.GetBuffInfo(buff);
             this.buff_definition = buff_definition;
         }
     }
 
-    public class ChildInstance : PartialInstance {
+    protected class ChildInstance : PartialInstance, IChildBuff {
+        public override IBuff buff { get { return parent; } }
+
         IBuff parent;
 
-        public ChildInstance(int id, BuffDefinition buff_definition, IBuff parent) : base(id, buff_definition) {
+        public ChildInstance(BuffDefinition<T> buff_definition, IBuff parent) : base(buff_definition, parent) {
             this.parent = parent;
         }
 
@@ -56,22 +76,23 @@ public abstract class BuffDefinition : MonoBehaviour {
             if (is_active) return;
 
             is_active = true;
-            buffed = character;
-            buff_definition.ApplyEffects(buffed, id, parent);
+            buff_definition.ApplyEffects(parent.buffed, info, parent);
         }
 
         public void Remove() {
-            buff_definition.RemoveEffects(buffed, id);
+            buff_definition.RemoveEffects(parent.buffed, info);
             is_active = false;
-            buffed = null;
         }
 
         public void RecalculateStacks() {
-            buff_definition.RecalculateEffects(id, parent);
+            buff_definition.RecalculateEffects(info, parent);
         }
     }
 
     protected class StandaloneInstance : PartialInstance, IBuff {
+        public override IBuff buff { get { return this; } }
+        public Character buffed { get; protected set; }
+        public Character source { get; protected set; }
         public Sprite icon { get; private set; }
         public bool is_benificial { get; private set; }
         public float length { get; private set; }
@@ -80,8 +101,8 @@ public abstract class BuffDefinition : MonoBehaviour {
 
         bool is_timed;
 
-        public StandaloneInstance(int id, BuffDefinition buff_definition, float length = 0, bool is_benificial = true, Sprite icon = null)
-            : base(id, buff_definition) {
+        public StandaloneInstance(BuffDefinition<T> buff_definition, float length = 0, bool is_benificial = true, Sprite icon = null)
+            : base(buff_definition) {
             this.icon = icon;
             this.is_benificial = is_benificial;
             this.length = length;
@@ -91,20 +112,21 @@ public abstract class BuffDefinition : MonoBehaviour {
             is_timed = length > 0;
         }
 
-        public void Apply(Character character) {
+        public void Apply(Character affected, Character source) {
             if (is_active) return;
 
             is_active = true;
-            buffed = character;
-            buff_definition.ApplyEffects(buffed, id, this);
+            buffed = affected;
+            this.source = source;
+            buff_definition.ApplyEffects(buffed, info, this);
             if (is_timed) {
-                character.LogBuff(this);
+                affected.LogBuff(this);
                 buff_definition.StartCoroutine(RemoveAfter(length));
             }
         }
 
         public void Remove() {
-            buff_definition.RemoveEffects(buffed, id);
+            buff_definition.RemoveEffects(buffed, info);
             is_active = false;
             buffed = null;
         }
@@ -123,7 +145,7 @@ public abstract class BuffDefinition : MonoBehaviour {
         }
         public void SetStacks(int i) {
             stack_count = i;
-            buff_definition.RecalculateEffects(id, this);
+            buff_definition.RecalculateEffects(info, this);
         }
 
         IEnumerator RemoveAfter(float time) {

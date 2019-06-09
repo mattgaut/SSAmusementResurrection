@@ -70,7 +70,7 @@ public class ByrdmanHandler : EnemyHandler {
 
     protected IEnumerator AIRoutine() {
         yield return new WaitForFixedUpdate();
-        has_energy_buff_instance.Apply(enemy);
+        has_energy_buff_instance.Apply(enemy, enemy);
         List<Func<IEnumerator>> round_1_attacks = new List<Func<IEnumerator>>() { Rockets, Electric, SpikeAttack };
         List<Func<IEnumerator>> wall_attacks = new List<Func<IEnumerator>>() { SpikeAttack, Rockets };
         List<Func<IEnumerator>> vertical_attacks = new List<Func<IEnumerator>>() { LaserAttack, Electric };
@@ -124,7 +124,7 @@ public class ByrdmanHandler : EnemyHandler {
                 yield return new WaitForFixedUpdate();
             }
             has_energy_buff_instance.Remove();
-            no_energy_buff_instance.Apply(enemy);
+            no_energy_buff_instance.Apply(enemy, enemy);
             enemy.animator.SetBool("Rest", true);
 
             yield return null;
@@ -138,7 +138,7 @@ public class ByrdmanHandler : EnemyHandler {
             enemy.animator.SetTrigger("Refill");
             enemy.animator.SetBool("Rest", false);
             no_energy_buff_instance.Remove();
-            has_energy_buff_instance.Apply(enemy);
+            has_energy_buff_instance.Apply(enemy, enemy);
 
             while (!lever_pulled) {
                 yield return new WaitForFixedUpdate();

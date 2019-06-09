@@ -3366,6 +3366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buff_to_apply: {fileID: 1893833552795459779}
+  should_remove_buffs: 0
 --- !u!114 &1893833552795459779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3383,7 +3384,7 @@ MonoBehaviour:
   - {fileID: 3697412394003819023}
   timed_buff: 1
   remove_after: 4
-  _is_benificial: 0
+  _is_benificial: 1
   _icon: {fileID: 21300000, guid: 52edf0f1cc85b9c4daa0257ec02c8c05, type: 3}
   is_unique: 1
   can_stack: 1
@@ -3408,7 +3409,7 @@ MonoBehaviour:
   armor: 0
   speed: 1
   modifier:
-    _flat: 0.25
+    _flat: 0.5
     _multi: 0
 --- !u!114 &3697412394003819023
 MonoBehaviour:

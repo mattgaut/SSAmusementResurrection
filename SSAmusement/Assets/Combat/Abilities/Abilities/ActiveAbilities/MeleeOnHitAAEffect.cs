@@ -8,6 +8,6 @@ public class MeleeOnHitAAEffect : MeleeAAEffect {
 
     protected override void AttackOnHit(Character d, Attack hit_by) {
         base.AttackOnHit(d, hit_by);
-        on_hit_buff.ApplyBuff(d);
+        on_hit_buff.ApplyBuff(d, character);
     }
 }

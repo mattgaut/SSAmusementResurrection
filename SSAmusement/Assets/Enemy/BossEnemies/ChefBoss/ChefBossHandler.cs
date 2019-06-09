@@ -98,7 +98,7 @@ public class ChefBossHandler : EnemyHandler {
     }
     void SoupOnHit(Character hit, Attack hit_by) {
         enemy.DealDamage(enemy.power, hit);
-        soup_debuff.ApplyBuff(hit);
+        soup_debuff.ApplyBuff(hit, enemy);
     }
 
     IEnumerator Cleaver() {

@@ -22,7 +22,7 @@ public class PassiveAbility : Ability {
         base.SetCharacter(character);
         if (character != null) {
             current = passive_buff.GetInstance();
-            current.Apply(character);
+            current.Apply(character, character);
         }
     }
 }

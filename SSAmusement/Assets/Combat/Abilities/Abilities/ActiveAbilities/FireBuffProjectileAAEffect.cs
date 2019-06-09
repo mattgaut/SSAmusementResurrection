@@ -8,6 +8,6 @@ public class FireBuffProjectileAAEffect : FireProjectileAAEffect {
 
     protected override void OnProjectileHit(Character hit, Attack hit_by) {
         base.OnProjectileHit(hit, hit_by);
-        buff.ApplyBuff(hit);
+        buff.ApplyBuff(hit, character);
     }
 }

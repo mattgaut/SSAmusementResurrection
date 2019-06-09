@@ -28,6 +28,7 @@ public interface IInputHandler {
 
 public interface IBuff {
     Character buffed { get; }
+    Character source { get; }
     Sprite icon { get; }
     bool is_benificial { get; }
     bool is_active { get; }
@@ -35,7 +36,7 @@ public interface IBuff {
     float remaining_time { get; }
     int stack_count { get; }
 
-    void Apply(Character stat_entity);
+    void Apply(Character to_buff, Character source);
     void Remove();
 
     void AddStack();

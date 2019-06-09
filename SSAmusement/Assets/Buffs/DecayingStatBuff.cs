@@ -2,14 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DecayingStatBuff : StatBuff {
+public class DecayingStatBuffInfo : StatBuffInfo {
+    public Coroutine decay_routine { get; set; }
+    public DecayingStatBuffInfo(IBuff buff, Stat.Modifier modifier) : base(buff, modifier) {
 
-    protected override void ApplyEffects(Character character, int id, IBuff buff) {
-        base.ApplyEffects(character, id, buff);
+    }
+}
+
+public class DecayingStatBuff : StatBuff<DecayingStatBuffInfo> {
+
+    protected override void ApplyEffects(Character character, DecayingStatBuffInfo info, IBuff buff) {
+        base.ApplyEffects(character, info, buff);
 
         if (buff.length > 0) {
-            StartCoroutine(DecayModifier(modifiers[id], buff));
+            info.decay_routine = StartCoroutine(DecayModifier(info.modifier, buff));
         }
+    }
+
+    protected override DecayingStatBuffInfo GetBuffInfo(IBuff buff) {
+        return new DecayingStatBuffInfo(buff, new Stat.Modifier(modifier));
     }
 
     IEnumerator DecayModifier(Stat.Modifier to_decay, IBuff buff_info) {
@@ -26,8 +37,5 @@ public class DecayingStatBuff : StatBuff {
         }
 
         to_decay.Set(0, 0);
-    }
-
-    protected override void RecalculateEffects(int id, IBuff info) {
     }
 }

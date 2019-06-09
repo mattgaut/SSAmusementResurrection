@@ -2,32 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReduceMaxStat : BuffDefinition {
+public class ReduceMaxStatInfo : BuffInfo {
+    public Stat.Modifier modifier { get; private set; }
+    public ReduceMaxStatInfo(IBuff info, Stat.Modifier modifier) : base(info) {
+        this.modifier = modifier;
+    }
+}
+
+public class ReduceMaxStat : BuffDefinition<ReduceMaxStatInfo> {
+
     [SerializeField] float percent_reduction;
     public override BuffType type {
         get { return BuffType.stat; }
     }
 
-    Dictionary<int, Stat.Modifier> id_to_buff_value_dict;
-
-
-    protected override void Init() {
-        base.Init();
-        id_to_buff_value_dict = new Dictionary<int, Stat.Modifier>();
+    protected override void ApplyEffects(Character character, ReduceMaxStatInfo info, IBuff buff) {
+        character.health.AddModifier(info.modifier);
+        info.modifier.SetFlat(-(percent_reduction * character.health.flat_modded_value));
     }
 
-    protected override void ApplyEffects(Character stat_entity, int id, IBuff buff) {
-        float amount_to_remove = stat_entity.health.flat_modded_value * percent_reduction;
-
-        Stat.Modifier new_mod = new Stat.Modifier(-amount_to_remove);
-        stat_entity.health.AddModifier(new_mod);
-        id_to_buff_value_dict.Add(id, new_mod);
+    protected override void RemoveEffects(Character character, ReduceMaxStatInfo info) {
+        character.health.RemoveModifier(info.modifier);
     }
 
-    protected override void RemoveEffects(Character character, int id) {
-        if (id_to_buff_value_dict.ContainsKey(id)) {
-            character.health.RemoveModifier(id_to_buff_value_dict[id]);
-            id_to_buff_value_dict.Remove(id);
-        }
+    protected override ReduceMaxStatInfo GetBuffInfo(IBuff buff) {
+        return new ReduceMaxStatInfo(buff, new Stat.Modifier());
     }
+
 }
