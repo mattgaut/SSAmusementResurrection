@@ -42,12 +42,13 @@ public class Player : Character {
     }
 
     protected override void Die(Character killed_by) {
+        is_alive = false;
+
         last_hit_by.GiveKillCredit(this);
         GameManager.instance.RemoveOnTimeScaleChangedEvent(team, OnTimeScaleChanged);
         OnTimeScaleChanged(1f);
         InvokeOnDeath(this, killed_by);
 
-        alive = false;
         GameManager.instance.GameOver();
         hitbox.gameObject.SetActive(false);
         anim.SetTrigger("Death");

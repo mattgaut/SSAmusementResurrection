@@ -62,7 +62,7 @@ public class CombatTurretItemEffect : OnHitItemEffect {
         
         for (int i = targets.Count - 1; i >= 0; i--) {
             to_return = targets[i];
-            if (to_return != null && to_return.alive) {
+            if (to_return != null && to_return.is_alive) {
                 break;
             } else {
                 targets.RemoveAt(i);

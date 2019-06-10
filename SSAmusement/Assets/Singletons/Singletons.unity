@@ -135,6 +135,7 @@ MonoBehaviour:
   power: 0
   armor: 0
   speed: 1
+  fill_cap_stats: 0
   modifier:
     _flat: 0
     _multi: 0
@@ -155,6 +156,7 @@ MonoBehaviour:
   power: 0
   armor: 1
   speed: 0
+  fill_cap_stats: 0
   modifier:
     _flat: 0
     _multi: 0
@@ -175,6 +177,7 @@ MonoBehaviour:
   power: 1
   armor: 0
   speed: 0
+  fill_cap_stats: 0
   modifier:
     _flat: 0
     _multi: 0
@@ -195,6 +198,7 @@ MonoBehaviour:
   power: 0
   armor: 0
   speed: 0
+  fill_cap_stats: 0
   modifier:
     _flat: 0
     _multi: 0
@@ -289,7 +293,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 8324535721233755534, guid: ba214d9371380ed438465f204bf0e935,
+      objectReference: {fileID: 5770375887674969164, guid: c3f30190b5c8b554d8b7c336d53863e7,
         type: 3}
     - target: {fileID: 1430125888089228363, guid: 06f08f6c2bb72f3478d34895e46a967b,
         type: 3}
@@ -324,13 +328,19 @@ PrefabInstance:
     - target: {fileID: 4727880421587381434, guid: 06f08f6c2bb72f3478d34895e46a967b,
         type: 3}
       propertyPath: available_items.Array.size
-      value: 21
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 4727880421587381434, guid: 06f08f6c2bb72f3478d34895e46a967b,
         type: 3}
       propertyPath: available_items.Array.data[20]
       value: 
       objectReference: {fileID: 9206136929133298297, guid: f4115c97705816349849226c39f4ff41,
+        type: 3}
+    - target: {fileID: 4727880421587381434, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: available_items.Array.data[21]
+      value: 
+      objectReference: {fileID: 9175813155693695719, guid: d546526ad7486dc46a68636bada8c1e7,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}

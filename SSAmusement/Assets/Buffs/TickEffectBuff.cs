@@ -37,7 +37,7 @@ public abstract class TickEffectBuff<T> : BuffDefinition<T> where T : TickEffect
             timer += Time.fixedDeltaTime * GetTimeFactor(info);
             if (timer > tick_rate) {
                 timer -= tick_rate;
-                if (character == null || !character.alive) {
+                if (character == null || !character.is_alive) {
                     break;
                 } else {
                     for (int i = 0; i < info.buff.stack_count; i++) {

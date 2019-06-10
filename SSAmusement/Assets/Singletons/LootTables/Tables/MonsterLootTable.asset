@@ -16,14 +16,14 @@ MonoBehaviour:
   - possible_pickups:
     - loot: {fileID: 1701196585343879091, guid: a4dbd0f857b2b0a4c8278ceb3e60b2bf,
         type: 3}
-      _chance: 0.6
+      _chance: 0.65
     - loot: {fileID: 1701196585343879091, guid: 4d546b01323e96542a6a0eeb43c31718,
         type: 3}
       _chance: 0.3
     - loot: {fileID: 1701196585343879091, guid: 7a4ca5841f809cf4bb369f6588c2e23d,
         type: 3}
-      _chance: 0.1
-    _chance: 0.5
+      _chance: 0.05
+    _chance: 0.6
   - possible_pickups:
     - loot: {fileID: 7074109383489225008, guid: 337248b82f674f94bb1c56307e2206f7,
         type: 3}
@@ -31,13 +31,18 @@ MonoBehaviour:
     - loot: {fileID: 7074109383489225008, guid: 77a94d3caf06cb34e86bc092a564c419,
         type: 3}
       _chance: 0.2
-    _chance: 0.2
+    _chance: 0.15
   - possible_pickups:
     - loot: {fileID: 114473138798414562, guid: 9c659322bea69c3449316dda6c15b99c, type: 3}
       _chance: 0.5
     - loot: {fileID: 114473138798414562, guid: 75813b4431a94a44fbf7b9a50e5449c7, type: 3}
       _chance: 0.5
-    _chance: 0.3
+    _chance: 0.2
+  - possible_pickups:
+    - loot: {fileID: 4263469363295386022, guid: 7bb0a5a8878d55d4d9f316fc195daf38,
+        type: 3}
+      _chance: 0.5
+    _chance: 0.05
   min_to_drop: 0
   max_to_drop: 5
   avg_to_drop: 0.4

@@ -262,6 +262,7 @@ MonoBehaviour:
   power: 0
   armor: 0
   speed: 1
+  fill_cap_stats: 0
   modifier:
     _flat: 0
     _multi: -0.5
@@ -845,8 +846,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 323702485
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300018, guid: ed72b35046af6c94a9686e7d99a20798, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

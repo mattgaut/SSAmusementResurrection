@@ -17,7 +17,8 @@ public class OnKillLaunchProjectile : OnKillItemEffect {
 
         new_projectile.SetSource(killer);
         new_projectile.SetOnHit(OnHit);
-        new_projectile.SetTarget(target_collector.GetRandomTarget());
+        Character target = target_collector.GetRandomTarget();
+        new_projectile.SetTarget(target);
     }
 
     void OnHit(Character hit, Attack hit_by) {

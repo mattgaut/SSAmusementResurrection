@@ -71,7 +71,7 @@ public class Character : MonoBehaviour {
         get; private set;
     }
 
-    public bool alive {
+    public bool is_alive {
         get; protected set;
     }
     public bool invincible {
@@ -79,10 +79,10 @@ public class Character : MonoBehaviour {
     }
 
     public bool can_input {
-        get { return alive && !is_knocked_back && !crowd_control_effects.IsCCed(CrowdControl.Type.stunned); }
+        get { return is_alive && !is_knocked_back && !crowd_control_effects.IsCCed(CrowdControl.Type.stunned); }
     }
     public bool can_use_skills {
-        get { return alive && !is_knocked_back && !crowd_control_effects.IsCCed(CrowdControl.Type.stunned); }
+        get { return is_alive && !is_knocked_back && !crowd_control_effects.IsCCed(CrowdControl.Type.stunned); }
     }
     public bool can_move {
         get { return movement_lock.unlocked && !crowd_control_effects.IsCCed(CrowdControl.Type.snared, CrowdControl.Type.stunned); }
@@ -369,7 +369,7 @@ public class Character : MonoBehaviour {
 
         crowd_control_effects = new CrowdControl();
 
-        alive = true;
+        is_alive = true;
 
         movement_lock = new Lock();
         anti_gravity_lock = new Lock();
@@ -413,6 +413,7 @@ public class Character : MonoBehaviour {
 
 
     protected virtual void Die(Character killed_by) {
+        is_alive = false;
         GameManager.instance.RemoveOnTimeScaleChangedEvent(team, OnTimeScaleChanged);
         last_hit_by.GiveKillCredit(this);
         InvokeOnDeath(this, killed_by);

@@ -49,7 +49,7 @@ public class ChefBossHandler : EnemyHandler {
     }
 
     protected IEnumerator AIRoutine() {
-        while (enemy.alive && active) {
+        while (enemy.is_alive && active) {
             if (force_attack) {
                 float rand = Random.Range(0, 1f);
                 if (rand < .45f) {

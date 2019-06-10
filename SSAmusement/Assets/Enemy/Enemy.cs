@@ -53,6 +53,8 @@ public class Enemy : Character {
     }
 
     protected override void Die(Character killed_by) {
+        is_alive = false;
+
         last_hit_by.GiveKillCredit(this);
         InvokeOnDeath(this, killed_by);
         if (die_function != null) {
@@ -60,7 +62,6 @@ public class Enemy : Character {
         } else {
             OnDie();
         }
-        alive = false;
     }
 
     void OnDie() {

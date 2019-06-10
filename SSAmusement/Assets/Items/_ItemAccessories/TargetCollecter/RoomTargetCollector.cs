@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RoomTargetCollector : TargetCollector {
@@ -13,6 +14,6 @@ public class RoomTargetCollector : TargetCollector {
     }
 
     public override List<Character> GetTargetList() {
-        return new List<Character>(RoomManager.instance.active.GetEnemies());
+        return new List<Character>(RoomManager.instance.active.GetEnemies().Where((c) => c.is_alive));
     }
 }
