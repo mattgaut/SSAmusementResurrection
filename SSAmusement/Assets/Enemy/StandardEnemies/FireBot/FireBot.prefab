@@ -847,7 +847,7 @@ MonoBehaviour:
         height: 0
     coroutine_name: ActivateField
     coroutine_index: 2
-  active_on_start: 1
+  active_on_start: 0
   line_of_sight_origin: {fileID: 277658213413916837}
   line_of_sight_blocking_mask:
     serializedVersion: 2
@@ -1029,6 +1029,7 @@ MonoBehaviour:
   power: 0
   armor: 0
   speed: 1
+  fill_cap_stats: 0
   modifier:
     _flat: 0
     _multi: -0.35
@@ -1098,6 +1099,7 @@ MonoBehaviour:
   power: 0
   armor: 0
   speed: 1
+  fill_cap_stats: 0
   modifier:
     _flat: 0
     _multi: -0.15
