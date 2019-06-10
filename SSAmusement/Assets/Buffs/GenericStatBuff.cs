@@ -13,6 +13,7 @@ public class StatBuffInfo : BuffInfo {
 public abstract class StatBuff<T> : BuffDefinition<T> where T : StatBuffInfo {
 
     [SerializeField] protected bool health, energy, power, armor, speed;
+    [SerializeField] protected bool fill_cap_stats;
     [SerializeField] protected Stat.Modifier modifier;
 
     public override BuffType type {

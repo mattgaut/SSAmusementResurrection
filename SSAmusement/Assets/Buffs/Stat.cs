@@ -153,14 +153,9 @@ public class CapStat : Stat {
     }
 
     public override void AddModifier(Modifier mod) {
-        float value_before = value;
         base.AddModifier(mod);
-        float value_after = value;
-        if (value_before < value_after) {
-            current += value_after - value_before;
-        }
     }
-    
+
     public override void SetBaseValue(float f) {
         float value_before = value;
         base.SetBaseValue(f);
@@ -170,7 +165,12 @@ public class CapStat : Stat {
         }
     }
     protected override void NoteChange() {
+        float value_before = value;
         base.NoteChange();
+        float value_after = value;
+        if (value_before < value_after) {
+            current += value_after - value_before;
+        }
         if (current > value) {
             current = value;
         }
