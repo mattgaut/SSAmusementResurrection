@@ -42,6 +42,9 @@ MonoBehaviour:
     - loot: {fileID: 4263469363295386022, guid: 7bb0a5a8878d55d4d9f316fc195daf38,
         type: 3}
       _chance: 0.5
+    - loot: {fileID: 4263469363295386022, guid: ac511dcc14f2f8e43929a9ae8f0e7ff5,
+        type: 3}
+      _chance: 0.5
     _chance: 0.05
   min_to_drop: 0
   max_to_drop: 5
