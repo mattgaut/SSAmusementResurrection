@@ -15,6 +15,7 @@ public class PlayerDisplay : MonoBehaviour {
 
     [SerializeField] AbilityDisplay[] ability_displays;
     [SerializeField] ChargeAbilityDisplay charge_display;
+    [SerializeField] ConsumeableAbilityDisplay consumeable_display;
 
     public void UpdateCurrencyText(int count) {
         currency_text.text = "$" + count;
@@ -53,5 +54,13 @@ public class PlayerDisplay : MonoBehaviour {
 
     public void SetActiveItemDisplay(ActiveChargeAbility ability) {
         charge_display.SetAbility(ability);
+    }
+
+    public void SetConsumeableItemDisplay(Consumeable consumeable) {
+        if (consumeable) {
+            consumeable_display.SetDisplay(consumeable);
+        } else {
+            consumeable_display.CloseDisplay();
+        }
     }
 }

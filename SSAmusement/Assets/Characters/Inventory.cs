@@ -57,8 +57,8 @@ public class Inventory : MonoBehaviour {
 
     public void TryUseConsumable() {
         if (consumeable && consumeable.ability.TryUse()) {
-
             consumeable = null;
+            player.player_display.SetConsumeableItemDisplay(consumeable);
         }
     }
 
@@ -93,6 +93,8 @@ public class Inventory : MonoBehaviour {
             consumeable.transform.position = transform.position;
             consumeable.transform.SetParent(transform);
             consumeable.gameObject.SetActive(false);
+
+            player.player_display.SetConsumeableItemDisplay(consumeable);
         }
     }
 

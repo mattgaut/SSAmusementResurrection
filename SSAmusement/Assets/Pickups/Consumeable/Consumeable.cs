@@ -6,6 +6,8 @@ public sealed class Consumeable : Pickup {
 
     public ActiveAbility ability { get { return _ability; } }
 
+    public Sprite icon { get { return GetComponent<SpriteRenderer>().sprite; } }
+
     [SerializeField] ActiveChargeAbility _ability;
 
     protected override void OnPickup(Player p) {
