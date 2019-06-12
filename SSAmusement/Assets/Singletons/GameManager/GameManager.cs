@@ -156,6 +156,8 @@ public class GameManager : Singleton<GameManager> {
         SpawnPlayer(selected_player_prefab);
         LoadLevel(level_tree.first_level);
         player.transform.position = new Vector3(2, 1, 0);
+
+        on_begin_game.Invoke();
     }
 
     /// <summary>
