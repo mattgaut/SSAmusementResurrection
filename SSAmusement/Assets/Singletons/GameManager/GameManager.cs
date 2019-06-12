@@ -28,7 +28,7 @@ public class GameManager : Singleton<GameManager> {
     bool is_paused, is_select_screen_up, is_cutscene_running;
     int input_locks;
 
-    [SerializeField] UnityEvent on_game_over;
+    [SerializeField] UnityEvent on_game_over, on_begin_game;
     [SerializeField] UnityEventBool on_select, on_pause;
 
     [SerializeField] bool start_game_on_start;

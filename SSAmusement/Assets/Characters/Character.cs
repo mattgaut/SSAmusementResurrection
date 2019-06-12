@@ -55,6 +55,7 @@ public class Character : MonoBehaviour {
     public delegate void OnDeathCallback(Character killed, Character killer);
     public delegate void OnTakeKnockback(Character source, Vector2 force, float length);
 
+    public event OnHitCallback on_deal_damage;
     public event OnHitCallback on_hit;
     public event OnKillCallback on_kill;
     public event OnTakeDamage on_take_damage;
@@ -155,10 +156,10 @@ public class Character : MonoBehaviour {
     /// <returns>Damage target took</returns>
     public float DealDamage(float damage, Character target, bool trigger_on_hit = true) {
         float damage_dealt = target.TakeDamage(damage, this);
-        if (damage_dealt > 0 && trigger_on_hit) {
-            InvokeOnHit(this, damage, damage_dealt, target);
-
-        }
+        if (damage_dealt > 0) {
+            if (trigger_on_hit) InvokeOnHit(this, damage, damage_dealt, target);
+            InvokeOnDealDamage(this, damage, damage_dealt, target);
+        }     
         return damage_dealt;
     }
 
@@ -356,6 +357,9 @@ public class Character : MonoBehaviour {
 
     protected void InvokeOnHit(Character hitter, float pre_mitigation_damage, float post_mitigation_damage, Character hit) {
         on_hit?.Invoke(hitter, pre_mitigation_damage, post_mitigation_damage, hit);
+    }
+    protected void InvokeOnDealDamage(Character hitter, float pre_mitigation_damage, float post_mitigation_damage, Character hit) {
+        on_deal_damage?.Invoke(hitter, pre_mitigation_damage, post_mitigation_damage, hit);
     }
     protected void InvokeOnTakeDamage(Character hit_character, float pre_mitigation_damage, float post_mitigation_damage, Character hit_by) {
         on_take_damage?.Invoke(hit_character, pre_mitigation_damage, post_mitigation_damage, hit_by);
