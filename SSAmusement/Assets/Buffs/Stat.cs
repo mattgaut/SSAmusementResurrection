@@ -50,7 +50,7 @@ public class Stat {
     }
 
     [SerializeField] float base_value;
-    List<Modifier> mods;
+    List<Modifier> mods = new List<Modifier>();
 
     float last_calculated;
     bool changed = true;
@@ -80,8 +80,7 @@ public class Stat {
     }
 
     public Stat() {
-        base_value = 0;
-        mods = new List<Modifier>();
+
     }
 
     public Stat(float base_value) {
