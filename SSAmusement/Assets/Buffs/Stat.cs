@@ -50,7 +50,7 @@ public class Stat {
     }
 
     [SerializeField] float base_value;
-    [SerializeField][HideInInspector]List<Modifier> mods;
+    List<Modifier> mods;
 
     float last_calculated;
     bool changed = true;
@@ -77,6 +77,11 @@ public class Stat {
                 return last_calculated;
             }
         }
+    }
+
+    public Stat() {
+        base_value = 0;
+        mods = new List<Modifier>();
     }
 
     public Stat(float base_value) {
@@ -106,7 +111,6 @@ public class Stat {
     }
 
     public virtual void AddModifier(Modifier mod) {
-        Debug.Log(mods);
         mods.Add(mod);
         NoteChange();
         mod.on_changed += NoteChange;
@@ -158,6 +162,10 @@ public class CapStat : Stat {
 
     public bool is_max {
         get { return current == max; }
+    }
+
+    public CapStat() : base() {
+
     }
 
     public CapStat(float base_value) : base(base_value) {
