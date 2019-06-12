@@ -28,7 +28,7 @@ public class StickyBomb : MonoBehaviour {
 
         offset = new Vector2(Random.Range(-.3f, .3f), Random.Range(-.3f, .3f));
 
-        transform.position = attached_to.char_definition.center_mass.position + offset;
+        transform.position = attached_to.stats.center_mass.position + offset;
 
         this.on_hit = on_hit;
     }
@@ -43,7 +43,7 @@ public class StickyBomb : MonoBehaviour {
 
     private void LateUpdate() {
         if (attached_to) {
-            transform.position = attached_to.char_definition.center_mass.position + offset;
+            transform.position = attached_to.stats.center_mass.position + offset;
         } else {
             backup_rigidbody.simulated = true;
         }

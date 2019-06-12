@@ -33,7 +33,7 @@ public class SmokeBombItemEffect : OnTakeDamageItemEffect {
     void OnHit(Character character, Attack a) {
         character.crowd_control_effects.ApplyCC(CrowdControl.Type.blinded, blind_length, item.owner);
 
-        ParticleSystem ps = Instantiate(blind_particle_effects, character.char_definition.head);
+        ParticleSystem ps = Instantiate(blind_particle_effects, character.stats.head);
         ps.transform.localPosition = Vector3.zero;
 
         StartCoroutine(StopParticlesAfterTime(ps, blind_length));

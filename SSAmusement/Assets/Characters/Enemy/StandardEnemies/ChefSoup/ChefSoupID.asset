@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a308c6798498fcd419f9cf424d8cb856, type: 3}
+  m_Name: ChefSoupID
+  m_EditorClassIdentifier: 
+  _character_name: Boyardee
+  _type: 1
+  _prefab: {fileID: 1068494373224362, guid: 72729a89b78e09748a65560e39946275, type: 3}
+  _description: 

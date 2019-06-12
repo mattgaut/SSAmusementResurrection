@@ -10,9 +10,9 @@ using Utilities;
 public class Character : MonoBehaviour {
     public enum Team { player, enemy }
 
-    [SerializeField] Team _team;
+    [SerializeField] CharacterID _id;
 
-    [SerializeField] CharacterDefinition _char_definition;
+    [SerializeField] CharacterStats _stats;
 
     [SerializeField] float invincibility_length = 0f;
 
@@ -24,23 +24,27 @@ public class Character : MonoBehaviour {
 
     [SerializeField] int base_jump_count = 1;
 
+    public CharacterID id {
+        get { return _id; }
+    }
+
     public Team team {
-        get { return _team; }
+        get; private set;
     }
 
     public AnimatorWrapper animator {
         get { return anim; }
     }
     
-    public CharacterDefinition char_definition { get { return _char_definition; } }
+    public CharacterStats stats { get { return _stats; } }
     public CrowdControl crowd_control_effects { get; private set; }
 
-    public CapStat health { get { return _char_definition.health; } }
-    public Stat power { get { return _char_definition.power; } }
-    public Stat armor { get { return _char_definition.armor; } }
-    public Stat speed { get { return _char_definition.speed; } }
-    public CapStat energy { get { return _char_definition.energy; } }
-    public Stat knockback_multiplier { get { return _char_definition.knockback_modifier; } }
+    public CapStat health { get { return _stats.health; } }
+    public Stat power { get { return _stats.power; } }
+    public Stat armor { get { return _stats.armor; } }
+    public Stat speed { get { return _stats.speed; } }
+    public CapStat energy { get { return _stats.energy; } }
+    public Stat knockback_multiplier { get { return _stats.knockback_modifier; } }
 
     public int jump_count { get { return base_jump_count + bonus_jump_count; } }
     public int bonus_jump_count { get; private set; }
@@ -375,6 +379,8 @@ public class Character : MonoBehaviour {
         anti_gravity_lock = new Lock();
         invincibility_lock = new Lock();
 
+        team = id.type;
+
         OnAwake();
     }
 
@@ -551,24 +557,20 @@ public class Character : MonoBehaviour {
 /// transforms to target different places of a character.
 /// </summary>
 [System.Serializable]
-public struct CharacterDefinition {
-
-    [SerializeField] string _name;
+public class CharacterStats {
 
     [SerializeField] CapStat _health;
     [SerializeField] Stat _power;
     [SerializeField] Stat _armor;
     [SerializeField] Stat _speed;
     [SerializeField] CapStat _energy;
-    [SerializeField] Stat _knockback_modifier;
+    [SerializeField] Stat _knockback_modifier = new Stat(1);
 
     [SerializeField] Transform _center_mass, _feet, _head;
 
     public Transform center_mass { get { return _center_mass; } }
     public Transform feet { get { return _feet; } }
     public Transform head { get { return _head; } }
-
-    public string name { get { return _name; } }
 
     public CapStat health { get { return _health; } }
     public Stat power { get { return _power; } }

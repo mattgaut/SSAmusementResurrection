@@ -33,7 +33,7 @@ public class SmokeBombAAEffect : ActiveAbilityEffect {
     void OnHit(Character hit, Attack a) {
         hit.crowd_control_effects.ApplyCC(CrowdControl.Type.blinded, blind_length, character);
 
-        ParticleSystem ps = Instantiate(blind_particle_effects, hit.char_definition.head);
+        ParticleSystem ps = Instantiate(blind_particle_effects, hit.stats.head);
         ps.transform.localPosition = Vector3.zero;
 
         StartCoroutine(StopParticlesAfterTime(ps, blind_length));

@@ -13,7 +13,7 @@ public class HomingProjectile : Projectile {
     public void SetTarget(Character character) {
         target_character = character;
         if (target_character) {
-            target = character.char_definition.center_mass;
+            target = character.stats.center_mass;
         } else {
             target = null;
         }

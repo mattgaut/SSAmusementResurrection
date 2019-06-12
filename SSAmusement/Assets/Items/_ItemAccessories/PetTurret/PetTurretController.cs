@@ -88,7 +88,7 @@ public class PetTurretController : MonoBehaviour {
 
         SoundManager.instance?.LocalPlaySfx(laser_sfx);
 
-        Transform target = target_callback.target.char_definition.center_mass;
+        Transform target = target_callback.target.stats.center_mass;
         new_laser.SetTarget(target_callback.target);
         new_laser.SetOnHit((character, b) => target_callback.success_callback(character));
 

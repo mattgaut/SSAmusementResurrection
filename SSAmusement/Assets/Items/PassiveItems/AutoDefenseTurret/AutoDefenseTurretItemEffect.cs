@@ -16,7 +16,7 @@ public class AutoDefenseTurretItemEffect : OnTakeDamageItemEffect {
         pet.gameObject.SetActive(true);
         item.owner.inventory.AddPet();
         pet.GetComponent<SpriteRenderer>().sortingOrder = -1 * item.owner.inventory.PetCount();
-        pet.SetOrbit(item.owner.char_definition.center_mass, item.owner.inventory.PetCount() / 10f);
+        pet.SetOrbit(item.owner.stats.center_mass, item.owner.inventory.PetCount() / 10f);
     }
 
     protected override void OnDrop() {

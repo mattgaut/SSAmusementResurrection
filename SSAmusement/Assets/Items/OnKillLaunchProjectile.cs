@@ -11,7 +11,7 @@ public class OnKillLaunchProjectile : OnKillItemEffect {
 
     protected override void OnKill(Character killer, Character killed) {
         HomingProjectile new_projectile = Instantiate(projectile);
-        new_projectile.transform.position = killer.char_definition.center_mass.position;
+        new_projectile.transform.position = killer.stats.center_mass.position;
 
         new_projectile.LaunchTowardsTarget(Vector2.up);
 
