@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
@@ -22,6 +23,8 @@ public class Inventory : MonoBehaviour {
     }
     public ActiveItem active_item { get; private set; }
     public Consumeable consumeable { get; private set; }
+
+    public event Action<Item> on_collect_item;
 
     int pet_count;
 
@@ -118,6 +121,8 @@ public class Inventory : MonoBehaviour {
         }
         i.OnPickup(player);
         UIHandler.DisplayItem(i);
+
+        on_collect_item?.Invoke(i);
 
         return replaced_item;
     }

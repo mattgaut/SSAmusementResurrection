@@ -754,6 +754,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3024501200211164857}
   - component: {fileID: 5772137309860186987}
+  - component: {fileID: 1145877708}
+  - component: {fileID: 1145877709}
+  - component: {fileID: 1145877707}
+  - component: {fileID: 1145877710}
   m_Layer: 0
   m_Name: Tracker
   m_TagString: Untagged
@@ -785,6 +789,59 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b47ee69e0e3fc6419875189dd13aa77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats_to_track:
+  - {fileID: 1145877709}
+  - {fileID: 1145877708}
+  - {fileID: 1145877707}
+  - {fileID: 1145877710}
+--- !u!114 &1145877708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4293639862196970086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea6bd7482f3f5db4f83c46a2bed81409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1145877709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4293639862196970086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e43adc9f7e4cb3447a548c2483d12906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1145877707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4293639862196970086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bca728d2b255cf4cb60f704bfd01594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1145877710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4293639862196970086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2078e2f21468654397f8182e14543f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4727880421587381436

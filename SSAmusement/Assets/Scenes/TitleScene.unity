@@ -20302,21 +20302,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _team: 0
-  _char_definition:
-    _name: 
+  _id: {fileID: 11400000, guid: da5f7cc04bab6964a8ee28a97e9431ab, type: 2}
+  _stats:
     _health:
-      base_value: 0
+      base_value: 1
     _power:
       base_value: 0
     _armor:
       base_value: 0
     _speed:
-      base_value: 0
+      base_value: 5
     _energy:
       base_value: 0
     _knockback_modifier:
-      base_value: 0
+      base_value: 1
     _center_mass: {fileID: 0}
     _feet: {fileID: 0}
     _head: {fileID: 0}
@@ -20392,8 +20391,10 @@ MonoBehaviour:
   power: 0
   armor: 0
   speed: 1
-  _flat: 0
-  _multi: 0.5
+  fill_cap_stats: 0
+  modifier:
+    _flat: 0
+    _multi: 0
 --- !u!4 &438775510
 Transform:
   m_ObjectHideFlags: 0
@@ -33073,49 +33074,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 703222464}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &703748196
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 703748197}
-  - component: {fileID: 703748198}
-  m_Layer: 0
-  m_Name: LoadSingletonScene
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &703748197
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703748196}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.973, y: 5.151, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &703748198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703748196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5dced1f2f01ed04fa46d097583e1fbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &711355596
 GameObject:
   m_ObjectHideFlags: 0
@@ -101989,6 +101947,10 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
 --- !u!1 &1851327793894831
 GameObject:
   m_ObjectHideFlags: 0
@@ -102039,6 +102001,10 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
   - clip_name: ChefCleaverThrow
     events:
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
     - m_PersistentCalls:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -102097,6 +102063,10 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
 --- !u!1 &1851327835414353
 GameObject:
   m_ObjectHideFlags: 0
@@ -102147,6 +102117,10 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
   - clip_name: ChefCleaverThrow
     events:
+    - m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
     - m_PersistentCalls:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -104190,24 +104164,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _team: 0
-  _char_definition:
-    _name: Chef Cleaver
+  _id: {fileID: 11400000, guid: d0f63e6f26dbdd545ab51dfaabc576ac, type: 2}
+  _stats:
     _health:
-      base_value: 15
+      base_value: 1
     _power:
-      base_value: 15
+      base_value: 0
     _armor:
       base_value: 0
     _speed:
-      base_value: 4
+      base_value: 5
     _energy:
       base_value: 0
     _knockback_modifier:
-      base_value: 0
-    _center_mass: {fileID: 4090400925015965}
-    _feet: {fileID: 4090400925015965}
-    _head: {fileID: 4090400925015965}
+      base_value: 1
+    _center_mass: {fileID: 0}
+    _feet: {fileID: 0}
+    _head: {fileID: 0}
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 1851327624240104}
@@ -104227,24 +104200,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _team: 0
-  _char_definition:
-    _name: Chef Cleaver
+  _id: {fileID: 11400000, guid: d0f63e6f26dbdd545ab51dfaabc576ac, type: 2}
+  _stats:
     _health:
-      base_value: 15
+      base_value: 1
     _power:
-      base_value: 15
+      base_value: 0
     _armor:
       base_value: 0
     _speed:
-      base_value: 4
+      base_value: 5
     _energy:
       base_value: 0
     _knockback_modifier:
-      base_value: 0
-    _center_mass: {fileID: 4090401040142805}
-    _feet: {fileID: 4090401040142805}
-    _head: {fileID: 4090401040142805}
+      base_value: 1
+    _center_mass: {fileID: 0}
+    _feet: {fileID: 0}
+    _head: {fileID: 0}
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 1851327793894832}
@@ -104264,24 +104236,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _team: 0
-  _char_definition:
-    _name: Chef Cleaver
+  _id: {fileID: 11400000, guid: d0f63e6f26dbdd545ab51dfaabc576ac, type: 2}
+  _stats:
     _health:
-      base_value: 15
+      base_value: 1
     _power:
-      base_value: 15
+      base_value: 0
     _armor:
       base_value: 0
     _speed:
-      base_value: 4
+      base_value: 5
     _energy:
       base_value: 0
     _knockback_modifier:
-      base_value: 0
-    _center_mass: {fileID: 4090401151071385}
-    _feet: {fileID: 4090401151071385}
-    _head: {fileID: 4090401151071385}
+      base_value: 1
+    _center_mass: {fileID: 0}
+    _feet: {fileID: 0}
+    _head: {fileID: 0}
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 1851327816741092}
@@ -104301,24 +104272,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _team: 0
-  _char_definition:
-    _name: Chef Cleaver
+  _id: {fileID: 11400000, guid: d0f63e6f26dbdd545ab51dfaabc576ac, type: 2}
+  _stats:
     _health:
-      base_value: 15
+      base_value: 1
     _power:
-      base_value: 15
+      base_value: 0
     _armor:
       base_value: 0
     _speed:
-      base_value: 4
+      base_value: 5
     _energy:
       base_value: 0
     _knockback_modifier:
-      base_value: 0
-    _center_mass: {fileID: 4090401133042475}
-    _feet: {fileID: 4090401133042475}
-    _head: {fileID: 4090401133042475}
+      base_value: 1
+    _center_mass: {fileID: 0}
+    _feet: {fileID: 0}
+    _head: {fileID: 0}
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 1851327793894832}
@@ -105737,24 +105707,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _team: 0
-  _char_definition:
-    _name: Chef Cart
+  _id: {fileID: 11400000, guid: 02005a3a42b63d94abd96f27f7afa936, type: 2}
+  _stats:
     _health:
-      base_value: 15
+      base_value: 1
     _power:
-      base_value: 10
+      base_value: 0
     _armor:
       base_value: 0
     _speed:
-      base_value: 2.5
+      base_value: 5
     _energy:
       base_value: 0
     _knockback_modifier:
-      base_value: 0
-    _center_mass: {fileID: 4474835454715068}
-    _feet: {fileID: 4474835454715068}
-    _head: {fileID: 4474835454715068}
+      base_value: 1
+    _center_mass: {fileID: 0}
+    _feet: {fileID: 0}
+    _head: {fileID: 0}
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 1798781578087941}
@@ -105774,24 +105743,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _team: 0
-  _char_definition:
-    _name: Chef Cart
+  _id: {fileID: 11400000, guid: 02005a3a42b63d94abd96f27f7afa936, type: 2}
+  _stats:
     _health:
-      base_value: 15
+      base_value: 1
     _power:
-      base_value: 10
+      base_value: 0
     _armor:
       base_value: 0
     _speed:
-      base_value: 2.5
+      base_value: 5
     _energy:
       base_value: 0
     _knockback_modifier:
-      base_value: 0
-    _center_mass: {fileID: 4474836050712428}
-    _feet: {fileID: 4474836050712428}
-    _head: {fileID: 4474836050712428}
+      base_value: 1
+    _center_mass: {fileID: 0}
+    _feet: {fileID: 0}
+    _head: {fileID: 0}
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 1798781099212245}
@@ -105811,24 +105779,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _team: 0
-  _char_definition:
-    _name: Chef Carrot
+  _id: {fileID: 11400000, guid: dae452c47c758a9439bc0682e099415c, type: 2}
+  _stats:
     _health:
-      base_value: 8
+      base_value: 1
     _power:
-      base_value: 4
+      base_value: 0
     _armor:
       base_value: 0
     _speed:
-      base_value: 2.5
+      base_value: 5
     _energy:
       base_value: 0
     _knockback_modifier:
-      base_value: 0
-    _center_mass: {fileID: 4632518503724262}
-    _feet: {fileID: 4632518503724262}
-    _head: {fileID: 4632518503724262}
+      base_value: 1
+    _center_mass: {fileID: 0}
+    _feet: {fileID: 0}
+    _head: {fileID: 0}
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 1974822940202907}
@@ -105848,24 +105815,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _team: 0
-  _char_definition:
-    _name: Chef Carrot
+  _id: {fileID: 11400000, guid: dae452c47c758a9439bc0682e099415c, type: 2}
+  _stats:
     _health:
-      base_value: 8
+      base_value: 1
     _power:
-      base_value: 4
+      base_value: 0
     _armor:
       base_value: 0
     _speed:
-      base_value: 2.5
+      base_value: 5
     _energy:
       base_value: 0
     _knockback_modifier:
-      base_value: 0
-    _center_mass: {fileID: 4632518340384187}
-    _feet: {fileID: 4632518340384187}
-    _head: {fileID: 4632518340384187}
+      base_value: 1
+    _center_mass: {fileID: 0}
+    _feet: {fileID: 0}
+    _head: {fileID: 0}
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 1974822507919048}
@@ -105885,24 +105851,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e122db01ff7c4d995406b043e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _team: 0
-  _char_definition:
-    _name: Chef Carrot
+  _id: {fileID: 11400000, guid: dae452c47c758a9439bc0682e099415c, type: 2}
+  _stats:
     _health:
-      base_value: 8
+      base_value: 1
     _power:
-      base_value: 4
+      base_value: 0
     _armor:
       base_value: 0
     _speed:
-      base_value: 2.5
+      base_value: 5
     _energy:
       base_value: 0
     _knockback_modifier:
-      base_value: 0
-    _center_mass: {fileID: 4632518066171030}
-    _feet: {fileID: 4632518066171030}
-    _head: {fileID: 4632518066171030}
+      base_value: 1
+    _center_mass: {fileID: 0}
+    _feet: {fileID: 0}
+    _head: {fileID: 0}
   invincibility_length: 0
   knockback_resistant: 0
   anim: {fileID: 1974822233165803}

@@ -2003,23 +2003,17 @@ MonoBehaviour:
   _id: {fileID: 11400000, guid: 820039958348f6c4a9135adaf0317656, type: 2}
   _stats:
     _health:
-      base_value: 100
-      mods: []
+      base_value: 20
     _power:
       base_value: 5
-      mods: []
     _armor:
       base_value: 0
-      mods: []
     _speed:
       base_value: 5
-      mods: []
     _energy:
       base_value: 80
-      mods: []
     _knockback_modifier:
       base_value: 1
-      mods: []
     _center_mass: {fileID: 4438645240596368}
     _feet: {fileID: 4906646818280112}
     _head: {fileID: 4390308388250876}
