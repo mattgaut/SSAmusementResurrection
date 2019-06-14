@@ -459,10 +459,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   on_game_over:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5772137309860186987}
+        m_MethodName: EndTracker
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  on_begin_game:
+  _on_begin_game:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5772137309860186987}
@@ -758,6 +769,7 @@ GameObject:
   - component: {fileID: 1145877709}
   - component: {fileID: 1145877707}
   - component: {fileID: 1145877710}
+  - component: {fileID: 863005609}
   m_Layer: 0
   m_Name: Tracker
   m_TagString: Untagged
@@ -791,11 +803,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b47ee69e0e3fc6419875189dd13aa77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats_to_track:
-  - {fileID: 1145877709}
+  statistics:
   - {fileID: 1145877708}
+  - {fileID: 1145877709}
   - {fileID: 1145877707}
   - {fileID: 1145877710}
+  - {fileID: 863005609}
 --- !u!114 &1145877708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -842,6 +855,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2078e2f21468654397f8182e14543f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &863005609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4293639862196970086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8a8ec6af3de8bd4ea40a1d3be438d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4727880421587381436

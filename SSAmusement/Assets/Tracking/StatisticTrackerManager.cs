@@ -20,6 +20,13 @@ public class StatisticTrackerManager : Singleton<StatisticTrackerManager> {
         return new List<Statistic>(run_statistics_dict.Values);
     }
 
+    public string GetOverallStatistic(string stat_name) {
+        return overall_statistics_dict.ContainsKey(stat_name) ? overall_statistics_dict[stat_name].string_value : "";
+    }
+    public List<Statistic> GetOverallStatistics() {
+        return new List<Statistic>(overall_statistics_dict.Values);
+    }
+
     public void StartTracker() {
         foreach (Statistic stat in run_statistics_dict.Values) {
             stat.Clear();
@@ -34,7 +41,7 @@ public class StatisticTrackerManager : Singleton<StatisticTrackerManager> {
         MergeStatistics();
     }
 
-    private void Start() {
+    protected override void OnAwake() {
         LoadStatistics();
     }
 
