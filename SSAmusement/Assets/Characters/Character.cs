@@ -181,10 +181,10 @@ public class Character : MonoBehaviour {
                 iframes = StartCoroutine(IFrames());
             }
             health.current -= post_mitigation_damage;
+
+            InvokeOnTakeDamage(this, damage, post_mitigation_damage, source);
             if (health.current <= 0) {
                 Die(source);
-            } else {
-                InvokeOnTakeDamage(this, damage, post_mitigation_damage, source);
             }
         }
         return old - health.current;

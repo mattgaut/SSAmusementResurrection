@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -25,10 +26,19 @@ public class GameManager : Singleton<GameManager> {
         get; private set;
     }
 
+    public event UnityAction on_begin_game {
+        add {
+            _on_begin_game.AddListener(value);
+        }
+        remove {
+            _on_begin_game.RemoveListener(value);
+        }
+    }
+
     bool is_paused, is_select_screen_up, is_cutscene_running;
     int input_locks;
 
-    [SerializeField] UnityEvent on_game_over, on_begin_game;
+    [SerializeField] UnityEvent on_game_over, _on_begin_game;
     [SerializeField] UnityEventBool on_select, on_pause;
 
     [SerializeField] bool start_game_on_start;
@@ -157,7 +167,7 @@ public class GameManager : Singleton<GameManager> {
         LoadLevel(level_tree.first_level);
         player.transform.position = new Vector3(2, 1, 0);
 
-        on_begin_game.Invoke();
+        _on_begin_game.Invoke();
     }
 
     /// <summary>

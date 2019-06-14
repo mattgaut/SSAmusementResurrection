@@ -8,6 +8,10 @@ public class DamageDealt : SingleFloatStatistic {
         get { return "Damage Dealt"; }
     }
 
+    public override Category category {
+        get { return Category.Combat; }
+    }
+
     public override void Subscribe() {
         GameManager.instance.player.on_deal_damage += (a, b, post_mitigation_damage, d) => count += post_mitigation_damage;
     }

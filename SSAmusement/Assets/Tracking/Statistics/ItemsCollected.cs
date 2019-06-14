@@ -7,6 +7,10 @@ public class ItemsCollected : SingleIntStatistic {
         get { return "Items Collected"; }
     }
 
+    public override Category category {
+        get { return Category.Items; }
+    }
+
     public override void Subscribe() {
         GameManager.instance.player.inventory.on_collect_item += (item) => count++;
     }

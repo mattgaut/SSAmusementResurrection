@@ -5,6 +5,12 @@ using UnityEngine;
 
 public abstract class Statistic : MonoBehaviour {
 
+    public enum Category { None, Combat, Items, Money, Meta }
+
+    public abstract Category category {
+        get;
+    }
+
     public abstract new string name {
         get;
     }
@@ -23,6 +29,18 @@ public abstract class Statistic : MonoBehaviour {
 
     public abstract void Load(Data data);
 
+    public void TryCombine(Statistic other) {
+        if (GetType() != other.GetType()) {
+            return;
+        }
+        Combine(other);
+    }
+
+    public abstract void Clear();
+
+    protected virtual void Combine(Statistic other) {
+
+    }
     protected abstract byte[] GetRawValue();
 
     [System.Serializable]
@@ -53,8 +71,23 @@ public abstract class SingleIntStatistic : Statistic {
         return new Data(this);
     }
 
+    public sealed override void Clear() {
+        count = 0;
+    }
+
+    protected sealed override void Combine(Statistic other) {        
+        count += (other as SingleIntStatistic).count;
+    }
+
     protected sealed override byte[] GetRawValue() {
         return BitConverter.GetBytes(count);
+    }
+
+    protected void Increment() {
+        count++;
+    }
+    protected void Decrement() {
+        count--;
     }
 }
 
@@ -72,6 +105,14 @@ public abstract class SingleFloatStatistic : Statistic {
 
     public sealed override Data Save() {
         return new Data(this);
+    }
+
+    public sealed override void Clear() {
+        count = 0;
+    }
+
+    protected sealed override void Combine(Statistic other) {
+        count += (other as SingleFloatStatistic).count;
     }
 
     protected sealed override byte[] GetRawValue() {

@@ -42,7 +42,7 @@ public abstract class EnemyHandler : StateMachineController {
     public override bool can_transition { get { return !GameManager.instance.IsTimeFrozen(enemy.team); } }
 
     public bool CanHunt() {
-        return target != null && CustomCanHunt() && Vector2.Distance(target.transform.position, transform.position) <= aggro_range && (!need_line_of_sight || HasLineOfSight());
+        return target != null && target.is_alive && CustomCanHunt() && Vector2.Distance(target.transform.position, transform.position) <= aggro_range && (!need_line_of_sight || HasLineOfSight());
     }
 
     public virtual bool HasLineOfSight() {

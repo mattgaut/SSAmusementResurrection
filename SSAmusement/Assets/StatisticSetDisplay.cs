@@ -9,7 +9,7 @@ public class StatisticSetDisplay : MonoBehaviour {
     [SerializeField] StatisticDisplay display;
 
     private void Awake() {
-        foreach (Statistic s in StatisticTrackerManager.instance.GetStatistics()) {
+        foreach (Statistic s in StatisticTrackerManager.instance.GetRunStatistics()) {
             (Instantiate(display, contianer) as StatisticDisplay).Display(s);
         }
     }
