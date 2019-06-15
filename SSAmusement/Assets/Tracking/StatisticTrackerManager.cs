@@ -50,9 +50,6 @@ public class StatisticTrackerManager : Singleton<StatisticTrackerManager> {
     }
 
     void LoadStatistics() {
-        GameObject run_statistics_object = new GameObject("Run Statistics");
-        run_statistics_object.transform.SetParent(transform);
-
         run_statistics_dict = new Dictionary<string, Statistic>();
         overall_statistics_dict = new Dictionary<string, Statistic>();
         foreach (Statistic stat in statistics) {
@@ -60,7 +57,7 @@ public class StatisticTrackerManager : Singleton<StatisticTrackerManager> {
             if (stat.category == Statistic.Category.Meta) {
                 stat.Subscribe();
             } else {
-                Statistic run_stat = (Statistic)run_statistics_object.AddComponent(stat.GetType());
+                Statistic run_stat = (Statistic)ScriptableObject.CreateInstance(stat.GetType());
                 run_statistics_dict.Add(run_stat.name, run_stat);
             }
         }

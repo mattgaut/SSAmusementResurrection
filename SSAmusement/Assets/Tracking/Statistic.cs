@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Statistic : MonoBehaviour {
+public abstract class Statistic : ScriptableObject {
 
     public enum Category { None, Combat, Items, Money, Meta }
 

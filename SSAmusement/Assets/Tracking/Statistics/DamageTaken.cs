@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Statistic/" + nameof(DamageTaken), fileName = nameof(DamageTaken), order = 0)]
 public class DamageTaken : SingleFloatStatistic {
     public override string name {
         get { return "Damage Taken"; }

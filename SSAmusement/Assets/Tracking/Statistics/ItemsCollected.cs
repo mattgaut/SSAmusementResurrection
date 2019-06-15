@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Statistic/" + nameof(ItemsCollected), fileName = nameof(ItemsCollected), order = 0)]
 public class ItemsCollected : SingleIntStatistic {
     public override string name {
         get { return "Items Collected"; }
