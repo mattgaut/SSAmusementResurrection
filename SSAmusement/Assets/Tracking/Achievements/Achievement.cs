@@ -24,6 +24,17 @@ public class Achievement : ScriptableObject {
         get { return tracker.value; }
     }
 
+    public Data Save() {
+        return new Data(this);
+    }
+    public void Load(Data data) {        
+        is_unlocked = data.is_unlocked;
+
+        if (!is_unlocked) {
+            tracker.Load(data.tracked_progress);
+        }
+    }
+
     [SerializeField] string _achievement_name;
     [SerializeField][TextArea(1, 5)] string _description;
 
@@ -38,5 +49,12 @@ public class Achievement : ScriptableObject {
         public bool is_unlocked;
 
         public Statistic.Data tracked_progress;
+
+        public Data(Achievement achievement) {
+            name = achievement.name;
+            is_unlocked = achievement.is_unlocked;
+
+            tracked_progress = achievement.tracker.Save();
+        }
     }
 }
