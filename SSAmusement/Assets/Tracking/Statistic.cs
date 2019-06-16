@@ -7,6 +7,8 @@ public abstract class Statistic : ScriptableObject {
 
     public enum Category { None, Combat, Items, Money, Meta }
 
+    public bool is_active;
+
     public abstract Category category {
         get;
     }
@@ -19,10 +21,14 @@ public abstract class Statistic : ScriptableObject {
         get;
     }
 
-    public abstract void Subscribe();
+    public void Subscribe() {
+        is_active = true;
+        OnSubscribe();
+    }
 
-    public virtual void Unsubscribe() {
-
+    public void Unsubscribe() {
+        is_active = false;
+        OnUnsubscribe();
     }
 
     public abstract Data Save();
@@ -37,6 +43,9 @@ public abstract class Statistic : ScriptableObject {
     }
 
     public abstract void Clear();
+
+    protected abstract void OnSubscribe();
+    protected virtual void OnUnsubscribe() { }
 
     protected virtual void Combine(Statistic other) {
 
@@ -55,13 +64,33 @@ public abstract class Statistic : ScriptableObject {
     }
 }
 
-public abstract class SingleIntStatistic : Statistic {
-
-    protected int count;
-
-    public override string string_value {
-        get { return count + ""; }
+public abstract class NumericStatistic : Statistic {
+    public virtual int value {
+        get;
     }
+    public event Action<int> on_value_changed;
+    public sealed override string string_value {
+        get { return value + ""; }
+    }
+    protected void InvokeOnValueChanged() {
+        if (is_active) on_value_changed?.Invoke(value);
+    }
+}
+
+public abstract class SingleIntStatistic : NumericStatistic {
+
+    public override int value {
+        get { return count; }
+    }
+
+    protected int count {
+        get { return _count; }
+        set {
+            _count = value;
+            InvokeOnValueChanged();
+        }
+    }
+    int _count;
 
     public sealed override void Load(Data data) {
         count = BitConverter.ToInt32(data.bytes, 0);
@@ -91,13 +120,19 @@ public abstract class SingleIntStatistic : Statistic {
     }
 }
 
-public abstract class SingleFloatStatistic : Statistic {
-
-    protected float count;
-
-    public override string string_value {
-        get { return (int)count + ""; }
+public abstract class SingleFloatStatistic : NumericStatistic {
+    public override int value {
+        get { return (int)count; }
     }
+
+    protected float count {
+        get { return _count; }
+        set {
+            _count = value;
+            InvokeOnValueChanged();
+        }
+    }
+    float _count;
 
     public sealed override void Load(Data data) {
         count = BitConverter.ToSingle(data.bytes, 0);

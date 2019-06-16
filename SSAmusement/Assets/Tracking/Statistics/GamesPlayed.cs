@@ -13,11 +13,11 @@ public class GamesPlayed : SingleIntStatistic {
         get { return "Games Played"; }
     }
 
-    public override void Subscribe() {
+    protected override void OnSubscribe() {
         GameManager.instance.on_begin_game += Increment;
     }
 
-    public override void Unsubscribe() {
+    protected override void OnUnsubscribe() {
         GameManager.instance.on_begin_game -= Increment;
     }
 }

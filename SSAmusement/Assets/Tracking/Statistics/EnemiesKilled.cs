@@ -13,7 +13,7 @@ public class EnemiesKilled : SingleIntStatistic {
         get { return Category.Combat; }
     }
 
-    public override void Subscribe() {
+    protected override void OnSubscribe() {
         GameManager.instance.player.on_kill += (a, b) => count++;
     }
 }

@@ -12,7 +12,7 @@ public class DamageTaken : SingleFloatStatistic {
         get { return Category.Combat; }
     }
 
-    public override void Subscribe() {
+    protected override void OnSubscribe() {
         GameManager.instance.player.on_take_damage += (a, b, post_mitigation_damage, d) => count += post_mitigation_damage;
     }
 }
