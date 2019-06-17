@@ -41,6 +41,10 @@ public class StatisticTrackerManager : Singleton<StatisticTrackerManager> {
         MergeStatistics();
     }
 
+    public void AddStatistic() {
+
+    }
+
     protected override void OnAwake() {
         LoadStatistics();
     }

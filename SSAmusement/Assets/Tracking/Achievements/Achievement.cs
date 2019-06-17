@@ -35,6 +35,16 @@ public class Achievement : ScriptableObject {
         }
     }
 
+    private void OnEnable() {
+        tracker.on_value_changed += (value) => CheckUnlocked(value);
+    }
+
+    void CheckUnlocked(int value) {
+        if (value >= target_value) {
+            is_unlocked = true;
+        }
+    }
+
     [SerializeField] string _achievement_name;
     [SerializeField][TextArea(1, 5)] string _description;
 
