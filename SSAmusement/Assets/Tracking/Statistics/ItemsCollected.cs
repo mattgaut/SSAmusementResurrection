@@ -4,12 +4,8 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "Statistic/" + nameof(ItemsCollected), fileName = nameof(ItemsCollected), order = 0)]
 public class ItemsCollected : SingleIntStatistic {
-    public override string name {
-        get { return "Items Collected"; }
-    }
-
-    public override Category category {
-        get { return Category.Items; }
+    public override SubscriptionTime timing {
+        get { return SubscriptionTime.InGame; }
     }
 
     protected override void OnSubscribe() {

@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2078e2f21468654397f8182e14543f7, type: 3}
   m_Name: ItemsCollected
   m_EditorClassIdentifier: 
+  _name: Items Collected
+  _is_persistant: 1

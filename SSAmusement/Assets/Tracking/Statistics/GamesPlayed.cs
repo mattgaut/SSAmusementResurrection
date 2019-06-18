@@ -5,12 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Statistic/" + nameof(GamesPlayed), fileName = nameof(GamesPlayed), order = 0)]
 public class GamesPlayed : SingleIntStatistic {
 
-    public override Category category {
-        get { return Category.Meta; }
-    }
-
-    public override string name {
-        get { return "Games Played"; }
+    public override SubscriptionTime timing {
+        get { return SubscriptionTime.OutOfGame; }
     }
 
     protected override void OnSubscribe() {

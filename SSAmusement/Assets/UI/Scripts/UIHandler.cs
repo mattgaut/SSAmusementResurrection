@@ -55,6 +55,11 @@ public class UIHandler : MonoBehaviour {
         instance.info_map.FocusRoom(room_controller);
     }
 
+    public static void DisplayAchievement(Achievement achievement) {
+        if (instance == null) return;
+        instance.info_display.Display(achievement.achievement_name, achievement.description, achievement.icon, 2f, Color.white);
+    }
+
     public static void DisplayItem(Item i, bool display_on_screen = true) {
         if (instance == null) return;
         instance.inventory_display.AddItem(i);

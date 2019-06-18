@@ -4,12 +4,9 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "Statistic/" + nameof(DamageTaken), fileName = nameof(DamageTaken), order = 0)]
 public class DamageTaken : SingleFloatStatistic {
-    public override string name {
-        get { return "Damage Taken"; }
-    }
 
-    public override Category category {
-        get { return Category.Combat; }
+    public override SubscriptionTime timing {
+        get { return SubscriptionTime.InGame; }
     }
 
     protected override void OnSubscribe() {

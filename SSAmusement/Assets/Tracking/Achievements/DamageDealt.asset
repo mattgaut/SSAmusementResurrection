@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43adc9f7e4cb3447a548c2483d12906, type: 3}
   m_Name: DamageDealt
   m_EditorClassIdentifier: 
-  _name: Damage Dealt
-  _is_persistant: 1
+  _name: DamageDealtAchievement
+  _is_persistant: 0

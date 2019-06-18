@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a8ec6af3de8bd4ea40a1d3be438d19, type: 3}
   m_Name: GamesPlayed
   m_EditorClassIdentifier: 
+  _name: Games Played
+  _is_persistant: 1

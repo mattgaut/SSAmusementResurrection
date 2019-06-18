@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AchievementManager : Singleton<AchievementManager> {
     [SerializeField] List<Achievement> achievements;
     [SerializeField] StatisticTrackerManager tracker;
 
     Dictionary<string, Achievement> achievement_dict;
+
+    [Space(10f)][SerializeField] UnityEventAchievement on_achievement_unlocked;
 
     protected override void OnAwake() {
         base.OnAwake();
@@ -15,13 +18,16 @@ public class AchievementManager : Singleton<AchievementManager> {
     }
 
     protected void Start() {
-
+        foreach (Achievement achievement in achievement_dict.Values) {
+            if (!achievement.is_unlocked) tracker.AddStatistic(achievement.tracked_statistic);
+        }
     }
 
     void LoadAchiements(Data data) {
         achievement_dict = new Dictionary<string, Achievement>();
         foreach (Achievement achievement in achievements) {
             achievement_dict.Add(achievement.achievement_name, achievement);
+            achievement.on_unlock += UIHandler.DisplayAchievement;
         }
 
         foreach (Achievement.Data achievement_data in data.data) {
@@ -43,4 +49,9 @@ public class AchievementManager : Singleton<AchievementManager> {
             }
         }
     }
+}
+
+[System.Serializable]
+public class UnityEventAchievement : UnityEvent<Achievement> {
+
 }

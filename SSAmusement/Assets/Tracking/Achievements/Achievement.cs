@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,35 +24,54 @@ public class Achievement : ScriptableObject {
     public int progress {
         get { return tracker.value; }
     }
-
-    public Data Save() {
-        return new Data(this);
-    }
-    public void Load(Data data) {        
-        is_unlocked = data.is_unlocked;
-
-        if (!is_unlocked) {
-            tracker.Load(data.tracked_progress);
-        }
+    public NumericStatistic tracked_statistic {
+        get { return tracker; }
     }
 
-    private void OnEnable() {
-        tracker.on_value_changed += (value) => CheckUnlocked(value);
-    }
-
-    void CheckUnlocked(int value) {
-        if (value >= target_value) {
-            is_unlocked = true;
-        }
-    }
+    public event Action<Achievement> on_unlock;
 
     [SerializeField] string _achievement_name;
-    [SerializeField][TextArea(1, 5)] string _description;
+    [SerializeField] [TextArea(1, 5)] string _description;
 
     [SerializeField] Item attached_item;
 
     [SerializeField] NumericStatistic tracker;
     [SerializeField] int target_value;
+
+    public Data Save() {
+        return new Data(this);
+    }
+    public void Load(Data data) {
+        if (data == null) {
+            //is_unlocked = false;
+        } else {
+            is_unlocked = data.is_unlocked;
+
+            if (!is_unlocked) {
+                tracker.Load(data.tracked_progress);
+            }
+        }
+    }
+
+    private void OnEnable() {
+        if (tracker) {
+            tracker.on_value_changed += CheckUnlocked;
+        }
+    }
+
+    private void OnDisable() {
+        if (tracker) {
+            tracker.on_value_changed -= CheckUnlocked;
+        }
+    }
+
+    void CheckUnlocked(int value) {
+        if (value >= target_value) {
+            is_unlocked = true;
+            tracker.on_value_changed -= CheckUnlocked;
+            on_unlock.Invoke(this);
+        }
+    }
 
     [System.Serializable]
     public class Data {

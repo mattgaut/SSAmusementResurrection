@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bca728d2b255cf4cb60f704bfd01594, type: 3}
   m_Name: DamageTaken
   m_EditorClassIdentifier: 
+  _name: Damage Taken
+  _is_persistant: 1

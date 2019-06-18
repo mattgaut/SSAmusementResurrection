@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6bd7482f3f5db4f83c46a2bed81409, type: 3}
   m_Name: EnemiesKilled
   m_EditorClassIdentifier: 
+  _name: Enemies Killed
+  _is_persistant: 1

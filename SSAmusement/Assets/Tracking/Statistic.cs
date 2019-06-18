@@ -5,16 +5,21 @@ using UnityEngine;
 
 public abstract class Statistic : ScriptableObject {
 
-    public enum Category { None, Combat, Items, Money, Meta }
+    public enum SubscriptionTime { OutOfGame, InGame }
 
-    public bool is_active;
+    public bool is_active { get; private set; }
 
-    public abstract Category category {
+    public bool is_persistant { get { return _is_persistant; } }
+
+    [SerializeField] string _name;
+    [SerializeField] bool _is_persistant;
+
+    public abstract SubscriptionTime timing {
         get;
     }
 
-    public abstract new string name {
-        get;
+    public new string name {
+        get { return _name; }
     }
 
     public abstract string string_value {
@@ -43,6 +48,14 @@ public abstract class Statistic : ScriptableObject {
     }
 
     public abstract void Clear();
+    public virtual Statistic GetNonPersistantClone() {
+        Statistic new_stat = Instantiate(this);
+        new_stat.Clear();
+        new_stat._name = name;
+        new_stat._is_persistant = false;
+
+        return new_stat;
+    }
 
     protected abstract void OnSubscribe();
     protected virtual void OnUnsubscribe() { }
@@ -51,6 +64,10 @@ public abstract class Statistic : ScriptableObject {
 
     }
     protected abstract byte[] GetRawValue();
+
+    private void OnDisable() {
+        Clear();
+    }
 
     [System.Serializable]
     public class Data {
@@ -72,6 +89,7 @@ public abstract class NumericStatistic : Statistic {
     public sealed override string string_value {
         get { return value + ""; }
     }
+
     protected void InvokeOnValueChanged() {
         if (is_active) on_value_changed?.Invoke(value);
     }
