@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class AchievementManager : Singleton<AchievementManager> {
+
+    static string save_location = "/Stats/Achievements.ssa";
+
     [SerializeField] List<Achievement> achievements;
     [SerializeField] StatisticTrackerManager tracker;
 
@@ -14,7 +19,15 @@ public class AchievementManager : Singleton<AchievementManager> {
     protected override void OnAwake() {
         base.OnAwake();
 
-        LoadAchiements(new Data(new List<Achievement>()));
+        on_achievement_unlocked.AddListener((Achievement a) => UIHandler.DisplayAchievement(a));
+
+        achievement_dict = new Dictionary<string, Achievement>();
+        foreach (Achievement achievement in achievements) {
+            achievement.Reset();
+
+            achievement_dict.Add(achievement.achievement_name, achievement);
+            achievement.on_unlock += on_achievement_unlocked.Invoke;
+        }
     }
 
     protected void Start() {
@@ -23,13 +36,11 @@ public class AchievementManager : Singleton<AchievementManager> {
         }
     }
 
-    void LoadAchiements(Data data) {
-        achievement_dict = new Dictionary<string, Achievement>();
-        foreach (Achievement achievement in achievements) {
-            achievement_dict.Add(achievement.achievement_name, achievement);
-            achievement.on_unlock += UIHandler.DisplayAchievement;
-        }
+    public Data GetData() {
+        return new Data(achievements);
+    }
 
+    public void LoadData(Data data) {
         foreach (Achievement.Data achievement_data in data.data) {
             if (achievement_dict.ContainsKey(achievement_data.name)) {
                 achievement_dict[achievement_data.name].Load(achievement_data);
@@ -37,9 +48,8 @@ public class AchievementManager : Singleton<AchievementManager> {
         }
     }
 
-
     [System.Serializable]
-    class Data {
+    public class Data {
         public Achievement.Data[] data;
 
         public Data(List<Achievement> achievements) {

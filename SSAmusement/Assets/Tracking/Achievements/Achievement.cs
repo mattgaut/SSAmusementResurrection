@@ -15,7 +15,7 @@ public class Achievement : ScriptableObject {
     }
 
     public Sprite icon {
-        get { return attached_item.icon; }
+        get { return attached_item?.icon; }
     }
 
     public bool is_unlocked {
@@ -35,6 +35,7 @@ public class Achievement : ScriptableObject {
 
     [SerializeField] Item attached_item;
 
+    [SerializeField] bool has_unique_tracker = false;
     [SerializeField] NumericStatistic tracker;
     [SerializeField] int target_value;
 
@@ -45,11 +46,19 @@ public class Achievement : ScriptableObject {
         if (data == null) {
             //is_unlocked = false;
         } else {
+            Debug.Log("Loaded " + " : " + data.name + " : " + data.is_unlocked);
             is_unlocked = data.is_unlocked;
 
-            if (!is_unlocked) {
+            if (!is_unlocked && has_unique_tracker) {
                 tracker.Load(data.tracked_progress);
             }
+        }
+    }
+
+    public void Reset() {
+        is_unlocked = false;
+        if (has_unique_tracker) {
+            tracker.Clear();
         }
     }
 
@@ -81,7 +90,7 @@ public class Achievement : ScriptableObject {
         public Statistic.Data tracked_progress;
 
         public Data(Achievement achievement) {
-            name = achievement.name;
+            name = achievement.achievement_name;
             is_unlocked = achievement.is_unlocked;
 
             tracked_progress = achievement.tracker.Save();

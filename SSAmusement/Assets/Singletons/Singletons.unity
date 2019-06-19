@@ -112,57 +112,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &1743898911 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4293639862196970086, guid: 06f08f6c2bb72f3478d34895e46a967b,
-    type: 3}
-  m_PrefabInstance: {fileID: 4727880422662913534}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1743898912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743898911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07f10a73adbf3c24e9f64a645f7483f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  achievements:
-  - {fileID: 11400000, guid: 582132f32725fda4dbf5d392f7388c8e, type: 2}
-  - {fileID: 11400000, guid: e38f9a45308750c40be5671e8d448212, type: 2}
-  - {fileID: 11400000, guid: 255959c124cf12143b2a840bbbb80a5d, type: 2}
-  tracker: {fileID: 1743898913}
-  on_achievement_unlocked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEventAchievement, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
---- !u!114 &1743898913 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5772137309860186987, guid: 06f08f6c2bb72f3478d34895e46a967b,
-    type: 3}
-  m_PrefabInstance: {fileID: 4727880422662913534}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743898911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b47ee69e0e3fc6419875189dd13aa77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4727880422662913534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -230,10 +179,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1145877708, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}
-    - {fileID: 1145877709, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}
-    - {fileID: 1145877707, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}
-    - {fileID: 1145877710, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}
-    - {fileID: 863005609, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}

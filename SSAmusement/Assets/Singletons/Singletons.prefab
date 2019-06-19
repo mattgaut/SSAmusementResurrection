@@ -641,6 +641,52 @@ MonoBehaviour:
   modifier:
     _flat: 0
     _multi: 0
+--- !u!1 &3206072046743456347
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5332884648946891619}
+  - component: {fileID: 482047800205928372}
+  m_Layer: 0
+  m_Name: AccountManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5332884648946891619
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3206072046743456347}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3024501200211164857}
+  m_Father: {fileID: 4727880421587381435}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &482047800205928372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3206072046743456347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd924d79263e42b40b81fb89b3360bc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statistics: {fileID: 5772137309860186987}
+  achievements: {fileID: 1743898912}
 --- !u!1 &3215078782398179886
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,6 +811,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3024501200211164857}
   - component: {fileID: 5772137309860186987}
+  - component: {fileID: 1743898912}
   m_Layer: 0
   m_Name: Tracker
   m_TagString: Untagged
@@ -783,8 +830,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4727880421587381435}
-  m_RootOrder: 6
+  m_Father: {fileID: 5332884648946891619}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5772137309860186987
 MonoBehaviour:
@@ -804,6 +851,39 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 605602c1bffc7ca4c84234a1a1ec429a, type: 2}
   - {fileID: 11400000, guid: 7f206dbe01cc608499967931ddaaa86f, type: 2}
   - {fileID: 11400000, guid: b54eef12035fae4488a110b2cc8097e4, type: 2}
+--- !u!114 &1743898912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4293639862196970086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07f10a73adbf3c24e9f64a645f7483f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  achievements:
+  - {fileID: 11400000, guid: 582132f32725fda4dbf5d392f7388c8e, type: 2}
+  - {fileID: 11400000, guid: e38f9a45308750c40be5671e8d448212, type: 2}
+  - {fileID: 11400000, guid: 255959c124cf12143b2a840bbbb80a5d, type: 2}
+  tracker: {fileID: 5772137309860186987}
+  on_achievement_unlocked:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 482047800205928372}
+        m_MethodName: SaveAccount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventAchievement, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &4727880421587381436
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,7 +917,7 @@ Transform:
   - {fileID: 5301268869501359705}
   - {fileID: 858133051308825083}
   - {fileID: 528410146789535256}
-  - {fileID: 3024501200211164857}
+  - {fileID: 5332884648946891619}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

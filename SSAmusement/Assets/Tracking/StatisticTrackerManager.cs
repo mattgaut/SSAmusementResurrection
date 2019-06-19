@@ -87,37 +87,27 @@ public class StatisticTrackerManager : Singleton<StatisticTrackerManager> {
                 stat.Unsubscribe();
             }
         }
-        SaveStatistics();
         is_tracking_live_game = false;
     }
 
     protected override void OnAwake() {
-        LoadStatistics();
-    }
-
-    private void OnDisable() {
-        SaveStatistics();
-    }
-
-    void LoadStatistics() {
         run_statistics_dict = new Dictionary<string, Statistic>();
         overall_statistics_dict = new Dictionary<string, Statistic>();
         foreach (Statistic stat in statistics) {
             LoadStatistic(stat);
         }
+    }
 
-        if (File.Exists(Application.persistentDataPath + save_location)) {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + save_location, FileMode.Open);
-            StatisticSet stats = (StatisticSet)bf.Deserialize(file);
-            file.Close();
-
-            foreach (Statistic.Data data in stats.GetData()) {
-                if (overall_statistics_dict.ContainsKey(data.name)) {
-                    overall_statistics_dict[data.name].Load(data);
-                }
+    public void LoadData(Data data) {
+        foreach (Statistic.Data stat_data in data.GetData()) {
+            if (overall_statistics_dict.ContainsKey(stat_data.name)) {
+                overall_statistics_dict[stat_data.name].Load(stat_data);
             }
         }
+    }
+
+    public Data GetData() {
+        return new Data(statistics);
     }
 
     void LoadStatistic(Statistic stat) {
@@ -136,33 +126,19 @@ public class StatisticTrackerManager : Singleton<StatisticTrackerManager> {
         }
     }
 
-    void SaveStatistics() {
-        if (!Directory.Exists(Application.persistentDataPath + "/Stats")) {
-            Directory.CreateDirectory(Application.persistentDataPath + "/Stats");
-        }
-
-        StatisticSet stats_data = new StatisticSet(new List<Statistic>(statistics));
-
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + save_location);
-        bf.Serialize(file, stats_data);
-        file.Close();
-    }
-
     void MergeStatistics() {
         foreach (Statistic stat in run_statistics_dict.Values) {
             if (overall_statistics_dict.ContainsKey(stat.name)) {
                 overall_statistics_dict[stat.name].TryCombine(stat);
             }
         }
-        SaveStatistics();
     }
 
     [System.Serializable]
-    class StatisticSet {
+    public class Data {
         [SerializeField] List<Statistic.Data> statistics_data;
 
-        public StatisticSet(List<Statistic> statistics) {
+        public Data(List<Statistic> statistics) {
             statistics_data = new List<Statistic.Data>();
             foreach (Statistic statistic in statistics) {
                 statistics_data.Add(statistic.Save());
