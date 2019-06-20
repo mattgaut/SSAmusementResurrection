@@ -4,28 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MySlider : MonoBehaviour {
-    [SerializeField] Image target;
-    [SerializeField] Image background;
+    [SerializeField] RectTransform target;
+    [SerializeField] RectTransform background;
     [SerializeField] Text target_text;
 
     bool set_text;
-    RectTransform rct, brct;
 
     [SerializeField]
     bool x_axis, y_axis;
     float width, height;
 
     [SerializeField]
+    [Range(0f, 1f)]
     float start_fill;
-
-    protected virtual void Awake() {
-        rct = target.GetComponent<RectTransform>();
-        brct = background.GetComponent<RectTransform>();
-        target.rectTransform.sizeDelta = Vector2.zero;
-        width = brct.rect.width;
-        height = brct.rect.height;
-        fill = start_fill;
-    }
 
     float _fill;
     public float fill {
@@ -41,33 +32,50 @@ public class MySlider : MonoBehaviour {
         }
     }
 
-    protected virtual void SetImage() {
-        target.transform.localScale = new Vector3(x_axis ? fill : 1, y_axis ? fill : 1, 0);
-        rct.localPosition = new Vector3(x_axis ? -(width / 2) * (1 - fill) : 0, y_axis ? -(height / 2) * (1 - fill) : 0, 0) + brct.localPosition;
-    }
-
     public void SetFill(float percent) {
         fill = percent;
-        target_text.text = Mathf.RoundToInt(percent) + "%";
+
+        SetText(Mathf.RoundToInt(percent) + "%");
     }
 
     public void SetFill(float percent, string text) {
         fill = percent;
-        target_text.text = text;
+        SetText(text);
     }
 
     public void SetFill(float over, float under) {
         if (under == 0) fill = 0;
         else fill = (over / under);
-        target_text.text = Mathf.RoundToInt(over) + " / " + Mathf.RoundToInt(under);
+
+        SetText(Mathf.RoundToInt(over) + " / " + Mathf.RoundToInt(under));
     }
     public void SetFill(float over, float under, string text) {
         if (under == 0) fill = 0;
         else fill = (over / under);
-        target_text.text = text;
+        SetText(text);
     }
 
     public void SetText(string text) {
-        target_text.text = text;
+        if (target_text) {
+            target_text.text = text;
+        }
+    }
+
+    protected void Awake() {
+        Init();
+    }
+
+    protected virtual void Init() {
+        target = target.GetComponent<RectTransform>();
+        background = background.GetComponent<RectTransform>();
+        target.sizeDelta = Vector2.zero;
+        width = background.rect.width;
+        height = background.rect.height;
+        fill = start_fill;
+    }
+
+    protected virtual void SetImage() {
+        target.transform.localScale = new Vector3(x_axis ? fill : 1, y_axis ? fill : 1, 0);
+        target.localPosition = new Vector3(x_axis ? -(width / 2) * (1 - fill) : 0, y_axis ? -(height / 2) * (1 - fill) : 0, 0) + background.localPosition;
     }
 }

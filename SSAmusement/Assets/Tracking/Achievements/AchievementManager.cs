@@ -48,6 +48,10 @@ public class AchievementManager : Singleton<AchievementManager> {
         }
     }
 
+    public List<Achievement> GetAchievementList() {
+        return achievements;
+    }
+
     [System.Serializable]
     public class Data {
         public Achievement.Data[] data;

@@ -24,6 +24,9 @@ public class Achievement : ScriptableObject {
     public int progress {
         get { return tracker.value; }
     }
+    public int target {
+        get { return target_value; }
+    }
     public NumericStatistic tracked_statistic {
         get { return tracker; }
     }
@@ -37,7 +40,7 @@ public class Achievement : ScriptableObject {
 
     [SerializeField] bool has_unique_tracker = false;
     [SerializeField] NumericStatistic tracker;
-    [SerializeField] int target_value;
+    [SerializeField] int target_value = 1;
 
     public Data Save() {
         return new Data(this);
