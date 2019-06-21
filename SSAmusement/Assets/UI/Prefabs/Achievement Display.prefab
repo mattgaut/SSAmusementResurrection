@@ -56,7 +56,7 @@ MonoBehaviour:
   to_display: {fileID: 11400000, guid: 255959c124cf12143b2a840bbbb80a5d, type: 2}
   progress_bar: {fileID: 2374545916539109372}
   icon: {fileID: 3457650462152132759}
-  unlocked_material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  unlocked_material: {fileID: 0}
   locked_material: {fileID: 2100000, guid: 6d0339d4e439fbc47b6d53e9ff733e3d, type: 2}
 --- !u!222 &9179650455042557282
 CanvasRenderer:
