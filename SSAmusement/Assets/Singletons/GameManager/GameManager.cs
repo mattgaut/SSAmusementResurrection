@@ -269,6 +269,7 @@ public class GameManager : Singleton<GameManager> {
 
     void SpawnPlayer(Player prefab) {
         player = Instantiate(prefab);
+        DontDestroyOnLoad(player.gameObject);
     }
 
     void ResetMemory() {

@@ -15,7 +15,6 @@ public class UIHandler : MonoBehaviour {
     [SerializeField] GameObject mini_map_object;
     [SerializeField] Map big_mini_map, small_mini_map;
     [SerializeField] Map info_map;
-    [SerializeField] InventoryDisplay inventory_display;
     [SerializeField] InfoDisplay info_display;
 
     [SerializeField] Image game_over_screen, quick_fade;
@@ -60,15 +59,8 @@ public class UIHandler : MonoBehaviour {
         instance.info_display.Display(achievement.achievement_name, achievement.description, achievement.icon, 2f, Color.white);
     }
 
-    public static void DisplayItem(Item i, bool display_on_screen = true) {
-        if (instance == null) return;
-        instance.inventory_display.AddItem(i);
-        if (display_on_screen)instance.info_display.Display(i.item_name, i.item_description, i.icon, 2f, Color.white);
-    }
-
-    public static void RemoveItem(Item i) {
-        if (instance == null) return;
-        instance.inventory_display.RemoveItem(i);
+    public void DisplayItem(Item i) {
+        instance.info_display.Display(i.item_name, i.item_description, i.icon, 2f, Color.white);
     }
 
     public static IEnumerator FadeToBlack(float fade_in_timer) {
@@ -100,6 +92,8 @@ public class UIHandler : MonoBehaviour {
         GameManager.instance.AddOnPauseEvent(TogglePauseScreen);
         GameManager.instance.AddOnSelectEvent(ToggleShowInfoScreen);
 
+        GameManager.instance.player.inventory.on_collect_item += DisplayItem;
+
         small_mini_map.gameObject.SetActive(false);
 
         unpause_button.onClick.AddListener(GameManager.instance.TogglePause);
@@ -110,6 +104,11 @@ public class UIHandler : MonoBehaviour {
             GameManager.instance.RemoveOnGameOverEvent(StartGameOverCutscene);
             GameManager.instance.RemoveOnPauseEvent(TogglePauseScreen);
             GameManager.instance.RemoveOnSelectEvent(ToggleShowInfoScreen);
+
+            Player player = GameManager.instance.player;
+            if (player) {
+                player.inventory.on_collect_item -= DisplayItem;
+            }
         }
     }
 

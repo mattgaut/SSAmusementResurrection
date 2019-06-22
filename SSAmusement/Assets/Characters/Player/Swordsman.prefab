@@ -1923,7 +1923,6 @@ GameObject:
   - component: {fileID: 5770375887674969164}
   - component: {fileID: 50559804081264260}
   - component: {fileID: 114947353369082988}
-  - component: {fileID: 114387341800255582}
   - component: {fileID: 7980516069145415447}
   m_Layer: 11
   m_Name: Swordsman
@@ -2059,18 +2058,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   replaced_item_pedastal: {fileID: 5735586709599568239, guid: 01ed312dd725a4742a28645f45c68123,
     type: 3}
---- !u!114 &114387341800255582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1844856860675060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42ecfb9575a6edb45949f916e4c6faec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7980516069145415447
 MonoBehaviour:
   m_ObjectHideFlags: 0

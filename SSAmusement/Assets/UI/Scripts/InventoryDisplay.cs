@@ -9,18 +9,7 @@ public class InventoryDisplay : MonoBehaviour {
     [SerializeField] int items_per_row;
     [SerializeField] ItemDisplay item_display_prefab;
 
-    [SerializeField] Dictionary<string, ItemDisplayCount> displays;
-
-    private void Awake() {
-        displays = new Dictionary<string, ItemDisplayCount>();
-    }
-
-    private void Start() {
-        float width = items_grid.GetComponent<RectTransform>().rect.width;
-        width -= items_grid.padding.horizontal + (items_grid.spacing.x * (items_per_row - 1));
-        width = width / items_per_row;
-        items_grid.cellSize = new Vector2(width, width);
-    }
+    Dictionary<string, ItemDisplayCount> displays;
 
     public void AddItem(Item i) {
         if (displays.ContainsKey(i.item_name)) {
@@ -38,6 +27,38 @@ public class InventoryDisplay : MonoBehaviour {
                 Destroy(displays[i.item_name].display.gameObject);
                 displays.Remove(i.item_name);
             }
+        }
+    }
+
+    private void Awake() {
+        displays = new Dictionary<string, ItemDisplayCount>();
+    }
+
+    private void Start() {
+        float width = items_grid.GetComponent<RectTransform>().rect.width;
+        width -= items_grid.padding.horizontal + (items_grid.spacing.x * (items_per_row - 1));
+        width = width / items_per_row;
+        items_grid.cellSize = new Vector2(width, width);
+
+        GameManager.instance.player.inventory.on_collect_item += CheckAddItem;
+        GameManager.instance.player.inventory.on_drop_item += RemoveItem;
+
+        foreach (Item i in GameManager.instance.player.inventory.items) {
+            CheckAddItem(i);
+        }
+    }
+
+    private void OnDestroy() {
+        Player player = GameManager.instance.player;
+        if (player) {
+            player.inventory.on_collect_item -= CheckAddItem;
+            player.inventory.on_drop_item -= RemoveItem;
+        }
+    }
+
+    void CheckAddItem(Item i) {
+        if (i.item_type != Item.Type.active) {
+            AddItem(i);
         }
     }
 
