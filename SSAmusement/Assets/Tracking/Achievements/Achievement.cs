@@ -49,6 +49,7 @@ public class Achievement : ScriptableObject {
         if (data == null) {
             //is_unlocked = false;
         } else {
+            Debug.Log(name + " : " + data.is_unlocked);
             is_unlocked = data.is_unlocked;
 
             if (!is_unlocked && has_unique_tracker) {
@@ -58,6 +59,13 @@ public class Achievement : ScriptableObject {
     }
 
     public void Reset() {
+
+        // Add callback back to tracker. Remove first in case achievement was already being tracked.
+        if (tracker) {
+            tracker.on_value_changed -= CheckUnlocked;
+            tracker.on_value_changed += CheckUnlocked;
+        }
+
         is_unlocked = false;
         if (has_unique_tracker) {
             tracker.Clear();

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Play16Games
   m_EditorClassIdentifier: 
   _achievement_name: Grand Master
-  _description: Play 16 games.
+  _description: Play 18 games.
   attached_item: {fileID: 8861322812654731131, guid: cd55943f07eeb4a40885c9aa32a21773,
     type: 3}
   has_unique_tracker: 0
   tracker: {fileID: 11400000, guid: 605602c1bffc7ca4c84234a1a1ec429a, type: 2}
-  target_value: 16
+  target_value: 18

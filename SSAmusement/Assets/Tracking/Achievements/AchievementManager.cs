@@ -16,10 +16,37 @@ public class AchievementManager : Singleton<AchievementManager> {
 
     [Space(10f)][SerializeField] UnityEventAchievement on_achievement_unlocked;
 
+    public event UnityAction<Achievement> on_unlocked {
+        add {
+            on_achievement_unlocked.AddListener(value);
+        }
+        remove {
+            on_achievement_unlocked.RemoveListener(value);
+        }
+    }
+
+    public Data GetData() {
+        return new Data(achievements);
+    }
+
+    public void LoadData(Data data) {
+        foreach (Achievement achievement in achievement_dict.Values) {
+            achievement.Reset();
+        }
+        foreach (Achievement.Data achievement_data in data.data) {
+            if (achievement_dict.ContainsKey(achievement_data.name)) {
+                achievement_dict[achievement_data.name].Load(achievement_data);
+            }
+        }
+        TrackAchievments();
+    }
+
+    public List<Achievement> GetAchievementList() {
+        return achievements;
+    }
+
     protected override void OnAwake() {
         base.OnAwake();
-
-        on_achievement_unlocked.AddListener((Achievement a) => UIHandler.DisplayAchievement(a));
 
         achievement_dict = new Dictionary<string, Achievement>();
         foreach (Achievement achievement in achievements) {
@@ -31,25 +58,14 @@ public class AchievementManager : Singleton<AchievementManager> {
     }
 
     protected void Start() {
+        TrackAchievments();
+    }
+
+
+    void TrackAchievments() {
         foreach (Achievement achievement in achievement_dict.Values) {
             if (!achievement.is_unlocked) tracker.AddStatistic(achievement.tracked_statistic);
         }
-    }
-
-    public Data GetData() {
-        return new Data(achievements);
-    }
-
-    public void LoadData(Data data) {
-        foreach (Achievement.Data achievement_data in data.data) {
-            if (achievement_dict.ContainsKey(achievement_data.name)) {
-                achievement_dict[achievement_data.name].Load(achievement_data);
-            }
-        }
-    }
-
-    public List<Achievement> GetAchievementList() {
-        return achievements;
     }
 
     [System.Serializable]

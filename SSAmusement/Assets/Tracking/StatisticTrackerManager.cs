@@ -99,6 +99,9 @@ public class StatisticTrackerManager : Singleton<StatisticTrackerManager> {
     }
 
     public void LoadData(Data data) {
+        foreach (Statistic stat in overall_statistics_dict.Values) {
+            stat.Clear();
+        }
         foreach (Statistic.Data stat_data in data.GetData()) {
             if (overall_statistics_dict.ContainsKey(stat_data.name)) {
                 overall_statistics_dict[stat_data.name].Load(stat_data);

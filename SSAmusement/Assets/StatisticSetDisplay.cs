@@ -11,9 +11,17 @@ public class StatisticSetDisplay : MonoBehaviour {
     [SerializeField] bool is_overall_statistics;
 
     private void Awake() {
+        DisplayStatistics();
+    }
+
+    public void DisplayStatistics() {
+        for (int i = contianer.childCount - 1; i >= 0; i--) {
+            Destroy(contianer.GetChild(i).gameObject);
+        }
+
         IEnumerable<Statistic> stats;
         if (is_overall_statistics) {
-             stats = StatisticTrackerManager.instance.GetOverallStatistics();
+            stats = StatisticTrackerManager.instance.GetOverallStatistics();
         } else {
             stats = StatisticTrackerManager.instance.GetRunStatistics();
         }

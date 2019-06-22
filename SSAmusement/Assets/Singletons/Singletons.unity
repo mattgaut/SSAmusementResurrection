@@ -181,7 +181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1743898912, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}
       propertyPath: achievements.Array.size
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1743898912, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}
       propertyPath: achievements.Array.data[3]
@@ -202,6 +202,16 @@ PrefabInstance:
       propertyPath: achievements.Array.data[6]
       value: 
       objectReference: {fileID: 11400000, guid: 16284f8f16d305f4d8ab51614c301eaf,
+        type: 2}
+    - target: {fileID: 1743898912, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}
+      propertyPath: achievements.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: e2ec263d1c624bf46be41c65678a5d5c,
+        type: 2}
+    - target: {fileID: 1743898912, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}
+      propertyPath: achievements.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6ca42d082c206754b81b472c6b727d1f,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}

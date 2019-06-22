@@ -54,8 +54,7 @@ public class UIHandler : MonoBehaviour {
         instance.info_map.FocusRoom(room_controller);
     }
 
-    public static void DisplayAchievement(Achievement achievement) {
-        if (instance == null) return;
+    public void DisplayAchievement(Achievement achievement) {
         instance.info_display.Display(achievement.achievement_name, achievement.description, achievement.icon, 2f, Color.white);
     }
 
@@ -93,6 +92,7 @@ public class UIHandler : MonoBehaviour {
         GameManager.instance.AddOnSelectEvent(ToggleShowInfoScreen);
 
         GameManager.instance.player.inventory.on_collect_item += DisplayItem;
+        AchievementManager.instance.on_unlocked += DisplayAchievement;
 
         small_mini_map.gameObject.SetActive(false);
 
@@ -104,6 +104,7 @@ public class UIHandler : MonoBehaviour {
             GameManager.instance.RemoveOnGameOverEvent(StartGameOverCutscene);
             GameManager.instance.RemoveOnPauseEvent(TogglePauseScreen);
             GameManager.instance.RemoveOnSelectEvent(ToggleShowInfoScreen);
+            AchievementManager.instance.on_unlocked -= DisplayAchievement;
 
             Player player = GameManager.instance.player;
             if (player) {

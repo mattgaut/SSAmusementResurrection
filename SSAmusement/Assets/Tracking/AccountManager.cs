@@ -44,13 +44,27 @@ public class AccountManager : Singleton<AccountManager> {
     }
 
     public bool CreateAccount(string name) {
+        if (current_account != null) {
+            SaveAccount();
+        }
+
         if (!File.Exists(Application.persistentDataPath + file_path + name + account_file_extension)) {
             current_account = new Account(name);
-            SaveAccount();
+            ResetAccount();
             return true;
         }
 
         return true;
+    }
+
+
+    public void ResetAccount() {
+        current_account = new Account(current_account.name);
+
+        achievements.LoadData(current_account.achievements);
+        statistics.LoadData(current_account.stats);
+
+        SaveAccount();
     }
 
     public bool DeleteAccount(string name) {
@@ -60,6 +74,7 @@ public class AccountManager : Singleton<AccountManager> {
         }
         return false;
     }
+
     public void SaveAccount() {
         if (!Directory.Exists(Application.persistentDataPath + file_path)) {
             Directory.CreateDirectory(Application.persistentDataPath + file_path);

@@ -16,5 +16,6 @@ MonoBehaviour:
   _description: Deal 50 Damage in one game.
   attached_item: {fileID: 8861322812654731131, guid: cd55943f07eeb4a40885c9aa32a21773,
     type: 3}
+  has_unique_tracker: 1
   tracker: {fileID: 11400000, guid: d49abd14e51621745b8fa9b503715674, type: 2}
   target_value: 50
