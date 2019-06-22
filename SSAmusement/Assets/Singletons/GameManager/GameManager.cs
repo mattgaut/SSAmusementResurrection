@@ -164,10 +164,8 @@ public class GameManager : Singleton<GameManager> {
         DestroyPlayer();
         ResetMemory();
         SpawnPlayer(selected_player_prefab);
-        LoadLevel(level_tree.first_level);
+        LoadLevel(level_tree.first_level, true);
         player.transform.position = new Vector3(2, 1, 0);
-
-        _on_begin_game.Invoke();
     }
 
     /// <summary>
@@ -183,8 +181,8 @@ public class GameManager : Singleton<GameManager> {
     /// Loads level of the game
     /// </summary>
     /// <param name="level"></param>
-    public void LoadLevel(Level level) {
-        StartCoroutine(LoadLevelRoutine(level));
+    public void LoadLevel(Level level, bool is_first_level = false) {
+        StartCoroutine(LoadLevelRoutine(level, is_first_level));
     }   
 
     /// <summary>
@@ -237,7 +235,7 @@ public class GameManager : Singleton<GameManager> {
         if (start_game_on_start) StartGame(_player);
     }
 
-    IEnumerator LoadLevelRoutine(Level level) {
+    IEnumerator LoadLevelRoutine(Level level, bool is_first_level = false) {
         float last_game_time = game_time;
         SceneManager.LoadScene("LevelScene", LoadSceneMode.Single);
         current_level = level;
@@ -253,6 +251,10 @@ public class GameManager : Singleton<GameManager> {
 
         if (player != null) player.transform.position = new Vector3(2, 1, 0);
         game_time = last_game_time;
+
+        if (is_first_level) {
+            _on_begin_game.Invoke();
+        }
     }
 
     void Update() {

@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9825d5c0e33f744491b30f611f4c633, type: 3}
-  m_Name: Kill1000Creatures
+  m_Name: Play16Games
   m_EditorClassIdentifier: 
-  _achievement_name: Mechanical Lamb To Slaughter
-  _description: Kill 1000 enemies.
-  attached_item: {fileID: 0}
+  _achievement_name: Grand Master
+  _description: Play 16 games.
+  attached_item: {fileID: 8861322812654731131, guid: cd55943f07eeb4a40885c9aa32a21773,
+    type: 3}
   has_unique_tracker: 0
-  tracker: {fileID: 11400000, guid: b54eef12035fae4488a110b2cc8097e4, type: 2}
-  target_value: 1000
+  tracker: {fileID: 11400000, guid: 605602c1bffc7ca4c84234a1a1ec429a, type: 2}
+  target_value: 16

@@ -80,7 +80,7 @@ public class Achievement : ScriptableObject {
         if (value >= target_value) {
             is_unlocked = true;
             tracker.on_value_changed -= CheckUnlocked;
-            on_unlock.Invoke(this);
+            on_unlock?.Invoke(this);
         }
     }
 
