@@ -46,9 +46,13 @@ public class GameManager : Singleton<GameManager> {
 
     [SerializeField] LevelTree level_tree;
 
+    [SerializeField] LoadingScreen loading_screen;
+
     [SerializeField] LevelGenerator level_generator;
     [SerializeField] RoomSpawner room_spawner;
     [SerializeField] RoomManager room_manager;
+
+    Player player_prefab;
 
     Dictionary<Character.Team, TimeScale> time_scales;
     Dictionary<Character.Team, System.Action<float>> on_time_scale_changed;
@@ -161,11 +165,9 @@ public class GameManager : Singleton<GameManager> {
     /// </summary>
     /// <param name="selected_player_prefab">Player prefab to instantiate</param>
     public void StartGame(Player selected_player_prefab) {
-        DestroyPlayer();
         ResetMemory();
-        SpawnPlayer(selected_player_prefab);
+        player_prefab = selected_player_prefab;
         LoadLevel(level_tree.first_level, true);
-        player.transform.position = new Vector3(2, 1, 0);
     }
 
     /// <summary>
@@ -196,7 +198,11 @@ public class GameManager : Singleton<GameManager> {
 
         DestroyPlayer();
 
-        SceneManager.LoadScene(scene, mode);
+        loading_screen.StartLoadingScreen();
+
+        AsyncOperation op = SceneManager.LoadSceneAsync(scene, mode);
+
+        op.completed += (a) => loading_screen.EndLoadingScreen();
     }
 
     /// <summary>
@@ -237,10 +243,12 @@ public class GameManager : Singleton<GameManager> {
 
     IEnumerator LoadLevelRoutine(Level level, bool is_first_level = false) {
         float last_game_time = game_time;
-        SceneManager.LoadScene("LevelScene", LoadSceneMode.Single);
-        current_level = level;
 
-        yield return null;
+        loading_screen.StartLoadingScreen();
+
+        yield return SceneManager.LoadSceneAsync("LevelScene", LoadSceneMode.Single);
+
+        current_level = level;
         level_count++;
         var rooms = level_generator.GenerateLevel(level, RNGSingleton.instance.room_gen_rng);
         room_spawner.Generate(rooms, level.level_set.tile_set);
@@ -249,8 +257,15 @@ public class GameManager : Singleton<GameManager> {
         room_manager.SetActiveRoom(room_spawner.GetOrigin().GetComponent<RoomController>());
         ResetTimeScales();
 
+        if (is_first_level) {
+            DestroyPlayer();
+            SpawnPlayer(player_prefab);
+        }
+
         if (player != null) player.transform.position = new Vector3(2, 1, 0);
         game_time = last_game_time;
+
+        loading_screen.EndLoadingScreen();
 
         if (is_first_level) {
             _on_begin_game.Invoke();

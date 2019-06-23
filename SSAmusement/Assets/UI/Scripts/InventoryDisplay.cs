@@ -49,6 +49,9 @@ public class InventoryDisplay : MonoBehaviour {
     }
 
     private void OnDestroy() {
+        if (!GameManager.has_instance) {
+            return;
+        }
         Player player = GameManager.instance.player;
         if (player) {
             player.inventory.on_collect_item -= CheckAddItem;

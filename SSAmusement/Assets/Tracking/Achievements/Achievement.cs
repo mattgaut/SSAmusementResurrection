@@ -49,7 +49,6 @@ public class Achievement : ScriptableObject {
         if (data == null) {
             //is_unlocked = false;
         } else {
-            Debug.Log(name + " : " + data.is_unlocked);
             is_unlocked = data.is_unlocked;
 
             if (!is_unlocked && has_unique_tracker) {
