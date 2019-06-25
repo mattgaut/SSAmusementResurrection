@@ -51,8 +51,12 @@ public class Achievement : ScriptableObject {
         } else {
             is_unlocked = data.is_unlocked;
 
-            if (!is_unlocked && has_unique_tracker) {
-                tracker.Load(data.tracked_progress);
+            if (!is_unlocked) {
+                if (has_unique_tracker) {
+                    tracker.Load(data.tracked_progress);
+                }
+            } else {
+                tracker.on_value_changed -= CheckUnlocked;
             }
         }
     }
