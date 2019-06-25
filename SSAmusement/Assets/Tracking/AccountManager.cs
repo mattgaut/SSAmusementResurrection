@@ -61,8 +61,8 @@ public class AccountManager : Singleton<AccountManager> {
     public void ResetAccount() {
         current_account = new Account(current_account.name);
 
-        achievements.LoadData(current_account.achievements);
         statistics.LoadData(current_account.stats);
+        achievements.LoadData(current_account.achievements);
 
         SaveAccount();
     }
