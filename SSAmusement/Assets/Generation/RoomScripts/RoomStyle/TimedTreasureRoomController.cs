@@ -17,8 +17,9 @@ public class TimedTreasureRoomController : RoomController {
 
     public override void Init() {
         base.Init();
+        int door_count = 0;
         foreach (TimedDoor timed_door in timed_doors) {
-            timed_door.SetTimer(() => GameManager.instance.game_time, base_seconds + ((GameManager.instance.level_count - 1) * seconds_per_level));
+            timed_door.SetTimer(() => GameManager.instance.game_time, base_seconds + ((GameManager.instance.level_count - 1) * seconds_per_level) + (door_count++ * 15));
         }
         foreach (ItemChest chest in rewards) {
             chest.SetSpawnItem(ItemListSingleton.instance.GetRandomItem(RNGSingleton.instance.item_rng));
