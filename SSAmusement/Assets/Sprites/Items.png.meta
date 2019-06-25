@@ -13,6 +13,7 @@ TextureImporter:
     21300016: PercussiveCapacitor
     21300018: Pocket Rocket
     21300020: Fragile Shield
+    21300022: Excalibur
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -314,13 +315,33 @@ TextureImporter:
         width: 34
         height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 84a7a0a6aef199246a173023b3fa4896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Excalibur
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 200
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 939366116beda004693e81e65cb59bf7
       vertices: []
       indices: 
       edges: []
