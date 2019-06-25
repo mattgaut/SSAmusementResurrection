@@ -37,7 +37,7 @@ public class PlayerDisplay : MonoBehaviour {
         }
     }
 
-    public void DisplayTimedBuff(IBuff b) {
+    public void DisplayBuff(IBuff b) {
         DisplayBuff new_display_buff = Instantiate(buff_prefab, buff_holder.transform);
         new_display_buff.SetBuff(b);
     }

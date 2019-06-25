@@ -2002,7 +2002,7 @@ MonoBehaviour:
   _id: {fileID: 11400000, guid: 820039958348f6c4a9135adaf0317656, type: 2}
   _stats:
     _health:
-      base_value: 20
+      base_value: 100
     _power:
       base_value: 5
     _armor:

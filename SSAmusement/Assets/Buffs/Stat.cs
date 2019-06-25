@@ -90,25 +90,6 @@ public class Stat {
         changed = true;
     }
 
-    float GetBuffedValue() {
-        float to_ret = base_value;
-        foreach (Modifier mod in mods) {
-            to_ret += mod.flat;
-        }
-        foreach (Modifier mod in mods) {
-            to_ret *= 1 + mod.multi;
-        }
-        return to_ret;
-    }
-
-    float GetFlatBuffedValue() {
-        float to_ret = base_value;
-        foreach (Modifier mod in mods) {
-            to_ret += mod.flat;
-        }
-        return to_ret;
-    }
-
     public virtual void AddModifier(Modifier mod) {
         mods.Add(mod);
         NoteChange();
@@ -132,6 +113,25 @@ public class Stat {
 
     public static implicit operator float(Stat s) {
         return s.value;
+    }
+
+    protected virtual float GetBuffedValue() {
+        float to_ret = base_value;
+        foreach (Modifier mod in mods) {
+            to_ret += mod.flat;
+        }
+        foreach (Modifier mod in mods) {
+            to_ret *= 1 + mod.multi;
+        }
+        return to_ret;
+    }
+
+    protected virtual float GetFlatBuffedValue() {
+        float to_ret = base_value;
+        foreach (Modifier mod in mods) {
+            to_ret += mod.flat;
+        }
+        return to_ret;
     }
 }
 
@@ -165,6 +165,11 @@ public class CapStat : Stat {
 
     public CapStat() : base() {
 
+    }
+
+    protected override float GetBuffedValue() {
+        float to_return = base.GetBuffedValue();
+        return to_return < 0 ? 0 : to_return;
     }
 
     public CapStat(float base_value) : base(base_value) {

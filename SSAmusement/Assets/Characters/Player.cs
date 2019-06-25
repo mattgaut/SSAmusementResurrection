@@ -38,7 +38,7 @@ public class Player : Character {
     /// </summary>
     /// <param name="b">Buff</param>
     public override void LogBuff(IBuff b) {
-        player_display.DisplayTimedBuff(b);
+        player_display.DisplayBuff(b);
     }
 
     protected override void Die(Character killed_by) {

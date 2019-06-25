@@ -32,7 +32,9 @@ public class BuffController : MonoBehaviour {
 
     private int next_id = 0;
 
-
+    public bool IsApplied(int buff_id) {
+        return applied_buffs.ContainsKey(buff_id);
+    }
 
     public int ApplyBuff(Character affected, Character source, int stacks) {
         if (!is_unique || !can_stack) return ApplyBuff(affected, source);
@@ -43,7 +45,7 @@ public class BuffController : MonoBehaviour {
         return last_id;
     }
 
-    public int ApplyBuff(Character affected, Character source) {
+    public int ApplyBuff(Character affected, Character source, bool force_log_buff = false) {
         Instance new_buff;
         if (is_unique) {
             if (unique_buffs.ContainsKey(affected)) {
@@ -66,6 +68,9 @@ public class BuffController : MonoBehaviour {
         }
 
         new_buff.Apply(affected, source);
+        if (force_log_buff && new_buff.length <= 0) {
+            affected.LogBuff(new_buff);
+        }
         applied_buffs.Add(new_buff.id, new_buff);
         return new_buff.id;
     }

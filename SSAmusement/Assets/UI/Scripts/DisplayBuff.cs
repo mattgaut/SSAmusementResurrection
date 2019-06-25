@@ -12,9 +12,11 @@ public class DisplayBuff : MonoBehaviour {
     IBuff to_display;
 
     private void Update() {
-        slider.value = to_display.remaining_time / to_display.length;
+        if (to_display.length > 0) {
+            slider.value = to_display.remaining_time / to_display.length;
+        }
         SetText(to_display.stack_count);
-        if (to_display.remaining_time <= 0) {
+        if (!to_display.is_active) {
             Destroy(gameObject);
         }
     }
@@ -24,6 +26,10 @@ public class DisplayBuff : MonoBehaviour {
         icon_image.sprite = buff.icon;
         SetText(buff.stack_count);
         SetBarColor(buff.is_benificial ? Color.green : Color.red);
+
+        if (to_display.length <= 0) {
+            slider.value = 0;
+        }
     }
 
     void SetText(string text) {

@@ -12,6 +12,7 @@ TextureImporter:
     21300014: TimeCrystal
     21300016: PercussiveCapacitor
     21300018: Pocket Rocket
+    21300020: Fragile Shield
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -293,13 +294,33 @@ TextureImporter:
         width: 40
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: cbfdbd9d79bb92043acfafffdcc4276f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fragile Shield
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 203
+        width: 34
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84a7a0a6aef199246a173023b3fa4896
       vertices: []
       indices: 
       edges: []
