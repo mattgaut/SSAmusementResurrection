@@ -181,6 +181,7 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
             if (cont.OverPlatform()) {
                 drop_routine = StartCoroutine(DropRoutine());
             }
+            MyInput.ClearBuffer("Jump");
         } else if (drop_routine == null && player.can_move && MyInput.GetButtonDown("Drop")) {
             drop_routine = StartCoroutine(DropRoutine());
         } else if (player.can_move && MyInput.GetButtonDown("Jump", jump_buffer)) {
@@ -254,6 +255,7 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
             held = held && MyInput.GetButton("Jump");
             yield return new WaitForFixedUpdate();
         }
+        MyInput.ClearBuffer("Jump");
         jumping = false;
     }
 

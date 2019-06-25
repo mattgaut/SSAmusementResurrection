@@ -28,6 +28,17 @@ public class MyInput : Singleton<MyInput> {
         return instance ? instance.axis_dict[name].value : Input.GetAxisRaw(name);
     }
 
+    public static bool ClearBuffer(string name) {
+        if (instance == null) {
+            return false;
+        }
+        if (instance.button_dict.ContainsKey(name)) {
+            instance.button_dict[name].ClearBuffer();
+            return true;
+        }
+        return false;
+    }
+
     protected override void OnAwake() {
         button_dict = new Dictionary<string, IMyInputButton>();
 
@@ -59,6 +70,7 @@ public class MyInput : Singleton<MyInput> {
         bool IsDown();
         bool IsDownBuffered(float buffer_length);
         void Update(bool is_paused);
+        void ClearBuffer();
     }
 
     [Serializable]
@@ -91,6 +103,10 @@ public class MyInput : Singleton<MyInput> {
         public bool IsDownBuffered(float buffer_length) {
             bool to_ret = last_down + buffer_length >= Time.unscaledTime;
             return to_ret;
+        }
+
+        public void ClearBuffer() {
+            last_down = 0f;
         }
     }
 
@@ -136,6 +152,10 @@ public class MyInput : Singleton<MyInput> {
             bool to_ret = last_down + buffer_length >= Time.unscaledTime;
             last_down = float.MinValue;
             return to_ret;
+        }
+
+        public void ClearBuffer() {
+            last_down = 0f;
         }
     }
 }
