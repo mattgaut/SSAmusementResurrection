@@ -99,6 +99,7 @@ Transform:
   - {fileID: 4205165975216698}
   - {fileID: 4474835095881310}
   - {fileID: 5283852580587119312}
+  - {fileID: 1563753844220004661}
   m_Father: {fileID: 4237349826209184}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -486,7 +487,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4788624235181360}
   m_Layer: 16
-  m_Name: RaycastOrigin
+  m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -877,7 +878,7 @@ MonoBehaviour:
   flip_object: {fileID: 1240051925892814}
   base_facing: -1
   no_gravity: 0
-  raycast_origin: {fileID: 4788624235181360}
+  raycast_origin: {fileID: 1563753844220004661}
   player_mask:
     serializedVersion: 2
     m_Bits: 2099200
@@ -911,6 +912,36 @@ MonoBehaviour:
     _override_clip: {fileID: 0}
     _default_codename: sfx_character_land
     default_clip: {fileID: 0}
+--- !u!1 &1762172916380187529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1563753844220004661}
+  m_Layer: 16
+  m_Name: RaycastOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1563753844220004661
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762172916380187529}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.769, y: 0.91, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4252235615912496}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6153571154686795594
 GameObject:
   m_ObjectHideFlags: 0

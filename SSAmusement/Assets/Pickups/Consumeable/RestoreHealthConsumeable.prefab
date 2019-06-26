@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 58552095792043540}
   - component: {fileID: 4178100385919731118}
   - component: {fileID: 4263469363295386022}
-  - component: {fileID: 5242954812953028825}
-  - component: {fileID: 7193466821776267160}
   - component: {fileID: 5315053815999441881}
   m_Layer: 23
   m_Name: RestoreHealthConsumeable
@@ -144,49 +142,12 @@ MonoBehaviour:
     _icon: {fileID: 21300008, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
     _cost: 0
     effects:
-    - {fileID: 5242954812953028825}
     - {fileID: 5315053815999441881}
     _on_ability_used:
       m_PersistentCalls:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
---- !u!114 &5242954812953028825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1170230529789578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e9f51b9f69e2fa4ebd4719c3accb49a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buff: {fileID: 7193466821776267160}
---- !u!114 &7193466821776267160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1170230529789578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f163ffc0b7d845342a058e341ed7478d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buffs:
-  - {fileID: 0}
-  timed_buff: 0
-  remove_after: 0
-  _is_benificial: 0
-  _icon: {fileID: 0}
-  is_unique: 0
-  can_stack: 0
-  refreshes_on_new_stack: 0
-  max_stacks: 0
-  has_incremental_falloff: 1
 --- !u!114 &5315053815999441881
 MonoBehaviour:
   m_ObjectHideFlags: 0
