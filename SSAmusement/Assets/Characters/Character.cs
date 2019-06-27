@@ -54,6 +54,7 @@ public class Character : MonoBehaviour {
     public delegate void OnTakeDamage(Character hit_character, float pre_mitigation_damage, float post_mitigation_damage, Character hit_by);
     public delegate void OnDeathCallback(Character killed, Character killer);
     public delegate void OnTakeKnockback(Character source, Vector2 force, float length);
+    public delegate void OnSpendEnergy(Character source, float spent);
 
     public event OnHitCallback on_deal_damage;
     public event OnHitCallback on_hit;
@@ -61,6 +62,7 @@ public class Character : MonoBehaviour {
     public event OnTakeDamage on_take_damage;
     public event OnDeathCallback on_death;
     public event OnTakeKnockback on_take_knockback;
+    public event OnSpendEnergy on_spend_energy;
 
     public Vector2 knockback_force {
         get; set;
@@ -118,8 +120,12 @@ public class Character : MonoBehaviour {
     float last_cc_update;
 
     public virtual bool TrySpendEnergy(int cost) {
+        if (cost <= 0) {
+            return true;
+        }
         if (energy.current >= cost) {
             energy.current -= cost;
+            on_spend_energy?.Invoke(this, cost);
             return true;
         }
         return false;

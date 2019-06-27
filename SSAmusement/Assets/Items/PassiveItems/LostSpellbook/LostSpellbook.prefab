@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1505717523420766
+--- !u!1 &1353146143552790
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,43 +8,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4672731993930080}
-  - component: {fileID: 6419724345149334404}
-  - component: {fileID: 1087075123151216997}
-  - component: {fileID: 218561300367573623}
-  - component: {fileID: 2934555502324512677}
-  - component: {fileID: 7321858379769082535}
-  - component: {fileID: 323702497765710054}
-  - component: {fileID: 2833887935999805639}
-  - component: {fileID: 8306317342369012674}
+  - component: {fileID: 4297390895808152}
+  - component: {fileID: 212835328912684548}
+  - component: {fileID: 9175813155693695719}
+  - component: {fileID: 5010001937749546537}
+  - component: {fileID: 7057661232051244711}
+  - component: {fileID: 1363949943760350367}
+  - component: {fileID: 3905036940497315699}
   m_Layer: 23
-  m_Name: Excalibur
+  m_Name: LostSpellbook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4672731993930080
+--- !u!4 &4297390895808152
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505717523420766}
+  m_GameObject: {fileID: 1353146143552790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.986656, y: 0.9969877, z: 0.041992188}
+  m_LocalPosition: {x: 1.1286422, y: 2.33, z: 0.041992188}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5681947602483364594}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6419724345149334404
+--- !u!212 &212835328912684548
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505717523420766}
+  m_GameObject: {fileID: 1353146143552790}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -75,148 +74,166 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300022, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
+  m_Sprite: {fileID: 21300024, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.47, y: 0.47}
+  m_Size: {x: 0.8666667, y: 0.8666667}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1087075123151216997
+--- !u!114 &9175813155693695719
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505717523420766}
+  m_GameObject: {fileID: 1353146143552790}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5407d6a339d491c4db4f6704205e369e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item_name: Excalibur
-  _item_description: Gain 2 power. After not taking damage for some time gain an additional
-    25% power.
-  sprite: {fileID: 21300022, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
+  _item_name: Lost Spellbook
+  _item_description: 'Gain 25 energy. Spending energy causes arcane bolts to fire
+    at nearby enemies. '
+  sprite: {fileID: 21300024, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
   effects:
-  - {fileID: 218561300367573623}
-  - {fileID: 323702497765710054}
---- !u!114 &218561300367573623
+  - {fileID: 5010001937749546537}
+  - {fileID: 3905036940497315699}
+--- !u!114 &5010001937749546537
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505717523420766}
+  m_GameObject: {fileID: 1353146143552790}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 682e5cbe9f53e394ea4cc96e2952b293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buff: {fileID: 2934555502324512677}
---- !u!114 &2934555502324512677
+  buff: {fileID: 7057661232051244711}
+--- !u!114 &7057661232051244711
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505717523420766}
+  m_GameObject: {fileID: 1353146143552790}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f163ffc0b7d845342a058e341ed7478d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buffs:
-  - {fileID: 7321858379769082535}
+  - {fileID: 1363949943760350367}
   timed_buff: 0
   remove_after: 0
-  _is_benificial: 1
+  _is_benificial: 0
   _icon: {fileID: 0}
   is_unique: 0
   can_stack: 0
   refreshes_on_new_stack: 0
   max_stacks: 0
   has_incremental_falloff: 0
---- !u!114 &7321858379769082535
+--- !u!114 &1363949943760350367
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505717523420766}
+  m_GameObject: {fileID: 1353146143552790}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4577e845efeb2e247b6f90fffa5ff65d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  energy: 0
-  power: 1
+  energy: 1
+  power: 0
   armor: 0
   speed: 0
   fill_cap_stats: 0
   modifier:
-    _flat: 2
+    _flat: 25
     _multi: 0
---- !u!114 &323702497765710054
+--- !u!114 &3905036940497315699
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505717523420766}
+  m_GameObject: {fileID: 1353146143552790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2044aece58dbd554eb62ec2c52aac10e, type: 3}
+  m_Script: {fileID: 11500000, guid: 90b9ed30fe3818844ae99af8a2fb10dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  length_before_buff: 5
-  buff: {fileID: 2833887935999805639}
---- !u!114 &2833887935999805639
+  projectile: {fileID: 8357445321309970544, guid: 4db2756e495754f49a26729773a1680c,
+    type: 3}
+  knockback: {x: 1, y: 1}
+  target_collector: {fileID: 3891903234626774461}
+--- !u!1 &2297697373712554516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5681947602483364594}
+  - component: {fileID: 3891903234626774461}
+  - component: {fileID: 2060414948495238744}
+  m_Layer: 26
+  m_Name: TargetCollector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5681947602483364594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2297697373712554516}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4297390895808152}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3891903234626774461
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505717523420766}
+  m_GameObject: {fileID: 2297697373712554516}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f163ffc0b7d845342a058e341ed7478d, type: 3}
+  m_Script: {fileID: 11500000, guid: 71ac049e30247e1489cbd9e916088ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffs:
-  - {fileID: 8306317342369012674}
-  timed_buff: 0
-  remove_after: 0
-  _is_benificial: 1
-  _icon: {fileID: 21300022, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
-  is_unique: 0
-  can_stack: 0
-  refreshes_on_new_stack: 0
-  max_stacks: 0
-  has_incremental_falloff: 0
---- !u!114 &8306317342369012674
-MonoBehaviour:
+--- !u!58 &2060414948495238744
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505717523420766}
+  m_GameObject: {fileID: 2297697373712554516}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4577e845efeb2e247b6f90fffa5ff65d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  energy: 0
-  power: 1
-  armor: 0
-  speed: 0
-  fill_cap_stats: 0
-  modifier:
-    _flat: 0
-    _multi: 0.25
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 6

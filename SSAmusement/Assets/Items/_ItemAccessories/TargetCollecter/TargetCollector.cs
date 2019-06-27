@@ -7,7 +7,7 @@ public abstract class TargetCollector : MonoBehaviour {
     protected List<Character> targets;
 
     public virtual Character GetRandomTarget() {
-        if (targets.Count > 0) {
+        if (targets.Count > 0) {            
             return targets.GetRandom();
         }
         return null;
@@ -19,5 +19,9 @@ public abstract class TargetCollector : MonoBehaviour {
 
     protected void Awake() {
         targets = new List<Character>();
+    }
+
+    protected void RemoveTarget(Character character) {
+        targets.Remove(character);
     }
 }

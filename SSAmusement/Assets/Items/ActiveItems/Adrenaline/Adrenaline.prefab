@@ -77,7 +77,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.8666667, y: 0.8666667}
+  m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -163,6 +163,7 @@ MonoBehaviour:
   power: 1
   armor: 1
   speed: 1
+  fill_cap_stats: 0
   modifier:
     _flat: 0
     _multi: 0.25
