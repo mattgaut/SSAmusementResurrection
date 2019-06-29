@@ -73,7 +73,7 @@ public abstract class EnemyHandler : StateMachineController {
     }
 
     protected void ConfirmBump(Player player) {
-        if (player.invincible) {
+        if (!player.WasHit(enemy)) {
             last_bump = 0;
         } else {
             Bump(player);

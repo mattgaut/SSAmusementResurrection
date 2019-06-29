@@ -65,11 +65,15 @@ public abstract class Attack : MonoBehaviour {
     protected virtual void OnCollisionWithTarget() { }
 
     protected bool ConfirmHit(Character d) {
-        if (!d.invincible && (!is_blindable || !source.crowd_control_effects.IsCCed(CrowdControl.Type.blinded)) && HitCondition(d)) {
+        // Check if attack is capable of hitting.
+        if ((!is_blindable || !source.crowd_control_effects.IsCCed(CrowdControl.Type.blinded)) && HitCondition(d)) {
             LogHit(d);
-            on_hit?.Invoke(d, this);
             OnCollisionWithTarget();
-            return true;
+            // Check if character is actually hit by attack.
+            if (d.WasHit(source)) {
+                on_hit?.Invoke(d, this);
+                return true;
+            }
         }
         return false;
     }

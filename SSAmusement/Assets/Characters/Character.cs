@@ -55,14 +55,16 @@ public class Character : MonoBehaviour {
     public delegate void OnDeathCallback(Character killed, Character killer);
     public delegate void OnTakeKnockback(Character source, Vector2 force, float length);
     public delegate void OnSpendEnergy(Character source, float spent);
+    public delegate void OnWasHitByAttack(Character source, bool hit_successful);
 
     public event OnHitCallback on_deal_damage;
-    public event OnHitCallback on_hit;
+    public event OnHitCallback on_landed_hit;
     public event OnKillCallback on_kill;
     public event OnTakeDamage on_take_damage;
     public event OnDeathCallback on_death;
     public event OnTakeKnockback on_take_knockback;
     public event OnSpendEnergy on_spend_energy;
+    public event OnWasHitByAttack on_was_hit;
 
     public Vector2 knockback_force {
         get; set;
@@ -194,6 +196,19 @@ public class Character : MonoBehaviour {
             }
         }
         return old - health.current;
+    }
+
+    /// <summary>
+    /// Used to check if an attack is successful on the Character. 
+    /// </summary>
+    /// <param name="source">Character that attacked</param>
+    /// <returns>Whether attack was successful and should be registered.</returns>
+    public bool WasHit(Character source) {
+        bool was_hit = IsHitSuccessful(source);
+
+        InvokeOnWasHit(source, was_hit);
+
+        return was_hit;
     }
 
     /// <summary>
@@ -362,7 +377,7 @@ public class Character : MonoBehaviour {
     }
 
     protected void InvokeOnHit(Character hitter, float pre_mitigation_damage, float post_mitigation_damage, Character hit) {
-        on_hit?.Invoke(hitter, pre_mitigation_damage, post_mitigation_damage, hit);
+        on_landed_hit?.Invoke(hitter, pre_mitigation_damage, post_mitigation_damage, hit);
     }
     protected void InvokeOnDealDamage(Character hitter, float pre_mitigation_damage, float post_mitigation_damage, Character hit) {
         on_deal_damage?.Invoke(hitter, pre_mitigation_damage, post_mitigation_damage, hit);
@@ -375,6 +390,9 @@ public class Character : MonoBehaviour {
     }
     protected void InvokeOnDeath(Character killed, Character killed_by) {
         on_death?.Invoke(killed, killed_by);
+    }
+    protected void InvokeOnWasHit(Character source, bool was_hit_successful) {
+        on_was_hit?.Invoke(source, was_hit_successful);
     }
 
     protected void Awake() {
@@ -393,6 +411,7 @@ public class Character : MonoBehaviour {
 
         OnAwake();
     }
+
 
     /// <summary>
     /// Overload this method instead of hiding Awake
@@ -427,6 +446,9 @@ public class Character : MonoBehaviour {
         last_cc_update = Time.time;
     }
 
+    protected virtual bool IsHitSuccessful(Character source) {
+        return !invincible;
+    }
 
     protected virtual void Die(Character killed_by) {
         is_alive = false;

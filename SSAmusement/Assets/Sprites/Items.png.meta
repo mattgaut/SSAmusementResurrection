@@ -15,6 +15,7 @@ TextureImporter:
     21300020: Fragile Shield
     21300022: Excalibur
     21300024: LostSpellbook
+    21300026: HolyWard
     2186277476908879412: ImportLogs
   externalObjects: {}
   serializedVersion: 9
@@ -357,13 +358,33 @@ TextureImporter:
         width: 50
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 5f56b8b32a117b94bafc598a4b376340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HolyWard
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 202
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b98be3ae8818be34bb9434c03e9578ec
       vertices: []
       indices: 
       edges: []

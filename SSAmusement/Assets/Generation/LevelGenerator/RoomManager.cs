@@ -45,7 +45,7 @@ public class RoomManager : Singleton<RoomManager> {
                     go.transform.position = active.transform.position + new Vector3(active.room.size.x * Room.Section.width, active.room.size.y * Room.Section.height, 0)/2f;
                 }
 
-                on_enter_room?.Invoke(active, discovered_rooms.Contains(active));
+                on_enter_room?.Invoke(active, !discovered_rooms.Contains(active));
                 discovered_rooms.Add(active);
             }
         }

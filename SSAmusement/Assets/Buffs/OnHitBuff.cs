@@ -18,11 +18,11 @@ public abstract class OnHitBuff<T> : BuffDefinition<T> where T : OnHitBuffInfo {
     }
 
     protected override void ApplyEffects(Character character, T info, IBuff buff) {
-        character.on_hit += info.on_hit_callback;
+        character.on_landed_hit += info.on_hit_callback;
     }
 
     protected override void RemoveEffects(Character character, T info) {
-        character.on_hit -= info.on_hit_callback;
+        character.on_landed_hit -= info.on_hit_callback;
     }
 
     protected sealed override T GetBuffInfo(IBuff buff) {
