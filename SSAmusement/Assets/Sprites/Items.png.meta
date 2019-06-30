@@ -16,6 +16,7 @@ TextureImporter:
     21300022: Excalibur
     21300024: LostSpellbook
     21300026: HolyWard
+    21300028: CyberneticRepair
     2186277476908879412: ImportLogs
   externalObjects: {}
   serializedVersion: 9
@@ -378,13 +379,33 @@ TextureImporter:
         width: 46
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: b98be3ae8818be34bb9434c03e9578ec
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CyberneticRepair
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 203
+        width: 41
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e5fef743d7440d4bb8d294dd631eb55
       vertices: []
       indices: 
       edges: []
