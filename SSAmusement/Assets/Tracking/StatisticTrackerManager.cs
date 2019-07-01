@@ -79,6 +79,10 @@ public class StatisticTrackerManager : Singleton<StatisticTrackerManager> {
     /// End Tracker
     /// </summary>
     public void EndTracker() {
+        if (!is_tracking_live_game) {
+            return;
+        }
+
         foreach (Statistic stat in run_statistics_dict.Values) {
             stat.Unsubscribe();
         }

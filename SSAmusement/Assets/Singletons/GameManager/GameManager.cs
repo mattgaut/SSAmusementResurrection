@@ -38,7 +38,7 @@ public class GameManager : Singleton<GameManager> {
     bool is_paused, is_select_screen_up, is_cutscene_running;
     int input_locks;
 
-    [SerializeField] UnityEvent on_game_over, _on_begin_game;
+    [SerializeField] UnityEvent on_game_over, _on_begin_game, on_clear_memory;
     [SerializeField] UnityEventBool on_select, on_pause;
 
     [SerializeField] bool start_game_on_start;
@@ -165,7 +165,7 @@ public class GameManager : Singleton<GameManager> {
     /// </summary>
     /// <param name="selected_player_prefab">Player prefab to instantiate</param>
     public void StartGame(Player selected_player_prefab) {
-        ResetMemory();
+        ClearMemory();
         player_prefab = selected_player_prefab;
         LoadLevel(level_tree.first_level, true);
     }
@@ -194,15 +194,16 @@ public class GameManager : Singleton<GameManager> {
     /// <param name="scene"></param>
     /// <param name="mode"></param>
     public void LoadScene(string scene, LoadSceneMode mode) {
-        ResetMemory();
+        ClearMemory();
 
-        DestroyPlayer();
+        player?.gameObject.SetActive(false);
 
         loading_screen.StartLoadingScreen();
 
         AsyncOperation op = SceneManager.LoadSceneAsync(scene, mode);
 
         op.completed += (a) => loading_screen.EndLoadingScreen();
+        op.completed += (a) => DestroyPlayer();
     }
 
     /// <summary>
@@ -234,11 +235,12 @@ public class GameManager : Singleton<GameManager> {
             time_scales.Add(team, new TimeScale(1f));
             on_time_scale_changed.Add(team, null);
         }
-        ResetMemory();
+        ClearMemory();
     }
 
     private void Start() {
         if (start_game_on_start) StartGame(_player);
+        else LoadScene("TitleScene", LoadSceneMode.Single);
     }
 
     IEnumerator LoadLevelRoutine(Level level, bool is_first_level = false) {
@@ -289,8 +291,9 @@ public class GameManager : Singleton<GameManager> {
         DontDestroyOnLoad(player.gameObject);
     }
 
-    void ResetMemory() {
+    void ClearMemory() {
         ResetTimeScales();
+        on_clear_memory?.Invoke();
         level_count = 0;
         input_locks = 0;
         game_time = 0;

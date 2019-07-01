@@ -10,7 +10,9 @@ public class AccountManager : Singleton<AccountManager> {
     static string account_file_extension = ".ssa";
     static string meta_file_extension = ".ssmeta";
 
-    Account current_account;
+    public Account current_account {
+        get; private set;
+    }
 
     [SerializeField] StatisticTrackerManager statistics;
     [SerializeField] AchievementManager achievements;
@@ -70,6 +72,10 @@ public class AccountManager : Singleton<AccountManager> {
     public bool DeleteAccount(string name) {
         if (File.Exists(Application.persistentDataPath + file_path + name + account_file_extension)) {
             File.Delete(Application.persistentDataPath + file_path + name + account_file_extension);
+            if (current_account.name == name) {
+                current_account = null;
+                LoadDefaultAccount();
+            }
             return true;
         }
         return false;
@@ -88,8 +94,33 @@ public class AccountManager : Singleton<AccountManager> {
         file.Close();
     }
 
+    public string[] GetAccounts() {
+        string[] files = Directory.GetFiles(Application.persistentDataPath + file_path, "*" + account_file_extension, SearchOption.TopDirectoryOnly);
+        Debug.Log(files.Length);
+        for (int i = 0; i < files.Length; i++) {
+            files[i] = files[i].Substring(files[i].LastIndexOf('/') + 1);
+            files[i] = files[i].Substring(0, files[i].Length - account_file_extension.Length);
+        }
+
+        return files;
+    }
+
     protected void Start() {
-        LoadOrCreateAccount("Account");
+        LoadDefaultAccount();
+    }
+
+    private void LoadDefaultAccount() {
+        if (!LoadMostRecentAccount()) {
+            string[] accounts = GetAccounts();
+            if (accounts.Length == 0) {
+
+                // Todo open account creator instead
+                LoadOrCreateAccount("TempAccount");
+            } else if (!LoadAccount(accounts[0])) {
+                // Todo open account picker instead
+                LoadOrCreateAccount("TempAccount");
+            }
+        }
     }
 
     private void UpdateAccount() {
@@ -97,8 +128,38 @@ public class AccountManager : Singleton<AccountManager> {
         current_account.stats = statistics.GetData();
     }
 
+    private bool LoadMostRecentAccount() {
+        if (current_account != null) {
+            SaveAccount();
+        }
+
+        if (File.Exists(Application.persistentDataPath + "LastLoadedAccount" + meta_file_extension)) {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "LastLoadedAccount" + meta_file_extension, FileMode.Open);
+            string account_name = (string)bf.Deserialize(file);
+            file.Close();            
+
+            return LoadAccount(account_name);
+        }
+
+        return false;
+    }
+
     private void OnDisable() {
         SaveAccount();
+
+        NoteMostRecentAccount();
+    }
+
+    private void NoteMostRecentAccount() {
+        if (!Directory.Exists(Application.persistentDataPath + file_path)) {
+            Directory.CreateDirectory(Application.persistentDataPath + file_path);
+        }
+
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "LastLoadedAccount" + meta_file_extension);
+        bf.Serialize(file, current_account.name);
+        file.Close();
     }
 }
 

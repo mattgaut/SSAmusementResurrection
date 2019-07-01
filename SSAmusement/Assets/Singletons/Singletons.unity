@@ -218,5 +218,52 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 4753337269797124211, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: on_clear_memory.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4753337269797124211, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: start_game_on_start
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4753337269797124211, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: on_clear_memory.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4753337269797124211, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: on_clear_memory.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4753337269797124211, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: on_clear_memory.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4727880422662913535}
+    - target: {fileID: 4753337269797124211, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: on_clear_memory.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EndTracker
+      objectReference: {fileID: 0}
+    - target: {fileID: 4753337269797124211, guid: 06f08f6c2bb72f3478d34895e46a967b,
+        type: 3}
+      propertyPath: on_clear_memory.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06f08f6c2bb72f3478d34895e46a967b, type: 3}
+--- !u!114 &4727880422662913535 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5772137309860186987, guid: 06f08f6c2bb72f3478d34895e46a967b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4727880422662913534}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b47ee69e0e3fc6419875189dd13aa77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -10,11 +10,21 @@ public class StatisticSetDisplay : MonoBehaviour {
 
     [SerializeField] bool is_overall_statistics;
 
-    private void Awake() {
+    string last_account;
+
+    private void Start() {
         DisplayStatistics();
     }
 
+    private void OnEnable() {
+        if (last_account != AccountManager.instance.current_account.name) {
+            DisplayStatistics();
+        }
+    }
+
     public void DisplayStatistics() {
+        last_account = AccountManager.instance.current_account.name;
+
         for (int i = contianer.childCount - 1; i >= 0; i--) {
             Destroy(contianer.GetChild(i).gameObject);
         }
