@@ -181,7 +181,7 @@ public class Character : MonoBehaviour {
     /// <returns>Damage Taken</returns>
     public float TakeDamage(float damage, Character source, bool is_true_damage = false) {
         float old = health.current;
-        float post_mitigation_damage = is_true_damage ? damage : damage - armor;
+        float post_mitigation_damage = is_true_damage ? damage : MitigateDamage(damage);
         if (post_mitigation_damage > 0) {
             last_hit_by = source;
             if (invincibility_length > 0) {
@@ -456,6 +456,12 @@ public class Character : MonoBehaviour {
         last_hit_by.GiveKillCredit(this);
         InvokeOnDeath(this, killed_by);
         Destroy(gameObject);
+    }
+
+    protected virtual float MitigateDamage(float damage) {
+        damage *= 9 / (9 + armor);
+
+        return damage;
     }
 
     /// <summary>
