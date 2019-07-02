@@ -17,6 +17,7 @@ TextureImporter:
     21300024: LostSpellbook
     21300026: HolyWard
     21300028: CyberneticRepair
+    21300030: StaticDischarge
     2186277476908879412: ImportLogs
   externalObjects: {}
   serializedVersion: 9
@@ -399,13 +400,33 @@ TextureImporter:
         width: 41
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 4e5fef743d7440d4bb8d294dd631eb55
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StaticDischarge
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 199
+        width: 41
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d08812b902a2d04d9f538f638205ebb
       vertices: []
       indices: 
       edges: []
