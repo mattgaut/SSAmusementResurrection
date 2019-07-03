@@ -603,6 +603,8 @@ public class CharacterStats {
     [SerializeField] Stat _speed;
     [SerializeField] CapStat _energy;
     [SerializeField] Stat _knockback_modifier = new Stat(1);
+    [SerializeField] Stat _cooldown_reduction = new Stat(0);
+    [SerializeField] Stat _attack_speed = new Stat(1);
 
     [SerializeField] Transform _center_mass, _feet, _head;
 
@@ -616,5 +618,7 @@ public class CharacterStats {
     public Stat speed { get { return _speed; } }
     public CapStat energy { get { return _energy; } }
     public Stat knockback_modifier { get { return _knockback_modifier; } }
+    public Stat attack_speed { get { return _attack_speed; } }
+    public Stat cooldown_reduction { get { return _cooldown_reduction; } }
 
 }
