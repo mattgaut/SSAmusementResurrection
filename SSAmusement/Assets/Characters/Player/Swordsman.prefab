@@ -2013,6 +2013,10 @@ MonoBehaviour:
       base_value: 80
     _knockback_modifier:
       base_value: 1
+    _cooldown_reduction:
+      base_value: 0
+    _attack_speed:
+      base_value: 1
     _center_mass: {fileID: 4438645240596368}
     _feet: {fileID: 4906646818280112}
     _head: {fileID: 4390308388250876}
@@ -3389,7 +3393,8 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-    _cooldown: 0.8
+    base_cooldown: 0.8
+    cooldown_reduction_type: 1
   counter:
     _ability_name: Counter
     _icon: {fileID: 21300000, guid: 386ce9052ec182542992cf9bb26335d1, type: 3}
@@ -3401,7 +3406,8 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-    _cooldown: 2
+    base_cooldown: 2
+    cooldown_reduction_type: 0
   dash:
     _ability_name: Dash
     _icon: {fileID: 21300000, guid: 57fbd72de86d79f46bd3daf675dd3afc, type: 3}
@@ -3413,7 +3419,8 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-    _cooldown: 5
+    base_cooldown: 5
+    cooldown_reduction_type: 0
   projectile:
     _ability_name: Taser
     _icon: {fileID: 21300016, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
@@ -3425,7 +3432,8 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-    _cooldown: 5
+    base_cooldown: 5
+    cooldown_reduction_type: 0
 --- !u!114 &8079573283419416202
 MonoBehaviour:
   m_ObjectHideFlags: 0

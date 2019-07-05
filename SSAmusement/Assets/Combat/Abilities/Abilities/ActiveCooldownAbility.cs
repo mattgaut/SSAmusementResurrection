@@ -30,7 +30,9 @@ public sealed class ActiveCooldownAbility : ActiveAbility {
     public float time_until_cooldown_ends { get { return time_cooldown_ends - Time.time; } }
 
     [SerializeField][FormerlySerializedAs("_cooldown")] float base_cooldown;
-    [SerializeField] CooldownType cooldown_reduction_type; 
+    [SerializeField] CooldownType cooldown_reduction_type;
+
+    float last_speed = 0f;
 
     public void SetCooldown(float cooldown) {
         base_cooldown = cooldown;
@@ -38,6 +40,7 @@ public sealed class ActiveCooldownAbility : ActiveAbility {
 
     protected override void OnAbilityUsed() {
         time_cooldown_ends = Time.time + ReducedCooldown();
+        if (cooldown_reduction_type == CooldownType.AttackSpeed) character.animator.SetFloat("AttackSpeed", character.stats.attack_speed);
     }
 
     protected override bool TryPayCost(int cost) {

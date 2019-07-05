@@ -25,6 +25,9 @@ public class AnimatorWrapper : MonoBehaviour, ISerializationCallbackReceiver {
     public void SetTrigger(string parameter) {
         anim.SetTrigger(parameter);
     }
+    public void SetFloat(string parameter, float set) {
+        anim.SetFloat(parameter, set);
+    }
 
     public void SetSpeed(float speed) {
         anim.speed = speed;
@@ -54,13 +57,15 @@ public class AnimatorWrapper : MonoBehaviour, ISerializationCallbackReceiver {
         list.events[event_index].Invoke();
     }
 
-    public void ProccessAnimParameterEvent(AnimParameterEvent ape) {
+    public void ProccessAnimParameterEvent(AnimParameterEvent ape, float speed = 1f) {
         if (ape.type == AnimParameterEvent.Type.Bool) {
             anim.SetBool(ape.parameter_name, ape.bool_value);
         } else if (ape.type == AnimParameterEvent.Type.Float) {
             anim.SetFloat(ape.parameter_name, ape.float_value);
         } else if (ape.type == AnimParameterEvent.Type.Trigger) {
             anim.SetTrigger(ape.parameter_name);
+        } else {
+            return;
         }
     }
 
