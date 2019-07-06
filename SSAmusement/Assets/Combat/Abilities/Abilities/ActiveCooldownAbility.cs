@@ -51,7 +51,7 @@ public sealed class ActiveCooldownAbility : ActiveAbility {
         if (cooldown_reduction_type == CooldownType.Irreduceable) {
             return base_cooldown;
         } else if (cooldown_reduction_type == CooldownType.CooldownReduction) {
-            return base_cooldown * (100f - character.stats.cooldown_reduction);
+            return base_cooldown * (1f - character.stats.cooldown_reduction);
         } else if (cooldown_reduction_type == CooldownType.AttackSpeed) {
             return base_cooldown * (1f / character.stats.attack_speed);
         } else {
