@@ -44,13 +44,14 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
     public event Action<bool> on_jump;
     public event Action on_land;
 
-    protected void ProcessSkillButton(float input, int skill_index) {
+    protected bool ProcessSkillButton(float input, int skill_index) {
         if (abilities.HasAbility(skill_index)) {
             Ability ability = abilities.GetAbility(skill_index);
             if (ability.ability_type == Ability.Type.ActiveCooldown) {
-                ability.active_cooldown.TryUse(input);
+                return ability.active_cooldown.TryUse(input);
             }
         }
+        return false;
     }
 
     private void Awake() {
@@ -75,16 +76,20 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
     private void Update() {
         if (GameManager.instance.input_active && player.can_input) {
             if (MyInput.GetButton("Attack")) {
-                ProcessSkillButton(MyInput.GetAxis("Attack"), 0);
+                bool skill_used = ProcessSkillButton(MyInput.GetAxis("Attack"), 0);
+                if (skill_used) MyInput.ClearBuffer("Attack");
             }
             if (MyInput.GetButtonDown("Skill1", skill_buffer)) {
-                ProcessSkillButton(MyInput.GetAxis("Skill1"), 1);
+                bool skill_used = ProcessSkillButton(MyInput.GetAxis("Skill1"), 1);
+                if (skill_used) MyInput.ClearBuffer("Skill1");
             }
             if (MyInput.GetButtonDown("Skill2", skill_buffer)) {
-                ProcessSkillButton(MyInput.GetAxis("Skill2"), 2);
+                bool skill_used = ProcessSkillButton(MyInput.GetAxis("Skill2"), 2);
+                if (skill_used) MyInput.ClearBuffer("Skill2");
             }
             if (MyInput.GetButtonDown("Skill3")) {
-                ProcessSkillButton(MyInput.GetAxis("Skill3"), 3);
+                bool skill_used = ProcessSkillButton(MyInput.GetAxis("Skill3"), 3);
+                if (skill_used) MyInput.ClearBuffer("Skill3");
             }
             if (MyInput.GetButtonDown("ActiveSkill")) {                
                 if (player.inventory.active_item != null) {

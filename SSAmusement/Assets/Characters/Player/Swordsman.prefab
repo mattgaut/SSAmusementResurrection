@@ -3395,6 +3395,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
     base_cooldown: 0.8
     cooldown_reduction_type: 1
+    _max_charges: 1
   counter:
     _ability_name: Counter
     _icon: {fileID: 21300000, guid: 386ce9052ec182542992cf9bb26335d1, type: 3}
@@ -3408,6 +3409,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
     base_cooldown: 2
     cooldown_reduction_type: 2
+    _max_charges: 1
   dash:
     _ability_name: Dash
     _icon: {fileID: 21300000, guid: 57fbd72de86d79f46bd3daf675dd3afc, type: 3}
@@ -3421,6 +3423,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
     base_cooldown: 5
     cooldown_reduction_type: 2
+    _max_charges: 4
   projectile:
     _ability_name: Taser
     _icon: {fileID: 21300016, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
@@ -3434,6 +3437,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
     base_cooldown: 5
     cooldown_reduction_type: 2
+    _max_charges: 1
 --- !u!114 &8079573283419416202
 MonoBehaviour:
   m_ObjectHideFlags: 0
