@@ -20,10 +20,10 @@ public sealed class ActiveCooldownAbility : ActiveAbility {
 
     public float cooldown { get { return ReducedCooldown(); } }
 
-    public bool is_on_cooldown { get { return charges == 0; } }
+    public bool is_on_cooldown { get { return charges < max_charges; } }
 
     public override bool is_available {
-        get { return base.is_available && !is_on_cooldown; }
+        get { return base.is_available && charges > 0; }
     }
 
     public float time_cooldown_ends { get; private set; }

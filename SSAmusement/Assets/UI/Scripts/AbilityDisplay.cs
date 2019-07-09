@@ -7,6 +7,8 @@ public class AbilityDisplay : MonoBehaviour {
 
     [SerializeField] MySlider slider;
     [SerializeField] Image ability_image;
+    [SerializeField] Text charges;
+    [SerializeField] GameObject charges_panel;
 
     Coroutine cooldown_routine;
 
@@ -24,13 +26,19 @@ public class AbilityDisplay : MonoBehaviour {
         this.ability = ability;
         ability.on_ability_used.AddListener(StartCooldown);
         slider.SetFill(0, "");
+
+        if (ability.max_charges == 1) {
+            charges_panel.SetActive(false);
+        } else {
+            charges.text = ability.charges + "";
+        }
     }
 
     public void StartCooldown() {
         if (cooldown_routine != null) {
             StopCoroutine(cooldown_routine);
         }
-        cooldown_routine = StartCoroutine(Cooldown());
+        cooldown_routine = StartCoroutine(Cooldown());       
     }
 
     IEnumerator Cooldown() {
@@ -43,6 +51,8 @@ public class AbilityDisplay : MonoBehaviour {
             }
 
             yield return null;
+
+            charges.text = ability.charges + "";
         }
 
         slider.SetText("");
