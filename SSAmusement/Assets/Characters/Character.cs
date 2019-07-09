@@ -22,6 +22,8 @@ public class Character : MonoBehaviour {
 
     [SerializeField] protected bool is_aerial_unit;
 
+    [SerializeField] protected AbilitySet _abilities;
+
     [SerializeField] int base_jump_count = 1;
 
     public CharacterID id {
@@ -45,6 +47,8 @@ public class Character : MonoBehaviour {
     public Stat speed { get { return _stats.speed; } }
     public CapStat energy { get { return _stats.energy; } }
     public Stat knockback_multiplier { get { return _stats.knockback_modifier; } }
+
+    public AbilitySet abilities { get { return _abilities; } }
 
     public int jump_count { get { return base_jump_count + bonus_jump_count; } }
     public int bonus_jump_count { get; private set; }
@@ -419,6 +423,11 @@ public class Character : MonoBehaviour {
     protected virtual void OnAwake() { }
 
     protected void Start() {
+        if (abilities == null) {
+            _abilities = GetComponentInChildren<AbilitySet>();
+        }
+        abilities?.SetCharacter(this);
+
         GameManager.instance.AddOnTimeScaleChangedEvent(team, OnTimeScaleChanged);
         OnTimeScaleChanged(GameManager.instance.GetTeamTimeScale(team));
 

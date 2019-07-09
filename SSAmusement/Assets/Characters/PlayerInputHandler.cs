@@ -64,8 +64,6 @@ public class PlayerInputHandler : MonoBehaviour, IInputHandler {
     }
 
     private void Start() {
-        abilities.SetCharacter(player);
-
         for (int i = 0; i < abilities.count; i++) {
             player.player_display.SetAbilityDisplay(abilities.GetAbility(i).active_cooldown, i);
         }
