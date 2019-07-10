@@ -42,7 +42,7 @@ public abstract class AbilitySet : MonoBehaviour {
             return abilities[index];
         }
         return null;
-    }
+    }   
 
     /// <summary>
     /// Get ability by name

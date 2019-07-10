@@ -28,9 +28,10 @@ public sealed class ActiveCooldownAbility : ActiveAbility {
 
     public float time_cooldown_ends { get; private set; }
     public float time_until_cooldown_ends { get { return time_cooldown_ends - Time.time; } }
-
-    public int max_charges { get { return _max_charges; } }
+    
+    public int max_charges { get { return _max_charges + bonus_charges; } }
     public int charges { get; private set; }
+    public int bonus_charges { get; private set; }
 
     [SerializeField][FormerlySerializedAs("_cooldown")] float base_cooldown;
     [SerializeField] CooldownType cooldown_reduction_type;
@@ -47,6 +48,19 @@ public sealed class ActiveCooldownAbility : ActiveAbility {
 
     public void SetCooldown(float cooldown) {
         base_cooldown = cooldown;
+    }
+
+    public void ModifyBonusCharges(int count) {        
+        bonus_charges += count;
+        if (bonus_charges < 0) {
+            bonus_charges = 0;
+        }
+        if (count > 0) {
+            charges += count;
+        }
+        if (charges > max_charges) {
+            charges = max_charges;
+        }
     }
 
     protected override void OnAbilityUsed() {
