@@ -1276,6 +1276,7 @@ MonoBehaviour:
   knockback_resistant: 0
   anim: {fileID: 3446827123553776509}
   is_aerial_unit: 0
+  _abilities: {fileID: 0}
   base_jump_count: 1
   hitbox: {fileID: 61211027134408314}
   _player_display: {fileID: 4465284589776689475}
@@ -2301,7 +2302,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
     base_cooldown: 5
     cooldown_reduction_type: 2
-    _max_charges: 4
+    _max_charges: 1
   projectile:
     _ability_name: Taser
     _icon: {fileID: 21300016, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}

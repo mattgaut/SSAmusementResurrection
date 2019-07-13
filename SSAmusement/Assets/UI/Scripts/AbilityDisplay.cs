@@ -52,6 +52,7 @@ public class AbilityDisplay : MonoBehaviour {
 
             yield return null;
 
+            charges_panel.SetActive(ability.max_charges > 1);
             charges.text = ability.charges + "";
         }
 
