@@ -159,6 +159,11 @@ public class Character : MonoBehaviour {
         return energy.current - old;
     }
 
+    public void Execute(Character executioner) {
+        executioner.InvokeOnDealDamage(this, health, health, executioner);
+        Die(executioner);        
+    }
+
     /// <summary>
     /// Deals Damage to target and calls all OnHitCallbacks with proper info
     /// </summary>
