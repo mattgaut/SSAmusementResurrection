@@ -59,6 +59,14 @@ public abstract class AbilitySet : MonoBehaviour {
     }
 
     /// <summary>
+    /// Get abilities
+    /// </summary>
+    /// <returns>Ability list</returns>
+    public List<Ability> GetAbilities() {
+        return abilities;
+    }
+
+    /// <summary>
     /// Set Character of all abilities
     /// </summary>
     /// <param name="character"></param>

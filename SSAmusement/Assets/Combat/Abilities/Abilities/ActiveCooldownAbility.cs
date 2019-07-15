@@ -50,6 +50,14 @@ public sealed class ActiveCooldownAbility : ActiveAbility {
         base_cooldown = cooldown;
     }
 
+    public void RefundCooldown(float refund) {
+        time_cooldown_ends -= refund;
+    }
+
+    public void RefundPercent(float refund) {
+        time_cooldown_ends -= time_until_cooldown_ends * refund;
+    }
+
     public void ModifyBonusCharges(int count) {        
         bonus_charges += count;
         if (bonus_charges < 0) {
