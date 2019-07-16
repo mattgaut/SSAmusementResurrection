@@ -7,6 +7,7 @@ public class OnHitRefundCooldownItemEffect : OnHitItemEffect {
     List<ActiveCooldownAbility> possible_abilities;
 
     [SerializeField] float refund;
+    [SerializeField] bool is_percent;
 
     protected override void OnPickup() {
         base.OnPickup();
@@ -24,7 +25,11 @@ public class OnHitRefundCooldownItemEffect : OnHitItemEffect {
             possible_abilities.Shuffle();
             foreach (ActiveCooldownAbility a in possible_abilities) {
                 if (a.is_on_cooldown) {
-                    a.RefundCooldown(refund);
+                    if (is_percent) {
+                        a.RefundPercent(refund);
+                    } else {
+                        a.RefundCooldown(refund);
+                    }
                     break;
                 }
             }
