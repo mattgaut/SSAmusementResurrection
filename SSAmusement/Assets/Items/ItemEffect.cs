@@ -13,7 +13,7 @@ public abstract class ItemEffect : MonoBehaviour {
     /// Method to define Item Effect behaviour upon being picked up
     /// </summary>
     /// <param name="item">Item Effect belongs to</param>
-    public void OnPickup(Item item) {
+    public void OnPickup(Item item, int item_count) {
         this.item = item;
         OnPickup();
     }
@@ -24,7 +24,7 @@ public abstract class ItemEffect : MonoBehaviour {
     /// Method to define Item Effect behaviour upon being dropped
     /// </summary>
     /// <param name="item">Item effect belongs to</param>
-    public void OnDrop(Item item) {
+    public void OnDrop(Item item, int item_count) {
         this.item = item;
         OnDrop();
     }

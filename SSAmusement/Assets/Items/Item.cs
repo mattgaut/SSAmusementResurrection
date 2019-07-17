@@ -39,14 +39,14 @@ public class Item : MonoBehaviour {
         transform.SetParent(p.transform);
         transform.localPosition = Vector3.zero;
         foreach (ItemEffect e in effects) {
-            e.OnPickup(this);
+            e.OnPickup(this, p.inventory.ItemCount(item_name));
         }
     }
 
     public virtual void OnDrop(Player p) {
         if (p == owner) {
             foreach (ItemEffect e in effects) {
-                e.OnDrop(this);
+                e.OnDrop(this, p.inventory.ItemCount(item_name));
             }
             transform.SetParent(null);
             SetOwner(null);
