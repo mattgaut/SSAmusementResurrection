@@ -29,27 +29,40 @@ public class Item : MonoBehaviour {
         get; private set;
     }
 
+    public int stack_count {
+        get; private set;
+    }
+
     void SetOwner(Player p) {
         owner = p;
     }
 
     public virtual void OnPickup(Player p) {
-        GetComponent<SpriteRenderer>().enabled = false;
-        SetOwner(p);
-        transform.SetParent(p.transform);
-        transform.localPosition = Vector3.zero;
+        stack_count++;
+        if (stack_count == 1) {
+            GetComponent<SpriteRenderer>().enabled = false;
+            SetOwner(p);
+            transform.SetParent(p.transform);
+            transform.localPosition = Vector3.zero;
+        }
+
         foreach (ItemEffect e in effects) {
-            e.OnPickup(this, p.inventory.ItemCount(item_name));
+            e.OnPickup(this);
         }
     }
 
     public virtual void OnDrop(Player p) {
         if (p == owner) {
-            foreach (ItemEffect e in effects) {
-                e.OnDrop(this, p.inventory.ItemCount(item_name));
+            stack_count--;
+
+            if (stack_count == 0) {
+                transform.SetParent(null);
+                SetOwner(null);
             }
-            transform.SetParent(null);
-            SetOwner(null);
+
+            foreach (ItemEffect e in effects) {
+                e.OnDrop(this);
+            }
         }
     }
 

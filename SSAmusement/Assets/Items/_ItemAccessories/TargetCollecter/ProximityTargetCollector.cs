@@ -7,6 +7,7 @@ public class ProximityTargetCollector : TargetCollector {
     private void OnTriggerEnter2D(Collider2D collision) {
         if (((1 << collision.gameObject.layer) & LayerMask.GetMask("Enemy")) != 0) {
             Character character = collision.gameObject.GetComponentInParent<Character>();
+            Debug.Log(character + " : " + "In");
             targets.Add(character);
             character.on_death += OnDeathRemoveTarget;
         }
@@ -16,6 +17,7 @@ public class ProximityTargetCollector : TargetCollector {
         if (((1 << collision.gameObject.layer) & LayerMask.GetMask("Enemy")) != 0) {
             Character character = collision.gameObject.GetComponentInParent<Character>();
             targets.Remove(character);
+            Debug.Log(character + " : " + "Out");
             character.on_death -= OnDeathRemoveTarget;
         }
     }

@@ -10,7 +10,7 @@ public class Inventory : MonoBehaviour {
     [SerializeField] ItemPedastal replaced_item_pedastal;
 
     Player player;
-    List<Item> items_in_inventory;
+    SortedList<string, Item> items_in_inventory;
     
     public int currency {
         get; private set;
@@ -19,7 +19,7 @@ public class Inventory : MonoBehaviour {
         get; private set;
     }
     public ReadOnlyCollection<Item> items {
-        get { return new ReadOnlyCollection<Item>(items_in_inventory); }
+        get { return new ReadOnlyCollection<Item>(items_in_inventory.Values); }
     }
     public ActiveItem active_item { get; private set; }
     public Consumeable consumeable { get; private set; }
@@ -32,7 +32,7 @@ public class Inventory : MonoBehaviour {
     private void Awake() {
         //boss_keycards += 1;
         player = GetComponent<Player>();
-        items_in_inventory = new List<Item>();
+        items_in_inventory = new SortedList<string, Item>();
     }
 
     public bool TrySpendCurrency(int to_spend) {
@@ -67,11 +67,10 @@ public class Inventory : MonoBehaviour {
     }
 
     public int ItemCount(string name) {
-        int count = 0;
-        foreach (Item i in items_in_inventory) {
-            if (i.item_name == name) count++;
+        if (items_in_inventory.ContainsKey(name)) {
+            return items_in_inventory[name].stack_count;
         }
-        return count;
+        return 0;
     }
 
     public int PetCount() {
@@ -117,7 +116,12 @@ public class Inventory : MonoBehaviour {
                 }
             }
         } else {
-            items_in_inventory.Add(i);
+            if (items_in_inventory.ContainsKey(i.item_name)) {
+                Destroy(i.gameObject);
+                i = items_in_inventory[i.item_name];
+            } else {
+                items_in_inventory.Add(i.item_name, i);
+            }
         }
         i.OnPickup(player);
 

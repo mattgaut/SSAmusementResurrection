@@ -8,11 +8,16 @@ public class BuffItemEffect : ItemEffect {
 
     int buff_id;
 
-    protected override void OnDrop() {
+    protected override void OnFinalDrop() {
         buff.RemoveBuff(buff_id);
     }
 
-    protected override void OnPickup() {
+    protected override void OnInitialPickup() {
         buff_id = buff.ApplyBuff(item.owner, item.owner);
+    }
+
+    protected override void RecalculateEffects() {
+        buff.RemoveBuff(buff_id);
+        buff_id = buff.ApplyBuff(item.owner, item.owner, item.stack_count);
     }
 }

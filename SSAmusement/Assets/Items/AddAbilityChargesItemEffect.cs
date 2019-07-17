@@ -12,6 +12,14 @@ public class AddAbilityChargesItemEffect : ItemEffect {
         }
     }
 
+    protected override void OnFinalDrop() {
+        OnDrop();
+    }
+
+    protected override void OnInitialPickup() {
+        OnPickup();
+    }
+
     protected override void OnPickup() {
         foreach (int i in abilities) {
             item.owner.abilities.GetAbility(i)?.active_cooldown?.ModifyBonusCharges(charges);

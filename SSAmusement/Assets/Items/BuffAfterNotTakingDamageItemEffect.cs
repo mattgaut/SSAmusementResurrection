@@ -14,7 +14,7 @@ public class BuffAfterNotTakingDamageItemEffect : OnTakeDamageItemEffect {
             time_since_hit += GameManager.GetDeltaTime(item.owner.team);
 
             if (time_since_hit > length_before_buff && !buff.IsApplied(current_buff)) {
-                current_buff = buff.ApplyBuff(item.owner, item.owner, true);
+                current_buff = buff.ApplyBuff(item.owner, item.owner, item.stack_count, true);
             }
         }
     }

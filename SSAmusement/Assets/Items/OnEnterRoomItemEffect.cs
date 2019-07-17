@@ -6,11 +6,11 @@ public abstract class OnEnterRoomItemEffect : ItemEffect {
 
     [SerializeField] bool is_first_enter_only;
 
-    protected override void OnDrop() {
+    protected override void OnFinalDrop() {
         RoomManager.instance.on_enter_room += OnEnterRoom;
     }
 
-    protected override void OnPickup() {
+    protected override void OnInitialPickup() {
         RoomManager.instance.on_enter_room -= OnEnterRoom;
     }
 

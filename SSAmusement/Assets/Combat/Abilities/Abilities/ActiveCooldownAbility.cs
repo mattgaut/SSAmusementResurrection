@@ -72,7 +72,6 @@ public sealed class ActiveCooldownAbility : ActiveAbility {
     }
 
     protected override void OnAbilityUsed() {
-        Debug.Log(charges);
         charges--;
         if (cooldown_routine == null) {
             cooldown_routine = character.StartCoroutine(Cooldown());

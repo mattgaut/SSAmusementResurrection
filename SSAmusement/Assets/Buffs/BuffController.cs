@@ -36,11 +36,11 @@ public class BuffController : MonoBehaviour {
         return applied_buffs.ContainsKey(buff_id);
     }
 
-    public int ApplyBuff(Character affected, Character source, int stacks) {
-        if (!is_unique || !can_stack) return ApplyBuff(affected, source);
+    public int ApplyBuff(Character affected, Character source, int stacks, bool force_log_buff = false) {
+        if (!is_unique || !can_stack) return ApplyBuff(affected, source, force_log_buff);
         int last_id = -1;
         for (int i = 0; i < stacks; i++) {
-            last_id = ApplyBuff(affected, source);
+            last_id = ApplyBuff(affected, source, force_log_buff);
         }
         return last_id;
     }

@@ -9,6 +9,14 @@ public class AddJumpItemEffect : ItemEffect {
         item.owner.RemoveBonusJump(jumps);
     }
 
+    protected override void OnFinalDrop() {
+        OnDrop();
+    }
+
+    protected override void OnInitialPickup() {
+        OnPickup();
+    }
+
     protected override void OnPickup() {
         item.owner.AddBonusJump(jumps);
     }

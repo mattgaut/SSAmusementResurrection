@@ -12,7 +12,9 @@ public class OnKillDropPickupsItemEffect : OnKillItemEffect {
     protected override void OnKill(Character killer, Character killed) {
         count++;
         if (count >= enemies_per_drop) {
-            killed.DropObject(to_drop.gameObject, true);
+            for (int i = 0; i < item.stack_count; i++) {
+               killed.DropObject(to_drop.gameObject, true);
+            }
             count = 0;
         }
     }

@@ -22,7 +22,7 @@ public class OnKillLaunchProjectile : OnKillItemEffect {
     }
 
     void OnHit(Character hit, Attack hit_by) {
-        hit_by.source.DealDamage(hit_by.source.power, hit, true);
+        hit_by.source.DealDamage(hit_by.source.power * item.stack_count, hit, true);
         hit_by.source.GiveKnockback(hit, knockback.MatchDirection(hit_by.transform.position, hit.transform.position));
     }
 }

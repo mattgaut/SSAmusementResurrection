@@ -5,8 +5,11 @@ using UnityEngine;
 public class GiveMoneyItemEffect : ItemEffect {
     [SerializeField] int amount;
 
-    protected override void OnDrop() {
-        
+    protected override void OnFinalDrop() {
+    }
+
+    protected override void OnInitialPickup() {
+        OnPickup();
     }
 
     protected override void OnPickup() {

@@ -19,8 +19,8 @@ public class CombatTurretItemEffect : OnHitItemEffect {
 
     Character owner;
 
-    protected override void OnPickup() {
-        base.OnPickup();
+    protected override void OnInitialPickup() {
+        base.OnInitialPickup();
 
         pet.SetOwner(item.owner);
         pet.transform.SetParent(null, true);
@@ -37,8 +37,8 @@ public class CombatTurretItemEffect : OnHitItemEffect {
         targets = new List<Character>();
     }
 
-    protected override void OnDrop() {
-        base.OnDrop();
+    protected override void OnFinalDrop() {
+        base.OnFinalDrop();
 
         item.owner.inventory.RemovePet();
 
@@ -73,7 +73,7 @@ public class CombatTurretItemEffect : OnHitItemEffect {
     }
 
     protected void OnTurretLaserHit(Character hitter, Character hit, float damage) {
-        hitter.DealDamage(damage * multiplier, hit, false);
+        hitter.DealDamage(damage * multiplier * item.stack_count, hit, false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -90,7 +90,7 @@ public class CombatTurretItemEffect : OnHitItemEffect {
 
     private void FixedUpdate() {
         if (stored_energy < energy_per_shot) {
-            stored_energy += (percent_charge_per_second * energy_per_shot) * GameManager.GetFixedDeltaTime(owner.team);
+            stored_energy += (percent_charge_per_second * item.stack_count * energy_per_shot) * GameManager.GetFixedDeltaTime(owner.team);
             if (stored_energy > energy_per_shot) {
                 stored_energy = energy_per_shot;
             }

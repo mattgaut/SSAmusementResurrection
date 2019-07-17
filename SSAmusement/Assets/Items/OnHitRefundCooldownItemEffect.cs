@@ -26,9 +26,9 @@ public class OnHitRefundCooldownItemEffect : OnHitItemEffect {
             foreach (ActiveCooldownAbility a in possible_abilities) {
                 if (a.is_on_cooldown) {
                     if (is_percent) {
-                        a.RefundPercent(refund);
+                        a.RefundPercent(refund * item.stack_count);
                     } else {
-                        a.RefundCooldown(refund);
+                        a.RefundCooldown(refund * item.stack_count);
                     }
                     break;
                 }

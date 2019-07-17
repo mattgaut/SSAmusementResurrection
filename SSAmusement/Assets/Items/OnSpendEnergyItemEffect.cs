@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class OnSpendEnergyItemEffect : ItemEffect {
-    protected override void OnDrop() {
+    protected override void OnFinalDrop() {
         item.owner.on_spend_energy -= OnSpendEnergy;
     }
 
-    protected override void OnPickup() {
+    protected override void OnInitialPickup() {
         item.owner.on_spend_energy += OnSpendEnergy;
     }
 

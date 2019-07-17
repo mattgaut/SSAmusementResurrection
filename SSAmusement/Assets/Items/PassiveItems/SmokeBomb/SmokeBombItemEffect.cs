@@ -17,7 +17,7 @@ public class SmokeBombItemEffect : OnTakeDamageItemEffect {
     }
 
     protected override void OnTakeDamage(Character hit, float pre_damage, float post_damage, Character source) {
-        if (rng.GetFloat() < drop_probability) DropSmokeBomb();
+        if (rng.GetFloat() < drop_probability * item.stack_count) DropSmokeBomb();
     }
 
     void DropSmokeBomb() {

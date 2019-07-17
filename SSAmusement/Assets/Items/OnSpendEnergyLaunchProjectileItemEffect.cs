@@ -21,7 +21,7 @@ public class OnSpendEnergyLaunchProjectileItemEffect : OnSpendEnergyItemEffect {
     }
 
     void OnHit(Character hit, Attack hit_by, float energy_spent) {
-        hit_by.source.DealDamage(energy_spent, hit, true);
+        hit_by.source.DealDamage(energy_spent * item.stack_count, hit, true);
         hit_by.source.GiveKnockback(hit, knockback.MatchDirection(hit_by.transform.position, hit.transform.position));
     }
 }

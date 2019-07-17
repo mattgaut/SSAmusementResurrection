@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class OnHitChainNearbyEnemiesItemEffect : ItemEffect {
-    
+
     [SerializeField] float spread_range;
     [SerializeField] Formula damage_formula;
 
-    protected override void OnDrop() {
+    protected override void OnFinalDrop() {
         item.owner.on_landed_hit += OnHit;
     }
 
-    protected override void OnPickup() {
+    protected override void OnInitialPickup() {
         item.owner.on_landed_hit += OnHit;
     }
 
@@ -23,7 +23,7 @@ public class OnHitChainNearbyEnemiesItemEffect : ItemEffect {
         List<Enemy> enemies = new List<Enemy>(RoomManager.instance.active.GetEnemies());
         foreach (Enemy e in enemies) {
             if (e.is_alive && Vector2.Distance(hit.transform.position, e.transform.position) < spread_range) {
-                item.owner.DealDamage(damage_formula.GetValue(item.owner), e, false);
+                item.owner.DealDamage(damage_formula.GetValue(item.owner) * item.stack_count, e, false);
             }
         }
     }
