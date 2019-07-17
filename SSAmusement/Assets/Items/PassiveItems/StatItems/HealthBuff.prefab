@@ -131,8 +131,8 @@ MonoBehaviour:
   remove_after: 0
   _is_benificial: 1
   _icon: {fileID: 0}
-  is_unique: 0
-  can_stack: 0
+  is_unique: 1
+  can_stack: 1
   refreshes_on_new_stack: 0
   max_stacks: 0
   has_incremental_falloff: 0
@@ -153,6 +153,7 @@ MonoBehaviour:
   power: 0
   armor: 0
   speed: 0
+  fill_cap_stats: 0
   modifier:
     _flat: 40
     _multi: 0

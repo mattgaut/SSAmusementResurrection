@@ -136,8 +136,8 @@ MonoBehaviour:
   remove_after: 0
   _is_benificial: 1
   _icon: {fileID: 0}
-  is_unique: 0
-  can_stack: 0
+  is_unique: 1
+  can_stack: 1
   refreshes_on_new_stack: 0
   max_stacks: 0
   has_incremental_falloff: 0
@@ -194,8 +194,8 @@ MonoBehaviour:
   remove_after: 0
   _is_benificial: 1
   _icon: {fileID: 21300020, guid: 9d702f5e1f1bfdd4399a36f27a16ab0d, type: 3}
-  is_unique: 0
-  can_stack: 0
+  is_unique: 1
+  can_stack: 1
   refreshes_on_new_stack: 0
   max_stacks: 0
   has_incremental_falloff: 0

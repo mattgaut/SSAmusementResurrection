@@ -18,6 +18,7 @@ public class BuffItemEffect : ItemEffect {
 
     protected override void RecalculateEffects() {
         buff.RemoveBuff(buff_id);
+        Debug.Log(item.stack_count);
         buff_id = buff.ApplyBuff(item.owner, item.owner, item.stack_count);
     }
 }
